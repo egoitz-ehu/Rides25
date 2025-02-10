@@ -31,7 +31,7 @@ public class ApplicationLauncher {
 	    Driver driver=new Driver("driver3@gmail.com","Test Driver");
 
 		
-		MainGUI a=new MainGUI(driver);
+		WelcomeWindow a=new WelcomeWindow();
 		a.setVisible(true);
 
 
@@ -70,8 +70,8 @@ public class ApplicationLauncher {
 
 			
 		}catch (Exception e) {
-			a.jLabelSelectOption.setText("Error: "+e.toString());
-			a.jLabelSelectOption.setForeground(Color.RED);	
+			//a.jLabelSelectOption.setText("Error: "+e.toString());
+			//a.jLabelSelectOption.setForeground(Color.RED);	
 			
 			System.out.println("Error in ApplicationLauncher: "+e.toString());
 		}

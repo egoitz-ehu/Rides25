@@ -112,7 +112,7 @@ public class MainGUI extends JFrame {
 
 				a.setVisible(true);
 			}
-		});
+		}); 
 		
 		jContentPane = new JPanel();
 		jContentPane.setLayout(new GridLayout(4, 1, 0, 0));

@@ -1,0 +1,138 @@
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-10 10:37:51 #1 store] 
+Database 'C:\Users\ehu\git\Rides25\src\main\resources\rides.temp' is opened by 18064@U231504
+
+[2025-02-10 10:37:51 #2 type.registry] 
+New type domain.Driver
+
+[2025-02-10 10:37:51 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-10 10:37:51 #4 type.registry] 
+New type domain.Ride
+
+[2025-02-10 10:37:51 #5 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-10 10:37:51 #6 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-02-10 10:37:51 #7 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-10 10:41:13 #1 store] 
+Database 'C:\Users\ehu\git\Rides25\src\main\resources\rides.temp' is opened by 19368@U231504
+
+[2025-02-10 10:41:13 #2 type.registry] 
+New type domain.Driver
+
+[2025-02-10 10:41:13 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-10 10:41:13 #4 type.registry] 
+New type domain.Ride
+
+[2025-02-10 10:41:13 #5 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-10 10:41:13 #6 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-02-10 10:41:13 #7 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-10 10:42:42 #1 store] 
+Database 'C:\Users\ehu\git\Rides25\src\main\resources\rides.temp' is opened by 16536@U231504
+
+[2025-02-10 10:42:42 #2 type.registry] 
+New type domain.Driver
+
+[2025-02-10 10:42:42 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-10 10:42:42 #4 type.registry] 
+New type domain.Ride
+
+[2025-02-10 10:42:42 #5 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-10 10:42:42 #6 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-02-10 10:42:42 #7 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-10 10:58:04 #1 store] 
+Database 'C:\Users\ehu\git\Rides25\src\main\resources\rides.temp' is opened by 16324@U231504
+
+[2025-02-10 10:58:04 #2 type.registry] 
+New type domain.Driver
+
+[2025-02-10 10:58:04 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-10 10:58:04 #4 type.registry] 
+New type domain.Ride
+
+[2025-02-10 10:58:04 #5 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-10 10:58:05 #6 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-02-10 10:58:05 #7 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-10 11:34:23 #1 store] 
+Database 'C:\Users\ehu\git\Rides25\src\main\resources\rides.temp' is opened by 19368@U231504
+
+[2025-02-10 11:34:24 #2 type.registry] 
+New type domain.Driver
+
+[2025-02-10 11:34:24 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-10 11:34:24 #4 type.registry] 
+New type domain.Ride
+
+[2025-02-10 11:34:24 #5 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-10 11:34:24 #6 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-02-10 11:34:24 #7 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-10 11:35:14 #1 store] 
+Database 'C:\Users\ehu\git\Rides25\src\main\resources\rides.temp' is opened by 4048@U231504
+
+[2025-02-10 11:35:14 #2 type.registry] 
+New type domain.Driver
+
+[2025-02-10 11:35:14 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-10 11:35:14 #4 type.registry] 
+New type domain.Ride
+
+[2025-02-10 11:35:14 #5 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-10 11:35:14 #6 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-02-10 11:35:14 #7 type.registry] 
+New type java.util.Vector<domain.Ride>
+
