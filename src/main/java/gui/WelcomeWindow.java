@@ -2,6 +2,8 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.GridLayout;
+import java.awt.LayoutManager;
 import java.util.ResourceBundle;
 
 import javax.swing.JFrame;
@@ -55,12 +57,21 @@ public class WelcomeWindow extends JFrame {
 		loginButton.setBounds(96, 136, 252, 45);
 		contentPane.add(loginButton);
 		
-		JButton btnNewButton_2 = new JButton(ResourceBundle.getBundle("Etiquetas").getString("WelcomeGUI.Login"));
-		btnNewButton_2.setBounds(96, 192, 252, 45);
-		contentPane.add(btnNewButton_2);
+		guestButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("WelcomeGUI.Guest"));
+		guestButton.setBounds(96, 192, 252, 45);
+		contentPane.add(guestButton);
 		
 		titleLabel = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("WelcomeGUI.Welcome"));
 		titleLabel.setBounds(10, 11, 274, 28);
 		contentPane.add(titleLabel);
+		
+		JPanel panel = new JPanel();
+		panel.setLayout(new GridLayout(4,1,0,0));
+		panel.add(titleLabel);
+		panel.add(registerButton);
+		panel.add(loginButton);
+		panel.add(guestButton);
+		
+		setContentPane(panel);
 	}
 }
