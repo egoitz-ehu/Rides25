@@ -2,15 +2,22 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.LayoutManager;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.JComboBox;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class WelcomeWindow extends JFrame {
 	
@@ -21,6 +28,9 @@ public class WelcomeWindow extends JFrame {
 		
 	
 	private JPanel contentPane;
+	private JLabel lblNewLabel;
+	private JComboBox<String> comboBoxLanguages;
+	private DefaultComboBoxModel<String> hizkuntzak = new DefaultComboBoxModel<String>();
 
 	/**
 	 * Launch the application.
@@ -45,33 +55,58 @@ public class WelcomeWindow extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		contentPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
+		
+		lblNewLabel = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("WelcomeGUI.Languages")); //$NON-NLS-1$ //$NON-NLS-2$
+		contentPane.add(lblNewLabel);
 		
 		registerButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("WelcomeGUI.Register"));
 		registerButton.setBounds(96, 80, 252, 45);
-		contentPane.add(registerButton);
+		//contentPane.add(registerButton);
 		
 		loginButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("WelcomeGUI.Login"));
 		loginButton.setBounds(96, 136, 252, 45);
-		contentPane.add(loginButton);
+		//contentPane.add(loginButton);
 		
 		guestButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("WelcomeGUI.Guest"));
 		guestButton.setBounds(96, 192, 252, 45);
-		contentPane.add(guestButton);
+		//contentPane.add(guestButton);
 		
 		titleLabel = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("WelcomeGUI.Welcome"));
+		titleLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		titleLabel.setBounds(10, 11, 274, 28);
-		contentPane.add(titleLabel);
+		//contentPane.add(titleLabel);
+		
+		comboBoxLanguages = new JComboBox<String>();
+		comboBoxLanguages.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Locale.setDefault(new Locale((String) comboBoxLanguages.getSelectedItem()));
+				System.out.println("Locale: "+Locale.getDefault());
+				paintAgain();
+			}
+		});
+		comboBoxLanguages.setModel(hizkuntzak);
+		contentPane.add(comboBoxLanguages);
+		hizkuntzak.addElement("en");
+		hizkuntzak.addElement("es");
+		hizkuntzak.addElement("eus");
 		
 		JPanel panel = new JPanel();
-		panel.setLayout(new GridLayout(4,1,0,0));
+		panel.setLayout(new GridLayout(6,1));
+		panel.add(contentPane);
 		panel.add(titleLabel);
 		panel.add(registerButton);
 		panel.add(loginButton);
 		panel.add(guestButton);
 		
 		setContentPane(panel);
+	}
+	
+	private void paintAgain() {
+		lblNewLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("WelcomeGUI.Languages"));
+		registerButton.setText(ResourceBundle.getBundle("Etiquetas").getString("WelcomeGUI.Register"));
+		loginButton.setText(ResourceBundle.getBundle("Etiquetas").getString("WelcomeGUI.Login"));
+		guestButton.setText(ResourceBundle.getBundle("Etiquetas").getString("WelcomeGUI.Guest"));
+		titleLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("WelcomeGUI.Welcome"));
 	}
 }

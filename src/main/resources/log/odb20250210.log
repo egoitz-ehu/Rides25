@@ -136,3 +136,49 @@ New type java.util.Vector<java.lang.Object>
 [2025-02-10 11:35:14 #7 type.registry] 
 New type java.util.Vector<domain.Ride>
 
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-10 15:17:13 #1 store] 
+Database 'C:\Users\egoit\git\Rides25\src\main\resources\rides.temp' is opened by 46368@LAPTOP-2PN1U6VU
+
+[2025-02-10 15:17:13 #2 type.registry] 
+New type domain.Driver
+
+[2025-02-10 15:17:13 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-10 15:17:13 #4 type.registry] 
+New type domain.Ride
+
+[2025-02-10 15:17:13 #5 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-10 15:17:13 #6 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-02-10 15:17:13 #7 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-10 15:25:10 #1 store] 
+Database 'C:\Users\egoit\git\Rides25\src\main\resources\rides.temp' is opened by 32816@LAPTOP-2PN1U6VU
+
+[2025-02-10 15:25:11 #2 type.registry] 
+New type domain.Driver
+
+[2025-02-10 15:25:11 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-10 15:25:11 #4 type.registry] 
+New type domain.Ride
+
+[2025-02-10 15:25:11 #5 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-10 15:25:11 #6 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-02-10 15:25:11 #7 type.registry] 
+New type java.util.Vector<domain.Ride>
+
