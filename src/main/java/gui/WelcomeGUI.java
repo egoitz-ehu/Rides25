@@ -19,7 +19,7 @@ import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class WelcomeWindow extends JFrame {
+public class WelcomeGUI extends JFrame {
 	
 	private JButton registerButton;
 	private JButton loginButton;
@@ -39,7 +39,7 @@ public class WelcomeWindow extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					WelcomeWindow frame = new WelcomeWindow();
+					WelcomeGUI frame = new WelcomeGUI();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -51,7 +51,7 @@ public class WelcomeWindow extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public WelcomeWindow() {
+	public WelcomeGUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -61,6 +61,12 @@ public class WelcomeWindow extends JFrame {
 		contentPane.add(lblNewLabel);
 		
 		registerButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("WelcomeGUI.Register"));
+		registerButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFrame registerWindow = new RegisterGUI();
+				registerWindow.setVisible(true);;
+			}
+		});
 		registerButton.setBounds(96, 80, 252, 45);
 		//contentPane.add(registerButton);
 		

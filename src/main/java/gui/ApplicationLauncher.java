@@ -31,7 +31,7 @@ public class ApplicationLauncher {
 	    Driver driver=new Driver("driver3@gmail.com","Test Driver");
 
 		
-		WelcomeWindow a=new WelcomeWindow();
+		WelcomeGUI a=new WelcomeGUI();
 		a.setVisible(true);
 
 
