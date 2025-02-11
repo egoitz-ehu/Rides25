@@ -68,7 +68,7 @@ public class RegisterGUI extends JFrame {
         contentPane.setLayout(gbl_contentPane);
         
         // Label Title
-        labelTitle = new JLabel("REGISTER");
+        labelTitle = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("RegisterGUI.Title"));
         GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
         gbc_lblNewLabel.gridwidth = 12;
         gbc_lblNewLabel.insets = new Insets(0, 0, 5, 0);
@@ -78,7 +78,7 @@ public class RegisterGUI extends JFrame {
         contentPane.add(labelTitle, gbc_lblNewLabel);
         
         // Label and TextField for Name
-        labelName = new JLabel("Name");
+        labelName = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("RegisterGUI.Name"));
         GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
         gbc_lblNewLabel_1.gridwidth = 7;
         gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
@@ -99,7 +99,7 @@ public class RegisterGUI extends JFrame {
         textFieldName.setColumns(10);
         
         // Label and TextField for Surname
-        labelSurname = new JLabel("Surname");
+        labelSurname = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("RegisterGUI.Surname"));
         GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
         gbc_lblNewLabel_2.gridwidth = 7;
         gbc_lblNewLabel_2.insets = new Insets(0, 0, 5, 5);
@@ -119,7 +119,7 @@ public class RegisterGUI extends JFrame {
         contentPane.add(textFieldSurname, gbc_textFieldSurname);
         
         // Label and TextField for Mail
-        labelMail = new JLabel("Email");
+        labelMail = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("RegisterGUI.Mail"));
         GridBagConstraints gbc_lblNewLabel_3 = new GridBagConstraints();
         gbc_lblNewLabel_3.gridwidth = 7;
         gbc_lblNewLabel_3.insets = new Insets(0, 0, 5, 5);
@@ -139,7 +139,7 @@ public class RegisterGUI extends JFrame {
         contentPane.add(textFieldMail, gbc_textFieldMail);
         
         // Label and Password Field
-        labelPassword = new JLabel("Password");
+        labelPassword = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("RegisterGUI.Password"));
         GridBagConstraints gbc_lblNewLabel_4 = new GridBagConstraints();
         gbc_lblNewLabel_4.gridwidth = 7;
         gbc_lblNewLabel_4.insets = new Insets(0, 0, 5, 5);
@@ -159,7 +159,7 @@ public class RegisterGUI extends JFrame {
         contentPane.add(passwordField, gbc_passwordField);
         
         // User Type selection
-        labelUserType = new JLabel("User Type");
+        labelUserType = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("RegisterGUI.UserType"));
         GridBagConstraints gbc_lblNewLabel_5 = new GridBagConstraints();
         gbc_lblNewLabel_5.gridwidth = 3;
         gbc_lblNewLabel_5.insets = new Insets(0, 0, 5, 5);
@@ -167,7 +167,7 @@ public class RegisterGUI extends JFrame {
         gbc_lblNewLabel_5.gridy = 2;
         contentPane.add(labelUserType, gbc_lblNewLabel_5);
         
-        radioButtonDriver = new JRadioButton("Driver");
+        radioButtonDriver = new JRadioButton(ResourceBundle.getBundle("Etiquetas").getString("RegisterGUI.Driver"));
         GridBagConstraints gbc_rdbtnDriver = new GridBagConstraints();
         gbc_rdbtnDriver.insets = new Insets(0, 0, 5, 5);
         gbc_rdbtnDriver.gridx = 9;
@@ -175,7 +175,7 @@ public class RegisterGUI extends JFrame {
         gbc_rdbtnDriver.fill = GridBagConstraints.BOTH;
         contentPane.add(radioButtonDriver, gbc_rdbtnDriver);
         
-        radioButtonPassenger = new JRadioButton("Passenger");
+        radioButtonPassenger = new JRadioButton(ResourceBundle.getBundle("Etiquetas").getString("RegisterGUI.Passenger"));
         GridBagConstraints gbc_rdbtnPassenger = new GridBagConstraints();
         gbc_rdbtnPassenger.insets = new Insets(0, 0, 5, 5);
         gbc_rdbtnPassenger.gridx = 9;
@@ -183,7 +183,7 @@ public class RegisterGUI extends JFrame {
         gbc_rdbtnPassenger.fill = GridBagConstraints.BOTH;
         contentPane.add(radioButtonPassenger, gbc_rdbtnPassenger);
         
-        buttonSend = new JButton("Send");
+        buttonSend = new JButton(ResourceBundle.getBundle("Etiquetas").getString("RegisterGUI.Send"));
         GridBagConstraints gbc_btnSend = new GridBagConstraints();
         gbc_btnSend.insets = new Insets(0, 0, 0, 5);
         gbc_btnSend.gridx = 9;

@@ -1,0 +1,34 @@
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-11 17:25:38 #1 store] 
+Database 'C:\Users\egoit\git\Rides25\src\main\resources\rides.temp' is opened by 5476@LAPTOP-2PN1U6VU
+
+[2025-02-11 17:25:39 #2 type.registry] 
+New type domain.Driver
+
+[2025-02-11 17:25:39 #3 type] 
+Type domain.Driver is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-11 17:25:43 #1 store] 
+Database 'C:\Users\egoit\git\Rides25\src\main\resources\rides.temp' is opened by 10540@LAPTOP-2PN1U6VU
+
+[2025-02-11 17:25:43 #2 type.registry] 
+New type domain.Driver
+
+[2025-02-11 17:25:43 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-11 17:25:43 #4 type.registry] 
+New type domain.Ride
+
+[2025-02-11 17:25:43 #5 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-11 17:25:43 #6 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-02-11 17:25:43 #7 type.registry] 
+New type java.util.Vector<domain.Ride>
+

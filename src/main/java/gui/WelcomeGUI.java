@@ -71,6 +71,12 @@ public class WelcomeGUI extends JFrame {
 		//contentPane.add(registerButton);
 		
 		loginButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("WelcomeGUI.Login"));
+		loginButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFrame loginWindow = new LoginGUI();
+				loginWindow.setVisible(true);;
+			}
+		});
 		loginButton.setBounds(96, 136, 252, 45);
 		//contentPane.add(loginButton);
 		
