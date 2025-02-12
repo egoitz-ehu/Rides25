@@ -14,50 +14,21 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-public class Driver implements Serializable {
+public class Driver extends User implements Serializable{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-	@XmlID
-	@Id 
-	private String email;
-	private String name; 
+	
 	@XmlIDREF
 	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
 	private List<Ride> rides=new Vector<Ride>();
-
-	public Driver() {
-		super();
-	}
-
-	public Driver(String email, String name) {
-		this.email = email;
-		this.name = name;
-	}
 	
-	
-	public String getEmail() {
-		return email;
-	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public Driver(String email, String pass, String name, String surname) {
+		super(email, pass, name, surname);
 	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	
 	
 	public String toString(){
-		return email+";"+name+rides;
+		return super.toString()+";"+rides;
 	}
 	
 	/**
@@ -87,20 +58,6 @@ public class Driver implements Serializable {
 			 return true;
 		
 		return false;
-	}
-		
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Driver other = (Driver) obj;
-		if (email != other.email)
-			return false;
-		return true;
 	}
 
 	public Ride removeRide(String from, String to, Date date) {

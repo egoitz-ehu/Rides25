@@ -20,6 +20,7 @@ import configuration.ConfigXML;
 import configuration.UtilDate;
 import domain.Driver;
 import domain.Ride;
+import domain.User;
 import exceptions.RideAlreadyExistException;
 import exceptions.RideMustBeLaterThanTodayException;
 
@@ -80,10 +81,7 @@ public class DataAccess  {
 	    
 		   
 		    //Create drivers 
-			Driver driver1=new Driver("driver1@gmail.com","Aitor Fernandez");
-			Driver driver2=new Driver("driver2@gmail.com","Ane Gaztañaga");
-			Driver driver3=new Driver("driver3@gmail.com","Test driver");
-
+			Driver driver1=new Driver("driver1@gmail.com","abc123", "Ane", "Gaztañaga");
 			
 			//Create rides
 			driver1.addRide("Donostia", "Bilbo", UtilDate.newDate(year,month,15), 4, 7);
@@ -92,17 +90,17 @@ public class DataAccess  {
 
 			driver1.addRide("Donostia", "Iruña", UtilDate.newDate(year,month,7), 4, 8);
 			
-			driver2.addRide("Donostia", "Bilbo", UtilDate.newDate(year,month,15), 3, 3);
-			driver2.addRide("Bilbo", "Donostia", UtilDate.newDate(year,month,25), 2, 5);
-			driver2.addRide("Eibar", "Gasteiz", UtilDate.newDate(year,month,6), 2, 5);
+			//driver2.addRide("Donostia", "Bilbo", UtilDate.newDate(year,month,15), 3, 3);
+			//driver2.addRide("Bilbo", "Donostia", UtilDate.newDate(year,month,25), 2, 5);
+			//driver2.addRide("Eibar", "Gasteiz", UtilDate.newDate(year,month,6), 2, 5);
 
-			driver3.addRide("Bilbo", "Donostia", UtilDate.newDate(year,month,14), 1, 3);
+			//driver3.addRide("Bilbo", "Donostia", UtilDate.newDate(year,month,14), 1, 3);
 
 			
 						
 			db.persist(driver1);
-			db.persist(driver2);
-			db.persist(driver3);
+			//db.persist(driver2);
+			//db.persist(driver3);
 
 	
 			db.getTransaction().commit();
@@ -111,6 +109,36 @@ public class DataAccess  {
 		catch (Exception e){
 			e.printStackTrace();
 		}
+	}
+	
+	public boolean existInDB(User u) {
+		TypedQuery<User> query = db.createQuery("SELECT u FROM User u WHERE u.email=?1", User.class);
+		query.setParameter(1, u.getEmail());
+		
+		List<User> l = query.getResultList();
+		return !l.isEmpty();
+	}
+	
+	public boolean register(User u) {
+		boolean b=existInDB(u);
+		if (!b) {
+			db.getTransaction().begin();
+			db.persist(u);
+			db.getTransaction().commit();
+			System.out.println("Erabiltzaile berri bat sortu da");
+		} else {
+			System.out.println("Dagoeneko badago erabiltzaile bat email berdinarekin");
+		}
+		return !b;
+	}
+	
+	public User login(String email, String password) {
+		TypedQuery<User> query = db.createQuery("SELECT u FROM User u WHERE u.email=?1 AND u.password=?2", User.class);
+		query.setParameter(1, email);
+		query.setParameter(2, password);
+		List<User> l = query.getResultList();
+		if(l.isEmpty()) return null;
+		else return l.get(0);
 	}
 	
 	/**

@@ -6,6 +6,12 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import businessLogic.BLFacade;
+import domain.Driver;
+import domain.Traveler;
+import domain.User;
+
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.JLabel;
@@ -15,6 +21,8 @@ import java.util.ResourceBundle;
 
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class LoginGUI extends JFrame {
 
@@ -28,6 +36,8 @@ public class LoginGUI extends JFrame {
 	private JLabel errorLabel;
 	
 	private JButton buttonEnter;
+	
+	private BLFacade bussinessLogic;
 
 	/**
 	 * Launch the application.
@@ -44,6 +54,10 @@ public class LoginGUI extends JFrame {
 			}
 		});
 	}
+	
+	public void setBussinessLogic(BLFacade logic) {
+    	this.bussinessLogic=logic;
+    }
 
 	/**
 	 * Create the frame.
@@ -84,6 +98,14 @@ public class LoginGUI extends JFrame {
 		contentPane.add(errorLabel);
 		
 		buttonEnter = new JButton(ResourceBundle.getBundle("Etiquetas").getString("LoginGUI.Enter"));
+		buttonEnter.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				User u = bussinessLogic.login(mailField.getText(), new String(passwordField.getPassword()));
+				if(u==null) System.out.println("Ez dago erabiltzailerik");
+				else if(u instanceof Driver) System.out.println("Erabiltzailea gidaria da");
+				else if(u instanceof Traveler) System.out.println("Erabiltzailea bidaiaria da");
+			}
+		});
 		buttonEnter.setBounds(154, 193, 134, 29);
 		contentPane.add(buttonEnter);
 	}

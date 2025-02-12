@@ -5,6 +5,7 @@ import java.util.List;
 
 //import domain.Booking;
 import domain.Ride;
+import domain.User;
 import domain.Driver;
 import exceptions.RideMustBeLaterThanTodayException;
 import exceptions.RideAlreadyExistException;
@@ -74,6 +75,10 @@ public interface BLFacade  {
 	 * It is invoked only when the option "initialize" is declared in the tag dataBaseOpenMode of resources/config.xml file
 	 */	
 	@WebMethod public void initializeBD();
+	
+	@WebMethod public boolean register(User u);
+	
+	@WebMethod public User login(String email, String password);
 
 	
 }

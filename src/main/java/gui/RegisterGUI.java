@@ -5,6 +5,12 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import businessLogic.BLFacade;
+import domain.Driver;
+import domain.Traveler;
+import domain.User;
+
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 
@@ -17,6 +23,8 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class RegisterGUI extends JFrame {
 
@@ -33,11 +41,13 @@ public class RegisterGUI extends JFrame {
     private JLabel labelPassword;
     private JLabel labelUserType;
     
-    JRadioButton radioButtonDriver;
-    JRadioButton radioButtonPassenger;
-    ButtonGroup rbGroup;
+    private JRadioButton radioButtonDriver;
+    private JRadioButton radioButtonPassenger;
+    private ButtonGroup rbGroup;
     
-    JButton buttonSend;
+    private JButton buttonSend;
+    
+    private BLFacade bussinessLogic;
 
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
@@ -50,6 +60,10 @@ public class RegisterGUI extends JFrame {
                 }
             }
         });
+    }
+    
+    public void setBussinessLogic(BLFacade logic) {
+    	this.bussinessLogic=logic;
     }
 
     public RegisterGUI() {
@@ -184,6 +198,17 @@ public class RegisterGUI extends JFrame {
         contentPane.add(radioButtonPassenger, gbc_rdbtnPassenger);
         
         buttonSend = new JButton(ResourceBundle.getBundle("Etiquetas").getString("RegisterGUI.Send"));
+        buttonSend.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		User user1;
+        		if(radioButtonDriver.isSelected()) {
+        			user1 = new Driver(textFieldMail.getText(), new String(passwordField.getPassword()), textFieldName.getText(), textFieldSurname.getText());
+        		} else {
+        			user1 = new Traveler(textFieldMail.getText(), new String(passwordField.getPassword()), textFieldName.getText(), textFieldSurname.getText()); 
+        		}
+        		bussinessLogic.register(user1);
+        	}
+        });
         GridBagConstraints gbc_btnSend = new GridBagConstraints();
         gbc_btnSend.insets = new Insets(0, 0, 0, 5);
         gbc_btnSend.gridx = 9;

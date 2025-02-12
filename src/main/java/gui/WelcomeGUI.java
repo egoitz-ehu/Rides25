@@ -11,6 +11,9 @@ import java.util.ResourceBundle;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import businessLogic.BLFacade;
+
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -31,6 +34,8 @@ public class WelcomeGUI extends JFrame {
 	private JLabel lblNewLabel;
 	private JComboBox<String> comboBoxLanguages;
 	private DefaultComboBoxModel<String> hizkuntzak = new DefaultComboBoxModel<String>();
+	
+	private static BLFacade bussinessLogic;
 
 	/**
 	 * Launch the application.
@@ -47,6 +52,10 @@ public class WelcomeGUI extends JFrame {
 			}
 		});
 	}
+	
+	public static void setBussinessLogic(BLFacade logic) {
+    	bussinessLogic=logic;
+    }
 
 	/**
 	 * Create the frame.
@@ -63,7 +72,8 @@ public class WelcomeGUI extends JFrame {
 		registerButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("WelcomeGUI.Register"));
 		registerButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JFrame registerWindow = new RegisterGUI();
+				RegisterGUI registerWindow = new RegisterGUI();
+				registerWindow.setBussinessLogic(bussinessLogic);
 				registerWindow.setVisible(true);;
 			}
 		});
@@ -73,7 +83,8 @@ public class WelcomeGUI extends JFrame {
 		loginButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("WelcomeGUI.Login"));
 		loginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JFrame loginWindow = new LoginGUI();
+				LoginGUI loginWindow = new LoginGUI();
+				loginWindow.setBussinessLogic(bussinessLogic);
 				loginWindow.setVisible(true);;
 			}
 		});

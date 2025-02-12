@@ -28,11 +28,11 @@ public class ApplicationLauncher {
 		
 		System.out.println("Locale: "+Locale.getDefault());
 		
-	    Driver driver=new Driver("driver3@gmail.com","Test Driver");
+	    //Driver driver=new Driver("driver3@gmail.com","Test Driver");
 
 		
 		WelcomeGUI a=new WelcomeGUI();
-		a.setVisible(true);
+		
 
 
 		try {
@@ -64,8 +64,9 @@ public class ApplicationLauncher {
 		         appFacadeInterface = service.getPort(BLFacade.class);
 			} 
 			
-			MainGUI.setBussinessLogic(appFacadeInterface);
-
+			WelcomeGUI.setBussinessLogic(appFacadeInterface);
+			
+			a.setVisible(true);
 		
 
 			
