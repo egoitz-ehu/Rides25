@@ -15,6 +15,8 @@ import domain.User;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.util.ResourceBundle;
@@ -100,10 +102,19 @@ public class LoginGUI extends JFrame {
 		buttonEnter = new JButton(ResourceBundle.getBundle("Etiquetas").getString("LoginGUI.Enter"));
 		buttonEnter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				User u = bussinessLogic.login(mailField.getText(), new String(passwordField.getPassword()));
-				if(u==null) System.out.println("Ez dago erabiltzailerik");
-				else if(u instanceof Driver) System.out.println("Erabiltzailea gidaria da");
-				else if(u instanceof Traveler) System.out.println("Erabiltzailea bidaiaria da");
+				String mail = mailField.getText();
+				String pass = new String(passwordField.getPassword());
+				if(mail.isBlank() || pass.isBlank()) {
+					JOptionPane.showMessageDialog(contentPane, ResourceBundle.getBundle("Etiquetas").getString("LoginGUI.ErrorDataBlank"), "Error", JOptionPane.ERROR_MESSAGE);
+				}else {
+					User u = bussinessLogic.login(mail, pass);
+					//if(u==null) System.out.println("Ez dago erabiltzailerik");
+					//else if(u instanceof Driver) System.out.println("Erabiltzailea gidaria da");
+					//else if(u instanceof Traveler) System.out.println("Erabiltzailea bidaiaria da");
+					if(u==null) {
+						JOptionPane.showMessageDialog(contentPane, ResourceBundle.getBundle("Etiquetas").getString("LoginGUI.NoUser"), "Error", JOptionPane.ERROR_MESSAGE);
+					}
+				}
 			}
 		});
 		buttonEnter.setBounds(154, 193, 134, 29);

@@ -20,6 +20,7 @@ import java.awt.Insets;
 import java.util.ResourceBundle;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
@@ -40,6 +41,7 @@ public class RegisterGUI extends JFrame {
     private JLabel labelMail;
     private JLabel labelPassword;
     private JLabel labelUserType;
+    private JLabel errorLabel;
     
     private JRadioButton radioButtonDriver;
     private JRadioButton radioButtonPassenger;
@@ -152,6 +154,14 @@ public class RegisterGUI extends JFrame {
         gbc_textFieldMail.weighty = 0.1;
         contentPane.add(textFieldMail, gbc_textFieldMail);
         
+        errorLabel = new JLabel(); //$NON-NLS-1$ //$NON-NLS-2$
+        GridBagConstraints gbc_errorLabel = new GridBagConstraints();
+        gbc_lblNewLabel.gridwidth = 3;
+        gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
+        gbc_lblNewLabel.gridx = 8;
+        gbc_lblNewLabel.gridy = 6;
+        contentPane.add(errorLabel, gbc_errorLabel);
+        
         // Label and Password Field
         labelPassword = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("RegisterGUI.Password"));
         GridBagConstraints gbc_lblNewLabel_4 = new GridBagConstraints();
@@ -181,7 +191,14 @@ public class RegisterGUI extends JFrame {
         gbc_lblNewLabel_5.gridy = 2;
         contentPane.add(labelUserType, gbc_lblNewLabel_5);
         
+        ActionListener actionRadioButton = new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				buttonSend.setEnabled(true);
+			}
+        };
+        
         radioButtonDriver = new JRadioButton(ResourceBundle.getBundle("Etiquetas").getString("RegisterGUI.Driver"));
+        radioButtonDriver.addActionListener(actionRadioButton);
         GridBagConstraints gbc_rdbtnDriver = new GridBagConstraints();
         gbc_rdbtnDriver.insets = new Insets(0, 0, 5, 5);
         gbc_rdbtnDriver.gridx = 9;
@@ -190,6 +207,7 @@ public class RegisterGUI extends JFrame {
         contentPane.add(radioButtonDriver, gbc_rdbtnDriver);
         
         radioButtonPassenger = new JRadioButton(ResourceBundle.getBundle("Etiquetas").getString("RegisterGUI.Passenger"));
+        radioButtonPassenger.addActionListener(actionRadioButton);
         GridBagConstraints gbc_rdbtnPassenger = new GridBagConstraints();
         gbc_rdbtnPassenger.insets = new Insets(0, 0, 5, 5);
         gbc_rdbtnPassenger.gridx = 9;
@@ -198,15 +216,30 @@ public class RegisterGUI extends JFrame {
         contentPane.add(radioButtonPassenger, gbc_rdbtnPassenger);
         
         buttonSend = new JButton(ResourceBundle.getBundle("Etiquetas").getString("RegisterGUI.Send"));
+        buttonSend.setEnabled(false);
         buttonSend.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		User user1;
-        		if(radioButtonDriver.isSelected()) {
-        			user1 = new Driver(textFieldMail.getText(), new String(passwordField.getPassword()), textFieldName.getText(), textFieldSurname.getText());
-        		} else {
-        			user1 = new Traveler(textFieldMail.getText(), new String(passwordField.getPassword()), textFieldName.getText(), textFieldSurname.getText()); 
+        		String mail = textFieldMail.getText();
+        		String pass =  new String(passwordField.getPassword());
+        		String name = textFieldName.getText();
+        		String surname = textFieldSurname.getText();
+        		if(mail.isBlank() || pass.isBlank() || name.isBlank() || surname.isBlank())
+        		{
+        			JOptionPane.showMessageDialog(contentPane, ResourceBundle.getBundle("Etiquetas").getString("RegisterGUI.ErrorDataBlank"), "Error", JOptionPane.ERROR_MESSAGE);
         		}
-        		bussinessLogic.register(user1);
+        		else {
+               		if(radioButtonDriver.isSelected()) {
+            			user1 = new Driver(mail,pass, name, surname);
+            		} else {
+            			user1 = new Traveler(mail, pass, name, surname); 
+            		}
+            		boolean b =bussinessLogic.register(user1);
+            		if(!b) {
+            			//errorLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("RegisterGUI.ErrorUserAlreadyExists"));
+            			JOptionPane.showMessageDialog(contentPane, ResourceBundle.getBundle("Etiquetas").getString("RegisterGUI.ErrorUserAlreadyExists"), "Error", JOptionPane.ERROR_MESSAGE);
+            		}
+        		}
         	}
         });
         GridBagConstraints gbc_btnSend = new GridBagConstraints();
