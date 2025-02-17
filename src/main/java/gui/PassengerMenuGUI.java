@@ -5,6 +5,10 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import businessLogic.BLFacade;
+import domain.Traveler;
+
 import java.awt.GridBagLayout;
 import javax.swing.BoxLayout;
 import java.awt.GridLayout;
@@ -15,6 +19,8 @@ import javax.swing.JButton;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class PassengerMenuGUI extends JFrame {
 
@@ -29,9 +35,11 @@ public class PassengerMenuGUI extends JFrame {
 	
 	private JButton buttonQuery;
 
+	private BLFacade bussinessLogic;
+
 	/**
 	 * Launch the application.
-	 */
+	 *//*
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -43,12 +51,16 @@ public class PassengerMenuGUI extends JFrame {
 				}
 			}
 		});
-	}
+	}*/
 
+	public void setBussinessLogic(BLFacade logic) {
+    	this.bussinessLogic=logic;
+    }
+	
 	/**
 	 * Create the frame.
 	 */
-	public PassengerMenuGUI() {
+	public PassengerMenuGUI(Traveler traveler) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		
@@ -59,6 +71,13 @@ public class PassengerMenuGUI extends JFrame {
 		menuBar.add(moneyMenu);
 		
 		itemWithdraw = new JMenuItem(ResourceBundle.getBundle("Etiquetas").getString("PassengerMenuGUI.Withdraw")); //$NON-NLS-1$ //$NON-NLS-2$
+		itemWithdraw.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				DiruaAtera dA = new DiruaAtera(traveler);
+				dA.setBussinessLogic(bussinessLogic);
+				dA.setVisible(true);
+			}
+		});
 		moneyMenu.add(itemWithdraw);
 		
 		itemDeposit = new JMenuItem(ResourceBundle.getBundle("Etiquetas").getString("PassengerMenuGUI.Deposit")); //$NON-NLS-1$ //$NON-NLS-2$

@@ -219,22 +219,24 @@ public class RegisterGUI extends JFrame {
         buttonSend.setEnabled(false);
         buttonSend.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		User user1;
         		String mail = textFieldMail.getText();
         		String pass =  new String(passwordField.getPassword());
         		String name = textFieldName.getText();
         		String surname = textFieldSurname.getText();
+        		String type;
+        		if(radioButtonDriver.isSelected()) {
+        			type="driver";
+        		}
+        		else {
+        			type="traveler";
+        		}
+        
         		if(mail.isBlank() || pass.isBlank() || name.isBlank() || surname.isBlank())
         		{
         			JOptionPane.showMessageDialog(contentPane, ResourceBundle.getBundle("Etiquetas").getString("RegisterGUI.ErrorDataBlank"), "Error", JOptionPane.ERROR_MESSAGE);
         		}
         		else {
-               		if(radioButtonDriver.isSelected()) {
-            			user1 = new Driver(mail,pass, name, surname);
-            		} else {
-            			user1 = new Traveler(mail, pass, name, surname); 
-            		}
-            		boolean b =bussinessLogic.register(user1);
+            		boolean b =bussinessLogic.register(mail, name, surname, pass, type);
             		if(!b) {
             			//errorLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("RegisterGUI.ErrorUserAlreadyExists"));
             			JOptionPane.showMessageDialog(contentPane, ResourceBundle.getBundle("Etiquetas").getString("RegisterGUI.ErrorUserAlreadyExists"), "Error", JOptionPane.ERROR_MESSAGE);

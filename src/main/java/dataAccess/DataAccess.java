@@ -20,6 +20,7 @@ import configuration.ConfigXML;
 import configuration.UtilDate;
 import domain.Driver;
 import domain.Ride;
+import domain.Traveler;
 import domain.User;
 import exceptions.RideAlreadyExistException;
 import exceptions.RideMustBeLaterThanTodayException;
@@ -119,17 +120,24 @@ public class DataAccess  {
 		return !l.isEmpty();
 	}
 	
-	public boolean register(User u) {
-		boolean b=existInDB(u);
-		if (!b) {
+	public boolean register(String email, String name, String surname, String password, String type) {
+		User u=db.find(User.class, email);
+		if (u==null) {
+			User user;
+			if(type.equals("driver")) {
+				user = new Driver(email,password,name,surname);
+			} else {
+				user = new Traveler(email,password,name,surname);
+			}
 			db.getTransaction().begin();
-			db.persist(u);
+			db.persist(user);
 			db.getTransaction().commit();
 			System.out.println("Erabiltzaile berri bat sortu da");
+			return true;
 		} else {
 			System.out.println("Dagoeneko badago erabiltzaile bat email berdinarekin");
+			return false;
 		}
-		return !b;
 	}
 	
 	public User login(String email, String password) {
@@ -139,6 +147,16 @@ public class DataAccess  {
 		List<User> l = query.getResultList();
 		if(l.isEmpty()) return null;
 		else return l.get(0);
+	}
+	
+	public boolean diruaAtera(User u, double diruKop) {
+		boolean b = u.diruaAtera(diruKop);
+		if(b) {
+			db.getTransaction().begin();
+			db.persist(u);
+			db.getTransaction().commit();
+		}
+		return b;
 	}
 	
 	/**

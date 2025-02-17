@@ -76,9 +76,9 @@ public interface BLFacade  {
 	 */	
 	@WebMethod public void initializeBD();
 	
-	@WebMethod public boolean register(User u);
+	@WebMethod public boolean register(String email, String name, String surname, String password, String type);
 	
 	@WebMethod public User login(String email, String password);
 
-	
+	@WebMethod public boolean diruaAtera(User u, double kop);
 }

@@ -108,10 +108,17 @@ public class LoginGUI extends JFrame {
 					JOptionPane.showMessageDialog(contentPane, ResourceBundle.getBundle("Etiquetas").getString("LoginGUI.ErrorDataBlank"), "Error", JOptionPane.ERROR_MESSAGE);
 				}else {
 					User u = bussinessLogic.login(mail, pass);
-					//if(u==null) System.out.println("Ez dago erabiltzailerik");
-					//else if(u instanceof Driver) System.out.println("Erabiltzailea gidaria da");
-					//else if(u instanceof Traveler) System.out.println("Erabiltzailea bidaiaria da");
-					if(u==null) {
+					if(u instanceof Driver) {
+						DriverMenuGUI dMenu = new DriverMenuGUI((Driver) u);
+						dMenu.setBussinessLogic(bussinessLogic);
+						dMenu.setVisible(true);
+					}
+					else if(u instanceof Traveler) {
+						PassengerMenuGUI tMenu = new PassengerMenuGUI((Traveler) u);
+						tMenu.setBussinessLogic(bussinessLogic);
+						tMenu.setVisible(true);
+					}
+					else{
 						JOptionPane.showMessageDialog(contentPane, ResourceBundle.getBundle("Etiquetas").getString("LoginGUI.NoUser"), "Error", JOptionPane.ERROR_MESSAGE);
 					}
 				}

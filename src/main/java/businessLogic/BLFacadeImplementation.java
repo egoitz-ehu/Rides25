@@ -121,9 +121,9 @@ public class BLFacadeImplementation  implements BLFacade {
 	}
 
     @WebMethod
-	public boolean register(User u) {
+	public boolean register(String email, String name, String surname, String password, String type) {
 		dbManager.open();
-		boolean b = dbManager.register(u);
+		boolean b = dbManager.register(email, name, surname, password, type);
 		dbManager.close();
 		return b;
 	}
@@ -134,6 +134,15 @@ public class BLFacadeImplementation  implements BLFacade {
     	User u = dbManager.login(email, password);
     	dbManager.close();
     	return u;
+	}
+
+	@WebMethod
+	public boolean diruaAtera(User u, double kop) {
+		boolean b;
+		dbManager.open();
+		b=dbManager.diruaAtera(u, kop);
+		dbManager.close();
+		return b;
 	}
 
 }

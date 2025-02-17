@@ -68,4 +68,13 @@ public abstract class User {
 			return false;
 		return true;
 	}
+	
+	public boolean diruaAtera(double kop) {
+		if(this.cash-kop>=0.0) {
+			this.cash=this.cash-kop;
+			return true;
+		} else {
+			return false;
+		}
+	}
 }

@@ -5,6 +5,10 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import businessLogic.BLFacade;
+import domain.Driver;
+
 import java.awt.GridBagLayout;
 import javax.swing.BoxLayout;
 import java.awt.GridLayout;
@@ -15,6 +19,8 @@ import javax.swing.JButton;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class DriverMenuGUI extends JFrame {
 
@@ -30,9 +36,11 @@ public class DriverMenuGUI extends JFrame {
 	private JButton buttonCreate;
 	private JButton buttonManage;
 
+	private BLFacade bussinessLogic;
+
 	/**
 	 * Launch the application.
-	 */
+	 *//*
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -44,12 +52,16 @@ public class DriverMenuGUI extends JFrame {
 				}
 			}
 		});
-	}
+	}*/
+	
+	public void setBussinessLogic(BLFacade logic) {
+    	this.bussinessLogic=logic;
+    }
 
 	/**
 	 * Create the frame.
 	 */
-	public DriverMenuGUI() {
+	public DriverMenuGUI(Driver driver) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		
@@ -60,6 +72,13 @@ public class DriverMenuGUI extends JFrame {
 		menuBar.add(moneyMenu);
 		
 		itemWithdraw = new JMenuItem(ResourceBundle.getBundle("Etiquetas").getString("DriverMenuGUI.Withdraw")); //$NON-NLS-1$ //$NON-NLS-2$
+		itemWithdraw.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				DiruaAtera dA = new DiruaAtera(driver);
+				dA.setBussinessLogic(bussinessLogic);
+				dA.setVisible(true);
+			}
+		});
 		moneyMenu.add(itemWithdraw);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
