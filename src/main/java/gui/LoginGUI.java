@@ -38,9 +38,6 @@ public class LoginGUI extends JFrame {
 	private JLabel errorLabel;
 	
 	private JButton buttonEnter;
-	
-	private BLFacade bussinessLogic;
-
 	/**
 	 * Launch the application.
 	 */
@@ -56,10 +53,6 @@ public class LoginGUI extends JFrame {
 			}
 		});
 	}
-	
-	public void setBussinessLogic(BLFacade logic) {
-    	this.bussinessLogic=logic;
-    }
 
 	/**
 	 * Create the frame.
@@ -107,15 +100,14 @@ public class LoginGUI extends JFrame {
 				if(mail.isBlank() || pass.isBlank()) {
 					JOptionPane.showMessageDialog(contentPane, ResourceBundle.getBundle("Etiquetas").getString("LoginGUI.ErrorDataBlank"), "Error", JOptionPane.ERROR_MESSAGE);
 				}else {
-					User u = bussinessLogic.login(mail, pass);
+					BLFacade facade = WelcomeGUI.getBussinessLogic();
+					User u = facade.login(mail, pass);
 					if(u instanceof Driver) {
 						DriverMenuGUI dMenu = new DriverMenuGUI((Driver) u);
-						dMenu.setBussinessLogic(bussinessLogic);
 						dMenu.setVisible(true);
 					}
 					else if(u instanceof Traveler) {
 						PassengerMenuGUI tMenu = new PassengerMenuGUI((Traveler) u);
-						tMenu.setBussinessLogic(bussinessLogic);
 						tMenu.setVisible(true);
 					}
 					else{

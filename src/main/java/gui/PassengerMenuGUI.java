@@ -35,8 +35,6 @@ public class PassengerMenuGUI extends JFrame {
 	
 	private JButton buttonQuery;
 
-	private BLFacade bussinessLogic;
-
 	/**
 	 * Launch the application.
 	 *//*
@@ -52,16 +50,11 @@ public class PassengerMenuGUI extends JFrame {
 			}
 		});
 	}*/
-
-	public void setBussinessLogic(BLFacade logic) {
-    	this.bussinessLogic=logic;
-    }
 	
 	/**
 	 * Create the frame.
 	 */
 	public PassengerMenuGUI(Traveler traveler) {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		
 		menuBar = new JMenuBar();
@@ -74,7 +67,6 @@ public class PassengerMenuGUI extends JFrame {
 		itemWithdraw.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DiruaAtera dA = new DiruaAtera(traveler);
-				dA.setBussinessLogic(bussinessLogic);
 				dA.setVisible(true);
 			}
 		});

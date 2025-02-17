@@ -36,8 +36,6 @@ public class DriverMenuGUI extends JFrame {
 	private JButton buttonCreate;
 	private JButton buttonManage;
 
-	private BLFacade bussinessLogic;
-
 	/**
 	 * Launch the application.
 	 *//*
@@ -53,16 +51,10 @@ public class DriverMenuGUI extends JFrame {
 			}
 		});
 	}*/
-	
-	public void setBussinessLogic(BLFacade logic) {
-    	this.bussinessLogic=logic;
-    }
-
 	/**
 	 * Create the frame.
 	 */
 	public DriverMenuGUI(Driver driver) {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		
 		menuBar = new JMenuBar();
@@ -75,7 +67,6 @@ public class DriverMenuGUI extends JFrame {
 		itemWithdraw.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DiruaAtera dA = new DiruaAtera(driver);
-				dA.setBussinessLogic(bussinessLogic);
 				dA.setVisible(true);
 			}
 		});

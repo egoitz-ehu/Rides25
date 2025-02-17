@@ -56,6 +56,9 @@ public class WelcomeGUI extends JFrame {
 	public static void setBussinessLogic(BLFacade logic) {
     	bussinessLogic=logic;
     }
+	public static BLFacade getBussinessLogic() {
+		return bussinessLogic;
+	}
 
 	/**
 	 * Create the frame.
@@ -84,7 +87,6 @@ public class WelcomeGUI extends JFrame {
 		loginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				LoginGUI loginWindow = new LoginGUI();
-				loginWindow.setBussinessLogic(bussinessLogic);
 				loginWindow.setVisible(true);;
 			}
 		});
@@ -92,6 +94,11 @@ public class WelcomeGUI extends JFrame {
 		//contentPane.add(loginButton);
 		
 		guestButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("WelcomeGUI.Guest"));
+		guestButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		guestButton.setBounds(96, 192, 252, 45);
 		//contentPane.add(guestButton);
 		
