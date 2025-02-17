@@ -77,4 +77,8 @@ public abstract class User {
 			return false;
 		}
 	}
+	
+	public void diruaSartu(double kop) {
+		this.cash=this.cash+kop;
+	}
 }

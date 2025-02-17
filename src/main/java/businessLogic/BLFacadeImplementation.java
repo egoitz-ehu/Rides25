@@ -9,6 +9,7 @@ import javax.jws.WebService;
 import configuration.ConfigXML;
 import dataAccess.DataAccess;
 import domain.Ride;
+import domain.Traveler;
 import domain.User;
 import domain.Driver;
 import exceptions.RideMustBeLaterThanTodayException;
@@ -143,6 +144,13 @@ public class BLFacadeImplementation  implements BLFacade {
 		b=dbManager.diruaAtera(u, kop);
 		dbManager.close();
 		return b;
+	}
+
+	@WebMethod
+	public void diruaSartu(User t, double kop) {
+		dbManager.open();
+		dbManager.diruaSartu(t, kop);
+		dbManager.close();
 	}
 
 }

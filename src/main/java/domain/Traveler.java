@@ -32,10 +32,4 @@ public class Traveler extends User implements Serializable{
 	
 	
 	//bookRides
-	
-	//addBalance
-	
-	//withdrawBalance
-	
-	//
 }

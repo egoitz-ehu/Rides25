@@ -66,7 +66,7 @@ public class DriverMenuGUI extends JFrame {
 		itemWithdraw = new JMenuItem(ResourceBundle.getBundle("Etiquetas").getString("DriverMenuGUI.Withdraw")); //$NON-NLS-1$ //$NON-NLS-2$
 		itemWithdraw.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DiruaAtera dA = new DiruaAtera(driver);
+				DiruaAteraGUI dA = new DiruaAteraGUI(driver);
 				dA.setVisible(true);
 			}
 		});

@@ -17,10 +17,15 @@ import java.awt.event.ActionListener;
 import java.util.ResourceBundle;
 import java.awt.event.ActionEvent;
 
-public class DiruaAtera extends JFrame {
+public class DiruaAteraGUI extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
+	
+	private JLabel labelTitle;
+	private JLabel labelKop;
+	private JLabel labelError;
+	
 
 	/**
 	 * Launch the application.
@@ -42,7 +47,7 @@ public class DiruaAtera extends JFrame {
 	 * Create the frame.
 	 */
 	
-	public DiruaAtera(User u) {
+	public DiruaAteraGUI(User u) {
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -50,18 +55,18 @@ public class DiruaAtera extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new GridLayout(5, 0, 0, 0));
 		
-		JLabel lblNewLabel = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("DiruaAteraGUI.Title"));
-		contentPane.add(lblNewLabel);
+		labelTitle = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("DiruaAteraGUI.Title"));
+		contentPane.add(labelTitle);
 		
-		JLabel lblNewLabel_2 = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("DiruaAteraGUI.Kop"));
-		contentPane.add(lblNewLabel_2);
+		labelKop = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("DiruaAteraGUI.Kop"));
+		contentPane.add(labelKop);
 		
 		textField = new JTextField();
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
-		JLabel lblNewLabel_1 = new JLabel("");
-		contentPane.add(lblNewLabel_1);
+		labelError = new JLabel("");
+		contentPane.add(labelError);
 		
 		JButton btnNewButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("DiruaAteraGUI.botoi"));
 		btnNewButton.addActionListener(new ActionListener() {
@@ -72,12 +77,12 @@ public class DiruaAtera extends JFrame {
 					BLFacade facade = WelcomeGUI.getBussinessLogic();
 					boolean b = facade.diruaAtera(u, kop);
 					if(b) {
-						lblNewLabel_1.setText(kop+ResourceBundle.getBundle("Etiquetas").getString("DiruaAteraGUI.ondo"));
+						labelError.setText(kop+ResourceBundle.getBundle("Etiquetas").getString("DiruaAteraGUI.ondo"));
 					} else {
-						lblNewLabel_1.setText(ResourceBundle.getBundle("Etiquetas").getString("DiruaAteraGUI.gutxi"));
+						labelError.setText(ResourceBundle.getBundle("Etiquetas").getString("DiruaAteraGUI.gutxi"));
 					}
 				} catch(NumberFormatException e1) {
-					lblNewLabel_1.setText(ResourceBundle.getBundle("Etiquetas").getString("DiruaAteraGUI.gaizki"));
+					labelError.setText(ResourceBundle.getBundle("Etiquetas").getString("DiruaAteraGUI.gaizki"));
 				}
 			}
 		});

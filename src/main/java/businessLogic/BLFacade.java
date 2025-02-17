@@ -5,6 +5,7 @@ import java.util.List;
 
 //import domain.Booking;
 import domain.Ride;
+import domain.Traveler;
 import domain.User;
 import domain.Driver;
 import exceptions.RideMustBeLaterThanTodayException;
@@ -81,4 +82,6 @@ public interface BLFacade  {
 	@WebMethod public User login(String email, String password);
 
 	@WebMethod public boolean diruaAtera(User u, double kop);
+	
+	@WebMethod public void diruaSartu(User t, double kop);
 }

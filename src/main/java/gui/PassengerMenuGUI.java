@@ -66,13 +66,19 @@ public class PassengerMenuGUI extends JFrame {
 		itemWithdraw = new JMenuItem(ResourceBundle.getBundle("Etiquetas").getString("PassengerMenuGUI.Withdraw")); //$NON-NLS-1$ //$NON-NLS-2$
 		itemWithdraw.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DiruaAtera dA = new DiruaAtera(traveler);
+				DiruaAteraGUI dA = new DiruaAteraGUI(traveler);
 				dA.setVisible(true);
 			}
 		});
 		moneyMenu.add(itemWithdraw);
 		
 		itemDeposit = new JMenuItem(ResourceBundle.getBundle("Etiquetas").getString("PassengerMenuGUI.Deposit")); //$NON-NLS-1$ //$NON-NLS-2$
+		itemDeposit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				DiruaSartuGUI dS = new DiruaSartuGUI(traveler);
+				dS.setVisible(true);
+			}
+		});
 		moneyMenu.add(itemDeposit);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

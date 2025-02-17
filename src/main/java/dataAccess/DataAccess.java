@@ -153,10 +153,17 @@ public class DataAccess  {
 		boolean b = u.diruaAtera(diruKop);
 		if(b) {
 			db.getTransaction().begin();
-			db.persist(u);
+			db.merge(u);
 			db.getTransaction().commit();
 		}
 		return b;
+	}
+	
+	public void diruaSartu(User t, double kop) {
+		t.diruaSartu(kop);
+		db.getTransaction().begin();
+		db.merge(t);
+		db.getTransaction().commit();
 	}
 	
 	/**
