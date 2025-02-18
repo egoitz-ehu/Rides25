@@ -64,7 +64,7 @@ public class ApplicationLauncher {
 		         appFacadeInterface = service.getPort(BLFacade.class);
 			} 
 			
-			WelcomeGUI.setBussinessLogic(appFacadeInterface);
+			WelcomeGUI.setBusinessLogic(appFacadeInterface);
 			
 			a.setVisible(true);
 		

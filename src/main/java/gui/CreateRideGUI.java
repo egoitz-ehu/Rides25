@@ -111,7 +111,7 @@ public class CreateRideGUI extends JFrame {
 		
 		
 		
-		BLFacade facade = MainGUI.getBusinessLogic();
+		BLFacade facade = WelcomeGUI.getBusinessLogic();
 		datesWithEventsCurrentMonth=facade.getThisMonthDatesWithRides("a","b",jCalendar.getDate());		
 		
 		jLabRideDate.setBounds(new Rectangle(40, 15, 140, 25));
@@ -172,7 +172,7 @@ public class CreateRideGUI extends JFrame {
 			jLabelMsg.setText(error);
 		else
 			try {
-				BLFacade facade = MainGUI.getBusinessLogic();
+				BLFacade facade = WelcomeGUI.getBusinessLogic();
 				int inputSeats = Integer.parseInt(jTextFieldSeats.getText());
 				float price = Float.parseFloat(jTextFieldPrice.getText());
 

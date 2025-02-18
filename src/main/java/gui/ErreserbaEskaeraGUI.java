@@ -16,7 +16,7 @@ import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
 
-public class FindRidesGUI extends JFrame {
+public class ErreserbaEskaeraGUI extends JFrame {
 	private static final long serialVersionUID = 1L;
 
 
@@ -53,7 +53,7 @@ public class FindRidesGUI extends JFrame {
 	};
 
 
-	public FindRidesGUI()
+	public ErreserbaEskaeraGUI()
 	{
 
 		this.getContentPane().setLayout(null);
@@ -75,7 +75,7 @@ public class FindRidesGUI extends JFrame {
 				jButton2_actionPerformed(e);
 			}
 		});
-		BLFacade facade = MainGUI.getBusinessLogic();
+		BLFacade facade = WelcomeGUI.getBusinessLogic();
 		List<String> origins=facade.getDepartCities();
 		
 		for(String location:origins) originLocations.addElement(location);

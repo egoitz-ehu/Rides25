@@ -35,7 +35,7 @@ public class WelcomeGUI extends JFrame {
 	private JComboBox<String> comboBoxLanguages;
 	private DefaultComboBoxModel<String> hizkuntzak = new DefaultComboBoxModel<String>();
 	
-	private static BLFacade bussinessLogic;
+	private static BLFacade businessLogic;
 
 	/**
 	 * Launch the application.
@@ -53,11 +53,11 @@ public class WelcomeGUI extends JFrame {
 		});
 	}
 	
-	public static void setBussinessLogic(BLFacade logic) {
-    	bussinessLogic=logic;
+	public static void setBusinessLogic(BLFacade logic) {
+    	businessLogic=logic;
     }
-	public static BLFacade getBussinessLogic() {
-		return bussinessLogic;
+	public static BLFacade getBusinessLogic() {
+		return businessLogic;
 	}
 
 	/**
@@ -76,7 +76,7 @@ public class WelcomeGUI extends JFrame {
 		registerButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				RegisterGUI registerWindow = new RegisterGUI();
-				registerWindow.setBussinessLogic(bussinessLogic);
+				registerWindow.setBussinessLogic(businessLogic);
 				registerWindow.setVisible(true);;
 			}
 		});

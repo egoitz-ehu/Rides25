@@ -26,7 +26,9 @@ public class Ride implements Serializable {
 	private Date date;
 	private float price;
 	
-	private Driver driver;  
+	private Driver driver;
+	
+	private Eskaera[] eskaerak;
 	
 	public Ride(){
 		super();

@@ -84,6 +84,12 @@ public class DriverMenuGUI extends JFrame {
 		contentPane.add(buttonQuery);
 		
 		buttonCreate = new JButton(ResourceBundle.getBundle("Etiquetas").getString("DriverMenuGUI.Create")); //$NON-NLS-1$ //$NON-NLS-2$
+		buttonCreate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CreateRideGUI dC = new CreateRideGUI(driver);
+				dC.setVisible(true);
+			}
+		});
 		contentPane.add(buttonCreate);
 		
 		buttonManage = new JButton(ResourceBundle.getBundle("Etiquetas").getString("DriverMenuGUI.Manage")); //$NON-NLS-1$ //$NON-NLS-2$

@@ -74,7 +74,7 @@ public class DiruaAteraGUI extends JFrame {
 				try {
 					double kop = Double.parseDouble(textField.getText());
 					if(kop<0) throw new NumberFormatException();
-					BLFacade facade = WelcomeGUI.getBussinessLogic();
+					BLFacade facade = WelcomeGUI.getBusinessLogic();
 					boolean b = facade.diruaAtera(u, kop);
 					if(b) {
 						labelError.setText(kop+ResourceBundle.getBundle("Etiquetas").getString("DiruaAteraGUI.ondo"));

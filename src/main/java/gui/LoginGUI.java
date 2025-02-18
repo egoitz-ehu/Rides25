@@ -100,7 +100,7 @@ public class LoginGUI extends JFrame {
 				if(mail.isBlank() || pass.isBlank()) {
 					JOptionPane.showMessageDialog(contentPane, ResourceBundle.getBundle("Etiquetas").getString("LoginGUI.ErrorDataBlank"), "Error", JOptionPane.ERROR_MESSAGE);
 				}else {
-					BLFacade facade = WelcomeGUI.getBussinessLogic();
+					BLFacade facade = WelcomeGUI.getBusinessLogic();
 					User u = facade.login(mail, pass);
 					if(u instanceof Driver) {
 						DriverMenuGUI dMenu = new DriverMenuGUI((Driver) u);
