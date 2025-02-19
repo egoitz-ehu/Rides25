@@ -11,6 +11,7 @@ public abstract class User {
 	private String name;
 	private String surname;
 	private double cash;
+	private double frozenMoney;
 
 	public User(String email, String pass, String name, String surname) {
 		this.email = email;
@@ -18,6 +19,7 @@ public abstract class User {
 		this.name = name;
 		this.surname = surname;
 		this.cash = 0;
+		this.setFrozenMoney(0);
 	}
 	
 	public String getName() {
@@ -35,7 +37,7 @@ public abstract class User {
 	public double getCash() {
 		return cash;
 	}
-	public void setCash(int cash) {
+	public void setCash(double cash) {
 		this.cash = cash;
 	}
 	public String getEmail() {
@@ -80,5 +82,13 @@ public abstract class User {
 	
 	public void diruaSartu(double kop) {
 		this.cash=this.cash+kop;
+	}
+
+	public double getFrozenMoney() {
+		return frozenMoney;
+	}
+
+	public void setFrozenMoney(double frozenMoney) {
+		this.frozenMoney = frozenMoney;
 	}
 }

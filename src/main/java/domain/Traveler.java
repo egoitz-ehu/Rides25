@@ -19,17 +19,32 @@ import javax.xml.bind.annotation.XmlIDREF;
 public class Traveler extends User implements Serializable{
 
 	@XmlIDREF
-	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
-	private List<Eskaera> bookedRides = new Vector<Eskaera>();
+	@OneToMany(fetch=FetchType.EAGER)
+	private List<Erreserba> bookedRides = new Vector<Erreserba>();
 	
 	public Traveler (String email, String pass, String name, String surname) {
 		super(email, pass, name, surname);
 	}
 
-	public List<Eskaera> getBookedRides() {
+	public List<Erreserba> getBookedRides() {
 		return bookedRides;
 	}
 	
 	
-	//bookRides
+	public boolean existBook(Ride r) {
+		return bookedRides.contains(r);
+	}
+	
+	public boolean diruaDauka(Ride r, int eserKop) {
+		return (this.getCash()>=r.getPrice()*eserKop);
+	}
+	
+	public Erreserba sortuErreserba(Ride r, int eserKop) {
+		Erreserba e = new Erreserba(eserKop,this, r);
+		this.setCash(this.getCash()-r.getPrice()*eserKop);
+		this.setFrozenMoney(this.getFrozenMoney()+r.getPrice()*eserKop);
+		bookedRides.add(e);
+		r.gehituErreserba(e);
+		return e;
+	}
 }

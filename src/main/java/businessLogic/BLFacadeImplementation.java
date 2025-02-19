@@ -153,5 +153,13 @@ public class BLFacadeImplementation  implements BLFacade {
 		dbManager.close();
 	}
 
+	@WebMethod
+	public boolean sortuErreserba(Traveler t, Ride r, int kop) {
+		dbManager.open();
+		boolean b = dbManager.sortuErreserba(t, r, kop);
+		dbManager.close();
+		return b;
+	}
+
 }
 

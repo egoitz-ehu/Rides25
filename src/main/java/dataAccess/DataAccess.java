@@ -19,6 +19,7 @@ import javax.persistence.TypedQuery;
 import configuration.ConfigXML;
 import configuration.UtilDate;
 import domain.Driver;
+import domain.Erreserba;
 import domain.Ride;
 import domain.Traveler;
 import domain.User;
@@ -164,6 +165,21 @@ public class DataAccess  {
 		db.getTransaction().begin();
 		db.merge(t);
 		db.getTransaction().commit();
+	}
+	
+	public boolean sortuErreserba(Traveler t, Ride r, int kop) {
+		if(!t.existBook(r)) {
+			if(t.diruaDauka(r, kop)) {
+				db.getTransaction().begin();
+				Erreserba erreserbaBerria = t.sortuErreserba(r, kop);
+				db.persist(erreserbaBerria);
+				db.merge(t);
+				db.merge(r);
+				db.getTransaction().commit();
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	/**

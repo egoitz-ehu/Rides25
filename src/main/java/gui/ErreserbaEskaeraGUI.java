@@ -5,6 +5,8 @@ import configuration.UtilDate;
 
 import com.toedter.calendar.JCalendar;
 import domain.Ride;
+import domain.Traveler;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -44,16 +46,21 @@ public class ErreserbaEskaeraGUI extends JFrame {
 	private JTable tableRides= new JTable();
 
 	private DefaultTableModel tableModelRides;
-
+	
+	private JLabel labelEserleku;
+	private JButton buttonErreserba;
 
 	private String[] columnNamesRides = new String[] {
 			ResourceBundle.getBundle("Etiquetas").getString("FindRidesGUI.Driver"), 
 			ResourceBundle.getBundle("Etiquetas").getString("FindRidesGUI.NPlaces"), 
 			ResourceBundle.getBundle("Etiquetas").getString("FindRidesGUI.Price")
 	};
+	private JTextField eserKop;
+	
+	private Ride selectedRide;
 
 
-	public ErreserbaEskaeraGUI()
+	public ErreserbaEskaeraGUI(Traveler t)
 	{
 
 		this.getContentPane().setLayout(null);
@@ -61,7 +68,7 @@ public class ErreserbaEskaeraGUI extends JFrame {
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("FindRidesGUI.FindRides"));
 
 		jLabelEventDate.setBounds(new Rectangle(457, 6, 140, 25));
-		jLabelEvents.setBounds(172, 229, 259, 16);
+		jLabelEvents.setBounds(58, 229, 259, 16);
 
 		this.getContentPane().add(jLabelEventDate, null);
 		this.getContentPane().add(jLabelEvents);
@@ -207,7 +214,22 @@ public class ErreserbaEskaeraGUI extends JFrame {
 
 		this.getContentPane().add(jCalendar1, null);
 
-		scrollPaneEvents.setBounds(new Rectangle(172, 257, 346, 150));
+		scrollPaneEvents.setBounds(new Rectangle(58, 256, 346, 150));
+		
+		tableRides.addMouseListener(new MouseAdapter() {
+		    @Override
+		    public void mouseClicked(MouseEvent e) {
+		        int selectedRow = tableRides.getSelectedRow();
+		        System.out.println("Selected row:"+selectedRow);
+		        if (selectedRow != -1) {
+		            selectedRide = (Ride) tableModelRides.getValueAt(selectedRow, 3);
+		            labelEserleku.setEnabled(true);
+		            eserKop.setEnabled(true);
+		            buttonErreserba.setEnabled(true);
+		        }
+		    }
+		});
+
 
 		scrollPaneEvents.setViewportView(tableRides);
 		tableModelRides = new DefaultTableModel(null, columnNamesRides);
@@ -226,6 +248,38 @@ public class ErreserbaEskaeraGUI extends JFrame {
 		this.getContentPane().add(scrollPaneEvents, null);
 		datesWithRidesCurrentMonth=facade.getThisMonthDatesWithRides((String)jComboBoxOrigin.getSelectedItem(),(String)jComboBoxDestination.getSelectedItem(),jCalendar1.getDate());
 		paintDaysWithEvents(jCalendar1,datesWithRidesCurrentMonth,Color.CYAN);
+		
+		eserKop = new JTextField();
+		eserKop.setText(""); //$NON-NLS-1$ //$NON-NLS-2$
+		eserKop.setBounds(457, 301, 140, 20);
+		getContentPane().add(eserKop);
+		eserKop.setColumns(10);
+		eserKop.setEnabled(false);
+		
+		labelEserleku = new JLabel("Erreserbatu nahi den eserleku kopurua:"); //$NON-NLS-1$ //$NON-NLS-2$
+		labelEserleku.setEnabled(false);
+		labelEserleku.setBounds(457, 276, 190, 14);
+		getContentPane().add(labelEserleku);
+		
+		buttonErreserba = new JButton("Erreserba egin"); //$NON-NLS-1$ //$NON-NLS-2$
+		buttonErreserba.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					int kop = Integer.parseInt(eserKop.getText());
+					boolean b = WelcomeGUI.getBusinessLogic().sortuErreserba(t, selectedRide, kop);
+					if(b) {
+						System.out.println("Sortu da erreserba");
+					} else {
+						System.out.println("Arazoak erreserba sortzean");
+					}
+				} catch (NumberFormatException e2) {
+					System.out.println(e2.getMessage());
+				}
+			}
+		});
+		buttonErreserba.setBounds(454, 383, 143, 23);
+		buttonErreserba.setEnabled(false);
+		getContentPane().add(buttonErreserba);
 
 	}
 	public static void paintDaysWithEvents(JCalendar jCalendar,List<Date> datesWithEventsCurrentMonth, Color color) {
@@ -274,5 +328,4 @@ public class ErreserbaEskaeraGUI extends JFrame {
 	private void jButton2_actionPerformed(ActionEvent e) {
 		this.setVisible(false);
 	}
-
 }

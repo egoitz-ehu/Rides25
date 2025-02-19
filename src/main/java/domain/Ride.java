@@ -2,6 +2,8 @@ package domain;
 
 import java.io.*;
 import java.util.Date;
+import java.util.List;
+import java.util.Vector;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -28,7 +30,8 @@ public class Ride implements Serializable {
 	
 	private Driver driver;
 	
-	private Eskaera[] eskaerak;
+	@OneToMany(fetch=FetchType.EAGER)
+	private List<Erreserba> erreserbak=new Vector<Erreserba>();
 	
 	public Ride(){
 		super();
@@ -188,7 +191,9 @@ public class Ride implements Serializable {
 		return rideNumber+";"+";"+from+";"+to+";"+date;  
 	}
 
-
+	public void gehituErreserba(Erreserba e) {
+		this.erreserbak.add(e);
+	}
 
 
 	
