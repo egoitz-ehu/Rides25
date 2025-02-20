@@ -160,25 +160,30 @@ public class DataAccess  {
 		return b;
 	}
 	
-	public void diruaSartu(User t, double kop) {
-		t.diruaSartu(kop);
-		db.getTransaction().begin();
-		db.merge(t);
-		db.getTransaction().commit();
+	public boolean diruaSartu(User t, double kop) {
+		boolean b =t.diruaSartu(kop);
+		if(b) {
+			db.getTransaction().begin();
+			db.merge(t);
+			db.getTransaction().commit();
+		}
+		return b;
 	}
 	
 	public boolean sortuErreserba(Traveler t, Ride r, int kop) {
-		if(!t.existBook(r)) {
+		//if(!t.existBook(r)) {
 			if(t.diruaDauka(r, kop)) {
 				db.getTransaction().begin();
+				//Erreserba e = new Erreserba(kop,t, r);
 				Erreserba erreserbaBerria = t.sortuErreserba(r, kop);
 				db.persist(erreserbaBerria);
+				r.gehituErreserba(erreserbaBerria);
 				db.merge(t);
 				db.merge(r);
 				db.getTransaction().commit();
 				return true;
 			}
-		}
+		//}
 		return false;
 	}
 	

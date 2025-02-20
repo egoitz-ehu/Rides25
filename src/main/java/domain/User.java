@@ -80,8 +80,13 @@ public abstract class User {
 		}
 	}
 	
-	public void diruaSartu(double kop) {
-		this.cash=this.cash+kop;
+	public boolean diruaSartu(double kop) {
+		if(kop>=0.0) {
+			this.cash=this.cash+kop;
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public double getFrozenMoney() {

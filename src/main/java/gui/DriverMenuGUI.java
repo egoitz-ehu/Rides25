@@ -60,7 +60,7 @@ public class DriverMenuGUI extends JFrame {
 		menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
-		moneyMenu = new JMenu(ResourceBundle.getBundle("Etiquetas").getString("DriverMenuGUI.Money")); //$NON-NLS-1$ //$NON-NLS-2$
+		moneyMenu = new JMenu(ResourceBundle.getBundle("Etiquetas").getString("DriverMenuGUI.Money")+driver.getCash()); //$NON-NLS-1$ //$NON-NLS-2$
 		menuBar.add(moneyMenu);
 		
 		itemWithdraw = new JMenuItem(ResourceBundle.getBundle("Etiquetas").getString("DriverMenuGUI.Withdraw")); //$NON-NLS-1$ //$NON-NLS-2$
@@ -77,7 +77,7 @@ public class DriverMenuGUI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new GridLayout(4, 1, 0, 3));
 		
-		title = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("DriverMenuGUI.Welcome"));
+		title = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("DriverMenuGUI.Welcome")+driver.getName());
 		contentPane.add(title);
 		
 		buttonQuery = new JButton(ResourceBundle.getBundle("Etiquetas").getString("DriverMenuGUI.Query"));

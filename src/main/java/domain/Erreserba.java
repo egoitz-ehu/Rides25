@@ -21,11 +21,68 @@ public class Erreserba {
 	@ManyToOne(fetch=FetchType.EAGER)
 	private Ride ride;
 	
+	
+	public int getEskaeraNum() {
+		return eskaeraNum;
+	}
+
+	public void setEskaeraNum(int eskaeraNum) {
+		this.eskaeraNum = eskaeraNum;
+	}
+
+	public int getPlazaKop() {
+		return plazaKop;
+	}
+
+	public void setPlazaKop(int plazaKop) {
+		this.plazaKop = plazaKop;
+	}
+
+	public boolean isEgoera() {
+		return egoera;
+	}
+
+	public void setEgoera(boolean egoera) {
+		this.egoera = egoera;
+	}
+
+	public Date getErreserbaData() {
+		return erreserbaData;
+	}
+
+	public void setErreserbaData(Date erreserbaData) {
+		this.erreserbaData = erreserbaData;
+	}
+
+	public Traveler getBidaiaria() {
+		return bidaiaria;
+	}
+
+	public void setBidaiaria(Traveler bidaiaria) {
+		this.bidaiaria = bidaiaria;
+	}
+
+	public Ride getRide() {
+		return ride;
+	}
+
+	public void setRide(Ride ride) {
+		this.ride = ride;
+	}
+
 	public Erreserba(int kop, Traveler bidaiaria, Ride ride) {
 		this.plazaKop=kop;
 		this.bidaiaria=bidaiaria;
 		this.ride=ride;
 		this.erreserbaData= new Date();
 		this.egoera=false;
+	}
+	
+	public boolean containsRide(Ride r) {
+		return (this.ride.equals(r));
+	}
+	
+	public double prezioaKalkulatu() {
+		return (this.plazaKop*this.ride.getPrice());
 	}
 }

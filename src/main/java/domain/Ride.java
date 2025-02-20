@@ -30,7 +30,7 @@ public class Ride implements Serializable {
 	
 	private Driver driver;
 	
-	@OneToMany(fetch=FetchType.EAGER)
+	@OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.MERGE)
 	private List<Erreserba> erreserbak=new Vector<Erreserba>();
 	
 	public Ride(){
@@ -194,7 +194,4 @@ public class Ride implements Serializable {
 	public void gehituErreserba(Erreserba e) {
 		this.erreserbak.add(e);
 	}
-
-
-	
 }

@@ -83,7 +83,7 @@ public interface BLFacade  {
 
 	@WebMethod public boolean diruaAtera(User u, double kop);
 	
-	@WebMethod public void diruaSartu(User t, double kop);
+	@WebMethod public boolean diruaSartu(User t, double kop);
 	
 	@WebMethod public boolean sortuErreserba(Traveler t, Ride r, int kop);
 }

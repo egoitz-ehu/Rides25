@@ -147,10 +147,11 @@ public class BLFacadeImplementation  implements BLFacade {
 	}
 
 	@WebMethod
-	public void diruaSartu(User t, double kop) {
+	public boolean diruaSartu(User t, double kop) {
 		dbManager.open();
-		dbManager.diruaSartu(t, kop);
+		boolean b = dbManager.diruaSartu(t, kop);
 		dbManager.close();
+		return b;
 	}
 
 	@WebMethod
