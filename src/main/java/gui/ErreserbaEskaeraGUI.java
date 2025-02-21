@@ -58,7 +58,8 @@ public class ErreserbaEskaeraGUI extends JFrame {
 	private JTextField eserKop;
 	
 	private Ride selectedRide;
-
+	
+	private JLabel labelMessage;
 
 	public ErreserbaEskaeraGUI(Traveler t)
 	{
@@ -256,30 +257,34 @@ public class ErreserbaEskaeraGUI extends JFrame {
 		eserKop.setColumns(10);
 		eserKop.setEnabled(false);
 		
-		labelEserleku = new JLabel("Erreserbatu nahi den eserleku kopurua:"); //$NON-NLS-1$ //$NON-NLS-2$
+		labelEserleku = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("ErreserbaEskaeraGUI.Seats")); //$NON-NLS-1$ //$NON-NLS-2$
 		labelEserleku.setEnabled(false);
-		labelEserleku.setBounds(457, 276, 190, 14);
+		labelEserleku.setBounds(431, 276, 217, 14);
 		getContentPane().add(labelEserleku);
 		
-		buttonErreserba = new JButton("Erreserba egin"); //$NON-NLS-1$ //$NON-NLS-2$
+		buttonErreserba = new JButton(ResourceBundle.getBundle("Etiquetas").getString("ErreserbaEskaeraGUI.Egin")); //$NON-NLS-1$ //$NON-NLS-2$
 		buttonErreserba.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					int kop = Integer.parseInt(eserKop.getText());
 					boolean b = WelcomeGUI.getBusinessLogic().sortuErreserba(t, selectedRide, kop);
 					if(b) {
-						System.out.println("Sortu da erreserba");
+						System.out.println(ResourceBundle.getBundle("Etiquetas").getString("ErreserbaEskaeraGUI.Sortu"));
 					} else {
-						System.out.println("Arazoak erreserba sortzean");
+						System.out.println(ResourceBundle.getBundle("Etiquetas").getString("ErreserbaEskaeraGUI.Arazoa"));
 					}
 				} catch (NumberFormatException e2) {
 					System.out.println(e2.getMessage());
 				}
 			}
 		});
-		buttonErreserba.setBounds(454, 383, 143, 23);
+		buttonErreserba.setBounds(457, 372, 143, 23);
 		buttonErreserba.setEnabled(false);
 		getContentPane().add(buttonErreserba);
+		
+		labelMessage = new JLabel();
+		labelMessage.setBounds(431, 347, 166, 14);
+		getContentPane().add(labelMessage);
 
 	}
 	public static void paintDaysWithEvents(JCalendar jCalendar,List<Date> datesWithEventsCurrentMonth, Color color) {

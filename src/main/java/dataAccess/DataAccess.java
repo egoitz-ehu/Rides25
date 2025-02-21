@@ -187,6 +187,12 @@ public class DataAccess  {
 		return false;
 	}
 	
+	public List<Integer> getAllRidesNumber(String  ema) {
+		TypedQuery query = db.createQuery("SELECT r.rideNumber FROM Ride r WHERE driver.email=?1", Integer.class);
+		query.setParameter(1, ema);
+		return query.getResultList();
+	}
+	
 	/**
 	 * This method returns all the cities where rides depart 
 	 * @return collection of cities

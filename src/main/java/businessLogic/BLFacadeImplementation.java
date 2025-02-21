@@ -162,5 +162,13 @@ public class BLFacadeImplementation  implements BLFacade {
 		return b;
 	}
 
+	@WebMethod
+	public List<Integer> getAllRidesNumber(String ema) {
+		dbManager.open();
+		List<Integer> numberList = dbManager.getAllRidesNumber(ema);
+		dbManager.close();
+		return numberList;
+	}
+
 }
 

@@ -86,4 +86,6 @@ public interface BLFacade  {
 	@WebMethod public boolean diruaSartu(User t, double kop);
 	
 	@WebMethod public boolean sortuErreserba(Traveler t, Ride r, int kop);
+	
+	@WebMethod public List<Integer> getAllRidesNumber(String email);
 }
