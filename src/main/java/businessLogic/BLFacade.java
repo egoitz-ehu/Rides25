@@ -8,6 +8,7 @@ import domain.Ride;
 import domain.Traveler;
 import domain.User;
 import domain.Driver;
+import domain.Erreserba;
 import exceptions.RideMustBeLaterThanTodayException;
 import exceptions.RideAlreadyExistException;
 
@@ -88,4 +89,6 @@ public interface BLFacade  {
 	@WebMethod public boolean sortuErreserba(Traveler t, Ride r, int kop);
 	
 	@WebMethod public List<Integer> getAllRidesNumber(String email);
+	
+	@WebMethod public List<Erreserba> lortuErreserbak(int rideNumber);
 }

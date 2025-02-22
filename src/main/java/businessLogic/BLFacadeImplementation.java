@@ -12,6 +12,7 @@ import domain.Ride;
 import domain.Traveler;
 import domain.User;
 import domain.Driver;
+import domain.Erreserba;
 import exceptions.RideMustBeLaterThanTodayException;
 import exceptions.RideAlreadyExistException;
 
@@ -168,6 +169,14 @@ public class BLFacadeImplementation  implements BLFacade {
 		List<Integer> numberList = dbManager.getAllRidesNumber(ema);
 		dbManager.close();
 		return numberList;
+	}
+
+	@WebMethod
+	public List<Erreserba> lortuErreserbak(int rideNumber) {
+		dbManager.open();
+		List<Erreserba> erreserbaList = dbManager.lortuErreserbak(rideNumber);
+		dbManager.close();
+		return erreserbaList;
 	}
 
 }

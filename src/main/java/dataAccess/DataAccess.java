@@ -20,6 +20,7 @@ import configuration.ConfigXML;
 import configuration.UtilDate;
 import domain.Driver;
 import domain.Erreserba;
+import domain.ErreserbaEgoera;
 import domain.Ride;
 import domain.Traveler;
 import domain.User;
@@ -188,8 +189,15 @@ public class DataAccess  {
 	}
 	
 	public List<Integer> getAllRidesNumber(String  ema) {
-		TypedQuery query = db.createQuery("SELECT r.rideNumber FROM Ride r WHERE driver.email=?1", Integer.class);
+		TypedQuery<Integer> query = db.createQuery("SELECT r.rideNumber FROM Ride r WHERE driver.email=?1", Integer.class);
 		query.setParameter(1, ema);
+		return query.getResultList();
+	}
+	
+	public List<Erreserba> lortuErreserbak(int rideNumber) {
+		TypedQuery<Erreserba> query = db.createQuery("SELECT e FROM Erreserba e WHERE e.ride.rideNumber=?1 AND egoera=?2", Erreserba.class);
+		query.setParameter(1, rideNumber);
+		query.setParameter(2, ErreserbaEgoera.ZAIN);
 		return query.getResultList();
 	}
 	

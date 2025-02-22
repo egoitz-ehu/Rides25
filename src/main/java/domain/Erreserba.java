@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -14,7 +16,10 @@ public class Erreserba {
 	@GeneratedValue
 	private int eskaeraNum;
 	private int plazaKop;
-	private boolean egoera;
+	
+	@Enumerated(EnumType.STRING)
+	private ErreserbaEgoera egoera;
+	
 	private Date erreserbaData;
 	@ManyToOne(fetch=FetchType.EAGER)
 	private Traveler bidaiaria;
@@ -36,14 +41,6 @@ public class Erreserba {
 
 	public void setPlazaKop(int plazaKop) {
 		this.plazaKop = plazaKop;
-	}
-
-	public boolean isEgoera() {
-		return egoera;
-	}
-
-	public void setEgoera(boolean egoera) {
-		this.egoera = egoera;
 	}
 
 	public Date getErreserbaData() {
@@ -75,7 +72,7 @@ public class Erreserba {
 		this.bidaiaria=bidaiaria;
 		this.ride=ride;
 		this.erreserbaData= new Date();
-		this.egoera=false;
+		this.egoera=ErreserbaEgoera.ZAIN;
 	}
 	
 	public boolean containsRide(Ride r) {
@@ -84,5 +81,10 @@ public class Erreserba {
 	
 	public double prezioaKalkulatu() {
 		return (this.plazaKop*this.ride.getPrice());
+	}
+	
+	@Override
+	public String toString() {
+		return "Num:"+eskaeraNum + ";Plaza kop:" + plazaKop + ";Egoera:" + egoera + ";Data:" + erreserbaData + ";Bidaiaria:" + bidaiaria;
 	}
 }
