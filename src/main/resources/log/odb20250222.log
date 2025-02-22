@@ -1,0 +1,299 @@
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-22 12:29:44 #1 store] 
+Database 'C:\Users\egoit\git\Rides25\src\main\resources\rides.temp' is opened by 11092@LAPTOP-2PN1U6VU
+
+[2025-02-22 12:29:44 #2 type.registry] 
+New type domain.User
+
+[2025-02-22 12:29:44 #3 type.registry] 
+New type domain.Driver
+
+[2025-02-22 12:29:44 #4 type] 
+Type domain.User is not enhanced.
+
+[2025-02-22 12:29:44 #5 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-22 12:29:44 #6 type.registry] 
+New type domain.Ride
+
+[2025-02-22 12:29:44 #7 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-22 12:29:44 #8 type.registry] 
+New type domain.Erreserba
+
+[2025-02-22 12:29:44 #9 type] 
+Type domain.Erreserba is not enhanced.
+
+[2025-02-22 12:29:44 #10 type.registry] 
+New type domain.Traveler
+
+[2025-02-22 12:29:44 #11 type.registry] 
+New type domain.ErreserbaEgoera
+
+[2025-02-22 12:29:44 #12 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-02-22 12:29:44 #13 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-02-22 12:29:44 #14 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2025-02-22 12:29:44 #15 type.registry] 
+New type java.util.Vector<domain.Erreserba>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-22 12:30:51 #1 store] 
+Database 'C:\Users\egoit\git\Rides25\src\main\resources\rides.temp' has been recovered (tr. 1-10)
+
+[2025-02-22 12:30:51 #2 store] 
+Database 'C:\Users\egoit\git\Rides25\src\main\resources\rides.temp' is opened by 8120@LAPTOP-2PN1U6VU
+
+[2025-02-22 12:30:51 #3 type] 
+Type domain.User is not enhanced.
+
+[2025-02-22 12:30:51 #4 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-22 12:30:51 #5 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-22 12:30:52 #6 type] 
+Type domain.Erreserba is not enhanced.
+
+[2025-02-22 12:30:52 #7 type] 
+Type domain.Traveler is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-22 12:51:31 #1 store] 
+Database 'C:\Users\egoit\git\Rides25\src\main\resources\rides.temp' is opened by 13828@LAPTOP-2PN1U6VU
+
+[2025-02-22 12:51:31 #2 type] 
+Type domain.User is not enhanced.
+
+[2025-02-22 12:51:31 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-22 12:51:31 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-22 12:51:31 #5 type] 
+Type domain.Erreserba is not enhanced.
+
+[2025-02-22 12:51:31 #6 type] 
+Type domain.Traveler is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-22 12:53:10 #1 store] 
+Database 'C:\Users\egoit\git\Rides25\src\main\resources\rides.temp' has been recovered (tr. 12-14)
+
+[2025-02-22 12:53:10 #2 store] 
+Database 'C:\Users\egoit\git\Rides25\src\main\resources\rides.temp' is opened by 11576@LAPTOP-2PN1U6VU
+
+[2025-02-22 12:53:10 #3 type] 
+Type domain.User is not enhanced.
+
+[2025-02-22 12:53:10 #4 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-22 12:53:10 #5 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-22 12:53:10 #6 type] 
+Type domain.Erreserba is not enhanced.
+
+[2025-02-22 12:53:10 #7 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-02-22 12:53:14 #8 *] 
+java.lang.ClassCastException: class java.lang.String cannot be cast to class java.lang.Enum (java.lang.String and java.lang.Enum are in module java.base of loader 'bootstrap')
+	at com.objectdb.o.REG.A(REG.java:313)
+	at com.objectdb.o.REG.v(REG.java:164)
+	at com.objectdb.o.CMN.<init>(CMN.java:130)
+	at com.objectdb.o.CMN$aA.<init>(CMN.java:325)
+	at com.objectdb.o.CMN.av(CMN.java:71)
+	at com.objectdb.o.QNF.q(QNF.java:529)
+	at com.objectdb.o.QNF.k(QNF.java:188)
+	at com.objectdb.o.QNF.t(QNF.java:610)
+	at com.objectdb.o.QNF.t(QNF.java:604)
+	at com.objectdb.o.QNF.k(QNF.java:218)
+	at com.objectdb.o.QNF.j(QNF.java:134)
+	at com.objectdb.o.QRC.D(QRC.java:348)
+	at com.objectdb.o.QRC.z(QRC.java:237)
+	at com.objectdb.o.QRC.y(QRC.java:188)
+	at com.objectdb.o.QRM.U9(QRM.java:272)
+	at com.objectdb.o.MST.U9(MST.java:988)
+	at com.objectdb.o.WRA.U9(WRA.java:311)
+	at com.objectdb.o.WSM.U9(WSM.java:115)
+	at com.objectdb.o.QRR.g(QRR.java:247)
+	at com.objectdb.o.QRR.f(QRR.java:153)
+	at com.objectdb.jpa.JpaQuery.getResultList(JpaQuery.java:719)
+	at dataAccess.DataAccess.lortuErreserbak(DataAccess.java:199)
+	at businessLogic.BLFacadeImplementation.lortuErreserbak(BLFacadeImplementation.java:177)
+	at gui.ErreserbakGestionatuGUI$1.actionPerformed(ErreserbakGestionatuGUI.java:65)
+	at java.desktop/javax.swing.JComboBox.fireActionEvent(JComboBox.java:1294)
+	at java.desktop/javax.swing.JComboBox.setSelectedItem(JComboBox.java:619)
+	at java.desktop/javax.swing.JComboBox.setSelectedIndex(JComboBox.java:654)
+	at java.desktop/javax.swing.plaf.basic.BasicComboPopup$Handler.mouseReleased(BasicComboPopup.java:946)
+	at java.desktop/java.awt.AWTEventMulticaster.mouseReleased(AWTEventMulticaster.java:298)
+	at java.desktop/java.awt.Component.processMouseEvent(Component.java:6626)
+	at java.desktop/javax.swing.JComponent.processMouseEvent(JComponent.java:3389)
+	at java.desktop/javax.swing.plaf.basic.BasicComboPopup$1.processMouseEvent(BasicComboPopup.java:551)
+	at java.desktop/java.awt.Component.processEvent(Component.java:6391)
+	at java.desktop/java.awt.Container.processEvent(Container.java:2266)
+	at java.desktop/java.awt.Component.dispatchEventImpl(Component.java:5001)
+	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2324)
+	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4833)
+	at java.desktop/java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4948)
+	at java.desktop/java.awt.LightweightDispatcher.processMouseEvent(Container.java:4575)
+	at java.desktop/java.awt.LightweightDispatcher.dispatchEvent(Container.java:4516)
+	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2310)
+	at java.desktop/java.awt.Window.dispatchEventImpl(Window.java:2780)
+	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4833)
+	at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:773)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:722)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:716)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:399)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:97)
+	at java.desktop/java.awt.EventQueue$5.run(EventQueue.java:746)
+	at java.desktop/java.awt.EventQueue$5.run(EventQueue.java:744)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:399)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86)
+	at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:743)
+	at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-22 12:55:54 #1 store] 
+Database 'C:\Users\egoit\git\Rides25\src\main\resources\rides.temp' is opened by 7576@LAPTOP-2PN1U6VU
+
+[2025-02-22 12:55:54 #2 type] 
+Type domain.User is not enhanced.
+
+[2025-02-22 12:55:54 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-22 12:55:54 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-22 12:55:54 #5 type] 
+Type domain.Erreserba is not enhanced.
+
+[2025-02-22 12:55:54 #6 type] 
+Type domain.Traveler is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-22 13:00:09 #1 store] 
+Database 'C:\Users\egoit\git\Rides25\src\main\resources\rides.temp' is opened by 5900@LAPTOP-2PN1U6VU
+
+[2025-02-22 13:00:09 #2 type] 
+Type domain.User is not enhanced.
+
+[2025-02-22 13:00:09 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-22 13:00:09 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-22 13:00:09 #5 type] 
+Type domain.Erreserba is not enhanced.
+
+[2025-02-22 13:00:09 #6 type] 
+Type domain.Traveler is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-22 15:10:39 #1 store] 
+Database 'C:\Users\egoit\git\Rides25\src\main\resources\rides.temp' is opened by 13644@LAPTOP-2PN1U6VU
+
+[2025-02-22 15:10:40 #2 type] 
+Type domain.User is not enhanced.
+
+[2025-02-22 15:10:40 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-22 15:10:40 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-22 15:10:40 #5 type] 
+Type domain.Erreserba is not enhanced.
+
+[2025-02-22 15:10:40 #6 type] 
+Type domain.Traveler is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-22 15:11:30 #1 store] 
+Database 'C:\Users\egoit\git\Rides25\src\main\resources\rides.temp' is opened by 7964@LAPTOP-2PN1U6VU
+
+[2025-02-22 15:11:30 #2 type] 
+Type domain.User is not enhanced.
+
+[2025-02-22 15:11:30 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-22 15:11:30 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-22 15:11:30 #5 type] 
+Type domain.Erreserba is not enhanced.
+
+[2025-02-22 15:11:30 #6 type] 
+Type domain.Traveler is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-22 15:23:35 #1 store] 
+Database 'C:\Users\egoit\git\Rides25\src\main\resources\rides.temp' is opened by 5456@LAPTOP-2PN1U6VU
+
+[2025-02-22 15:23:35 #2 type] 
+Type domain.User is not enhanced.
+
+[2025-02-22 15:23:35 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-22 15:23:35 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-22 15:23:35 #5 type] 
+Type domain.Erreserba is not enhanced.
+
+[2025-02-22 15:23:35 #6 type] 
+Type domain.Traveler is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-22 15:36:15 #1 store] 
+Database 'C:\Users\egoit\git\Rides25\src\main\resources\rides.temp' has been recovered (tr. 15-21)
+
+[2025-02-22 15:36:15 #2 store] 
+Database 'C:\Users\egoit\git\Rides25\src\main\resources\rides.temp' is opened by 11256@LAPTOP-2PN1U6VU
+
+[2025-02-22 15:36:15 #3 type] 
+Type domain.User is not enhanced.
+
+[2025-02-22 15:36:15 #4 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-22 15:36:15 #5 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-22 15:36:15 #6 type] 
+Type domain.Erreserba is not enhanced.
+
+[2025-02-22 15:36:15 #7 type] 
+Type domain.Traveler is not enhanced.
+

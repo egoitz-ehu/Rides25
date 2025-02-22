@@ -27,6 +27,14 @@ public class Erreserba {
 	private Ride ride;
 	
 	
+	public ErreserbaEgoera getEgoera() {
+		return egoera;
+	}
+
+	public void setEgoera(ErreserbaEgoera egoera) {
+		this.egoera = egoera;
+	}
+
 	public int getEskaeraNum() {
 		return eskaeraNum;
 	}
@@ -85,6 +93,6 @@ public class Erreserba {
 	
 	@Override
 	public String toString() {
-		return "Num:"+eskaeraNum + ";Plaza kop:" + plazaKop + ";Egoera:" + egoera + ";Data:" + erreserbaData + ";Bidaiaria:" + bidaiaria;
+		return "Num:"+eskaeraNum + ";Plaza kop:" + plazaKop + ";Egoera:" + egoera + ";Data:" + erreserbaData + ";Bidaiaria mail:" + bidaiaria.getEmail();
 	}
 }
