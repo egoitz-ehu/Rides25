@@ -201,6 +201,22 @@ public class DataAccess  {
 		return query.getResultList();
 	}
 	
+	public void erreserbaOnartu(int erreserbaNum) {
+		db.getTransaction().begin();
+		Erreserba e = db.find(Erreserba.class, erreserbaNum);
+		e.setEgoera(ErreserbaEgoera.ONARTUA);
+		db.persist(e);
+		db.getTransaction().commit();
+	}
+	
+	public void erreserbaUkatu(int erreserbaNum) {
+		db.getTransaction().begin();
+		Erreserba e = db.find(Erreserba.class, erreserbaNum);
+		e.setEgoera(ErreserbaEgoera.UKATUA);
+		db.persist(e);
+		db.getTransaction().commit();
+	}
+	
 	/**
 	 * This method returns all the cities where rides depart 
 	 * @return collection of cities

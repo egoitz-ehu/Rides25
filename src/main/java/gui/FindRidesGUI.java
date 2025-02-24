@@ -241,10 +241,11 @@ public class FindRidesGUI extends JFrame {
 		calendar.set(Calendar.DAY_OF_MONTH, 1);
 		int offset = calendar.get(Calendar.DAY_OF_WEEK);
 
-		if (Locale.getDefault().equals(new Locale("es")))
-			offset += 4;
-		else
-			offset += 5;
+		//if (Locale.getDefault().equals(new Locale("es")))
+			//offset += 4;
+		//else
+			//offset += 5;
+		offset +=5;
 
 
 		for (Date d:datesWithEventsCurrentMonth){

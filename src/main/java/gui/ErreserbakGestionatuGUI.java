@@ -25,6 +25,9 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Vector;
 import java.awt.event.ActionEvent;
+import javax.swing.JButton;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class ErreserbakGestionatuGUI extends JFrame {
 
@@ -35,6 +38,10 @@ public class ErreserbakGestionatuGUI extends JFrame {
 	private JScrollPane scrollPane;
 	private JTable table;
 	private DefaultTableModel tableModel;
+	private JButton btnNewButton;
+	private JButton btnNewButton_1;
+	
+	private int selectedErreserbaNumber;
 
 	/**
 	 * Launch the application.
@@ -64,9 +71,9 @@ public class ErreserbakGestionatuGUI extends JFrame {
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 		gbl_contentPane.columnWidths = new int[]{0, 0, 0, 0, 0};
-		gbl_contentPane.rowHeights = new int[]{0, 0, 0, 0};
+		gbl_contentPane.rowHeights = new int[]{0, 0, 0, 0, 0};
 		gbl_contentPane.columnWeights = new double[]{1.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
-		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 		
 		JLabel lblNewLabel = new JLabel("New label");
@@ -103,14 +110,24 @@ public class ErreserbakGestionatuGUI extends JFrame {
 		
 		JScrollPane scrollPane = new JScrollPane();
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
+		gbc_scrollPane.insets = new Insets(0, 0, 5, 0);
 		gbc_scrollPane.gridwidth = 4;
-		gbc_scrollPane.insets = new Insets(0, 0, 0, 5);
 		gbc_scrollPane.fill = GridBagConstraints.BOTH;
 		gbc_scrollPane.gridx = 0;
 		gbc_scrollPane.gridy = 2;
 		contentPane.add(scrollPane, gbc_scrollPane);
 		
 		table = new JTable();
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int selectedRow = table.getSelectedRow();
+				if(selectedRow != -1) {
+					selectedErreserbaNumber = (int) tableModel.getValueAt(selectedRow, 0);
+					System.out.println(selectedErreserbaNumber);
+				}
+			}
+		});
 		
 		tableModel = new DefaultTableModel(
 				new Object[][] {
@@ -127,6 +144,29 @@ public class ErreserbakGestionatuGUI extends JFrame {
 		ridesModel.addAll(ridesNumber);
 		
 		scrollPane.setViewportView(table);
+		
+		btnNewButton = new JButton("New button");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				WelcomeGUI.getBusinessLogic().onartuErreserba(selectedErreserbaNumber);
+			}
+		});
+		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
+		gbc_btnNewButton.insets = new Insets(0, 0, 0, 5);
+		gbc_btnNewButton.gridx = 0;
+		gbc_btnNewButton.gridy = 3;
+		contentPane.add(btnNewButton, gbc_btnNewButton);
+		
+		btnNewButton_1 = new JButton("New button");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				WelcomeGUI.getBusinessLogic().ukatuErreserba(selectedErreserbaNumber);
+			}
+		});
+		GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
+		gbc_btnNewButton_1.gridx = 3;
+		gbc_btnNewButton_1.gridy = 3;
+		contentPane.add(btnNewButton_1, gbc_btnNewButton_1);
 	}
 
 }

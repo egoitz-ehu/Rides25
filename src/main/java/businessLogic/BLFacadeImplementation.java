@@ -179,5 +179,19 @@ public class BLFacadeImplementation  implements BLFacade {
 		return erreserbaList;
 	}
 
+	@WebMethod
+	public void onartuErreserba(int erreserbaNum) {
+		dbManager.open();
+		dbManager.erreserbaOnartu(erreserbaNum);
+		dbManager.close();
+	}
+
+	@WebMethod
+	public void ukatuErreserba(int erreserbaNum) {
+		dbManager.open();
+		dbManager.erreserbaUkatu(erreserbaNum);
+		dbManager.close();
+	}
+
 }
 

@@ -91,4 +91,8 @@ public interface BLFacade  {
 	@WebMethod public List<Integer> getAllRidesNumber(String email);
 	
 	@WebMethod public List<Erreserba> lortuErreserbak(int rideNumber);
+	
+	@WebMethod public void onartuErreserba(int erreserbaNum);
+	
+	@WebMethod public void ukatuErreserba(int erreserbaNum);
 }
