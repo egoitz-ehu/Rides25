@@ -39,7 +39,7 @@ public class WelcomeGUI extends JFrame {
 
 	/**
 	 * Launch the application.
-	 */
+	 *//*
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -51,7 +51,7 @@ public class WelcomeGUI extends JFrame {
 				}
 			}
 		});
-	}
+	}*/
 	
 	public static void setBusinessLogic(BLFacade logic) {
     	businessLogic=logic;
@@ -96,14 +96,15 @@ public class WelcomeGUI extends JFrame {
 		guestButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("WelcomeGUI.Guest"));
 		guestButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				FindRidesGUI findRides = new FindRidesGUI();
+				findRides.setVisible(true);
 			}
 		});
 		guestButton.setBounds(96, 192, 252, 45);
 		//contentPane.add(guestButton);
 		
 		titleLabel = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("WelcomeGUI.Welcome"));
-		titleLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		titleLabel.setFont(new Font("Dialog", Font.BOLD, 32));
 		titleLabel.setBounds(10, 11, 274, 28);
 		//contentPane.add(titleLabel);
 		

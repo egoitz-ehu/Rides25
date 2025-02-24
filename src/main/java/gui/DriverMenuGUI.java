@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.EventQueue;
+import java.awt.Font;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -60,7 +61,7 @@ public class DriverMenuGUI extends JFrame {
 		menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
-		moneyMenu = new JMenu(ResourceBundle.getBundle("Etiquetas").getString("DriverMenuGUI.Money")+driver.getCash()); //$NON-NLS-1$ //$NON-NLS-2$
+		moneyMenu = new JMenu(ResourceBundle.getBundle("Etiquetas").getString("DriverMenuGUI.Money")); //$NON-NLS-1$ //$NON-NLS-2$
 		menuBar.add(moneyMenu);
 		
 		itemWithdraw = new JMenuItem(ResourceBundle.getBundle("Etiquetas").getString("DriverMenuGUI.Withdraw")); //$NON-NLS-1$ //$NON-NLS-2$
@@ -77,10 +78,17 @@ public class DriverMenuGUI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new GridLayout(4, 1, 0, 3));
 		
-		title = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("DriverMenuGUI.Welcome")+driver.getName());
+		title = new JLabel("<html><font color='black'>"+ResourceBundle.getBundle("Etiquetas").getString("PassengerMenuGUI.Welcome")+"</font> <font color='blue'>"+driver.getName()+"</font></html>");
+		title.setFont(new Font("Dialog", Font.BOLD, 32));
 		contentPane.add(title);
 		
 		buttonQuery = new JButton(ResourceBundle.getBundle("Etiquetas").getString("DriverMenuGUI.Query"));
+		buttonQuery.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				FindRidesGUI findRides = new FindRidesGUI();
+				findRides.setVisible(true);
+			}
+		});
 		contentPane.add(buttonQuery);
 		
 		buttonCreate = new JButton(ResourceBundle.getBundle("Etiquetas").getString("DriverMenuGUI.Create")); //$NON-NLS-1$ //$NON-NLS-2$

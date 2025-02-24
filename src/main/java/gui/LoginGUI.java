@@ -65,23 +65,19 @@ public class LoginGUI extends JFrame {
 		contentPane.setLayout(new GridLayout(7,1));
 		
 		labelTitle = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("LoginGUI.Title"));
-		labelTitle.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		labelTitle.setBounds(97, 11, 94, 39);
 		contentPane.add(labelTitle);
 		
 		labelMail = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("LoginGUI.Mail"));
-		labelMail.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		labelMail.setBounds(97, 61, 148, 14);
 		contentPane.add(labelMail);
 		
 		mailField = new JTextField();
-		mailField.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		mailField.setBounds(97, 86, 236, 29);
 		contentPane.add(mailField);
 		mailField.setColumns(10);
 		
 		labelPassword = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("LoginGUI.Password"));
-		labelPassword.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		labelPassword.setBounds(97, 128, 148, 14);
 		contentPane.add(labelPassword);
 		

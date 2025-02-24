@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.EventQueue;
+import java.awt.Font;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -86,7 +87,9 @@ public class PassengerMenuGUI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new GridLayout(3, 1, 0, 0));
 		
-		title = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("PassengerMenuGUI.Welcome")+traveler.getName());
+		//title = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("PassengerMenuGUI.Welcome")+traveler.getName());
+		title = new JLabel("<html><font color='black'>"+ResourceBundle.getBundle("Etiquetas").getString("PassengerMenuGUI.Welcome")+"</font> <font color='blue'>"+traveler.getName()+"</font></html>");
+		title.setFont(new Font("Dialog", Font.BOLD, 32));
 		contentPane.add(title);
 		
 		buttonQuery = new JButton(ResourceBundle.getBundle("Etiquetas").getString("PassengerMenuGUI.Query"));
