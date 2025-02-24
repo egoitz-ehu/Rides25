@@ -96,4 +96,12 @@ public abstract class User {
 	public void setFrozenMoney(double frozenMoney) {
 		this.frozenMoney = frozenMoney;
 	}
+	
+	public void addFrozenMoney(double kop) {
+		if(kop>0.0) this.frozenMoney+=kop;
+	}
+	
+	public void removeFrozenMoney(double kop) {
+		if(kop>0.0) this.frozenMoney-=kop;
+	}
 }

@@ -44,8 +44,8 @@ public class Traveler extends User implements Serializable{
 	
 	public Erreserba sortuErreserba(Ride r, int eserKop) {
 		double prezioa = r.getPrice()*eserKop;
-		this.setCash(this.getCash()-prezioa);
-		this.setFrozenMoney(this.getFrozenMoney()+prezioa);
+		this.diruaAtera(prezioa);
+		this.addFrozenMoney(prezioa);
 		Erreserba erre = new Erreserba(eserKop, this, r);
 		bookedRides.add(erre);
 		return erre;

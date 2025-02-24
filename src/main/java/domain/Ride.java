@@ -25,6 +25,7 @@ public class Ride implements Serializable {
 	private String from;
 	private String to;
 	private int nPlaces;
+	private int eserLibre;
 	private Date date;
 	private float price;
 	
@@ -46,6 +47,7 @@ public class Ride implements Serializable {
 		this.date=date;
 		this.price=price;
 		this.driver = driver;
+		this.eserLibre=nPlaces;
 	}
 
 	
@@ -58,6 +60,7 @@ public class Ride implements Serializable {
 		this.date=date;
 		this.price=price;
 		this.driver = driver;
+		this.eserLibre=nPlaces;
 	}
 	
 	/**
@@ -191,7 +194,12 @@ public class Ride implements Serializable {
 		return rideNumber+";"+";"+from+";"+to+";"+date;  
 	}
 
-	public void gehituErreserba(Erreserba e) {
-		this.erreserbak.add(e);
+	public boolean gehituErreserba(Erreserba e) {
+		if(e.getPlazaKop()<=this.eserLibre) {
+			this.erreserbak.add(e);
+			this.eserLibre-=e.getPlazaKop();
+			return true;
+		}
+		return false;
 	}
 }

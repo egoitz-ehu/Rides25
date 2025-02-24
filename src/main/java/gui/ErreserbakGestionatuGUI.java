@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -9,6 +10,7 @@ import javax.swing.table.DefaultTableModel;
 
 import domain.Driver;
 import domain.Erreserba;
+import domain.ErreserbaEgoera;
 
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
@@ -35,13 +37,16 @@ public class ErreserbakGestionatuGUI extends JFrame {
 	
 	private JComboBox<Integer> ridesComboBox;
 	private DefaultComboBoxModel<Integer> ridesModel = new DefaultComboBoxModel<Integer>();
-	private JScrollPane scrollPane;
+	//private JScrollPane scrollPane = new JScrollPane();
 	private JTable table;
 	private DefaultTableModel tableModel;
-	private JButton btnNewButton;
-	private JButton btnNewButton_1;
+	
+	private JButton onartuButton;
+	private JButton ukatuButton;
 	
 	private int selectedErreserbaNumber;
+	
+	private JLabel messageLabel;
 
 	/**
 	 * Launch the application.
@@ -71,9 +76,9 @@ public class ErreserbakGestionatuGUI extends JFrame {
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 		gbl_contentPane.columnWidths = new int[]{0, 0, 0, 0, 0};
-		gbl_contentPane.rowHeights = new int[]{0, 0, 0, 0, 0};
+		gbl_contentPane.rowHeights = new int[]{0, 0, 0, 0, 0, 0};
 		gbl_contentPane.columnWeights = new double[]{1.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
-		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 		
 		JLabel lblNewLabel = new JLabel("New label");
@@ -86,17 +91,7 @@ public class ErreserbakGestionatuGUI extends JFrame {
 		ridesComboBox = new JComboBox();
 		ridesComboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				List<Erreserba> erreserbaList = WelcomeGUI.getBusinessLogic().lortuErreserbak((int) ridesModel.getSelectedItem());
-				for(Erreserba err:erreserbaList) {
-					//modeloErreserba.addElement(err.toString());
-					Vector<Object> row = new Vector<Object>();
-					row.add(err.getEskaeraNum());
-					row.add(err.getPlazaKop());
-					row.add(err.getErreserbaData());
-					row.add(err.getEgoera());
-					row.add(err.getBidaiaria().getEmail());
-					tableModel.addRow(row);	
-				}
+				ezarriErreserbak();
 			}
 		});
 		GridBagConstraints gbc_comboBox = new GridBagConstraints();
@@ -124,7 +119,11 @@ public class ErreserbakGestionatuGUI extends JFrame {
 				int selectedRow = table.getSelectedRow();
 				if(selectedRow != -1) {
 					selectedErreserbaNumber = (int) tableModel.getValueAt(selectedRow, 0);
-					System.out.println(selectedErreserbaNumber);
+					onartuButton.setEnabled(true);
+					ukatuButton.setEnabled(true);
+				} else {
+					onartuButton.setEnabled(false);
+					ukatuButton.setEnabled(false);
 				}
 			}
 		});
@@ -145,28 +144,73 @@ public class ErreserbakGestionatuGUI extends JFrame {
 		
 		scrollPane.setViewportView(table);
 		
-		btnNewButton = new JButton("New button");
-		btnNewButton.addActionListener(new ActionListener() {
+		onartuButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("ErreserbakGestionatuGUI.Onartu"));
+		onartuButton.setEnabled(false);
+		onartuButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				WelcomeGUI.getBusinessLogic().onartuErreserba(selectedErreserbaNumber);
+				ezarriErreserbak();
+				onartuButton.setEnabled(false);
+				ukatuButton.setEnabled(false);
+				messageLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("ErreserbakGestionatuGUI.MezuaOnartu"));
 			}
 		});
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
-		gbc_btnNewButton.insets = new Insets(0, 0, 0, 5);
+		gbc_btnNewButton.insets = new Insets(0, 0, 5, 5);
 		gbc_btnNewButton.gridx = 0;
 		gbc_btnNewButton.gridy = 3;
-		contentPane.add(btnNewButton, gbc_btnNewButton);
+		contentPane.add(onartuButton, gbc_btnNewButton);
 		
-		btnNewButton_1 = new JButton("New button");
-		btnNewButton_1.addActionListener(new ActionListener() {
+		ukatuButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("ErreserbakGestionatuGUI.Ukatu"));
+		ukatuButton.setEnabled(false);
+		ukatuButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				WelcomeGUI.getBusinessLogic().ukatuErreserba(selectedErreserbaNumber);
+				ezarriErreserbak();
+				onartuButton.setEnabled(false);
+				ukatuButton.setEnabled(false);
+				messageLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("ErreserbakGestionatuGUI.MezuaUkatu"));
 			}
 		});
 		GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
+		gbc_btnNewButton_1.insets = new Insets(0, 0, 5, 0);
 		gbc_btnNewButton_1.gridx = 3;
 		gbc_btnNewButton_1.gridy = 3;
-		contentPane.add(btnNewButton_1, gbc_btnNewButton_1);
+		contentPane.add(ukatuButton, gbc_btnNewButton_1);
+		
+		messageLabel = new JLabel(""); //$NON-NLS-1$ //$NON-NLS-2$
+		messageLabel.setForeground(Color.BLUE);
+		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
+		gbc_lblNewLabel_1.gridwidth = 4;
+		gbc_lblNewLabel_1.insets = new Insets(0, 0, 0, 5);
+		gbc_lblNewLabel_1.gridx = 0;
+		gbc_lblNewLabel_1.gridy = 4;
+		contentPane.add(messageLabel, gbc_lblNewLabel_1);
 	}
-
+	
+	private void ezarriErreserbak() {
+		String egoera = "";
+		tableModel.getDataVector().removeAllElements();
+		List<Erreserba> erreserbaList = WelcomeGUI.getBusinessLogic().lortuErreserbak((int) ridesModel.getSelectedItem());
+		for(Erreserba err:erreserbaList) {
+			//modeloErreserba.addElement(err.toString());
+			Vector<Object> row = new Vector<Object>();
+			row.add(err.getEskaeraNum());
+			row.add(err.getPlazaKop());
+			row.add(err.getErreserbaData());
+			switch(err.getEgoera()) {
+			case ZAIN:
+				egoera = ResourceBundle.getBundle("Etiquetas").getString("ErreserbakGestionatuGUI.ZAIN");
+				break;
+			case UKATUA:
+				egoera = ResourceBundle.getBundle("Etiquetas").getString("ErreserbakGestionatuGUI.UKATUA");
+				break;
+			case ONARTUA:
+				egoera = ResourceBundle.getBundle("Etiquetas").getString("ErreserbakGestionatuGUI.ONARTUA");
+			}
+			row.add(egoera);
+			row.add(err.getBidaiaria().getEmail());
+			tableModel.addRow(row);	
+		}
+	}
 }

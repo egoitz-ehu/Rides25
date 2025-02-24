@@ -6,6 +6,8 @@ import configuration.UtilDate;
 import com.toedter.calendar.JCalendar;
 import domain.Ride;
 import domain.Traveler;
+import exceptions.ErreserbaAlreadyExistsException;
+import exceptions.EserlekurikLibreEzException;
 
 import javax.swing.*;
 import java.awt.*;
@@ -275,6 +277,10 @@ public class ErreserbaEskaeraGUI extends JFrame {
 					}
 				} catch (NumberFormatException e2) {
 					System.out.println(e2.getMessage());
+				} catch (EserlekurikLibreEzException e3) {
+					System.out.println(e3.getMessage());
+				} catch (ErreserbaAlreadyExistsException e4) {
+					System.out.println(e4.getMessage());
 				}
 			}
 		});

@@ -24,6 +24,8 @@ import domain.ErreserbaEgoera;
 import domain.Ride;
 import domain.Traveler;
 import domain.User;
+import exceptions.ErreserbaAlreadyExistsException;
+import exceptions.EserlekurikLibreEzException;
 import exceptions.RideAlreadyExistException;
 import exceptions.RideMustBeLaterThanTodayException;
 
@@ -171,20 +173,28 @@ public class DataAccess  {
 		return b;
 	}
 	
-	public boolean sortuErreserba(Traveler t, Ride r, int kop) {
-		//if(!t.existBook(r)) {
-			if(t.diruaDauka(r, kop)) {
-				db.getTransaction().begin();
-				//Erreserba e = new Erreserba(kop,t, r);
-				Erreserba erreserbaBerria = t.sortuErreserba(r, kop);
-				db.persist(erreserbaBerria);
-				r.gehituErreserba(erreserbaBerria);
-				db.merge(t);
-				db.merge(r);
-				db.getTransaction().commit();
-				return true;
+	public boolean sortuErreserba(Traveler t, Ride r, int kop) throws EserlekurikLibreEzException, ErreserbaAlreadyExistsException {
+		if(kop>0) {
+			if(!t.existBook(r)) {
+				if(t.diruaDauka(r, kop)) {
+					//Erreserba e = new Erreserba(kop,t, r);
+					Erreserba erreserbaBerria = t.sortuErreserba(r, kop);
+					boolean b = r.gehituErreserba(erreserbaBerria);
+					if(b) {
+						db.getTransaction().begin();
+						db.persist(erreserbaBerria);
+						db.merge(t);
+						db.merge(r);
+						db.getTransaction().commit();
+						return true;	
+					} else {
+						throw new EserlekurikLibreEzException("Ez dago nahiko eserlekurik libre");
+					}
+				}
+			} else {
+				throw new ErreserbaAlreadyExistsException("Dagoeneko erreserba bat du erabiltzaile honek bidaia honetan");
 			}
-		//}
+		}
 		return false;
 	}
 	

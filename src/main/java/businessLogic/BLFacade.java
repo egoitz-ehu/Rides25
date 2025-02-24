@@ -10,6 +10,8 @@ import domain.User;
 import domain.Driver;
 import domain.Erreserba;
 import exceptions.RideMustBeLaterThanTodayException;
+import exceptions.ErreserbaAlreadyExistsException;
+import exceptions.EserlekurikLibreEzException;
 import exceptions.RideAlreadyExistException;
 
 import javax.jws.WebMethod;
@@ -86,7 +88,7 @@ public interface BLFacade  {
 	
 	@WebMethod public boolean diruaSartu(User t, double kop);
 	
-	@WebMethod public boolean sortuErreserba(Traveler t, Ride r, int kop);
+	@WebMethod public boolean sortuErreserba(Traveler t, Ride r, int kop) throws EserlekurikLibreEzException, ErreserbaAlreadyExistsException;
 	
 	@WebMethod public List<Integer> getAllRidesNumber(String email);
 	
