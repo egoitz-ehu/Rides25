@@ -29,6 +29,7 @@ public class Ride implements Serializable {
 	private Date date;
 	private float price;
 	
+	@ManyToOne(fetch=FetchType.EAGER)
 	private Driver driver;
 	
 	@OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.MERGE)

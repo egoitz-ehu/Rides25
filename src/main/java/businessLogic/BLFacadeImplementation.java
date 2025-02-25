@@ -182,9 +182,9 @@ public class BLFacadeImplementation  implements BLFacade {
 	}
 
 	@WebMethod
-	public void onartuErreserba(int erreserbaNum) {
+	public void onartuErreserba(int erreserbaNum, String dMail) {
 		dbManager.open();
-		dbManager.erreserbaOnartu(erreserbaNum);
+		dbManager.erreserbaOnartu(erreserbaNum, dMail);
 		dbManager.close();
 	}
 

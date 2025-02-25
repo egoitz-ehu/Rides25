@@ -211,9 +211,14 @@ public class DataAccess  {
 		return query.getResultList();
 	}
 	
-	public void erreserbaOnartu(int erreserbaNum) {
+	public void erreserbaOnartu(int erreserbaNum, String dMail) {
 		db.getTransaction().begin();
 		Erreserba e = db.find(Erreserba.class, erreserbaNum);
+		Traveler t = e.getBidaiaria();
+		Driver d = db.find(Driver.class, dMail);
+		double prezioa = e.prezioaKalkulatu();
+		t.removeFrozenMoney(prezioa);
+		d.addFrozenMoney(prezioa);
 		e.setEgoera(ErreserbaEgoera.ONARTUA);
 		db.persist(e);
 		db.getTransaction().commit();
@@ -222,6 +227,10 @@ public class DataAccess  {
 	public void erreserbaUkatu(int erreserbaNum) {
 		db.getTransaction().begin();
 		Erreserba e = db.find(Erreserba.class, erreserbaNum);
+		Traveler t = e.getBidaiaria();
+		double kop = e.prezioaKalkulatu();
+		t.removeFrozenMoney(kop);
+		t.diruaSartu(kop);
 		e.setEgoera(ErreserbaEgoera.UKATUA);
 		db.persist(e);
 		db.getTransaction().commit();
