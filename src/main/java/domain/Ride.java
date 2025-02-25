@@ -35,6 +35,14 @@ public class Ride implements Serializable {
 	@OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.MERGE)
 	private List<Erreserba> erreserbak=new Vector<Erreserba>();
 	
+	public int getEserLibre() {
+		return eserLibre;
+	}
+
+	public void setEserLibre(int eserLibre) {
+		this.eserLibre = eserLibre;
+	}
+
 	public Ride(){
 		super();
 	}
@@ -204,4 +212,19 @@ public class Ride implements Serializable {
 		if(kop<=this.eserLibre) return true;
 		else return false;
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Ride other = (Ride) obj;
+		if (this.rideNumber==other.rideNumber)
+			return true;
+		return false;
+	}
+	
 }

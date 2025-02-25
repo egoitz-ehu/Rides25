@@ -192,25 +192,30 @@ public class ErreserbakGestionatuGUI extends JFrame {
 		String egoera = "";
 		tableModel.getDataVector().removeAllElements();
 		List<Erreserba> erreserbaList = WelcomeGUI.getBusinessLogic().lortuErreserbak((int) ridesModel.getSelectedItem());
-		for(Erreserba err:erreserbaList) {
-			//modeloErreserba.addElement(err.toString());
-			Vector<Object> row = new Vector<Object>();
-			row.add(err.getEskaeraNum());
-			row.add(err.getPlazaKop());
-			row.add(err.getErreserbaData());
-			switch(err.getEgoera()) {
-			case ZAIN:
-				egoera = ResourceBundle.getBundle("Etiquetas").getString("ErreserbakGestionatuGUI.ZAIN");
-				break;
-			case UKATUA:
-				egoera = ResourceBundle.getBundle("Etiquetas").getString("ErreserbakGestionatuGUI.UKATUA");
-				break;
-			case ONARTUA:
-				egoera = ResourceBundle.getBundle("Etiquetas").getString("ErreserbakGestionatuGUI.ONARTUA");
+		if(erreserbaList.isEmpty()) {
+			messageLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("ErreserbakGestionatuGUI.MezuaGabe"));
+		} else {
+			messageLabel.setText("");
+			for(Erreserba err:erreserbaList) {
+				//modeloErreserba.addElement(err.toString());
+				Vector<Object> row = new Vector<Object>();
+				row.add(err.getEskaeraNum());
+				row.add(err.getPlazaKop());
+				row.add(err.getErreserbaData());
+				switch(err.getEgoera()) {
+				case ZAIN:
+					egoera = ResourceBundle.getBundle("Etiquetas").getString("ErreserbakGestionatuGUI.ZAIN");
+					break;
+				case UKATUA:
+					egoera = ResourceBundle.getBundle("Etiquetas").getString("ErreserbakGestionatuGUI.UKATUA");
+					break;
+				case ONARTUA:
+					egoera = ResourceBundle.getBundle("Etiquetas").getString("ErreserbakGestionatuGUI.ONARTUA");
+				}
+				row.add(egoera);
+				row.add(err.getBidaiaria().getEmail());
+				tableModel.addRow(row);	
 			}
-			row.add(egoera);
-			row.add(err.getBidaiaria().getEmail());
-			tableModel.addRow(row);	
 		}
 	}
 }

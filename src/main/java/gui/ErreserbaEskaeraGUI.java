@@ -55,13 +55,14 @@ public class ErreserbaEskaeraGUI extends JFrame {
 	private String[] columnNamesRides = new String[] {
 			ResourceBundle.getBundle("Etiquetas").getString("FindRidesGUI.Driver"), 
 			ResourceBundle.getBundle("Etiquetas").getString("FindRidesGUI.NPlaces"), 
-			ResourceBundle.getBundle("Etiquetas").getString("FindRidesGUI.Price")
+			ResourceBundle.getBundle("Etiquetas").getString("FindRidesGUI.Price"),
+			ResourceBundle.getBundle("Etiquetas").getString("FindRidesGUI.Aveilable")
 	};
 	private JTextField eserKop;
 	
 	private Ride selectedRide;
 	
-	private JLabel labelMessage;
+	private JLabel erreserbaMessageLabel;
 
 	public ErreserbaEskaeraGUI(Traveler t)
 	{
@@ -182,7 +183,7 @@ public class ErreserbaEskaeraGUI extends JFrame {
 					
 					try {
 						tableModelRides.setDataVector(null, columnNamesRides);
-						tableModelRides.setColumnCount(4); // another column added to allocate ride objects
+						tableModelRides.setColumnCount(5); // another column added to allocate ride objects
 
 						BLFacade facade = WelcomeGUI.getBusinessLogic();
 						List<domain.Ride> rides=facade.getRides((String)jComboBoxOrigin.getSelectedItem(),(String)jComboBoxDestination.getSelectedItem(),UtilDate.trim(jCalendar1.getDate()));
@@ -194,6 +195,7 @@ public class ErreserbaEskaeraGUI extends JFrame {
 							row.add(ride.getDriver().getName());
 							row.add(ride.getnPlaces());
 							row.add(ride.getPrice());
+							row.add(ride.getEserLibre());
 							row.add(ride); // ev object added in order to obtain it with tableModelEvents.getValueAt(i,3)
 							tableModelRides.addRow(row);		
 						}
@@ -208,8 +210,8 @@ public class ErreserbaEskaeraGUI extends JFrame {
 					tableRides.getColumnModel().getColumn(0).setPreferredWidth(170);
 					tableRides.getColumnModel().getColumn(1).setPreferredWidth(30);
 					tableRides.getColumnModel().getColumn(1).setPreferredWidth(30);
-					tableRides.getColumnModel().removeColumn(tableRides.getColumnModel().getColumn(3)); // not shown in JTable
-
+					tableRides.getColumnModel().removeColumn(tableRides.getColumnModel().getColumn(4)); // not shown in JTable
+					erreserbaMessageLabel.setText("");
 				}
 			} 
 			
@@ -225,7 +227,7 @@ public class ErreserbaEskaeraGUI extends JFrame {
 		        int selectedRow = tableRides.getSelectedRow();
 		        System.out.println("Selected row:"+selectedRow);
 		        if (selectedRow != -1) {
-		            selectedRide = (Ride) tableModelRides.getValueAt(selectedRow, 3);
+		            selectedRide = (Ride) tableModelRides.getValueAt(selectedRow, 4);
 		            labelEserleku.setEnabled(true);
 		            eserKop.setEnabled(true);
 		            buttonErreserba.setEnabled(true);
@@ -240,11 +242,12 @@ public class ErreserbaEskaeraGUI extends JFrame {
 		tableRides.setModel(tableModelRides);
 
 		tableModelRides.setDataVector(null, columnNamesRides);
-		tableModelRides.setColumnCount(4); // another column added to allocate ride objects
+		tableModelRides.setColumnCount(5); // another column added to allocate ride objects
 
 		tableRides.getColumnModel().getColumn(0).setPreferredWidth(170);
 		tableRides.getColumnModel().getColumn(1).setPreferredWidth(30);
-		tableRides.getColumnModel().getColumn(1).setPreferredWidth(30);
+		tableRides.getColumnModel().getColumn(2).setPreferredWidth(30);
+		tableRides.getColumnModel().getColumn(3).setPreferredWidth(30);
 
 		tableRides.getColumnModel().removeColumn(tableRides.getColumnModel().getColumn(3)); // not shown in JTable
 
@@ -270,17 +273,19 @@ public class ErreserbaEskaeraGUI extends JFrame {
 				try {
 					int kop = Integer.parseInt(eserKop.getText());
 					boolean b = WelcomeGUI.getBusinessLogic().sortuErreserba(t, selectedRide, kop);
+					tableModelRides.setDataVector(null, columnNamesRides);
+					//tableModelRides.setColumnCount(5);
 					if(b) {
-						System.out.println(ResourceBundle.getBundle("Etiquetas").getString("ErreserbaEskaeraGUI.Sortu"));
+						erreserbaMessageLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("ErreserbaEskaeraGUI.Sortu"));
 					} else {
-						System.out.println(ResourceBundle.getBundle("Etiquetas").getString("ErreserbaEskaeraGUI.Arazoa"));
+						erreserbaMessageLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("ErreserbaEskaeraGUI.Arazoa"));
 					}
 				} catch (NumberFormatException e2) {
-					System.out.println(e2.getMessage());
+					erreserbaMessageLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("ErreserbaEskaeraGUI.EserFormat"));
 				} catch (EserlekurikLibreEzException e3) {
-					System.out.println(e3.getMessage());
+					erreserbaMessageLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("ErreserbaEskaeraGUI.LekurikEz"));
 				} catch (ErreserbaAlreadyExistsException e4) {
-					System.out.println(e4.getMessage());
+					erreserbaMessageLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("ErreserbaEskaeraGUI.ErreserbaDu"));
 				}
 			}
 		});
@@ -288,9 +293,10 @@ public class ErreserbaEskaeraGUI extends JFrame {
 		buttonErreserba.setEnabled(false);
 		getContentPane().add(buttonErreserba);
 		
-		labelMessage = new JLabel();
-		labelMessage.setBounds(431, 347, 166, 14);
-		getContentPane().add(labelMessage);
+		erreserbaMessageLabel = new JLabel(""); //$NON-NLS-1$ //$NON-NLS-2$
+		erreserbaMessageLabel.setBounds(457, 406, 191, 25);
+		erreserbaMessageLabel.setForeground(Color.red);
+		getContentPane().add(erreserbaMessageLabel);
 
 	}
 	public static void paintDaysWithEvents(JCalendar jCalendar,List<Date> datesWithEventsCurrentMonth, Color color) {
