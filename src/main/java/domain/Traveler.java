@@ -50,4 +50,6 @@ public class Traveler extends User implements Serializable{
 		bookedRides.add(erre);
 		return erre;
 	}
+	
+	
 }

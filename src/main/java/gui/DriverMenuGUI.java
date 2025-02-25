@@ -36,6 +36,7 @@ public class DriverMenuGUI extends JFrame {
 	private JButton buttonQuery;
 	private JButton buttonCreate;
 	private JButton buttonManage;
+	private JMenuItem itemIkusi;
 
 	/**
 	 * Launch the application.
@@ -72,6 +73,15 @@ public class DriverMenuGUI extends JFrame {
 			}
 		});
 		moneyMenu.add(itemWithdraw);
+		
+		itemIkusi = new JMenuItem(ResourceBundle.getBundle("Etiquetas").getString("DriverMenuGUI.See")); //$NON-NLS-1$ //$NON-NLS-2$
+		itemIkusi.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				DiruaIkusiGUI dI = new DiruaIkusiGUI(driver);
+				dI.setVisible(true);
+			}
+		});
+		moneyMenu.add(itemIkusi);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 

@@ -35,6 +35,7 @@ public class PassengerMenuGUI extends JFrame {
 	private JLabel title;
 	
 	private JButton buttonQuery;
+	private JMenuItem itemIkusi;
 
 	/**
 	 * Launch the application.
@@ -81,6 +82,15 @@ public class PassengerMenuGUI extends JFrame {
 			}
 		});
 		moneyMenu.add(itemDeposit);
+		
+		itemIkusi = new JMenuItem(ResourceBundle.getBundle("Etiquetas").getString("PassengerMenuGUI.See")); //$NON-NLS-1$ //$NON-NLS-2$
+		moneyMenu.add(itemIkusi);
+		itemIkusi.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				DiruaIkusiGUI dI = new DiruaIkusiGUI(traveler);
+				dI.setVisible(true);
+			}
+		});
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 

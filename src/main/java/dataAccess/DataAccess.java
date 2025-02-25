@@ -177,11 +177,10 @@ public class DataAccess  {
 		if(kop>0) {
 			if(!t.existBook(r)) {
 				if(t.diruaDauka(r, kop)) {
-					//Erreserba e = new Erreserba(kop,t, r);
-					Erreserba erreserbaBerria = t.sortuErreserba(r, kop);
-					boolean b = r.gehituErreserba(erreserbaBerria);
-					if(b) {
-						db.getTransaction().begin();
+					if(r.eserlekuakLibre(kop)) {
+						//Erreserba e = new Erreserba(kop,t, r);
+						Erreserba erreserbaBerria = t.sortuErreserba(r, kop);
+						r.gehituErreserba(erreserbaBerria);						db.getTransaction().begin();
 						db.persist(erreserbaBerria);
 						db.merge(t);
 						db.merge(r);

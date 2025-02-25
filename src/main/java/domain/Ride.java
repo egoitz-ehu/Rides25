@@ -195,12 +195,13 @@ public class Ride implements Serializable {
 		return rideNumber+";"+";"+from+";"+to+";"+date;  
 	}
 
-	public boolean gehituErreserba(Erreserba e) {
-		if(e.getPlazaKop()<=this.eserLibre) {
-			this.erreserbak.add(e);
-			this.eserLibre-=e.getPlazaKop();
-			return true;
-		}
-		return false;
+	public void gehituErreserba(Erreserba e) {
+		this.erreserbak.add(e);
+		this.eserLibre-=e.getPlazaKop();
+	}
+
+	public boolean eserlekuakLibre(int kop) {
+		if(kop<=this.eserLibre) return true;
+		else return false;
 	}
 }
