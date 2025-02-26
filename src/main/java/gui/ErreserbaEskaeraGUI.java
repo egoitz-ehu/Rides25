@@ -6,6 +6,7 @@ import configuration.UtilDate;
 import com.toedter.calendar.JCalendar;
 import domain.Ride;
 import domain.Traveler;
+import exceptions.DiruaEzDaukaException;
 import exceptions.ErreserbaAlreadyExistsException;
 import exceptions.EserlekurikLibreEzException;
 
@@ -286,6 +287,8 @@ public class ErreserbaEskaeraGUI extends JFrame {
 					erreserbaMessageLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("ErreserbaEskaeraGUI.LekurikEz"));
 				} catch (ErreserbaAlreadyExistsException e4) {
 					erreserbaMessageLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("ErreserbaEskaeraGUI.ErreserbaDu"));
+				} catch (DiruaEzDaukaException e1) {
+					erreserbaMessageLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("ErreserbaEskaeraGUI.DirurikEz"));
 				}
 			}
 		});

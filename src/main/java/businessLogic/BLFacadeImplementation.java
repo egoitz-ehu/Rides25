@@ -14,6 +14,7 @@ import domain.User;
 import domain.Driver;
 import domain.Erreserba;
 import exceptions.RideMustBeLaterThanTodayException;
+import exceptions.DiruaEzDaukaException;
 import exceptions.ErreserbaAlreadyExistsException;
 import exceptions.EserlekurikLibreEzException;
 import exceptions.RideAlreadyExistException;
@@ -158,7 +159,7 @@ public class BLFacadeImplementation  implements BLFacade {
 	}
 
 	@WebMethod
-	public boolean sortuErreserba(Traveler t, Ride r, int kop) throws EserlekurikLibreEzException, ErreserbaAlreadyExistsException {
+	public boolean sortuErreserba(Traveler t, Ride r, int kop) throws EserlekurikLibreEzException, ErreserbaAlreadyExistsException, DiruaEzDaukaException {
 		dbManager.open();
 		boolean b = dbManager.sortuErreserba(t, r, kop);
 		dbManager.close();

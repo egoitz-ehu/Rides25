@@ -24,6 +24,7 @@ import domain.ErreserbaEgoera;
 import domain.Ride;
 import domain.Traveler;
 import domain.User;
+import exceptions.DiruaEzDaukaException;
 import exceptions.ErreserbaAlreadyExistsException;
 import exceptions.EserlekurikLibreEzException;
 import exceptions.RideAlreadyExistException;
@@ -173,7 +174,7 @@ public class DataAccess  {
 		return b;
 	}
 	
-	public boolean sortuErreserba(Traveler t, Ride r, int kop) throws EserlekurikLibreEzException, ErreserbaAlreadyExistsException {
+	public boolean sortuErreserba(Traveler t, Ride r, int kop) throws EserlekurikLibreEzException, ErreserbaAlreadyExistsException, DiruaEzDaukaException {
 		if(kop>0) {
 			if(!t.existBook(r)) {
 				if(t.diruaDauka(r, kop)) {
@@ -189,6 +190,8 @@ public class DataAccess  {
 					} else {
 						throw new EserlekurikLibreEzException("Ez dago nahiko eserlekurik libre");
 					}
+				} else {
+					throw new DiruaEzDaukaException("Ez dauka dirurik");
 				}
 			} else {
 				throw new ErreserbaAlreadyExistsException("Dagoeneko erreserba bat du erabiltzaile honek bidaia honetan");
