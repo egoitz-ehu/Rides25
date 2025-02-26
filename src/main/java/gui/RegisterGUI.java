@@ -50,7 +50,7 @@ public class RegisterGUI extends JFrame {
     private JButton buttonSend;
     
     private BLFacade bussinessLogic;
-
+/*
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -63,7 +63,7 @@ public class RegisterGUI extends JFrame {
             }
         });
     }
-    
+   */ 
     public void setBussinessLogic(BLFacade logic) {
     	this.bussinessLogic=logic;
     }
@@ -240,6 +240,8 @@ public class RegisterGUI extends JFrame {
             		if(!b) {
             			//errorLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("RegisterGUI.ErrorUserAlreadyExists"));
             			JOptionPane.showMessageDialog(contentPane, ResourceBundle.getBundle("Etiquetas").getString("RegisterGUI.ErrorUserAlreadyExists"), "Error", JOptionPane.ERROR_MESSAGE);
+            		} else {
+            			JOptionPane.showMessageDialog(contentPane, ResourceBundle.getBundle("Etiquetas").getString("RegisterGUI.Registered"), ResourceBundle.getBundle("Etiquetas").getString("RegisterGUI.RegisterTitle"), JOptionPane.INFORMATION_MESSAGE);
             		}
         		}
         	}

@@ -1,0 +1,318 @@
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-26 16:36:38 #1 store] 
+Database 'C:\Users\egoit\git\Rides25\src\main\resources\rides.temp' has been recovered (tr. 8-12)
+
+[2025-02-26 16:36:38 #2 store] 
+Database 'C:\Users\egoit\git\Rides25\src\main\resources\rides.temp' is opened by 17124@LAPTOP-2PN1U6VU
+
+[2025-02-26 16:36:38 #3 type] 
+Type domain.User is not enhanced.
+
+[2025-02-26 16:36:38 #4 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-26 16:36:38 #5 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-26 16:36:38 #6 type] 
+Type domain.Erreserba is not enhanced.
+
+[2025-02-26 16:36:38 #7 type] 
+Type domain.Traveler is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-26 16:44:12 #1 store] 
+Database 'C:\Users\egoit\git\Rides25\src\main\resources\rides.temp' is opened by 9308@LAPTOP-2PN1U6VU
+
+[2025-02-26 16:44:12 #2 type] 
+Type domain.User is not enhanced.
+
+[2025-02-26 16:44:12 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-26 16:44:12 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-26 16:44:13 #5 type] 
+Type domain.Erreserba is not enhanced.
+
+[2025-02-26 16:44:13 #6 type] 
+Type domain.Traveler is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-26 16:47:19 #1 store] 
+Database 'C:\Users\egoit\git\Rides25\src\main\resources\rides.temp' is opened by 6840@LAPTOP-2PN1U6VU
+
+[2025-02-26 16:47:19 #2 type.registry] 
+New type domain.User
+
+[2025-02-26 16:47:19 #3 type.registry] 
+New type domain.Driver
+
+[2025-02-26 16:47:19 #4 type] 
+Type domain.User is not enhanced.
+
+[2025-02-26 16:47:19 #5 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-26 16:47:19 #6 type.registry] 
+New type domain.Ride
+
+[2025-02-26 16:47:19 #7 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-26 16:47:19 #8 type.registry] 
+New type domain.Erreserba
+
+[2025-02-26 16:47:19 #9 type] 
+Type domain.Erreserba is not enhanced.
+
+[2025-02-26 16:47:19 #10 type.registry] 
+New type domain.Traveler
+
+[2025-02-26 16:47:19 #11 type.registry] 
+New type domain.ErreserbaEgoera
+
+[2025-02-26 16:47:19 #12 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-02-26 16:47:19 #13 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-02-26 16:47:19 #14 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2025-02-26 16:47:19 #15 type.registry] 
+New type java.util.Vector<domain.Erreserba>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-26 16:47:27 #1 store] 
+Database 'C:\Users\egoit\git\Rides25\src\main\resources\rides.temp' has been recovered (tr. 1-7)
+
+[2025-02-26 16:47:27 #2 store] 
+Database 'C:\Users\egoit\git\Rides25\src\main\resources\rides.temp' is opened by 6768@LAPTOP-2PN1U6VU
+
+[2025-02-26 16:47:27 #3 type] 
+Type domain.User is not enhanced.
+
+[2025-02-26 16:47:27 #4 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-26 16:47:27 #5 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-26 16:47:27 #6 type] 
+Type domain.Erreserba is not enhanced.
+
+[2025-02-26 16:47:27 #7 type] 
+Type domain.Traveler is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-26 16:50:35 #1 store] 
+Database 'C:\Users\egoit\git\Rides25\src\main\resources\rides.temp' has been recovered (tr. 8-12)
+
+[2025-02-26 16:50:35 #2 store] 
+Database 'C:\Users\egoit\git\Rides25\src\main\resources\rides.temp' is opened by 9872@LAPTOP-2PN1U6VU
+
+[2025-02-26 16:50:35 #3 type] 
+Type domain.User is not enhanced.
+
+[2025-02-26 16:50:35 #4 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-26 16:50:35 #5 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-26 16:50:35 #6 type] 
+Type domain.Erreserba is not enhanced.
+
+[2025-02-26 16:50:35 #7 type] 
+Type domain.Traveler is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-26 16:51:18 #1 store] 
+Database 'C:\Users\egoit\git\Rides25\src\main\resources\rides.temp' is opened by 18904@LAPTOP-2PN1U6VU
+
+[2025-02-26 16:51:18 #2 type] 
+Type domain.User is not enhanced.
+
+[2025-02-26 16:51:18 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-26 16:51:18 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-26 16:51:18 #5 type] 
+Type domain.Erreserba is not enhanced.
+
+[2025-02-26 16:51:18 #6 type] 
+Type domain.Traveler is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-26 16:54:53 #1 store] 
+Database 'C:\Users\egoit\git\Rides25\src\main\resources\rides.temp' is opened by 6480@LAPTOP-2PN1U6VU
+
+[2025-02-26 16:54:53 #2 type.registry] 
+New type domain.User
+
+[2025-02-26 16:54:53 #3 type.registry] 
+New type domain.Driver
+
+[2025-02-26 16:54:53 #4 type] 
+Type domain.User is not enhanced.
+
+[2025-02-26 16:54:53 #5 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-26 16:54:53 #6 type.registry] 
+New type domain.Ride
+
+[2025-02-26 16:54:53 #7 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-26 16:54:53 #8 type.registry] 
+New type domain.Erreserba
+
+[2025-02-26 16:54:53 #9 type] 
+Type domain.Erreserba is not enhanced.
+
+[2025-02-26 16:54:53 #10 type.registry] 
+New type domain.Traveler
+
+[2025-02-26 16:54:53 #11 type.registry] 
+New type domain.ErreserbaEgoera
+
+[2025-02-26 16:54:53 #12 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-02-26 16:54:53 #13 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-02-26 16:54:53 #14 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2025-02-26 16:54:53 #15 type.registry] 
+New type java.util.Vector<domain.Erreserba>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-26 16:55:01 #1 store] 
+Database 'C:\Users\egoit\git\Rides25\src\main\resources\rides.temp' has been recovered (tr. 1-7)
+
+[2025-02-26 16:55:01 #2 store] 
+Database 'C:\Users\egoit\git\Rides25\src\main\resources\rides.temp' is opened by 18696@LAPTOP-2PN1U6VU
+
+[2025-02-26 16:55:01 #3 type] 
+Type domain.User is not enhanced.
+
+[2025-02-26 16:55:01 #4 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-26 16:55:01 #5 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-26 16:55:01 #6 type] 
+Type domain.Erreserba is not enhanced.
+
+[2025-02-26 16:55:01 #7 type] 
+Type domain.Traveler is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-26 17:05:01 #1 store] 
+Database 'C:\Users\egoit\git\Rides25\src\main\resources\rides.temp' has been recovered (tr. 8-22)
+
+[2025-02-26 17:05:01 #2 store] 
+Database 'C:\Users\egoit\git\Rides25\src\main\resources\rides.temp' is opened by 15872@LAPTOP-2PN1U6VU
+
+[2025-02-26 17:05:01 #3 type] 
+Type domain.User is not enhanced.
+
+[2025-02-26 17:05:01 #4 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-26 17:05:01 #5 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-26 17:05:01 #6 type] 
+Type domain.Erreserba is not enhanced.
+
+[2025-02-26 17:05:01 #7 type] 
+Type domain.Traveler is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-26 17:06:46 #1 store] 
+Database 'C:\Users\egoit\git\Rides25\src\main\resources\rides.temp' has been recovered (tr. 23-23)
+
+[2025-02-26 17:06:46 #2 store] 
+Database 'C:\Users\egoit\git\Rides25\src\main\resources\rides.temp' is opened by 2128@LAPTOP-2PN1U6VU
+
+[2025-02-26 17:06:46 #3 type] 
+Type domain.User is not enhanced.
+
+[2025-02-26 17:06:46 #4 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-26 17:06:46 #5 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-26 17:06:46 #6 type] 
+Type domain.Erreserba is not enhanced.
+
+[2025-02-26 17:06:46 #7 type] 
+Type domain.Traveler is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-26 17:08:08 #1 store] 
+Database 'C:\Users\egoit\git\Rides25\src\main\resources\rides.temp' has been recovered (tr. 24-25)
+
+[2025-02-26 17:08:08 #2 store] 
+Database 'C:\Users\egoit\git\Rides25\src\main\resources\rides.temp' is opened by 3724@LAPTOP-2PN1U6VU
+
+[2025-02-26 17:08:08 #3 type] 
+Type domain.User is not enhanced.
+
+[2025-02-26 17:08:08 #4 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-26 17:08:08 #5 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-26 17:08:08 #6 type] 
+Type domain.Erreserba is not enhanced.
+
+[2025-02-26 17:08:08 #7 type] 
+Type domain.Traveler is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-26 17:08:50 #1 store] 
+Database 'C:\Users\egoit\git\Rides25\src\main\resources\rides.temp' has been recovered (tr. 26-26)
+
+[2025-02-26 17:08:50 #2 store] 
+Database 'C:\Users\egoit\git\Rides25\src\main\resources\rides.temp' is opened by 9728@LAPTOP-2PN1U6VU
+
+[2025-02-26 17:08:50 #3 type] 
+Type domain.User is not enhanced.
+
+[2025-02-26 17:08:50 #4 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-26 17:08:50 #5 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-26 17:08:50 #6 type] 
+Type domain.Erreserba is not enhanced.
+
+[2025-02-26 17:08:50 #7 type] 
+Type domain.Traveler is not enhanced.
+
