@@ -97,4 +97,6 @@ public interface BLFacade  {
 	@WebMethod public void onartuErreserba(int erreserbaNum, String dMail);
 	
 	@WebMethod public void ukatuErreserba(int erreserbaNum);
+	
+	@WebMethod public List<Ride> getDriverAllRides(String driverEmail);
 }

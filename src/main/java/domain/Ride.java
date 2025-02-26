@@ -227,4 +227,7 @@ public class Ride implements Serializable {
 		return false;
 	}
 	
+	public void itzuliEserlekuak(int kop) {
+		this.eserLibre+=kop;
+	}
 }

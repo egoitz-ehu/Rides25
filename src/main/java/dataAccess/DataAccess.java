@@ -203,6 +203,12 @@ public class DataAccess  {
 		return query.getResultList();
 	}
 	
+	public List<Ride> getDriverAllRides(String driverEmail) {
+		TypedQuery<Ride> query = db.createQuery("SELECT r FROM Ride r WHERE driver.email=?1",Ride.class);
+		query.setParameter(1, driverEmail);
+		return query.getResultList();
+	}
+	
 	public List<Erreserba> lortuErreserbak(int rideNumber) {
 		TypedQuery<Erreserba> query = db.createQuery("SELECT e FROM Erreserba e WHERE e.ride.rideNumber=?1 AND egoera=?2", Erreserba.class);
 		query.setParameter(1, rideNumber);
@@ -227,9 +233,13 @@ public class DataAccess  {
 		db.getTransaction().begin();
 		Erreserba e = db.find(Erreserba.class, erreserbaNum);
 		Traveler t = e.getBidaiaria();
+		Ride r = e.getRide();
 		double kop = e.prezioaKalkulatu();
+		int eserKop = e.getPlazaKop();
 		t.removeFrozenMoney(kop);
 		t.diruaSartu(kop);
+		t.ezbatuErreserba(e);
+		r.itzuliEserlekuak(eserKop);
 		e.setEgoera(ErreserbaEgoera.UKATUA);
 		db.persist(e);
 		db.getTransaction().commit();

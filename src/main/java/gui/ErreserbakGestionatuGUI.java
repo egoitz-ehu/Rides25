@@ -11,6 +11,7 @@ import javax.swing.table.DefaultTableModel;
 import domain.Driver;
 import domain.Erreserba;
 import domain.ErreserbaEgoera;
+import domain.Ride;
 
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
@@ -35,8 +36,8 @@ public class ErreserbakGestionatuGUI extends JFrame {
 
 	private JPanel contentPane;
 	
-	private JComboBox<Integer> ridesComboBox;
-	private DefaultComboBoxModel<Integer> ridesModel = new DefaultComboBoxModel<Integer>();
+	private JComboBox<Ride> ridesComboBox;
+	private DefaultComboBoxModel<Ride> ridesModel = new DefaultComboBoxModel<Ride>();
 	//private JScrollPane scrollPane = new JScrollPane();
 	private JTable table;
 	private DefaultTableModel tableModel;
@@ -139,8 +140,8 @@ public class ErreserbakGestionatuGUI extends JFrame {
 						ResourceBundle.getBundle("Etiquetas").getString("ErreserbakGestionatuGUI.Email")
 				});
 		table.setModel(tableModel);
-		List<Integer> ridesNumber = WelcomeGUI.getBusinessLogic().getAllRidesNumber(d.getEmail());
-		ridesModel.addAll(ridesNumber);
+		List<Ride> driverRides = WelcomeGUI.getBusinessLogic().getDriverAllRides(d.getEmail());
+		ridesModel.addAll(driverRides);
 		
 		scrollPane.setViewportView(table);
 		
@@ -191,7 +192,7 @@ public class ErreserbakGestionatuGUI extends JFrame {
 	private void ezarriErreserbak() {
 		String egoera = "";
 		tableModel.getDataVector().removeAllElements();
-		List<Erreserba> erreserbaList = WelcomeGUI.getBusinessLogic().lortuErreserbak((int) ridesModel.getSelectedItem());
+		List<Erreserba> erreserbaList = WelcomeGUI.getBusinessLogic().lortuErreserbak(((Ride) ridesModel.getSelectedItem()).getRideNumber());
 		if(erreserbaList.isEmpty()) {
 			messageLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("ErreserbakGestionatuGUI.MezuaGabe"));
 		} else {

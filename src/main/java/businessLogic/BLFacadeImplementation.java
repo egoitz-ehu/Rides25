@@ -194,6 +194,14 @@ public class BLFacadeImplementation  implements BLFacade {
 		dbManager.erreserbaUkatu(erreserbaNum);
 		dbManager.close();
 	}
+	
+	@WebMethod
+	public List<Ride> getDriverAllRides(String driverEmail) {
+		dbManager.open();
+		List<Ride> rideList = dbManager.getDriverAllRides(driverEmail);
+		dbManager.close();
+		return rideList;
+	}
 
 }
 

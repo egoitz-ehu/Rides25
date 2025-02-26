@@ -97,4 +97,18 @@ public class Erreserba {
 	public String toString() {
 		return "Num:"+eskaeraNum + ";Plaza kop:" + plazaKop + ";Egoera:" + egoera + ";Data:" + erreserbaData + ";Bidaiaria mail:" + bidaiaria.getEmail();
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Erreserba other = (Erreserba) obj;
+		if (this.eskaeraNum==other.eskaeraNum)
+			return true;
+		return false;
+	}
 }

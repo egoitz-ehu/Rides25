@@ -294,7 +294,7 @@ public class ErreserbaEskaeraGUI extends JFrame {
 		getContentPane().add(buttonErreserba);
 		
 		erreserbaMessageLabel = new JLabel(""); //$NON-NLS-1$ //$NON-NLS-2$
-		erreserbaMessageLabel.setBounds(457, 406, 191, 25);
+		erreserbaMessageLabel.setBounds(414, 406, 234, 43);
 		erreserbaMessageLabel.setForeground(Color.red);
 		getContentPane().add(erreserbaMessageLabel);
 
