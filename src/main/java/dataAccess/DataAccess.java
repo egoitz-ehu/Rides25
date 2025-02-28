@@ -228,6 +228,8 @@ public class DataAccess  {
 		t.removeFrozenMoney(prezioa);
 		d.addFrozenMoney(prezioa);
 		db.persist(e);
+		db.merge(d);
+		db.merge(t);
 		db.getTransaction().commit();
 	}
 	
@@ -244,6 +246,8 @@ public class DataAccess  {
 		t.ezabatuErreserba(e);
 		r.itzuliEserlekuak(eserKop);
 		db.persist(e);
+		db.merge(r);
+		db.merge(t);
 		db.getTransaction().commit();
 	}
 	

@@ -141,8 +141,8 @@ public class ErreserbakGestionatuGUI extends JFrame {
 						ResourceBundle.getBundle("Etiquetas").getString("ErreserbakGestionatuGUI.Email")
 				});
 		table.setModel(tableModel);
-		//List<Ride> driverRides = WelcomeGUI.getBusinessLogic().getDriverAllRides(d.getEmail());
-		List<Ride> driverRides = d.getRides();
+		List<Ride> driverRides = WelcomeGUI.getBusinessLogic().getDriverAllRides(d.getEmail());
+		//List<Ride> driverRides = d.getRides();
 		ridesModel.addAll(driverRides);
 		
 		scrollPane.setViewportView(table);
@@ -156,6 +156,9 @@ public class ErreserbakGestionatuGUI extends JFrame {
 				onartuButton.setEnabled(false);
 				ukatuButton.setEnabled(false);
 				messageLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("ErreserbakGestionatuGUI.MezuaOnartu"));
+				ridesComboBox.removeAllItems();
+				List<Ride> driverRides = WelcomeGUI.getBusinessLogic().getDriverAllRides(d.getEmail());
+				ridesModel.addAll(driverRides);
 			}
 		});
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
@@ -173,6 +176,9 @@ public class ErreserbakGestionatuGUI extends JFrame {
 				onartuButton.setEnabled(false);
 				ukatuButton.setEnabled(false);
 				messageLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("ErreserbakGestionatuGUI.MezuaUkatu"));
+				ridesComboBox.removeAllItems();
+				List<Ride> driverRides = WelcomeGUI.getBusinessLogic().getDriverAllRides(d.getEmail());
+				ridesModel.addAll(driverRides);
 			}
 		});
 		GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
@@ -196,31 +202,33 @@ public class ErreserbakGestionatuGUI extends JFrame {
 		tableModel.getDataVector().removeAllElements();
 		//List<Erreserba> erreserbaList = WelcomeGUI.getBusinessLogic().lortuErreserbak(((Ride) ridesModel.getSelectedItem()).getRideNumber());
 		selectedRide =  (Ride) ridesModel.getSelectedItem();
-		List<Erreserba> erreserbaList =selectedRide.getErreserbak();
-		if(erreserbaList.isEmpty()) {
-			messageLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("ErreserbakGestionatuGUI.MezuaGabe"));
-		} else {
-			messageLabel.setText("");
-			for(Erreserba err:erreserbaList) {
-				//modeloErreserba.addElement(err.toString());
-				if(err.getEgoera()==ErreserbaEgoera.ZAIN) {
-					Vector<Object> row = new Vector<Object>();
-					row.add(err.getEskaeraNum());
-					row.add(err.getPlazaKop());
-					row.add(err.getErreserbaData());
-					switch(err.getEgoera()) {
-					case ZAIN:
-						egoera = ResourceBundle.getBundle("Etiquetas").getString("ErreserbakGestionatuGUI.ZAIN");
-						break;
-					case UKATUA:
-						egoera = ResourceBundle.getBundle("Etiquetas").getString("ErreserbakGestionatuGUI.UKATUA");
-						break;
-					case ONARTUA:
-						egoera = ResourceBundle.getBundle("Etiquetas").getString("ErreserbakGestionatuGUI.ONARTUA");
+		if(selectedRide != null) {
+			List<Erreserba> erreserbaList =selectedRide.getErreserbak();
+			if(erreserbaList.isEmpty()) {
+				messageLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("ErreserbakGestionatuGUI.MezuaGabe"));
+			} else {
+				messageLabel.setText("");
+				for(Erreserba err:erreserbaList) {
+					//modeloErreserba.addElement(err.toString());
+					if(err.getEgoera()==ErreserbaEgoera.ZAIN) {
+						Vector<Object> row = new Vector<Object>();
+						row.add(err.getEskaeraNum());
+						row.add(err.getPlazaKop());
+						row.add(err.getErreserbaData());
+						switch(err.getEgoera()) {
+						case ZAIN:
+							egoera = ResourceBundle.getBundle("Etiquetas").getString("ErreserbakGestionatuGUI.ZAIN");
+							break;
+						case UKATUA:
+							egoera = ResourceBundle.getBundle("Etiquetas").getString("ErreserbakGestionatuGUI.UKATUA");
+							break;
+						case ONARTUA:
+							egoera = ResourceBundle.getBundle("Etiquetas").getString("ErreserbakGestionatuGUI.ONARTUA");
+						}
+						row.add(egoera);
+						row.add(err.getBidaiaria().getEmail());
+						tableModel.addRow(row);	
 					}
-					row.add(egoera);
-					row.add(err.getBidaiaria().getEmail());
-					tableModel.addRow(row);	
 				}
 			}
 		}
