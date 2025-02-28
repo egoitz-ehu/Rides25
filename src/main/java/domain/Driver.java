@@ -27,6 +27,14 @@ public class Driver extends User implements Serializable{
 		super(email, pass, name, surname);
 	}
 	
+	public List<Ride> getRides() {
+		return rides;
+	}
+
+	public void setRides(List<Ride> rides) {
+		this.rides = rides;
+	}
+
 	public String toString(){
 		return super.toString()+";"+rides;
 	}

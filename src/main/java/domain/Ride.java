@@ -27,6 +27,14 @@ public class Ride implements Serializable {
 	private int nPlaces;
 	private int eserLibre;
 	private Date date;
+	public List<Erreserba> getErreserbak() {
+		return erreserbak;
+	}
+
+	public void setErreserbak(List<Erreserba> erreserbak) {
+		this.erreserbak = erreserbak;
+	}
+
 	private float price;
 	
 	@ManyToOne(fetch=FetchType.EAGER)

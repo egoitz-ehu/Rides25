@@ -51,7 +51,7 @@ public class Traveler extends User implements Serializable{
 		return erre;
 	}
 	
-	public void ezbatuErreserba(Erreserba e) {
+	public void ezabatuErreserba(Erreserba e) {
 		bookedRides.remove(e);
 	}
 }

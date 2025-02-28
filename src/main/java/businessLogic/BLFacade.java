@@ -95,9 +95,9 @@ public interface BLFacade  {
 	
 	@WebMethod public List<Erreserba> lortuErreserbak(int rideNumber);
 	
-	@WebMethod public void onartuErreserba(int erreserbaNum, String dMail);
+	@WebMethod public void onartuErreserba(int erreserbaNum, Driver d);
 	
-	@WebMethod public void ukatuErreserba(int erreserbaNum);
+	@WebMethod public void ukatuErreserba(int erreserbaNum, Ride r);
 	
 	@WebMethod public List<Ride> getDriverAllRides(String driverEmail);
 }

@@ -219,31 +219,30 @@ public class DataAccess  {
 		return query.getResultList();
 	}
 	
-	public void erreserbaOnartu(int erreserbaNum, String dMail) {
+	public void erreserbaOnartu(int erreserbaNum, Driver d) {
 		db.getTransaction().begin();
 		Erreserba e = db.find(Erreserba.class, erreserbaNum);
 		Traveler t = e.getBidaiaria();
-		Driver d = db.find(Driver.class, dMail);
 		double prezioa = e.prezioaKalkulatu();
+		e.setEgoera(ErreserbaEgoera.ONARTUA);
 		t.removeFrozenMoney(prezioa);
 		d.addFrozenMoney(prezioa);
-		e.setEgoera(ErreserbaEgoera.ONARTUA);
 		db.persist(e);
 		db.getTransaction().commit();
 	}
 	
-	public void erreserbaUkatu(int erreserbaNum) {
+	public void erreserbaUkatu(int erreserbaNum, Ride r) {
 		db.getTransaction().begin();
 		Erreserba e = db.find(Erreserba.class, erreserbaNum);
 		Traveler t = e.getBidaiaria();
-		Ride r = e.getRide();
+		//Ride r = e.getRide();
 		double kop = e.prezioaKalkulatu();
 		int eserKop = e.getPlazaKop();
+		e.setEgoera(ErreserbaEgoera.UKATUA);
 		t.removeFrozenMoney(kop);
 		t.diruaSartu(kop);
-		t.ezbatuErreserba(e);
+		t.ezabatuErreserba(e);
 		r.itzuliEserlekuak(eserKop);
-		e.setEgoera(ErreserbaEgoera.UKATUA);
 		db.persist(e);
 		db.getTransaction().commit();
 	}

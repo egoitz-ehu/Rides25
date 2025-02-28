@@ -46,6 +46,7 @@ public class ErreserbakGestionatuGUI extends JFrame {
 	private JButton ukatuButton;
 	
 	private int selectedErreserbaNumber;
+	private Ride selectedRide;
 	
 	private JLabel messageLabel;
 
@@ -140,7 +141,8 @@ public class ErreserbakGestionatuGUI extends JFrame {
 						ResourceBundle.getBundle("Etiquetas").getString("ErreserbakGestionatuGUI.Email")
 				});
 		table.setModel(tableModel);
-		List<Ride> driverRides = WelcomeGUI.getBusinessLogic().getDriverAllRides(d.getEmail());
+		//List<Ride> driverRides = WelcomeGUI.getBusinessLogic().getDriverAllRides(d.getEmail());
+		List<Ride> driverRides = d.getRides();
 		ridesModel.addAll(driverRides);
 		
 		scrollPane.setViewportView(table);
@@ -149,7 +151,7 @@ public class ErreserbakGestionatuGUI extends JFrame {
 		onartuButton.setEnabled(false);
 		onartuButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				WelcomeGUI.getBusinessLogic().onartuErreserba(selectedErreserbaNumber, d.getEmail());
+				WelcomeGUI.getBusinessLogic().onartuErreserba(selectedErreserbaNumber, d);
 				ezarriErreserbak();
 				onartuButton.setEnabled(false);
 				ukatuButton.setEnabled(false);
@@ -166,7 +168,7 @@ public class ErreserbakGestionatuGUI extends JFrame {
 		ukatuButton.setEnabled(false);
 		ukatuButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				WelcomeGUI.getBusinessLogic().ukatuErreserba(selectedErreserbaNumber);
+				WelcomeGUI.getBusinessLogic().ukatuErreserba(selectedErreserbaNumber, selectedRide);
 				ezarriErreserbak();
 				onartuButton.setEnabled(false);
 				ukatuButton.setEnabled(false);
@@ -192,30 +194,34 @@ public class ErreserbakGestionatuGUI extends JFrame {
 	private void ezarriErreserbak() {
 		String egoera = "";
 		tableModel.getDataVector().removeAllElements();
-		List<Erreserba> erreserbaList = WelcomeGUI.getBusinessLogic().lortuErreserbak(((Ride) ridesModel.getSelectedItem()).getRideNumber());
+		//List<Erreserba> erreserbaList = WelcomeGUI.getBusinessLogic().lortuErreserbak(((Ride) ridesModel.getSelectedItem()).getRideNumber());
+		selectedRide =  (Ride) ridesModel.getSelectedItem();
+		List<Erreserba> erreserbaList =selectedRide.getErreserbak();
 		if(erreserbaList.isEmpty()) {
 			messageLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("ErreserbakGestionatuGUI.MezuaGabe"));
 		} else {
 			messageLabel.setText("");
 			for(Erreserba err:erreserbaList) {
 				//modeloErreserba.addElement(err.toString());
-				Vector<Object> row = new Vector<Object>();
-				row.add(err.getEskaeraNum());
-				row.add(err.getPlazaKop());
-				row.add(err.getErreserbaData());
-				switch(err.getEgoera()) {
-				case ZAIN:
-					egoera = ResourceBundle.getBundle("Etiquetas").getString("ErreserbakGestionatuGUI.ZAIN");
-					break;
-				case UKATUA:
-					egoera = ResourceBundle.getBundle("Etiquetas").getString("ErreserbakGestionatuGUI.UKATUA");
-					break;
-				case ONARTUA:
-					egoera = ResourceBundle.getBundle("Etiquetas").getString("ErreserbakGestionatuGUI.ONARTUA");
+				if(err.getEgoera()==ErreserbaEgoera.ZAIN) {
+					Vector<Object> row = new Vector<Object>();
+					row.add(err.getEskaeraNum());
+					row.add(err.getPlazaKop());
+					row.add(err.getErreserbaData());
+					switch(err.getEgoera()) {
+					case ZAIN:
+						egoera = ResourceBundle.getBundle("Etiquetas").getString("ErreserbakGestionatuGUI.ZAIN");
+						break;
+					case UKATUA:
+						egoera = ResourceBundle.getBundle("Etiquetas").getString("ErreserbakGestionatuGUI.UKATUA");
+						break;
+					case ONARTUA:
+						egoera = ResourceBundle.getBundle("Etiquetas").getString("ErreserbakGestionatuGUI.ONARTUA");
+					}
+					row.add(egoera);
+					row.add(err.getBidaiaria().getEmail());
+					tableModel.addRow(row);	
 				}
-				row.add(egoera);
-				row.add(err.getBidaiaria().getEmail());
-				tableModel.addRow(row);	
 			}
 		}
 	}
