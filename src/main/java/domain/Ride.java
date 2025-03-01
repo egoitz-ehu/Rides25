@@ -37,10 +37,10 @@ public class Ride implements Serializable {
 
 	private float price;
 	
-	@ManyToOne(fetch=FetchType.EAGER)
+	@ManyToOne(fetch=FetchType.EAGER, cascade = CascadeType.MERGE)
 	private Driver driver;
 	
-	@OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.MERGE)
+	@OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.PERSIST)
 	private List<Erreserba> erreserbak=new Vector<Erreserba>();
 	
 	public int getEserLibre() {

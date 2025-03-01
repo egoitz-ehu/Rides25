@@ -174,17 +174,19 @@ public class DataAccess  {
 		return b;
 	}
 	
-	public boolean sortuErreserba(Traveler t, Ride r, int kop) throws EserlekurikLibreEzException, ErreserbaAlreadyExistsException, DiruaEzDaukaException {
+	public boolean sortuErreserba(Traveler t, int rNumber, int kop) throws EserlekurikLibreEzException, ErreserbaAlreadyExistsException, DiruaEzDaukaException {
 		if(kop>0) {
+			Ride r = db.find(Ride.class, rNumber);
 			if(!t.existBook(r)) {
 				if(t.diruaDauka(r, kop)) {
 					if(r.eserlekuakLibre(kop)) {
 						//Erreserba e = new Erreserba(kop,t, r);
+						db.getTransaction().begin();
 						Erreserba erreserbaBerria = t.sortuErreserba(r, kop);
-						r.gehituErreserba(erreserbaBerria);						db.getTransaction().begin();
-						db.persist(erreserbaBerria);
+						r.gehituErreserba(erreserbaBerria);						
+						//db.persist(erreserbaBerria);
 						db.merge(t);
-						db.merge(r);
+						db.persist(r);
 						db.getTransaction().commit();
 						return true;	
 					} else {
