@@ -61,6 +61,7 @@ public class DriverMenuGUI extends JFrame {
 		
 		menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
+		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("DriverMenu.Title"));
 		
 		moneyMenu = new JMenu(ResourceBundle.getBundle("Etiquetas").getString("DriverMenuGUI.Money")); //$NON-NLS-1$ //$NON-NLS-2$
 		menuBar.add(moneyMenu);

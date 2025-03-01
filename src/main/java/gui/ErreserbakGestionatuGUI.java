@@ -74,6 +74,7 @@ public class ErreserbakGestionatuGUI extends JFrame {
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("ErreserbakGestionatu.Title"));
 
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();

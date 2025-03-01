@@ -63,6 +63,7 @@ public class LoginGUI extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new GridLayout(7,1));
+		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("Login.Title"));
 		
 		labelTitle = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("LoginGUI.Title"));
 		labelTitle.setBounds(97, 11, 94, 39);

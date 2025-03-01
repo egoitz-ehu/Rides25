@@ -70,7 +70,7 @@ public class ErreserbaEskaeraGUI extends JFrame {
 
 		this.getContentPane().setLayout(null);
 		this.setSize(new Dimension(700, 500));
-		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("FindRidesGUI.FindRides"));
+		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("ErreserbaEskaera.Title"));
 
 		jLabelEventDate.setBounds(new Rectangle(457, 6, 140, 25));
 		jLabelEvents.setBounds(58, 229, 259, 16);

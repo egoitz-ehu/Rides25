@@ -52,6 +52,7 @@ public class DiruaSartuGUI extends JFrame {
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("DiruaSartu.Title"));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(new GridLayout(5, 0, 0, 0));

@@ -62,6 +62,8 @@ public class PassengerMenuGUI extends JFrame {
 		menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
+		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("PassengerMenu.Title"));
+		
 		moneyMenu = new JMenu(ResourceBundle.getBundle("Etiquetas").getString("PassengerMenuGUI.Money")); //$NON-NLS-1$ //$NON-NLS-2$
 		menuBar.add(moneyMenu);
 		

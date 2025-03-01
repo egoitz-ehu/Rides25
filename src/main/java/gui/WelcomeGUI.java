@@ -67,6 +67,7 @@ public class WelcomeGUI extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
+		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("Welcome.Title"));
 		contentPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		
 		lblNewLabel = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("WelcomeGUI.Languages")); //$NON-NLS-1$ //$NON-NLS-2$
