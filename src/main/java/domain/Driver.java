@@ -22,6 +22,9 @@ public class Driver extends User implements Serializable{
 	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
 	private List<Ride> rides=new Vector<Ride>();
 	
+	@OneToMany
+	private List<Car> carList = new Vector<Car>();
+	
 
 	public Driver(String email, String pass, String name, String surname) {
 		super(email, pass, name, surname);

@@ -159,9 +159,9 @@ public class BLFacadeImplementation  implements BLFacade {
 	}
 
 	@WebMethod
-	public boolean sortuErreserba(Traveler t, int rNumber, int kop) throws EserlekurikLibreEzException, ErreserbaAlreadyExistsException, DiruaEzDaukaException {
+	public boolean sortuErreserba(String tEmail, int rNumber, int kop) throws EserlekurikLibreEzException, ErreserbaAlreadyExistsException, DiruaEzDaukaException {
 		dbManager.open();
-		boolean b = dbManager.sortuErreserba(t, rNumber, kop);
+		boolean b = dbManager.sortuErreserba(tEmail, rNumber, kop);
 		dbManager.close();
 		return b;
 	}

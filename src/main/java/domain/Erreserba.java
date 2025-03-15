@@ -23,9 +23,9 @@ public class Erreserba {
 	private ErreserbaEgoera egoera;
 	
 	private Date erreserbaData;
-	@ManyToOne(fetch=FetchType.EAGER)
+	@OneToOne(fetch=FetchType.EAGER)
 	private Traveler bidaiaria;
-	@ManyToOne(fetch=FetchType.EAGER)
+	@OneToOne(fetch=FetchType.EAGER)
 	private Ride ride;
 	
 	

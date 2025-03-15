@@ -1,7 +1,11 @@
 package domain;
 
+import java.util.List;
+import java.util.Vector;
+
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.OneToMany;
 
 @MappedSuperclass
 public abstract class User {
@@ -12,6 +16,8 @@ public abstract class User {
 	private String surname;
 	private double cash;
 	private double frozenMoney;
+	@OneToMany
+	private List<Mugimendua> mugimenduList = new Vector<Mugimendua>();
 
 	public User(String email, String pass, String name, String surname) {
 		this.email = email;

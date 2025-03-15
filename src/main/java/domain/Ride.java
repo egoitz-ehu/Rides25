@@ -27,6 +27,10 @@ public class Ride implements Serializable {
 	private int nPlaces;
 	private int eserLibre;
 	private Date date;
+	
+	@OneToOne
+	private Car car;
+	
 	public List<Erreserba> getErreserbak() {
 		return erreserbak;
 	}
@@ -37,7 +41,7 @@ public class Ride implements Serializable {
 
 	private float price;
 	
-	@ManyToOne(fetch=FetchType.EAGER, cascade = CascadeType.MERGE)
+	@OneToOne(fetch=FetchType.EAGER, cascade = CascadeType.MERGE)
 	private Driver driver;
 	
 	@OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.PERSIST)
