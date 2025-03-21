@@ -1,0 +1,295 @@
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-03-15 10:59:09 #1 store] 
+Database 'C:\Users\egoit\git\Rides25\src\main\resources\rides.temp' is opened by 8812@LAPTOP-2PN1U6VU
+
+[2025-03-15 10:59:09 #2 type.registry] 
+New type domain.User
+
+[2025-03-15 10:59:09 #3 type.registry] 
+New type domain.Driver
+
+[2025-03-15 10:59:09 #4 type] 
+Type domain.User is not enhanced.
+
+[2025-03-15 10:59:09 #5 type] 
+Type domain.Driver is not enhanced.
+
+[2025-03-15 10:59:09 #6 type.registry] 
+New type domain.Ride
+
+[2025-03-15 10:59:09 #7 type] 
+Type domain.Ride is not enhanced.
+
+[2025-03-15 10:59:09 #8 type.registry] 
+New type domain.Erreserba
+
+[2025-03-15 10:59:09 #9 type] 
+Type domain.Erreserba is not enhanced.
+
+[2025-03-15 10:59:09 #10 type.registry] 
+New type domain.Traveler
+
+[2025-03-15 10:59:09 #11 type.registry] 
+New type domain.ErreserbaEgoera
+
+[2025-03-15 10:59:09 #12 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-03-15 10:59:09 #13 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-03-15 10:59:09 #14 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2025-03-15 10:59:09 #15 type.registry] 
+New type java.util.Vector<domain.Erreserba>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-03-15 11:02:52 #1 store] 
+Database 'C:\Users\egoit\git\Rides25\src\main\resources\rides.temp' is opened by 5280@LAPTOP-2PN1U6VU
+
+[2025-03-15 11:02:52 #2 type] 
+Type domain.User is not enhanced.
+
+[2025-03-15 11:02:52 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-03-15 11:02:52 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2025-03-15 11:02:52 #5 type] 
+Type domain.Erreserba is not enhanced.
+
+[2025-03-15 11:02:52 #6 type] 
+Type domain.Traveler is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-03-15 11:07:52 #1 store] 
+Database 'C:\Users\egoit\git\Rides25\src\main\resources\rides.temp' is opened by 15268@LAPTOP-2PN1U6VU
+
+[2025-03-15 11:07:53 #2 type] 
+Type domain.User is not enhanced.
+
+[2025-03-15 11:07:53 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-03-15 11:07:53 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2025-03-15 11:07:53 #5 type] 
+Type domain.Erreserba is not enhanced.
+
+[2025-03-15 11:07:53 #6 type] 
+Type domain.Traveler is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-03-15 11:12:18 #1 store] 
+Database 'C:\Users\egoit\git\Rides25\src\main\resources\rides.temp' is opened by 17956@LAPTOP-2PN1U6VU
+
+[2025-03-15 11:12:18 #2 type.registry] 
+New type domain.User
+
+[2025-03-15 11:12:18 #3 type.registry] 
+New type domain.Driver
+
+[2025-03-15 11:12:18 #4 type] 
+Type domain.User is not enhanced.
+
+[2025-03-15 11:12:18 #5 type] 
+Type domain.Driver is not enhanced.
+
+[2025-03-15 11:12:18 #6 type.registry] 
+New type domain.Ride
+
+[2025-03-15 11:12:18 #7 type] 
+Type domain.Ride is not enhanced.
+
+[2025-03-15 11:12:18 #8 type.registry] 
+New type domain.Erreserba
+
+[2025-03-15 11:12:18 #9 type] 
+Type domain.Erreserba is not enhanced.
+
+[2025-03-15 11:12:18 #10 type.registry] 
+New type domain.Traveler
+
+[2025-03-15 11:12:18 #11 type.registry] 
+New type domain.ErreserbaEgoera
+
+[2025-03-15 11:12:18 #12 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-03-15 11:12:18 #13 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-03-15 11:12:18 #14 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2025-03-15 11:12:18 #15 type.registry] 
+New type java.util.Vector<domain.Erreserba>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-03-15 11:17:11 #1 store] 
+Database 'C:\Users\egoit\git\Rides25\src\main\resources\rides.temp' is opened by 8804@LAPTOP-2PN1U6VU
+
+[2025-03-15 11:17:11 #2 type.registry] 
+New type domain.User
+
+[2025-03-15 11:17:11 #3 type.registry] 
+New type domain.Driver
+
+[2025-03-15 11:17:11 #4 type] 
+Type domain.User is not enhanced.
+
+[2025-03-15 11:17:11 #5 type] 
+Type domain.Driver is not enhanced.
+
+[2025-03-15 11:17:11 #6 type.registry] 
+New type domain.Ride
+
+[2025-03-15 11:17:11 #7 type] 
+Type domain.Ride is not enhanced.
+
+[2025-03-15 11:17:11 #8 type.registry] 
+New type domain.Erreserba
+
+[2025-03-15 11:17:11 #9 type] 
+Type domain.Erreserba is not enhanced.
+
+[2025-03-15 11:17:11 #10 type.registry] 
+New type domain.Traveler
+
+[2025-03-15 11:17:11 #11 type.registry] 
+New type domain.ErreserbaEgoera
+
+[2025-03-15 11:17:11 #12 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-03-15 11:17:11 #13 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-03-15 11:17:11 #14 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2025-03-15 11:17:11 #15 type.registry] 
+New type java.util.Vector<domain.Erreserba>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-03-15 11:19:45 #1 store] 
+Database 'C:\Users\egoit\git\Rides25\src\main\resources\rides.temp' is opened by 20156@LAPTOP-2PN1U6VU
+
+[2025-03-15 11:19:45 #2 type.registry] 
+New type domain.User
+
+[2025-03-15 11:19:45 #3 type.registry] 
+New type domain.Driver
+
+[2025-03-15 11:19:45 #4 type] 
+Type domain.User is not enhanced.
+
+[2025-03-15 11:19:45 #5 type] 
+Type domain.Driver is not enhanced.
+
+[2025-03-15 11:19:45 #6 type.registry] 
+New type domain.Ride
+
+[2025-03-15 11:19:45 #7 type] 
+Type domain.Ride is not enhanced.
+
+[2025-03-15 11:19:45 #8 type.registry] 
+New type domain.Erreserba
+
+[2025-03-15 11:19:45 #9 type] 
+Type domain.Erreserba is not enhanced.
+
+[2025-03-15 11:19:45 #10 type.registry] 
+New type domain.Traveler
+
+[2025-03-15 11:19:45 #11 type.registry] 
+New type domain.ErreserbaEgoera
+
+[2025-03-15 11:19:45 #12 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-03-15 11:19:45 #13 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-03-15 11:19:45 #14 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2025-03-15 11:19:45 #15 type.registry] 
+New type java.util.Vector<domain.Erreserba>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-03-15 11:23:00 #1 store] 
+Database 'C:\Users\egoit\git\Rides25\src\main\resources\rides.temp' is opened by 12240@LAPTOP-2PN1U6VU
+
+[2025-03-15 11:23:01 #2 type.registry] 
+New type domain.User
+
+[2025-03-15 11:23:01 #3 type.registry] 
+New type domain.Driver
+
+[2025-03-15 11:23:01 #4 type] 
+Type domain.User is not enhanced.
+
+[2025-03-15 11:23:01 #5 type] 
+Type domain.Driver is not enhanced.
+
+[2025-03-15 11:23:01 #6 type.registry] 
+New type domain.Ride
+
+[2025-03-15 11:23:01 #7 type] 
+Type domain.Ride is not enhanced.
+
+[2025-03-15 11:23:01 #8 type.registry] 
+New type domain.Erreserba
+
+[2025-03-15 11:23:01 #9 type] 
+Type domain.Erreserba is not enhanced.
+
+[2025-03-15 11:23:01 #10 type.registry] 
+New type domain.Traveler
+
+[2025-03-15 11:23:01 #11 type.registry] 
+New type domain.ErreserbaEgoera
+
+[2025-03-15 11:23:01 #12 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-03-15 11:23:01 #13 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-03-15 11:23:01 #14 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2025-03-15 11:23:01 #15 type.registry] 
+New type java.util.Vector<domain.Erreserba>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-03-15 11:24:40 #1 store] 
+Database 'C:\Users\egoit\git\Rides25\src\main\resources\rides.temp' is opened by 11920@LAPTOP-2PN1U6VU
+
+[2025-03-15 11:24:40 #2 type] 
+Type domain.User is not enhanced.
+
+[2025-03-15 11:24:40 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-03-15 11:24:40 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2025-03-15 11:24:40 #5 type] 
+Type domain.Erreserba is not enhanced.
+
+[2025-03-15 11:24:40 #6 type] 
+Type domain.Traveler is not enhanced.
+
