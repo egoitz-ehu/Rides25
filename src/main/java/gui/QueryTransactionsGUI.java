@@ -2,6 +2,8 @@ package gui;
 
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -13,6 +15,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Vector;
 
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import domain.Mugimendua;
@@ -104,8 +107,8 @@ public class QueryTransactionsGUI extends JFrame {
 		table.getColumnModel().getColumn(2).setPreferredWidth(60);
 		scrollPane.setViewportView(table);
 		
-				table.setModel(tableModelMugimenduak);
-		
+		table.setModel(tableModelMugimenduak);
+		table.setDefaultRenderer(Object.class, new RowColorRenderer());
 		
 		List<Mugimendua> mugimenduList = u.getMugimenduak();
 		if(!mugimenduList.isEmpty())
@@ -118,9 +121,10 @@ public class QueryTransactionsGUI extends JFrame {
 			case DIRU_SARRERA:
 				row.add(ResourceBundle.getBundle("Etiquetas").getString("QueryTransactionGUI.Sarrera"));	
 				break;
-			case BIDAIA_KANTZELATU:
-				break;
 			case DIRU_IRTEERA:
+				row.add(ResourceBundle.getBundle("Etiquetas").getString("QueryTransactionGUI.Irteera"));
+				break;
+			case BIDAIA_KANTZELATU:
 				break;
 			case ERRESERBA_ONARTU:
 				break;
@@ -133,6 +137,23 @@ public class QueryTransactionsGUI extends JFrame {
 			}
 			tableModelMugimenduak.addRow(row);
 		}
+	}
+	
+	class RowColorRenderer extends DefaultTableCellRenderer {
+	    @Override
+	    public Component getTableCellRendererComponent(JTable table, Object value,
+	            boolean isSelected, boolean hasFocus, int row, int column) {
+
+	        Component cell = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+
+	        // Cambia el color de fondo si la primera columna contiene "Alerta"
+	        if (table.getValueAt(row, 3).equals(ResourceBundle.getBundle("Etiquetas").getString("QueryTransactionGUI.Sarrera"))) {
+	            cell.setBackground(new Color(183, 248, 40));
+	        } else {
+	            cell.setBackground(new Color(255, 87, 87));
+	        }
+	        return cell;
+	    }
 	}
 	
 	private void jButton2_actionPerformed(ActionEvent e) {

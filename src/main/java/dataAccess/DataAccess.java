@@ -158,9 +158,12 @@ public class DataAccess  {
 	}
 	
 	public boolean diruaAtera(User u, double diruKop) {
+		db.getTransaction().begin();
 		boolean b = u.diruaAtera(diruKop);
 		if(b) {
-			db.getTransaction().begin();
+			Mugimendua m = new Mugimendua(diruKop,MugimenduMota.DIRU_IRTEERA,u);
+			db.persist(m);
+			u.addMugimendua(m);
 			db.merge(u);
 			db.getTransaction().commit();
 		}
