@@ -36,6 +36,7 @@ public class PassengerMenuGUI extends JFrame {
 	
 	private JButton buttonQuery;
 	private JMenuItem itemIkusi;
+	private JMenuItem itemMugimenduak;
 
 	/**
 	 * Launch the application.
@@ -87,6 +88,15 @@ public class PassengerMenuGUI extends JFrame {
 		
 		itemIkusi = new JMenuItem(ResourceBundle.getBundle("Etiquetas").getString("PassengerMenuGUI.See")); //$NON-NLS-1$ //$NON-NLS-2$
 		moneyMenu.add(itemIkusi);
+		
+		itemMugimenduak = new JMenuItem(ResourceBundle.getBundle("Etiquetas").getString("PassengerMenuGUI.SeeMovements")); //$NON-NLS-1$ //$NON-NLS-2$
+		itemMugimenduak.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				QueryTransactionsGUI tr = new QueryTransactionsGUI(traveler);
+				tr.setVisible(true);
+			}
+		});
+		moneyMenu.add(itemMugimenduak);
 		itemIkusi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DiruaIkusiGUI dI = new DiruaIkusiGUI(traveler);

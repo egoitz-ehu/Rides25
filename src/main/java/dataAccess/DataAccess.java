@@ -22,6 +22,8 @@ import domain.Car;
 import domain.Driver;
 import domain.Erreserba;
 import domain.ErreserbaEgoera;
+import domain.MugimenduMota;
+import domain.Mugimendua;
 import domain.Ride;
 import domain.Traveler;
 import domain.User;
@@ -166,12 +168,17 @@ public class DataAccess  {
 	}
 	
 	public boolean diruaSartu(User t, double kop) {
-		boolean b =t.diruaSartu(kop);
-		if(b) {
+
 			db.getTransaction().begin();
-			db.merge(t);
-			db.getTransaction().commit();
-		}
+			//User u = db.find(User.class, t.getEmail());
+			boolean b =t.diruaSartu(kop);
+			if(b) {
+				Mugimendua m = new Mugimendua(kop,MugimenduMota.DIRU_SARRERA,t);
+				db.persist(m);
+				t.addMugimendua(m);
+				db.merge(t);
+				db.getTransaction().commit();
+			}
 		return b;
 	}
 	

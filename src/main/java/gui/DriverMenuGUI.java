@@ -34,10 +34,13 @@ public class DriverMenuGUI extends JFrame {
 	private JLabel title;
 	
 	private JButton buttonQuery;
-	private JButton buttonCreate;
 	private JButton buttonManage;
 	private JMenuItem itemIkusi;
-	private JButton btnNewButton;
+	private JButton btnCreateCar;
+	private JMenu ridesMenu;
+	private JMenuItem createRide;
+	private JMenuItem cancelRide;
+	private JMenuItem itemMugimenduak;
 
 	/**
 	 * Launch the application.
@@ -84,6 +87,31 @@ public class DriverMenuGUI extends JFrame {
 			}
 		});
 		moneyMenu.add(itemIkusi);
+		
+		itemMugimenduak = new JMenuItem(ResourceBundle.getBundle("Etiquetas").getString("DriverMenuGUI.SeeMovements")); //$NON-NLS-1$ //$NON-NLS-2$
+		itemMugimenduak.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				QueryTransactionsGUI tr = new QueryTransactionsGUI(driver);
+				tr.setVisible(true);
+			}
+		});
+		moneyMenu.add(itemMugimenduak);
+		
+		ridesMenu = new JMenu(ResourceBundle.getBundle("Etiquetas").getString("DriverMenuGUI.Rides")); //$NON-NLS-1$ //$NON-NLS-2$
+		menuBar.add(ridesMenu);
+		
+		createRide = new JMenuItem(ResourceBundle.getBundle("Etiquetas").getString("DriverMenuGUI.Create")); //$NON-NLS-1$ //$NON-NLS-2$
+		createRide.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CreateRideGUI cR = new CreateRideGUI(driver);
+				cR.setVisible(true);
+			}
+		});
+		ridesMenu.add(createRide);
+		
+		cancelRide = new JMenuItem(ResourceBundle.getBundle("Etiquetas").getString("DriverMenuGUI.CancelRide")); //$NON-NLS-1$ //$NON-NLS-2$
+		ridesMenu.add(cancelRide);
+		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -103,15 +131,6 @@ public class DriverMenuGUI extends JFrame {
 		});
 		contentPane.add(buttonQuery);
 		
-		buttonCreate = new JButton(ResourceBundle.getBundle("Etiquetas").getString("DriverMenuGUI.Create")); //$NON-NLS-1$ //$NON-NLS-2$
-		buttonCreate.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				CreateRideGUI cR = new CreateRideGUI(driver);
-				cR.setVisible(true);
-			}
-		});
-		contentPane.add(buttonCreate);
-		
 		buttonManage = new JButton(ResourceBundle.getBundle("Etiquetas").getString("DriverMenuGUI.Manage")); //$NON-NLS-1$ //$NON-NLS-2$
 		buttonManage.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -121,14 +140,14 @@ public class DriverMenuGUI extends JFrame {
 		});
 		contentPane.add(buttonManage);
 		
-		btnNewButton = new JButton("Kotxea sortu"); //$NON-NLS-1$ //$NON-NLS-2$
-		btnNewButton.addActionListener(new ActionListener() {
+		btnCreateCar = new JButton(ResourceBundle.getBundle("Etiquetas").getString("DriverMenuGUI.CreateCar")); //$NON-NLS-1$ //$NON-NLS-2$
+		btnCreateCar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				KotxeaSortuGUI kS = new KotxeaSortuGUI(driver);
 				kS.setVisible(true);
 			}
 		});
-		contentPane.add(btnNewButton);
+		contentPane.add(btnCreateCar);
 	}
 
 }

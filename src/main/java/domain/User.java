@@ -3,6 +3,7 @@ package domain;
 import java.util.List;
 import java.util.Vector;
 
+import javax.persistence.CascadeType;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
@@ -17,7 +18,7 @@ public abstract class User {
 	private String surname;
 	private double cash;
 	private double frozenMoney;
-	@OneToMany(fetch=FetchType.EAGER)
+	@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.MERGE)
 	private List<Mugimendua> mugimenduList = new Vector<Mugimendua>();
 
 	public User(String email, String pass, String name, String surname) {
@@ -114,5 +115,9 @@ public abstract class User {
 	
 	public List<Mugimendua> getMugimenduak(){
 		return this.mugimenduList;
+	}
+	
+	public void addMugimendua(Mugimendua m) {
+		this.mugimenduList.add(m);
 	}
 }
