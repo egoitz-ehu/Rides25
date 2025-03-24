@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 import java.awt.Insets;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.ResourceBundle;
 import java.awt.event.ActionEvent;
 
 public class KotxeaSortuGUI extends JFrame {
@@ -61,8 +62,9 @@ public class KotxeaSortuGUI extends JFrame {
 		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 		
-		JLabel lblMatrikula = new JLabel("New label");
+		JLabel lblMatrikula = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("CreateCar.Matrikula"));
 		GridBagConstraints gbc_lblMatrikula = new GridBagConstraints();
+		gbc_lblMatrikula.weighty = 1.0;
 		gbc_lblMatrikula.gridwidth = 4;
 		gbc_lblMatrikula.insets = new Insets(0, 0, 5, 5);
 		gbc_lblMatrikula.gridx = 0;
@@ -78,8 +80,9 @@ public class KotxeaSortuGUI extends JFrame {
 		contentPane.add(fieldMatrikula, gbc_fieldMatrikula);
 		fieldMatrikula.setColumns(10);
 		
-		JLabel lblEserKop = new JLabel("New label");
+		JLabel lblEserKop = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("CreateCar.EserKop"));
 		GridBagConstraints gbc_lblEserKop = new GridBagConstraints();
+		gbc_lblEserKop.weighty = 1.0;
 		gbc_lblEserKop.gridwidth = 4;
 		gbc_lblEserKop.insets = new Insets(0, 0, 5, 5);
 		gbc_lblEserKop.gridx = 0;
@@ -95,8 +98,9 @@ public class KotxeaSortuGUI extends JFrame {
 		contentPane.add(fieldEserKop, gbc_fieldEserKop);
 		fieldEserKop.setColumns(10);
 		
-		lblKolorea = new JLabel("New label");
+		lblKolorea = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("CreateCar.Kolorea"));
 		GridBagConstraints gbc_lblKolorea = new GridBagConstraints();
+		gbc_lblKolorea.weighty = 1.0;
 		gbc_lblKolorea.gridwidth = 4;
 		gbc_lblKolorea.insets = new Insets(0, 0, 5, 5);
 		gbc_lblKolorea.gridx = 0;
@@ -112,8 +116,9 @@ public class KotxeaSortuGUI extends JFrame {
 		contentPane.add(fieldKolorea, gbc_fieldKolorea);
 		fieldKolorea.setColumns(10);
 		
-		lblMota = new JLabel("New label");
+		lblMota = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("CreateCar.Model"));
 		GridBagConstraints gbc_lblMota = new GridBagConstraints();
+		gbc_lblMota.weighty = 1.0;
 		gbc_lblMota.weightx = 0.6;
 		gbc_lblMota.gridwidth = 4;
 		gbc_lblMota.insets = new Insets(0, 0, 5, 5);
@@ -130,7 +135,7 @@ public class KotxeaSortuGUI extends JFrame {
 		contentPane.add(fieldMota, gbc_fieldMota);
 		fieldMota.setColumns(10);
 		
-		btnSortu = new JButton("New button");
+		btnSortu = new JButton(ResourceBundle.getBundle("Etiquetas").getString("CreateCar.Sortu"));
 		btnSortu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -153,12 +158,13 @@ public class KotxeaSortuGUI extends JFrame {
 			}
 		});
 		GridBagConstraints gbc_btnSortu = new GridBagConstraints();
+		gbc_btnSortu.weighty = 1.0;
 		gbc_btnSortu.insets = new Insets(0, 0, 0, 5);
 		gbc_btnSortu.gridx = 2;
 		gbc_btnSortu.gridy = 8;
 		contentPane.add(btnSortu, gbc_btnSortu);
 		
-		btnItxi = new JButton("New button");
+		btnItxi = new JButton(ResourceBundle.getBundle("Etiquetas").getString("CreateCar.Itxi"));
 		GridBagConstraints gbc_btnItxi = new GridBagConstraints();
 		gbc_btnItxi.gridx = 4;
 		gbc_btnItxi.gridy = 8;
