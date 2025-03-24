@@ -2,10 +2,13 @@ package domain;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+@Entity
 public class Car {
 	@Id
 	private String matrikula;
@@ -13,7 +16,6 @@ public class Car {
 	private String kolorea;
 	private String modeloa;
 	
-	@OneToOne
 	private Driver jabea;
 	
 	@OneToMany

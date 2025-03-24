@@ -37,6 +37,7 @@ public class DriverMenuGUI extends JFrame {
 	private JButton buttonCreate;
 	private JButton buttonManage;
 	private JMenuItem itemIkusi;
+	private JButton btnNewButton;
 
 	/**
 	 * Launch the application.
@@ -119,6 +120,15 @@ public class DriverMenuGUI extends JFrame {
 			}
 		});
 		contentPane.add(buttonManage);
+		
+		btnNewButton = new JButton("Kotxea sortu"); //$NON-NLS-1$ //$NON-NLS-2$
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				KotxeaSortuGUI kS = new KotxeaSortuGUI(driver);
+				kS.setVisible(true);
+			}
+		});
+		contentPane.add(btnNewButton);
 	}
 
 }

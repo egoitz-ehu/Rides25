@@ -204,5 +204,13 @@ public class BLFacadeImplementation  implements BLFacade {
 		return rideList;
 	}
 
+	@WebMethod
+	public boolean sortuKotxea(String matrikula, int eserKop, String kolorea, String mota, String dMail) {
+		dbManager.open();
+		boolean b = dbManager.sortuKotxea(matrikula,eserKop,kolorea, mota,dMail);
+		dbManager.close();
+		return b;
+	}
+
 }
 

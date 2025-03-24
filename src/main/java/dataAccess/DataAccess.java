@@ -18,6 +18,7 @@ import javax.persistence.TypedQuery;
 
 import configuration.ConfigXML;
 import configuration.UtilDate;
+import domain.Car;
 import domain.Driver;
 import domain.Erreserba;
 import domain.ErreserbaEgoera;
@@ -252,6 +253,18 @@ public class DataAccess  {
 		db.merge(r);
 		db.merge(t);
 		db.getTransaction().commit();
+	}
+	
+	public boolean sortuKotxea(String matrikula, int eserKop, String kolorea, String mota, String dMail) {
+		Car kotxea = db.find(Car.class, matrikula);
+		if(kotxea!=null) return false;
+		db.getTransaction().begin();
+		Driver di = db.find(Driver.class, dMail);
+		Car kotxeBerria = new Car(matrikula,eserKop,kolorea,mota,di);
+		di.addCar(kotxeBerria);
+		db.persist(kotxeBerria);
+		db.getTransaction().commit();
+		return true;
 	}
 	
 	/**

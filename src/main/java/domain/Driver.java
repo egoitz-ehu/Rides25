@@ -22,7 +22,7 @@ public class Driver extends User implements Serializable{
 	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
 	private List<Ride> rides=new Vector<Ride>();
 	
-	@OneToMany
+	@OneToMany(cascade=CascadeType.PERSIST)
 	private List<Car> carList = new Vector<Car>();
 	
 
@@ -85,5 +85,9 @@ public class Driver extends User implements Serializable{
 			rides.remove(index);
 			return r;
 		} else return null;
+	}
+	
+	public void addCar(Car c) {
+		this.carList.add(c);
 	}
 }

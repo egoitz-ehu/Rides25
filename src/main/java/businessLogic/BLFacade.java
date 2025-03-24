@@ -100,4 +100,6 @@ public interface BLFacade  {
 	@WebMethod public void ukatuErreserba(int erreserbaNum, Ride r);
 	
 	@WebMethod public List<Ride> getDriverAllRides(String driverEmail);
+	
+	@WebMethod public boolean sortuKotxea(String matrikula,int eserKop,String kolorea, String mota, String dMail);
 }
