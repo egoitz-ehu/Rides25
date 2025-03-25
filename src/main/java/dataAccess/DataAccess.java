@@ -185,20 +185,25 @@ public class DataAccess  {
 		return b;
 	}
 	
-	public boolean sortuErreserba(String tEmail, int rNumber, int kop) throws EserlekurikLibreEzException, ErreserbaAlreadyExistsException, DiruaEzDaukaException {
+	public boolean sortuErreserba(Traveler t, int rNumber, int kop) throws EserlekurikLibreEzException, ErreserbaAlreadyExistsException, DiruaEzDaukaException {
 		if(kop>0) {
 			db.getTransaction().begin();
 			Ride r = db.find(Ride.class, rNumber);
-			Traveler t = db.find(Traveler.class, tEmail);
+			//Traveler t = db.find(Traveler.class, tEmail);
+			double kostua = r.prezioaKalkulatu(kop);
 			if(!t.existBook(r)) {
 				if(t.diruaDauka(r, kop)) {
 					if(r.eserlekuakLibre(kop)) {
 						//Erreserba e = new Erreserba(kop,t, r);
 						Erreserba erreserbaBerria = t.sortuErreserba(r, kop);
-						r.gehituErreserba(erreserbaBerria);						
+						r.gehituErreserba(erreserbaBerria);
+						Mugimendua m = new Mugimendua(kostua,MugimenduMota.ERRESERBA_SORTU,t);
+						t.addMugimendua(m);
 						//db.persist(erreserbaBerria);
-						//db.merge(t);
-						db.persist(r);
+						db.merge(t);
+						//db.persist(r);
+						db.persist(erreserbaBerria);
+						db.persist(m);
 						db.getTransaction().commit();
 						return true;	
 					} else {

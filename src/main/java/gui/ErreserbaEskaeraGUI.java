@@ -273,7 +273,7 @@ public class ErreserbaEskaeraGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					int kop = Integer.parseInt(eserKop.getText());
-					boolean b = WelcomeGUI.getBusinessLogic().sortuErreserba(t.getEmail(), selectedRide.getRideNumber(), kop);
+					boolean b = WelcomeGUI.getBusinessLogic().sortuErreserba(t, selectedRide.getRideNumber(), kop);
 					tableModelRides.setDataVector(null, columnNamesRides);
 					//tableModelRides.setColumnCount(5);
 					if(b) {

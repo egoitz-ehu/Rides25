@@ -129,6 +129,7 @@ public class QueryTransactionsGUI extends JFrame {
 			case ERRESERBA_ONARTU:
 				break;
 			case ERRESERBA_SORTU:
+				row.add(ResourceBundle.getBundle("Etiquetas").getString("QueryTransactionGUI.Sortu"));
 				break;
 			case ERRESERBA_UKATU:
 				break;
@@ -149,7 +150,10 @@ public class QueryTransactionsGUI extends JFrame {
 	        // Cambia el color de fondo si la primera columna contiene "Alerta"
 	        if (table.getValueAt(row, 3).equals(ResourceBundle.getBundle("Etiquetas").getString("QueryTransactionGUI.Sarrera"))) {
 	            cell.setBackground(new Color(183, 248, 40));
-	        } else {
+	        } else if(table.getValueAt(row, 3).equals(ResourceBundle.getBundle("Etiquetas").getString("QueryTransactionGUI.Sortu"))) {
+	        	cell.setBackground(new Color(253, 193, 53));
+	        }
+	        else {
 	            cell.setBackground(new Color(255, 87, 87));
 	        }
 	        return cell;

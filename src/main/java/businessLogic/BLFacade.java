@@ -89,7 +89,7 @@ public interface BLFacade  {
 	
 	@WebMethod public boolean diruaSartu(User t, double kop);
 	
-	@WebMethod public boolean sortuErreserba(String tEmail, int rNumber, int kop) throws EserlekurikLibreEzException, ErreserbaAlreadyExistsException, DiruaEzDaukaException;
+	@WebMethod public boolean sortuErreserba(Traveler t, int rNumber, int kop) throws EserlekurikLibreEzException, ErreserbaAlreadyExistsException, DiruaEzDaukaException;
 	
 	@WebMethod public List<Integer> getAllRidesNumber(String email);
 	

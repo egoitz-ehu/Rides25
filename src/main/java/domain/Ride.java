@@ -242,4 +242,8 @@ public class Ride implements Serializable {
 	public void itzuliEserlekuak(int kop) {
 		this.eserLibre+=kop;
 	}
+	
+	public double prezioaKalkulatu(int eserKop) {
+		return this.price*eserKop;
+	}
 }
