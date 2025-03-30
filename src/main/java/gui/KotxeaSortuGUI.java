@@ -145,7 +145,7 @@ public class KotxeaSortuGUI extends JFrame {
 						String kolorea = fieldKolorea.getText();
 						String mota = fieldMota.getText();
 						if(!matrikula.equals("") && !kolorea.equals("") && !mota.equals("")) {
-							WelcomeGUI.getBusinessLogic().sortuKotxea(matrikula,eserKop,kolorea,mota,d.getEmail());
+							WelcomeGUI.getBusinessLogic().sortuKotxea(matrikula,eserKop,kolorea,mota,d);
 						} else {
 							System.out.println("Eremu guztiak bete behar dira");
 						}
@@ -165,6 +165,11 @@ public class KotxeaSortuGUI extends JFrame {
 		contentPane.add(btnSortu, gbc_btnSortu);
 		
 		btnItxi = new JButton(ResourceBundle.getBundle("Etiquetas").getString("CreateCar.Itxi"));
+		btnItxi.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+			}
+		});
 		GridBagConstraints gbc_btnItxi = new GridBagConstraints();
 		gbc_btnItxi.gridx = 4;
 		gbc_btnItxi.gridy = 8;

@@ -22,7 +22,7 @@ public class Driver extends User implements Serializable{
 	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
 	private List<Ride> rides=new Vector<Ride>();
 	
-	@OneToMany(cascade=CascadeType.PERSIST)
+	@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.PERSIST)
 	private List<Car> carList = new Vector<Car>();
 	
 
@@ -49,8 +49,8 @@ public class Driver extends User implements Serializable{
 	 * @param betMinimum of that question
 	 * @return Bet
 	 */
-	public Ride addRide(String from, String to, Date date, int nPlaces, float price)  {
-        Ride ride=new Ride(from,to,date,nPlaces,price, this);
+	public Ride addRide(String from, String to, Date date, int nPlaces, float price, Car c)  {
+        Ride ride=new Ride(from,to,date,nPlaces,price, this,c);
         rides.add(ride);
         return ride;
 	}
@@ -87,8 +87,13 @@ public class Driver extends User implements Serializable{
 		} else return null;
 	}
 	
-	public void addCar(String matrikula, int eserKop, String kolorea, String modeloa) {
+	public Car addCar(String matrikula, int eserKop, String kolorea, String modeloa) {
 		Car c = new Car(matrikula,eserKop,kolorea,modeloa,this);
 		this.carList.add(c);
+		return c;
+	}
+	
+	public List<Car> getCars(){
+		return this.carList;
 	}
 }

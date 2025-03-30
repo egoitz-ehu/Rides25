@@ -2800,6 +2800,15 @@
 											},
 											"name": "driver",
 											"type": ""
+										},
+										{
+											"_type": "UMLParameter",
+											"_id": "AAAAAAGV53TvKsNWBtM=",
+											"_parent": {
+												"$ref": "AAAAAAGMNI/WhVEacmw="
+											},
+											"name": "car",
+											"type": ""
 										}
 									]
 								},
@@ -19875,9 +19884,9 @@
 														"$ref": "AAAAAAGMNI9HKlEEKTc="
 													},
 													"font": "Arial;13;0",
-													"left": 755,
+													"left": 749,
 													"top": 456,
-													"width": 288.513671875,
+													"width": 301.513671875,
 													"height": 13,
 													"alpha": 1.5707963267948966,
 													"distance": 10,
@@ -19885,7 +19894,7 @@
 														"$ref": "AAAAAAGMNI9HKlEFuzY="
 													},
 													"edgePosition": 1,
-													"text": "new(d, departCity,arrivalCity,date,seats, price,this)"
+													"text": "new(d, departCity,arrivalCity,date,seats, price,this,ci)"
 												},
 												{
 													"_type": "EdgeLabelView",
@@ -20575,7 +20584,7 @@
 									"signature": {
 										"$ref": "AAAAAAGMNI/WhVEacmw="
 									},
-									"arguments": "d, departCity,arrivalCity,date,seats, price,this"
+									"arguments": "d, departCity,arrivalCity,date,seats, price,this,ci"
 								},
 								{
 									"_type": "UMLMessage",

@@ -91,13 +91,14 @@ public class DataAccess  {
 		   
 		    //Create drivers 
 			Driver driver1=new Driver("driver1@gmail.com","abc123", "Ane", "Gaztañaga");
+			Car c1 = driver1.addCar("123", 4, "Green", "Seat");
 			
 			//Create rides
-			driver1.addRide("Donostia", "Bilbo", UtilDate.newDate(year,month,15), 4, 7);
-			driver1.addRide("Donostia", "Gazteiz", UtilDate.newDate(year,month,6), 4, 8);
-			driver1.addRide("Bilbo", "Donostia", UtilDate.newDate(year,month,25), 4, 4);
+			driver1.addRide("Donostia", "Bilbo", UtilDate.newDate(year,month,15), 4, 7,c1);
+			driver1.addRide("Donostia", "Gazteiz", UtilDate.newDate(year,month,6), 4, 8,c1);
+			driver1.addRide("Bilbo", "Donostia", UtilDate.newDate(year,month,25), 4, 4,c1);
 
-			driver1.addRide("Donostia", "Iruña", UtilDate.newDate(year,month,7), 4, 8);
+			driver1.addRide("Donostia", "Iruña", UtilDate.newDate(year,month,7), 4, 8,c1);
 			
 			//driver2.addRide("Donostia", "Bilbo", UtilDate.newDate(year,month,15), 3, 3);
 			//driver2.addRide("Bilbo", "Donostia", UtilDate.newDate(year,month,25), 2, 5);
@@ -264,12 +265,14 @@ public class DataAccess  {
 		db.getTransaction().commit();
 	}
 	
-	public boolean sortuKotxea(String matrikula, int eserKop, String kolorea, String mota, String dMail) {
+	public boolean sortuKotxea(String matrikula, int eserKop, String kolorea, String mota, Driver d) {
 		Car kotxea = db.find(Car.class, matrikula);
 		if(kotxea!=null) return false;
 		db.getTransaction().begin();
-		Driver di = db.find(Driver.class, dMail);
-		di.addCar(matrikula,eserKop,kolorea,mota);
+		//Driver di = db.find(Driver.class, d.getEmail());
+		Car c=d.addCar(matrikula,eserKop,kolorea,mota);
+		db.persist(c);
+		db.merge(d);
 		db.getTransaction().commit();
 		return true;
 	}
@@ -310,7 +313,7 @@ public class DataAccess  {
 	 * @throws RideMustBeLaterThanTodayException if the ride date is before today 
  	 * @throws RideAlreadyExistException if the same ride already exists for the driver
 	 */
-	public Ride createRide(String from, String to, Date date, int nPlaces, float price, String driverEmail) throws  RideAlreadyExistException, RideMustBeLaterThanTodayException {
+	public Ride createRide(String from, String to, Date date, Car c, float price, String driverEmail) throws  RideAlreadyExistException, RideMustBeLaterThanTodayException {
 		System.out.println(">> DataAccess: createRide=> from= "+from+" to= "+to+" driver="+driverEmail+" date "+date);
 		try {
 			if(new Date().compareTo(date)>0) {
@@ -319,13 +322,17 @@ public class DataAccess  {
 			db.getTransaction().begin();
 			
 			Driver driver = db.find(Driver.class, driverEmail);
+			Car ci = db.find(Car.class, c.getMatrikula());
 			if (driver.doesRideExists(from, to, date)) {
 				db.getTransaction().commit();
 				throw new RideAlreadyExistException(ResourceBundle.getBundle("Etiquetas").getString("DataAccess.RideAlreadyExist"));
 			}
-			Ride ride = driver.addRide(from, to, date, nPlaces, price);
+			Ride ride = driver.addRide(from, to, date,ci.getEserKop(), price,ci);
+
 			//next instruction can be obviated
-			db.persist(driver); 
+			//db.persist(driver);
+			ci.addRide(ride);
+			db.persist(ci);
 			db.getTransaction().commit();
 
 			return ride;

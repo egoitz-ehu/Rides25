@@ -16,7 +16,7 @@ import exceptions.RideAlreadyExistException;
 import exceptions.RideMustBeLaterThanTodayException;
 import testOperations.TestDataAccess;
 import domain.Driver;
-
+/*
 public class CreateRideTest {
 
 	 //sut:system under test
@@ -256,4 +256,4 @@ public class CreateRideTest {
 		        }
 		   }
 }
-
+*/

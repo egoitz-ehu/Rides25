@@ -7,6 +7,7 @@ import java.util.List;
 import domain.Ride;
 import domain.Traveler;
 import domain.User;
+import domain.Car;
 import domain.Driver;
 import domain.Erreserba;
 import exceptions.RideMustBeLaterThanTodayException;
@@ -53,7 +54,7 @@ public interface BLFacade  {
  	 * @throws RideAlreadyExistException if the same ride already exists for the driver
 	 */
    @WebMethod
-   public Ride createRide( String from, String to, Date date, int nPlaces, float price, String driverEmail) throws RideMustBeLaterThanTodayException, RideAlreadyExistException;
+   public Ride createRide( String from, String to, Date date, Car c, float price, String driverEmail) throws RideMustBeLaterThanTodayException, RideAlreadyExistException;
 	
 	
 	/**
@@ -101,5 +102,5 @@ public interface BLFacade  {
 	
 	@WebMethod public List<Ride> getDriverAllRides(String driverEmail);
 	
-	@WebMethod public boolean sortuKotxea(String matrikula,int eserKop,String kolorea, String mota, String dMail);
+	@WebMethod public boolean sortuKotxea(String matrikula,int eserKop,String kolorea, String mota, Driver d);
 }

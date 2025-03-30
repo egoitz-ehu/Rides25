@@ -11,6 +11,7 @@ import dataAccess.DataAccess;
 import domain.Ride;
 import domain.Traveler;
 import domain.User;
+import domain.Car;
 import domain.Driver;
 import domain.Erreserba;
 import exceptions.RideMustBeLaterThanTodayException;
@@ -76,10 +77,10 @@ public class BLFacadeImplementation  implements BLFacade {
 	 * {@inheritDoc}
 	 */
    @WebMethod
-   public Ride createRide( String from, String to, Date date, int nPlaces, float price, String driverEmail ) throws RideMustBeLaterThanTodayException, RideAlreadyExistException{
+   public Ride createRide( String from, String to, Date date, Car c, float price, String driverEmail ) throws RideMustBeLaterThanTodayException, RideAlreadyExistException{
 	   
 		dbManager.open();
-		Ride ride=dbManager.createRide(from, to, date, nPlaces, price, driverEmail);		
+		Ride ride=dbManager.createRide(from, to, date, c, price, driverEmail);		
 		dbManager.close();
 		return ride;
    };
@@ -205,9 +206,9 @@ public class BLFacadeImplementation  implements BLFacade {
 	}
 
 	@WebMethod
-	public boolean sortuKotxea(String matrikula, int eserKop, String kolorea, String mota, String dMail) {
+	public boolean sortuKotxea(String matrikula, int eserKop, String kolorea, String mota, Driver d) {
 		dbManager.open();
-		boolean b = dbManager.sortuKotxea(matrikula,eserKop,kolorea, mota,dMail);
+		boolean b = dbManager.sortuKotxea(matrikula,eserKop,kolorea, mota,d);
 		dbManager.close();
 		return b;
 	}
