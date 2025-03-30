@@ -18,7 +18,7 @@ public abstract class User {
 	private String surname;
 	private double cash;
 	private double frozenMoney;
-	@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.MERGE)
+	@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	private List<Mugimendua> mugimenduList = new Vector<Mugimendua>();
 
 	public User(String email, String pass, String name, String surname) {

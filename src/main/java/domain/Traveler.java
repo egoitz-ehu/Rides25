@@ -19,7 +19,7 @@ import javax.xml.bind.annotation.XmlIDREF;
 public class Traveler extends User implements Serializable{
 
 	@XmlIDREF
-	@OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.MERGE)
+	@OneToMany(fetch=FetchType.EAGER)
 	private List<Erreserba> bookedRides = new Vector<Erreserba>();
 	
 	public Traveler (String email, String pass, String name, String surname) {

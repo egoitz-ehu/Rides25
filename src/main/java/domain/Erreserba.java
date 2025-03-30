@@ -64,6 +64,10 @@ public class Erreserba {
 	public Traveler getBidaiaria() {
 		return bidaiaria;
 	}
+	
+	public String getBidaiariaEmail() {
+		return this.bidaiaria.getEmail();
+	}
 
 	public void setBidaiaria(Traveler bidaiaria) {
 		this.bidaiaria = bidaiaria;

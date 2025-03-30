@@ -196,9 +196,9 @@ public class DataAccess  {
 						r.gehituErreserba(erreserbaBerria);
 						t.addMugimendua(kostua,MugimenduMota.ERRESERBA_SORTU);
 						//db.persist(erreserbaBerria);
-						db.merge(t);
 						//db.persist(r);
 						db.persist(erreserbaBerria);
+						db.merge(t);
 						db.getTransaction().commit();
 						return true;	
 					} else {
@@ -236,14 +236,16 @@ public class DataAccess  {
 	public void erreserbaOnartu(int erreserbaNum, Driver d) {
 		db.getTransaction().begin();
 		Erreserba e = db.find(Erreserba.class, erreserbaNum);
-		Traveler t = e.getBidaiaria();
+		Traveler t = db.find(Traveler.class, e.getBidaiariaEmail());
 		double prezioa = e.prezioaKalkulatu();
 		e.setEgoera(ErreserbaEgoera.ONARTUA);
 		t.removeFrozenMoney(prezioa);
 		d.addFrozenMoney(prezioa);
-		db.persist(e);
+		d.addMugimendua(prezioa, MugimenduMota.ERRESERBA_ONARTU_GIDARI);
+		t.addMugimendua(prezioa, MugimenduMota.ERRESERBA_ONARTU_BIDAIARI);
+		//db.persist(e);
 		db.merge(d);
-		db.merge(t);
+		db.persist(t);
 		db.getTransaction().commit();
 	}
 	

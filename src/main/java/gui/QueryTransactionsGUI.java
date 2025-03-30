@@ -111,32 +111,40 @@ public class QueryTransactionsGUI extends JFrame {
 		table.setDefaultRenderer(Object.class, new RowColorRenderer());
 		
 		List<Mugimendua> mugimenduList = u.getMugimenduak();
-		if(!mugimenduList.isEmpty())
-		for (Mugimendua m:mugimenduList){
-			Vector<Object> row = new Vector<Object>();
-			row.add(m.getId());
-			row.add(m.getData());
-			row.add(m.getKopurua());
-			switch(m.getType()) {
-			case DIRU_SARRERA:
-				row.add(ResourceBundle.getBundle("Etiquetas").getString("QueryTransactionGUI.Sarrera"));	
-				break;
-			case DIRU_IRTEERA:
-				row.add(ResourceBundle.getBundle("Etiquetas").getString("QueryTransactionGUI.Irteera"));
-				break;
-			case BIDAIA_KANTZELATU:
-				break;
-			case ERRESERBA_ONARTU:
-				break;
-			case ERRESERBA_SORTU:
-				row.add(ResourceBundle.getBundle("Etiquetas").getString("QueryTransactionGUI.Sortu"));
-				break;
-			case ERRESERBA_UKATU:
-				break;
-			default:
-				break;
+		System.out.println(mugimenduList);
+		if(!mugimenduList.isEmpty()) {
+			for (Mugimendua m:mugimenduList){
+				Vector<Object> row = new Vector<Object>();
+				row.add(m.getId());
+				row.add(m.getData());
+				row.add(m.getKopurua());
+				switch(m.getType()) {
+				case DIRU_SARRERA:
+					row.add(ResourceBundle.getBundle("Etiquetas").getString("QueryTransactionGUI.Sarrera"));	
+					break;
+				case DIRU_IRTEERA:
+					row.add(ResourceBundle.getBundle("Etiquetas").getString("QueryTransactionGUI.Irteera"));
+					break;
+				case ERRESERBA_SORTU:
+					row.add(ResourceBundle.getBundle("Etiquetas").getString("QueryTransactionGUI.Sortu"));
+					break;
+				case BIDAIA_KANTZELATU:
+					break;
+				case ERRESERBA_ONARTU_GIDARI:
+					row.add(ResourceBundle.getBundle("Etiquetas").getString("QueryTransactionGUI.OnartuGidari"));
+					break;
+				case ERRESERBA_ONARTU_BIDAIARI:
+					row.add(ResourceBundle.getBundle("Etiquetas").getString("QueryTransactionGUI.OnartuBidaiari"));
+					break;
+				case ERRESERBA_UKATU_GIDARI:
+					break;
+				case ERRESERBA_UKATU_BIDAIARI:
+					break;
+				default:
+					break;
+				}
+				tableModelMugimenduak.addRow(row);
 			}
-			tableModelMugimenduak.addRow(row);
 		}
 	}
 	
@@ -147,11 +155,13 @@ public class QueryTransactionsGUI extends JFrame {
 
 	        Component cell = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 
-	        // Cambia el color de fondo si la primera columna contiene "Alerta"
 	        if (table.getValueAt(row, 3).equals(ResourceBundle.getBundle("Etiquetas").getString("QueryTransactionGUI.Sarrera"))) {
 	            cell.setBackground(new Color(183, 248, 40));
 	        } else if(table.getValueAt(row, 3).equals(ResourceBundle.getBundle("Etiquetas").getString("QueryTransactionGUI.Sortu"))) {
 	        	cell.setBackground(new Color(253, 193, 53));
+	        } else if(table.getValueAt(row, 3).equals(ResourceBundle.getBundle("Etiquetas").getString("QueryTransactionGUI.OnartuGidari"))||
+	        		table.getValueAt(row, 3).equals(ResourceBundle.getBundle("Etiquetas").getString("QueryTransactionGUI.OnartuBidaiari"))) {
+	        	cell.setBackground(new Color(149, 45, 248));
 	        }
 	        else {
 	            cell.setBackground(new Color(255, 87, 87));
