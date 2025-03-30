@@ -1,0 +1,68 @@
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-03-30 12:16:16 #1 store] 
+Database 'C:\Users\egoit\git\Rides25\src\main\resources\rides.temp' is opened by 6112@LAPTOP-2PN1U6VU
+
+[2025-03-30 12:16:16 #2 type.registry] 
+New type domain.User
+
+[2025-03-30 12:16:16 #3 type.registry] 
+New type domain.Driver
+
+[2025-03-30 12:16:16 #4 type] 
+Type domain.User is not enhanced.
+
+[2025-03-30 12:16:16 #5 type.registry] 
+New type domain.Mugimendua
+
+[2025-03-30 12:16:16 #6 type] 
+Type domain.Driver is not enhanced.
+
+[2025-03-30 12:16:16 #7 type.registry] 
+New type domain.Car
+
+[2025-03-30 12:16:16 #8 type.registry] 
+New type domain.Ride
+
+[2025-03-30 12:16:16 #9 type] 
+Type domain.Mugimendua is not enhanced.
+
+[2025-03-30 12:16:16 #10 type.registry] 
+New type domain.MugimenduMota
+
+[2025-03-30 12:16:16 #11 type] 
+Type domain.Car is not enhanced.
+
+[2025-03-30 12:16:16 #12 type] 
+Type domain.Ride is not enhanced.
+
+[2025-03-30 12:16:16 #13 type.registry] 
+New type domain.Erreserba
+
+[2025-03-30 12:16:16 #14 type] 
+Type domain.Erreserba is not enhanced.
+
+[2025-03-30 12:16:16 #15 type.registry] 
+New type domain.Traveler
+
+[2025-03-30 12:16:16 #16 type.registry] 
+New type domain.ErreserbaEgoera
+
+[2025-03-30 12:16:16 #17 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-03-30 12:16:16 #18 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-03-30 12:16:16 #19 type.registry] 
+New type java.util.Vector<domain.Mugimendua>
+
+[2025-03-30 12:16:16 #20 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2025-03-30 12:16:16 #21 type.registry] 
+New type java.util.Vector<domain.Car>
+
+[2025-03-30 12:16:16 #22 type.registry] 
+New type java.util.Vector<domain.Erreserba>
+

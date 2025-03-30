@@ -161,9 +161,7 @@ public class DataAccess  {
 		db.getTransaction().begin();
 		boolean b = u.diruaAtera(diruKop);
 		if(b) {
-			Mugimendua m = new Mugimendua(diruKop,MugimenduMota.DIRU_IRTEERA,u);
-			db.persist(m);
-			u.addMugimendua(m);
+			u.addMugimendua(diruKop,MugimenduMota.DIRU_IRTEERA);
 			db.merge(u);
 			db.getTransaction().commit();
 		}
@@ -176,9 +174,7 @@ public class DataAccess  {
 			//User u = db.find(User.class, t.getEmail());
 			boolean b =t.diruaSartu(kop);
 			if(b) {
-				Mugimendua m = new Mugimendua(kop,MugimenduMota.DIRU_SARRERA,t);
-				db.persist(m);
-				t.addMugimendua(m);
+				t.addMugimendua(kop,MugimenduMota.DIRU_SARRERA);
 				db.merge(t);
 				db.getTransaction().commit();
 			}
@@ -197,13 +193,11 @@ public class DataAccess  {
 						//Erreserba e = new Erreserba(kop,t, r);
 						Erreserba erreserbaBerria = t.sortuErreserba(r, kop);
 						r.gehituErreserba(erreserbaBerria);
-						Mugimendua m = new Mugimendua(kostua,MugimenduMota.ERRESERBA_SORTU,t);
-						t.addMugimendua(m);
+						t.addMugimendua(kostua,MugimenduMota.ERRESERBA_SORTU);
 						//db.persist(erreserbaBerria);
 						db.merge(t);
 						//db.persist(r);
 						db.persist(erreserbaBerria);
-						db.persist(m);
 						db.getTransaction().commit();
 						return true;	
 					} else {

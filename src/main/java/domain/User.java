@@ -117,7 +117,8 @@ public abstract class User {
 		return this.mugimenduList;
 	}
 	
-	public void addMugimendua(Mugimendua m) {
+	public void addMugimendua(double kop, MugimenduMota mota) {
+		Mugimendua m = new Mugimendua(kop,mota,this);
 		this.mugimenduList.add(m);
 	}
 }
