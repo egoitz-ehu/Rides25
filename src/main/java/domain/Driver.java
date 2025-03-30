@@ -87,7 +87,8 @@ public class Driver extends User implements Serializable{
 		} else return null;
 	}
 	
-	public void addCar(Car c) {
+	public void addCar(String matrikula, int eserKop, String kolorea, String modeloa) {
+		Car c = new Car(matrikula,eserKop,kolorea,modeloa,this);
 		this.carList.add(c);
 	}
 }

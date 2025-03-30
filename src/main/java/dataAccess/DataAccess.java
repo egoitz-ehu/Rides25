@@ -269,9 +269,7 @@ public class DataAccess  {
 		if(kotxea!=null) return false;
 		db.getTransaction().begin();
 		Driver di = db.find(Driver.class, dMail);
-		Car kotxeBerria = new Car(matrikula,eserKop,kolorea,mota,di);
-		di.addCar(kotxeBerria);
-		db.persist(kotxeBerria);
+		di.addCar(matrikula,eserKop,kolorea,mota);
 		db.getTransaction().commit();
 		return true;
 	}
