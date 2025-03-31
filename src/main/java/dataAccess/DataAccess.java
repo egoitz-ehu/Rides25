@@ -252,7 +252,7 @@ public class DataAccess  {
 	public void erreserbaUkatu(int erreserbaNum, Ride r) {
 		db.getTransaction().begin();
 		Erreserba e = db.find(Erreserba.class, erreserbaNum);
-		Traveler t = e.getBidaiaria();
+		Traveler t = db.find(Traveler.class, e.getBidaiariaEmail());
 		//Ride r = e.getRide();
 		double kop = e.prezioaKalkulatu();
 		int eserKop = e.getPlazaKop();
@@ -261,7 +261,8 @@ public class DataAccess  {
 		t.diruaSartu(kop);
 		t.ezabatuErreserba(e);
 		r.itzuliEserlekuak(eserKop);
-		db.persist(e);
+		t.addMugimendua(kop, MugimenduMota.ERRESERBA_UKATU);
+		//db.persist(e);
 		db.merge(r);
 		db.merge(t);
 		db.getTransaction().commit();

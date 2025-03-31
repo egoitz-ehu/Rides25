@@ -136,9 +136,8 @@ public class QueryTransactionsGUI extends JFrame {
 				case ERRESERBA_ONARTU_BIDAIARI:
 					row.add(ResourceBundle.getBundle("Etiquetas").getString("QueryTransactionGUI.OnartuBidaiari"));
 					break;
-				case ERRESERBA_UKATU_GIDARI:
-					break;
-				case ERRESERBA_UKATU_BIDAIARI:
+				case ERRESERBA_UKATU:
+					row.add(ResourceBundle.getBundle("Etiquetas").getString("QueryTransactionGUI.Ukatu"));
 					break;
 				default:
 					break;
@@ -162,6 +161,8 @@ public class QueryTransactionsGUI extends JFrame {
 	        } else if(table.getValueAt(row, 3).equals(ResourceBundle.getBundle("Etiquetas").getString("QueryTransactionGUI.OnartuGidari"))||
 	        		table.getValueAt(row, 3).equals(ResourceBundle.getBundle("Etiquetas").getString("QueryTransactionGUI.OnartuBidaiari"))) {
 	        	cell.setBackground(new Color(149, 45, 248));
+	        } else if(table.getValueAt(row, 3).equals(ResourceBundle.getBundle("Etiquetas").getString("QueryTransactionGUI.Ukatu"))) {
+	        	cell.setBackground(new Color(245, 80, 102));
 	        }
 	        else {
 	            cell.setBackground(new Color(255, 87, 87));
