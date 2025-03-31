@@ -1,5 +1,5 @@
 package domain;
 
 public enum ErreserbaEgoera {
-	ONARTUA, ZAIN, UKATUA
+	ONARTUA, ZAIN, UKATUA, BAIEZTATUA, EZEZTATUA
 }

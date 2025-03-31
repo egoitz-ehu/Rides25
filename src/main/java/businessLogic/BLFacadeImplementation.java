@@ -213,5 +213,12 @@ public class BLFacadeImplementation  implements BLFacade {
 		return b;
 	}
 
+	@WebMethod
+	public void erreserbaBaieztatu(Erreserba e) {
+		dbManager.open();
+		dbManager.erreserbaBaieztatu(e);
+		dbManager.close();
+	}
+
 }
 

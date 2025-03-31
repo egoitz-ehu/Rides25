@@ -139,6 +139,8 @@ public class QueryTransactionsGUI extends JFrame {
 				case ERRESERBA_UKATU:
 					row.add(ResourceBundle.getBundle("Etiquetas").getString("QueryTransactionGUI.Ukatu"));
 					break;
+				case ERRESERBA_BAIEZTATU:
+					row.add(ResourceBundle.getBundle("Etiquetas").getString("QueryTransactionGUI.Baieztatu"));
 				default:
 					break;
 				}

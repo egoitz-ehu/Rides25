@@ -26776,16 +26776,7 @@
 									"_parent": {
 										"$ref": "AAAAAAGV7H/4uiqS4hs="
 									},
-									"name": "eNum",
-									"type": ""
-								},
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAGV7I2C+C2Knyk=",
-									"_parent": {
-										"$ref": "AAAAAAGV7H/4uiqS4hs="
-									},
-									"name": "bidaiaria",
+									"name": "erreserba",
 									"type": ""
 								}
 							]
@@ -27313,16 +27304,7 @@
 									"_parent": {
 										"$ref": "AAAAAAGV7IGFPSq0/uQ="
 									},
-									"name": "num",
-									"type": ""
-								},
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAGV7I0sEy2E7js=",
-									"_parent": {
-										"$ref": "AAAAAAGV7IGFPSq0/uQ="
-									},
-									"name": "bidaiaria",
+									"name": "erreserba",
 									"type": ""
 								}
 							]
@@ -53745,7 +53727,7 @@
 														"$ref": "AAAAAAGV7H87zypCQ9Q="
 													},
 													"edgePosition": 1,
-													"text": "1 : select eNum"
+													"text": "1 : select e"
 												},
 												{
 													"_type": "EdgeLabelView",
@@ -53868,7 +53850,7 @@
 															"top": 47,
 															"width": 131.38623046875,
 															"height": 13,
-															"text": "ei: Erreserba"
+															"text": "e: Erreserba"
 														},
 														{
 															"_type": "LabelView",
@@ -53972,7 +53954,7 @@
 														"$ref": "AAAAAAGV7H/ddyp9Vc4="
 													},
 													"edgePosition": 1,
-													"text": "2 : erreserbaBaieztatu(eNum,b)"
+													"text": "2 : erreserbaBaieztatu(e)"
 												},
 												{
 													"_type": "EdgeLabelView",
@@ -54083,7 +54065,7 @@
 														"$ref": "AAAAAAGV7IFxVyqfCRI="
 													},
 													"edgePosition": 1,
-													"text": "3 : erreserbaBaieztatu(eNum,b)"
+													"text": "3 : erreserbaBaieztatu(e)"
 												},
 												{
 													"_type": "EdgeLabelView",
@@ -54398,228 +54380,6 @@
 										},
 										{
 											"_type": "UMLSeqMessageView",
-											"_id": "AAAAAAGV7JE6iS355j8=",
-											"_parent": {
-												"$ref": "AAAAAAGV7HUcuShVT5w="
-											},
-											"model": {
-												"$ref": "AAAAAAGV7JE6iS34KUc="
-											},
-											"subViews": [
-												{
-													"_type": "EdgeLabelView",
-													"_id": "AAAAAAGV7JE6ii36HWw=",
-													"_parent": {
-														"$ref": "AAAAAAGV7JE6iS355j8="
-													},
-													"model": {
-														"$ref": "AAAAAAGV7JE6iS34KUc="
-													},
-													"font": "Arial;13;0",
-													"left": 708,
-													"top": 328,
-													"width": 123.1826171875,
-													"height": 13,
-													"alpha": 1.5707963267948966,
-													"distance": 10,
-													"hostEdge": {
-														"$ref": "AAAAAAGV7JE6iS355j8="
-													},
-													"edgePosition": 1,
-													"text": "4 : email = getEmail()"
-												},
-												{
-													"_type": "EdgeLabelView",
-													"_id": "AAAAAAGV7JE6ii37PSs=",
-													"_parent": {
-														"$ref": "AAAAAAGV7JE6iS355j8="
-													},
-													"model": {
-														"$ref": "AAAAAAGV7JE6iS34KUc="
-													},
-													"visible": false,
-													"font": "Arial;13;0",
-													"left": 769,
-													"top": 313,
-													"height": 13,
-													"alpha": 1.5707963267948966,
-													"distance": 25,
-													"hostEdge": {
-														"$ref": "AAAAAAGV7JE6iS355j8="
-													},
-													"edgePosition": 1
-												},
-												{
-													"_type": "EdgeLabelView",
-													"_id": "AAAAAAGV7JE6ii383y8=",
-													"_parent": {
-														"$ref": "AAAAAAGV7JE6iS355j8="
-													},
-													"model": {
-														"$ref": "AAAAAAGV7JE6iS34KUc="
-													},
-													"visible": false,
-													"font": "Arial;13;0",
-													"left": 769,
-													"top": 348,
-													"height": 13,
-													"alpha": -1.5707963267948966,
-													"distance": 10,
-													"hostEdge": {
-														"$ref": "AAAAAAGV7JE6iS355j8="
-													},
-													"edgePosition": 1
-												},
-												{
-													"_type": "UMLActivationView",
-													"_id": "AAAAAAGV7JE6ii39hQI=",
-													"_parent": {
-														"$ref": "AAAAAAGV7JE6iS355j8="
-													},
-													"model": {
-														"$ref": "AAAAAAGV7JE6iS34KUc="
-													},
-													"font": "Arial;13;0",
-													"left": 957,
-													"top": 344,
-													"width": 14,
-													"height": 29
-												}
-											],
-											"font": "Arial;13;0",
-											"head": {
-												"$ref": "AAAAAAGV7I5cGi2cX8U="
-											},
-											"tail": {
-												"$ref": "AAAAAAGV7HfNUimRGPQ="
-											},
-											"points": "581:344;957:344",
-											"nameLabel": {
-												"$ref": "AAAAAAGV7JE6ii36HWw="
-											},
-											"stereotypeLabel": {
-												"$ref": "AAAAAAGV7JE6ii37PSs="
-											},
-											"propertyLabel": {
-												"$ref": "AAAAAAGV7JE6ii383y8="
-											},
-											"activation": {
-												"$ref": "AAAAAAGV7JE6ii39hQI="
-											}
-										},
-										{
-											"_type": "UMLSeqMessageView",
-											"_id": "AAAAAAGV7I9GHC3dVYE=",
-											"_parent": {
-												"$ref": "AAAAAAGV7HUcuShVT5w="
-											},
-											"model": {
-												"$ref": "AAAAAAGV7I9GHC3cH0k="
-											},
-											"subViews": [
-												{
-													"_type": "EdgeLabelView",
-													"_id": "AAAAAAGV7I9GHC3ercg=",
-													"_parent": {
-														"$ref": "AAAAAAGV7I9GHC3dVYE="
-													},
-													"model": {
-														"$ref": "AAAAAAGV7I9GHC3cH0k="
-													},
-													"font": "Arial;13;0",
-													"left": 396,
-													"top": 344,
-													"width": 555.5595703125,
-													"height": 13,
-													"alpha": 1.5707963267948966,
-													"distance": 10,
-													"hostEdge": {
-														"$ref": "AAAAAAGV7I9GHC3dVYE="
-													},
-													"edgePosition": 1,
-													"text": "5 : createQuery(SELECT e FROM Erreserba WHERE Bidaiari.email=email AND number=eNum)"
-												},
-												{
-													"_type": "EdgeLabelView",
-													"_id": "AAAAAAGV7I9GHC3feX4=",
-													"_parent": {
-														"$ref": "AAAAAAGV7I9GHC3dVYE="
-													},
-													"model": {
-														"$ref": "AAAAAAGV7I9GHC3cH0k="
-													},
-													"visible": false,
-													"font": "Arial;13;0",
-													"left": 673,
-													"top": 329,
-													"height": 13,
-													"alpha": 1.5707963267948966,
-													"distance": 25,
-													"hostEdge": {
-														"$ref": "AAAAAAGV7I9GHC3dVYE="
-													},
-													"edgePosition": 1
-												},
-												{
-													"_type": "EdgeLabelView",
-													"_id": "AAAAAAGV7I9GHC3g9TY=",
-													"_parent": {
-														"$ref": "AAAAAAGV7I9GHC3dVYE="
-													},
-													"model": {
-														"$ref": "AAAAAAGV7I9GHC3cH0k="
-													},
-													"visible": false,
-													"font": "Arial;13;0",
-													"left": 673,
-													"top": 364,
-													"height": 13,
-													"alpha": -1.5707963267948966,
-													"distance": 10,
-													"hostEdge": {
-														"$ref": "AAAAAAGV7I9GHC3dVYE="
-													},
-													"edgePosition": 1
-												},
-												{
-													"_type": "UMLActivationView",
-													"_id": "AAAAAAGV7I9GHC3hPRg=",
-													"_parent": {
-														"$ref": "AAAAAAGV7I9GHC3dVYE="
-													},
-													"model": {
-														"$ref": "AAAAAAGV7I9GHC3cH0k="
-													},
-													"font": "Arial;13;0",
-													"left": 766,
-													"top": 360,
-													"width": 14,
-													"height": 29
-												}
-											],
-											"font": "Arial;13;0",
-											"head": {
-												"$ref": "AAAAAAGV7HgfZCm3+p0="
-											},
-											"tail": {
-												"$ref": "AAAAAAGV7HfNUimRGPQ="
-											},
-											"points": "581:360;766:360",
-											"nameLabel": {
-												"$ref": "AAAAAAGV7I9GHC3ercg="
-											},
-											"stereotypeLabel": {
-												"$ref": "AAAAAAGV7I9GHC3feX4="
-											},
-											"propertyLabel": {
-												"$ref": "AAAAAAGV7I9GHC3g9TY="
-											},
-											"activation": {
-												"$ref": "AAAAAAGV7I9GHC3hPRg="
-											}
-										},
-										{
-											"_type": "UMLSeqMessageView",
 											"_id": "AAAAAAGV7ILEWyrAl9Q=",
 											"_parent": {
 												"$ref": "AAAAAAGV7HUcuShVT5w="
@@ -54639,7 +54399,7 @@
 													},
 													"font": "Arial;13;0",
 													"left": 900,
-													"top": 360,
+													"top": 336,
 													"width": 164.23291015625,
 													"height": 13,
 													"alpha": 1.5707963267948966,
@@ -54648,7 +54408,7 @@
 														"$ref": "AAAAAAGV7ILEWyrAl9Q="
 													},
 													"edgePosition": 1,
-													"text": "6 : setEgoera(BAIEZTATUA)"
+													"text": "4 : setEgoera(BAIEZTATUA)"
 												},
 												{
 													"_type": "EdgeLabelView",
@@ -54662,7 +54422,7 @@
 													"visible": false,
 													"font": "Arial;13;0",
 													"left": 982,
-													"top": 345,
+													"top": 321,
 													"height": 13,
 													"alpha": 1.5707963267948966,
 													"distance": 25,
@@ -54683,7 +54443,7 @@
 													"visible": false,
 													"font": "Arial;13;0",
 													"left": 982,
-													"top": 380,
+													"top": 356,
 													"height": 13,
 													"alpha": -1.5707963267948966,
 													"distance": 10,
@@ -54703,7 +54463,7 @@
 													},
 													"font": "Arial;13;0",
 													"left": 1384,
-													"top": 376,
+													"top": 352,
 													"width": 14,
 													"height": 29
 												}
@@ -54715,7 +54475,7 @@
 											"tail": {
 												"$ref": "AAAAAAGV7HfNUimRGPQ="
 											},
-											"points": "581:376;1384:376",
+											"points": "581:352;1384:352",
 											"nameLabel": {
 												"$ref": "AAAAAAGV7ILEXCrBNjE="
 											},
@@ -54750,7 +54510,7 @@
 													},
 													"font": "Arial;13;0",
 													"left": 892,
-													"top": 392,
+													"top": 368,
 													"width": 180.29248046875,
 													"height": 13,
 													"alpha": 1.5707963267948966,
@@ -54759,7 +54519,7 @@
 														"$ref": "AAAAAAGV7Ic1tyyAF5g="
 													},
 													"edgePosition": 1,
-													"text": "7 : prezioa = prezioaKalkulatu()"
+													"text": "5 : prezioa = prezioaKalkulatu()"
 												},
 												{
 													"_type": "EdgeLabelView",
@@ -54773,7 +54533,7 @@
 													"visible": false,
 													"font": "Arial;13;0",
 													"left": 982,
-													"top": 377,
+													"top": 353,
 													"height": 13,
 													"alpha": 1.5707963267948966,
 													"distance": 25,
@@ -54794,7 +54554,7 @@
 													"visible": false,
 													"font": "Arial;13;0",
 													"left": 982,
-													"top": 412,
+													"top": 388,
 													"height": 13,
 													"alpha": -1.5707963267948966,
 													"distance": 10,
@@ -54814,7 +54574,7 @@
 													},
 													"font": "Arial;13;0",
 													"left": 1384,
-													"top": 408,
+													"top": 384,
 													"width": 14,
 													"height": 29
 												}
@@ -54826,7 +54586,7 @@
 											"tail": {
 												"$ref": "AAAAAAGV7HfNUimRGPQ="
 											},
-											"points": "581:408;1384:408",
+											"points": "581:384;1384:384",
 											"nameLabel": {
 												"$ref": "AAAAAAGV7Ic1tyyBHS4="
 											},
@@ -54870,7 +54630,7 @@
 														"$ref": "AAAAAAGV7IWxDCvQAVw="
 													},
 													"edgePosition": 1,
-													"text": "8 : r = getRide()"
+													"text": "6 : r = getRide()"
 												},
 												{
 													"_type": "EdgeLabelView",
@@ -55097,7 +54857,7 @@
 														"$ref": "AAAAAAGV7IYYwCwNVi0="
 													},
 													"edgePosition": 1,
-													"text": "9 : d = getDriver()"
+													"text": "7 : d = getDriver()"
 												},
 												{
 													"_type": "EdgeLabelView",
@@ -55208,7 +54968,7 @@
 														"$ref": "AAAAAAGV7IapLyxIkUo="
 													},
 													"edgePosition": 1,
-													"text": "10 : kenduFrozenMoney(prezioa)"
+													"text": "8 : kenduFrozenMoney(prezioa)"
 												},
 												{
 													"_type": "EdgeLabelView",
@@ -55319,7 +55079,7 @@
 														"$ref": "AAAAAAGV7Ih+PCzEa0o="
 													},
 													"edgePosition": 1,
-													"text": "11 : addDirua(prezioa)"
+													"text": "9 : addDirua(prezioa)"
 												},
 												{
 													"_type": "EdgeLabelView",
@@ -55546,7 +55306,7 @@
 														"$ref": "AAAAAAGV7IsKai02FKA="
 													},
 													"edgePosition": 1,
-													"text": "12 : addMugimendua(prezioa,BAIEZTATU)"
+													"text": "10 : addMugimendua(prezioa,BAIEZTATU)"
 												},
 												{
 													"_type": "EdgeLabelView",
@@ -55657,7 +55417,7 @@
 														"$ref": "AAAAAAGV7Iv2hS1r/oY="
 													},
 													"edgePosition": 1,
-													"text": "13 : merge(e)"
+													"text": "11 : persist(e)"
 												},
 												{
 													"_type": "EdgeLabelView",
@@ -55768,7 +55528,7 @@
 														"$ref": "AAAAAAGV7It2Zi1QzDQ="
 													},
 													"edgePosition": 1,
-													"text": "14 : new(kopurua, mota)"
+													"text": "12 : new(kopurua, mota)"
 												},
 												{
 													"_type": "EdgeLabelView",
@@ -55861,7 +55621,7 @@
 									"_parent": {
 										"$ref": "AAAAAAGV7HUcuShUVPQ="
 									},
-									"name": "select eNum",
+									"name": "select e",
 									"source": {
 										"$ref": "AAAAAAGV7Hcc6CkmMIY="
 									},
@@ -55885,7 +55645,7 @@
 									"signature": {
 										"$ref": "AAAAAAGV7H/4uiqS4hs="
 									},
-									"arguments": "eNum,b"
+									"arguments": "e"
 								},
 								{
 									"_type": "UMLMessage",
@@ -55903,42 +55663,7 @@
 									"signature": {
 										"$ref": "AAAAAAGV7IGFPSq0/uQ="
 									},
-									"arguments": "eNum,b"
-								},
-								{
-									"_type": "UMLMessage",
-									"_id": "AAAAAAGV7JE6iS34KUc=",
-									"_parent": {
-										"$ref": "AAAAAAGV7HUcuShUVPQ="
-									},
-									"name": "Message11",
-									"source": {
-										"$ref": "AAAAAAGV7HfNUimK3w8="
-									},
-									"target": {
-										"$ref": "AAAAAAGV7I5cGi2VxmU="
-									},
-									"signature": {
-										"$ref": "AAAAAAGV7JGO5y4OfeU="
-									},
-									"assignmentTarget": "email"
-								},
-								{
-									"_type": "UMLMessage",
-									"_id": "AAAAAAGV7I9GHC3cH0k=",
-									"_parent": {
-										"$ref": "AAAAAAGV7HUcuShUVPQ="
-									},
-									"source": {
-										"$ref": "AAAAAAGV7HfNUimK3w8="
-									},
-									"target": {
-										"$ref": "AAAAAAGV7HgfYymwpik="
-									},
-									"signature": {
-										"$ref": "AAAAAAGMNAN8wUmRs7o="
-									},
-									"arguments": "SELECT e FROM Erreserba WHERE Bidaiari.email=email AND number=eNum"
+									"arguments": "e"
 								},
 								{
 									"_type": "UMLMessage",
@@ -56080,7 +55805,7 @@
 										"$ref": "AAAAAAGV7HgfYymwpik="
 									},
 									"signature": {
-										"$ref": "AAAAAAGV7IxAXC2A2+I="
+										"$ref": "AAAAAAGMNJcQU1GQ3j8="
 									},
 									"arguments": "e"
 								},
@@ -56166,7 +55891,7 @@
 									"_parent": {
 										"$ref": "AAAAAAGV7HUcuShUVPQ="
 									},
-									"name": "ei",
+									"name": "e",
 									"represent": {
 										"$ref": "AAAAAAGV7H+oEypYDYI="
 									},

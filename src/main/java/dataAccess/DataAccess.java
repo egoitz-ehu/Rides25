@@ -188,17 +188,18 @@ public class DataAccess  {
 			Ride r = db.find(Ride.class, rNumber);
 			//Traveler t = db.find(Traveler.class, tEmail);
 			double kostua = r.prezioaKalkulatu(kop);
-			if(!t.existBook(r)) {
-				if(t.diruaDauka(r, kop)) {
+			Traveler tr = db.find(Traveler.class, t.getEmail());
+			if(!tr.existBook(r)) {
+				if(tr.diruaDauka(r, kop)) {
 					if(r.eserlekuakLibre(kop)) {
 						//Erreserba e = new Erreserba(kop,t, r);
-						Erreserba erreserbaBerria = t.sortuErreserba(r, kop);
+						Erreserba erreserbaBerria = tr.sortuErreserba(r, kop);
 						r.gehituErreserba(erreserbaBerria);
-						t.addMugimendua(kostua,MugimenduMota.ERRESERBA_SORTU);
-						//db.persist(erreserbaBerria);
-						//db.persist(r);
+						tr.addMugimendua(kostua,MugimenduMota.ERRESERBA_SORTU);
 						db.persist(erreserbaBerria);
-						db.merge(t);
+						//db.persist(r);
+						//db.persist(erreserbaBerria);
+						//db.merge(t);
 						db.getTransaction().commit();
 						return true;	
 					} else {
@@ -278,6 +279,19 @@ public class DataAccess  {
 		db.merge(d);
 		db.getTransaction().commit();
 		return true;
+	}
+	
+	public void erreserbaBaieztatu(Erreserba e) {
+		db.getTransaction().begin();
+		e.setEgoera(ErreserbaEgoera.BAIEZTATUA);
+		double prezioa = e.prezioaKalkulatu();
+		Ride r = e.getRide();
+		Driver d = r.getDriver();
+		d.removeFrozenMoney(prezioa);
+		d.diruaSartu(prezioa);
+		d.addMugimendua(prezioa, MugimenduMota.ERRESERBA_BAIEZTATU);
+		db.merge(e);
+		db.getTransaction().commit();;
 	}
 	
 	/**

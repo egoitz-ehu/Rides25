@@ -25,7 +25,7 @@ public class Erreserba {
 	private Date erreserbaData;
 	@OneToOne(fetch=FetchType.EAGER)
 	private Traveler bidaiaria;
-	@OneToOne(fetch=FetchType.EAGER)
+	@OneToOne(fetch=FetchType.EAGER, cascade=CascadeType.MERGE)
 	private Ride ride;
 	
 	

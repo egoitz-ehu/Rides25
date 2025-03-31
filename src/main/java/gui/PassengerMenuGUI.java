@@ -37,6 +37,7 @@ public class PassengerMenuGUI extends JFrame {
 	private JButton buttonQuery;
 	private JMenuItem itemIkusi;
 	private JMenuItem itemMugimenduak;
+	private JButton btnNewButton;
 
 	/**
 	 * Launch the application.
@@ -122,6 +123,15 @@ public class PassengerMenuGUI extends JFrame {
 			}
 		});
 		contentPane.add(buttonQuery);
+		
+		btnNewButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("PassengerMenuGUI.SeeBooks")); //$NON-NLS-1$ //$NON-NLS-2$
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ErreserbakKontsultatuGUI eK = new ErreserbakKontsultatuGUI(traveler);
+				eK.setVisible(true);
+			}
+		});
+		contentPane.add(btnNewButton);
 	}
 
 }
