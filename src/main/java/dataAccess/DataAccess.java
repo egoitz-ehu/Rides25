@@ -281,6 +281,13 @@ public class DataAccess  {
 		return true;
 	}
 	
+	public List<Erreserba> erreserbakLortu(Traveler t) {
+		TypedQuery<Erreserba> query = db.createQuery("SELECT e FROM Erreserba e WHERE e.bidaiaria=?1", Erreserba.class);
+		query.setParameter(1, t);
+		List<Erreserba> erreserbak = query.getResultList();
+		return erreserbak;
+	}
+	
 	public void erreserbaBaieztatu(Erreserba e) {
 		db.getTransaction().begin();
 		e.setEgoera(ErreserbaEgoera.BAIEZTATUA);

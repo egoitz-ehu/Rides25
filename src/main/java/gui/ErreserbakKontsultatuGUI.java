@@ -45,6 +45,7 @@ private JPanel contentPane;
 	private Erreserba selectedErreserba;
 	
 	private JLabel messageLabel;
+	private JLabel lblMessage;
 
 	/**
 	 * Launch the application.
@@ -74,17 +75,17 @@ private JPanel contentPane;
 
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
-		gbl_contentPane.columnWidths = new int[]{0, 0, 0, 0, 0};
-		gbl_contentPane.rowHeights = new int[]{0, 0, 0, 0, 0, 0};
-		gbl_contentPane.columnWeights = new double[]{1.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
-		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPane.columnWidths = new int[]{0, 0, 0, 0, 0, 0};
+		gbl_contentPane.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0};
+		gbl_contentPane.columnWeights = new double[]{1.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 1.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
 		gbc_scrollPane.gridheight = 2;
 		gbc_scrollPane.insets = new Insets(0, 0, 5, 0);
-		gbc_scrollPane.gridwidth = 4;
+		gbc_scrollPane.gridwidth = 5;
 		gbc_scrollPane.fill = GridBagConstraints.BOTH;
 		gbc_scrollPane.gridx = 0;
 		gbc_scrollPane.gridy = 1;
@@ -101,7 +102,13 @@ private JPanel contentPane;
 					if(selectedErreserba!=null && selectedErreserba.getEgoera().equals(ErreserbaEgoera.ONARTUA)) {
 						onartuButton.setEnabled(true);
 						ukatuButton.setEnabled(true);
+						lblMessage.setText("");
 					} else {
+						if(selectedErreserba.getEgoera().equals(ErreserbaEgoera.ZAIN)) {
+							lblMessage.setText(ResourceBundle.getBundle("Etiquetas").getString("ErreserbakKontsultatuGUI.MessageZain"));
+						} else if(selectedErreserba.getEgoera().equals(ErreserbaEgoera.BAIEZTATUA)) {
+							lblMessage.setText(ResourceBundle.getBundle("Etiquetas").getString("ErreserbakKontsultatuGUI.MessageBaieztatua"));
+						}
 						onartuButton.setEnabled(false);
 						ukatuButton.setEnabled(false);
 					}
@@ -137,10 +144,18 @@ private JPanel contentPane;
 				selectedErreserba=null;
 			}
 		});
+		
+		lblMessage = new JLabel(""); //$NON-NLS-1$ //$NON-NLS-2$
+		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
+		gbc_lblNewLabel.gridwidth = 5;
+		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel.gridx = 0;
+		gbc_lblNewLabel.gridy = 3;
+		contentPane.add(lblMessage, gbc_lblNewLabel);
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
 		gbc_btnNewButton.insets = new Insets(0, 0, 5, 5);
 		gbc_btnNewButton.gridx = 0;
-		gbc_btnNewButton.gridy = 3;
+		gbc_btnNewButton.gridy = 4;
 		contentPane.add(onartuButton, gbc_btnNewButton);
 		
 		ukatuButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("ErreserbakGestionatuGUI.Ukatu"));
@@ -152,17 +167,16 @@ private JPanel contentPane;
 		});
 		GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
 		gbc_btnNewButton_1.insets = new Insets(0, 0, 5, 0);
-		gbc_btnNewButton_1.gridx = 3;
-		gbc_btnNewButton_1.gridy = 3;
+		gbc_btnNewButton_1.gridx = 4;
+		gbc_btnNewButton_1.gridy = 4;
 		contentPane.add(ukatuButton, gbc_btnNewButton_1);
 		
 		messageLabel = new JLabel(""); //$NON-NLS-1$ //$NON-NLS-2$
 		messageLabel.setForeground(Color.BLUE);
 		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
-		gbc_lblNewLabel_1.gridwidth = 4;
-		gbc_lblNewLabel_1.insets = new Insets(0, 0, 0, 5);
+		gbc_lblNewLabel_1.gridwidth = 5;
 		gbc_lblNewLabel_1.gridx = 0;
-		gbc_lblNewLabel_1.gridy = 4;
+		gbc_lblNewLabel_1.gridy = 5;
 		contentPane.add(messageLabel, gbc_lblNewLabel_1);
 		
 		ezarriErreserbak(t);
@@ -171,7 +185,8 @@ private JPanel contentPane;
 	private void ezarriErreserbak(Traveler t) {
 		String egoera = "";
 		tableModel.getDataVector().removeAllElements();
-			List<Erreserba> erreserbaList = t.getBookedRides();
+			//List<Erreserba> erreserbaList = t.getBookedRides();
+			List<Erreserba> erreserbaList = WelcomeGUI.getBusinessLogic().erreserbakLortu(t);
 			System.out.println(erreserbaList);
 			if(erreserbaList.isEmpty()) {
 				messageLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("ErreserbakGestionatuGUI.MezuaGabe"));

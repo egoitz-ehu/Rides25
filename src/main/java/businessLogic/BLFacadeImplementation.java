@@ -220,5 +220,13 @@ public class BLFacadeImplementation  implements BLFacade {
 		dbManager.close();
 	}
 
+	@WebMethod
+	public List<Erreserba> erreserbakLortu(Traveler t) {
+		dbManager.open();
+		List<Erreserba> lista = dbManager.erreserbakLortu(t);
+		dbManager.close();
+		return lista;
+	}
+
 }
 

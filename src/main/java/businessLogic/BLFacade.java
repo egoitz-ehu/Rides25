@@ -105,4 +105,6 @@ public interface BLFacade  {
 	@WebMethod public boolean sortuKotxea(String matrikula,int eserKop,String kolorea, String mota, Driver d);
 	
 	@WebMethod public void erreserbaBaieztatu(Erreserba e);
+	
+	@WebMethod public List<Erreserba> erreserbakLortu(Traveler t);
 }
