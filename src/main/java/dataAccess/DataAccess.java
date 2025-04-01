@@ -301,6 +301,21 @@ public class DataAccess  {
 		db.getTransaction().commit();;
 	}
 	
+	public void erreserbaEzeztatu(Erreserba e, Traveler t) {
+		db.getTransaction().begin();
+		e.setEgoera(ErreserbaEgoera.EZEZTATUA);
+		double prezioa = e.prezioaKalkulatu();
+		Ride r = e.getRide();
+		Driver d = r.getDriver();
+		d.removeFrozenMoney(prezioa);
+		d.addMugimendua(prezioa, MugimenduMota.ERRESERBA_EZEZTATU_GIDARI);
+		t.diruaSartu(prezioa);
+		t.addMugimendua(prezioa, MugimenduMota.ERRESERBA_EZEZTATU_BIDAIARI);
+		db.merge(e);
+		db.merge(t);
+		db.getTransaction().commit();
+	}
+	
 	/**
 	 * This method returns all the cities where rides depart 
 	 * @return collection of cities

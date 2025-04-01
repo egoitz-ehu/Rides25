@@ -162,7 +162,10 @@ private JPanel contentPane;
 		ukatuButton.setEnabled(false);
 		ukatuButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				WelcomeGUI.getBusinessLogic().erreserbaEzeztatu(selectedErreserba,t);
+				onartuButton.setEnabled(false);
+				ukatuButton.setEnabled(false);
+				selectedErreserba=null;
 			}
 		});
 		GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();

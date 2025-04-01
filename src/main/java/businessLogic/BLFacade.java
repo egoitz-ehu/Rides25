@@ -106,5 +106,7 @@ public interface BLFacade  {
 	
 	@WebMethod public void erreserbaBaieztatu(Erreserba e);
 	
+	@WebMethod public void erreserbaEzeztatu(Erreserba e, Traveler t);
+	
 	@WebMethod public List<Erreserba> erreserbakLortu(Traveler t);
 }

@@ -228,5 +228,12 @@ public class BLFacadeImplementation  implements BLFacade {
 		return lista;
 	}
 
+	@WebMethod
+	public void erreserbaEzeztatu(Erreserba e, Traveler t) {
+		dbManager.open();
+		dbManager.erreserbaEzeztatu(e,t);
+		dbManager.close();
+	}
+
 }
 

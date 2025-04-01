@@ -141,6 +141,12 @@ public class QueryTransactionsGUI extends JFrame {
 					break;
 				case ERRESERBA_BAIEZTATU:
 					row.add(ResourceBundle.getBundle("Etiquetas").getString("QueryTransactionGUI.Baieztatu"));
+				case ERRESERBA_EZEZTATU_GIDARI:
+					row.add(ResourceBundle.getBundle("Etiquetas").getString("QueryTransactionGUI.EzeztatuGidari"));
+					break;
+				case ERRESERBA_EZEZTATU_BIDAIARI:
+					row.add(ResourceBundle.getBundle("Etiquetas").getString("QueryTransactionGUI.EzeztatuBidaiari"));
+					break;
 				default:
 					break;
 				}
@@ -165,6 +171,9 @@ public class QueryTransactionsGUI extends JFrame {
 	        	cell.setBackground(new Color(149, 45, 248));
 	        } else if(table.getValueAt(row, 3).equals(ResourceBundle.getBundle("Etiquetas").getString("QueryTransactionGUI.Ukatu"))) {
 	        	cell.setBackground(new Color(245, 80, 102));
+	        } else if(table.getValueAt(row, 3).equals(ResourceBundle.getBundle("Etiquetas").getString("QueryTransactionGUI.EzeztatuGidari"))||
+	        		table.getValueAt(row, 3).equals(ResourceBundle.getBundle("Etiquetas").getString("QueryTransactionGUI.EzeztatuBidaiari"))) {
+	        	cell.setBackground(new Color(192, 248, 105));
 	        }
 	        else {
 	            cell.setBackground(new Color(255, 87, 87));
