@@ -96,6 +96,7 @@ public class Ride implements Serializable {
 		this.driver = driver;
 		this.eserLibre=nPlaces;
 		this.car=c;
+		this.egoera=RideEgoera.MARTXAN;
 	}
 	
 	/**

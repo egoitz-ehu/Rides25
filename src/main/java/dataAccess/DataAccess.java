@@ -25,6 +25,7 @@ import domain.ErreserbaEgoera;
 import domain.MugimenduMota;
 import domain.Mugimendua;
 import domain.Ride;
+import domain.RideEgoera;
 import domain.Traveler;
 import domain.User;
 import exceptions.DiruaEzDaukaException;
@@ -319,6 +320,7 @@ public class DataAccess  {
 	public void kantzelatuBidaia(Ride r, Driver d) {
 		db.getTransaction().begin();
 		List<Erreserba> erreserbaList = r.getErreserbak();
+		r.setEgoera(RideEgoera.KANTZELATUTA);
 		for(Erreserba e:erreserbaList) {
 			ErreserbaEgoera egoera = e.getEgoera();
 			e.setEgoera(ErreserbaEgoera.KANTZELATUA);
