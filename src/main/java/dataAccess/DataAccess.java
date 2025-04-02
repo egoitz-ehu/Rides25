@@ -316,6 +316,31 @@ public class DataAccess  {
 		db.getTransaction().commit();
 	}
 	
+	public void kantzelatuBidaia(Ride r, Driver d) {
+		db.getTransaction().begin();
+		List<Erreserba> erreserbaList = r.getErreserbak();
+		for(Erreserba e:erreserbaList) {
+			ErreserbaEgoera egoera = e.getEgoera();
+			e.setEgoera(ErreserbaEgoera.KANTZELATUA);
+			e.setKantzelatuData(new Date());
+			Traveler t = e.getBidaiaria();
+			double prezioa = e.prezioaKalkulatu();
+			if(egoera.equals(ErreserbaEgoera.ONARTUA)) {
+				d.removeFrozenMoney(prezioa);
+				t.diruaSartu(prezioa);
+				d.addMugimendua(prezioa, MugimenduMota.BIDAIA_KANTZELATU_GIDARI);
+				t.addMugimendua(prezioa, MugimenduMota.BIDAIA_KANTZELATU_BIDAIARI);
+			} else if(egoera.equals(ErreserbaEgoera.ZAIN)) {
+				t.removeFrozenMoney(prezioa);
+				t.diruaSartu(prezioa);
+				t.addMugimendua(prezioa, MugimenduMota.BIDAIA_KANTZELATU_BIDAIARI);
+			}
+		}
+		db.merge(r);
+		db.merge(d);
+		db.getTransaction().commit();
+	}
+	
 	/**
 	 * This method returns all the cities where rides depart 
 	 * @return collection of cities

@@ -235,5 +235,13 @@ public class BLFacadeImplementation  implements BLFacade {
 		dbManager.close();
 	}
 
+	@WebMethod
+	public void kantzelatuBidaia(Ride r, Driver d) {
+		dbManager.open();
+		dbManager.kantzelatuBidaia(r, d);
+		dbManager.close();
+		System.out.println("Bidaia kantzelatu da.");
+	}
+
 }
 

@@ -44,9 +44,21 @@ public class Ride implements Serializable {
 	@OneToOne(fetch=FetchType.EAGER, cascade = CascadeType.MERGE)
 	private Driver driver;
 	
-	@OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.PERSIST)
+	@OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Erreserba> erreserbak=new Vector<Erreserba>();
 	
+	@Enumerated(EnumType.STRING)
+	private RideEgoera egoera;
+	
+	
+	public RideEgoera getEgoera() {
+		return egoera;
+	}
+
+	public void setEgoera(RideEgoera egoera) {
+		this.egoera = egoera;
+	}
+
 	public int getEserLibre() {
 		return eserLibre;
 	}
@@ -69,6 +81,7 @@ public class Ride implements Serializable {
 		this.price=price;
 		this.driver = driver;
 		this.eserLibre=nPlaces;
+		this.egoera=RideEgoera.MARTXAN;
 	}
 
 	

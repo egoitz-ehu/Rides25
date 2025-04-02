@@ -110,6 +110,12 @@ public class DriverMenuGUI extends JFrame {
 		ridesMenu.add(createRide);
 		
 		cancelRide = new JMenuItem(ResourceBundle.getBundle("Etiquetas").getString("DriverMenuGUI.CancelRide")); //$NON-NLS-1$ //$NON-NLS-2$
+		cancelRide.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				BidaiaKantzelatuGUI bK = new BidaiaKantzelatuGUI(driver);
+				bK.setVisible(true);
+			}
+		});
 		ridesMenu.add(cancelRide);
 		
 		contentPane = new JPanel();

@@ -109,4 +109,6 @@ public interface BLFacade  {
 	@WebMethod public void erreserbaEzeztatu(Erreserba e, Traveler t);
 	
 	@WebMethod public List<Erreserba> erreserbakLortu(Traveler t);
+	
+	@WebMethod public void kantzelatuBidaia(Ride r, Driver d);
 }

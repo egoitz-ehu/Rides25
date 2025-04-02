@@ -21,9 +21,18 @@ public class Erreserba {
 	
 	@Enumerated(EnumType.STRING)
 	private ErreserbaEgoera egoera;
+	private Date kantzelatuData;
 	
+	public Date getKantzelatuData() {
+		return kantzelatuData;
+	}
+
+	public void setKantzelatuData(Date kantzelatuData) {
+		this.kantzelatuData = kantzelatuData;
+	}
+
 	private Date erreserbaData;
-	@OneToOne(fetch=FetchType.EAGER)
+	@OneToOne(fetch=FetchType.EAGER, cascade=CascadeType.MERGE)
 	private Traveler bidaiaria;
 	@OneToOne(fetch=FetchType.EAGER, cascade=CascadeType.MERGE)
 	private Ride ride;

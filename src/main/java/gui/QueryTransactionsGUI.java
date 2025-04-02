@@ -128,7 +128,11 @@ public class QueryTransactionsGUI extends JFrame {
 				case ERRESERBA_SORTU:
 					row.add(ResourceBundle.getBundle("Etiquetas").getString("QueryTransactionGUI.Sortu"));
 					break;
-				case BIDAIA_KANTZELATU:
+				case BIDAIA_KANTZELATU_GIDARI:
+					row.add(ResourceBundle.getBundle("Etiquetas").getString("QueryTransactionGUI.KantzelatuGidari"));
+					break;
+				case BIDAIA_KANTZELATU_BIDAIARI:
+					row.add(ResourceBundle.getBundle("Etiquetas").getString("QueryTransactionGUI.KantzelatuBidaiari"));
 					break;
 				case ERRESERBA_ONARTU_GIDARI:
 					row.add(ResourceBundle.getBundle("Etiquetas").getString("QueryTransactionGUI.OnartuGidari"));

@@ -15938,6 +15938,40 @@
 											"height": 13,
 											"text": "+Role10: Bidaiaria",
 											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLAttributeView",
+											"_id": "AAAAAAGV9r3u6kGwwQw=",
+											"_parent": {
+												"$ref": "AAAAAAGVlA9WY7H6bj8="
+											},
+											"model": {
+												"$ref": "AAAAAAGV9rfaRUDbUH8="
+											},
+											"font": "Arial;13;0",
+											"left": -315,
+											"top": 99,
+											"width": 132.6025390625,
+											"height": 13,
+											"text": "+Role11: Bidaiaria",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLAttributeView",
+											"_id": "AAAAAAGV9r3u6kGzprs=",
+											"_parent": {
+												"$ref": "AAAAAAGVlA9WY7H6bj8="
+											},
+											"model": {
+												"$ref": "AAAAAAGV9ryXM0E/zu8="
+											},
+											"font": "Arial;13;0",
+											"left": -315,
+											"top": 114,
+											"width": 132.6025390625,
+											"height": 13,
+											"text": "+Role12: Mugimendua",
+											"horizontalAlignment": 0
 										}
 									],
 									"visible": false,
@@ -15945,7 +15979,7 @@
 									"left": -320,
 									"top": -56,
 									"width": 142.6025390625,
-									"height": 158
+									"height": 188
 								},
 								{
 									"_type": "UMLOperationCompartmentView",
@@ -26943,6 +26977,15 @@
 									},
 									"name": "ride",
 									"type": ""
+								},
+								{
+									"_type": "UMLParameter",
+									"_id": "AAAAAAGV9uILu0MDKds=",
+									"_parent": {
+										"$ref": "AAAAAAGVuXqP7HZozP4="
+									},
+									"name": "driver",
+									"type": ""
 								}
 							]
 						},
@@ -27517,6 +27560,15 @@
 										"$ref": "AAAAAAGVuXtyr3aGWzQ="
 									},
 									"name": "ride",
+									"type": ""
+								},
+								{
+									"_type": "UMLParameter",
+									"_id": "AAAAAAGV9uJe20MIskE=",
+									"_parent": {
+										"$ref": "AAAAAAGVuXtyr3aGWzQ="
+									},
+									"name": "driver",
 									"type": ""
 								}
 							]
@@ -65032,7 +65084,7 @@
 														"$ref": "AAAAAAGVuXp8NXZT5vA="
 													},
 													"edgePosition": 1,
-													"text": "8 : kantzelatuBidaia(ri)"
+													"text": "8 : kantzelatuBidaia(ri,g)"
 												},
 												{
 													"_type": "EdgeLabelView",
@@ -65143,7 +65195,7 @@
 														"$ref": "AAAAAAGVuXtbO3ZxjPE="
 													},
 													"edgePosition": 1,
-													"text": "9 : kantzelatuBidaia(ri)"
+													"text": "9 : kantzelatuBidaia(ri,g)"
 												},
 												{
 													"_type": "EdgeLabelView",
@@ -67122,7 +67174,7 @@
 									"signature": {
 										"$ref": "AAAAAAGVuXqP7HZozP4="
 									},
-									"arguments": "ri"
+									"arguments": "ri,g"
 								},
 								{
 									"_type": "UMLMessage",
@@ -67140,7 +67192,7 @@
 									"signature": {
 										"$ref": "AAAAAAGVuXtyr3aGWzQ="
 									},
-									"arguments": "ri"
+									"arguments": "ri,g"
 								},
 								{
 									"_type": "UMLMessage",
