@@ -243,5 +243,15 @@ public class BLFacadeImplementation  implements BLFacade {
 		System.out.println("Bidaia kantzelatu da.");
 	}
 
+	@WebMethod
+	public List<Ride> getRidesDriver(Driver d) {
+		dbManager.open();
+		List<Ride> rideList = dbManager.getRidesDriver(d);
+		dbManager.close();
+		return rideList;
+	}
+	
+	
+
 }
 

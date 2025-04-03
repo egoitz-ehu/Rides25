@@ -111,4 +111,6 @@ public interface BLFacade  {
 	@WebMethod public List<Erreserba> erreserbakLortu(Traveler t);
 	
 	@WebMethod public void kantzelatuBidaia(Ride r, Driver d);
+	
+	@WebMethod public List<Ride> getRidesDriver(Driver d);
 }

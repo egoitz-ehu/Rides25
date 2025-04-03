@@ -343,6 +343,12 @@ public class DataAccess  {
 		db.getTransaction().commit();
 	}
 	
+	public List<Ride> getRidesDriver(Driver d){
+		TypedQuery<Ride> query = db.createQuery("SELECT r FROM Ride r WHERE driver=?1",Ride.class);
+		query.setParameter(1, d);
+		return query.getResultList();
+	}
+	
 	/**
 	 * This method returns all the cities where rides depart 
 	 * @return collection of cities
