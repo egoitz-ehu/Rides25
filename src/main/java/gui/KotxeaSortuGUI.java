@@ -29,6 +29,7 @@ public class KotxeaSortuGUI extends JFrame {
 	private JTextField fieldMota;
 	private JButton btnSortu;
 	private JButton btnItxi;
+	private JLabel lblNewLabel;
 
 	/**
 	 * Launch the application.
@@ -57,9 +58,9 @@ public class KotxeaSortuGUI extends JFrame {
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 		gbl_contentPane.columnWidths = new int[]{0, 0, 0, 0, 0, 0};
-		gbl_contentPane.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_contentPane.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		gbl_contentPane.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
-		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 		
 		JLabel lblMatrikula = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("CreateCar.Matrikula"));
@@ -146,22 +147,34 @@ public class KotxeaSortuGUI extends JFrame {
 						String mota = fieldMota.getText();
 						if(!matrikula.equals("") && !kolorea.equals("") && !mota.equals("")) {
 							WelcomeGUI.getBusinessLogic().sortuKotxea(matrikula,eserKop,kolorea,mota,d);
+							lblNewLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("CreateCar.Create"));
 						} else {
 							System.out.println("Eremu guztiak bete behar dira");
+							lblNewLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("CreateCar.Empty"));
 						}
 					} else {
 						System.out.println("Zenbaki oso positibo osoa izan behar du");
+						lblNewLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("CreateCar.DataError"));
 					}
 				} catch(NumberFormatException e1) {
 					System.out.println("Eserleku kopurua zenbakia osoa izan behar da.");
+					lblNewLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("CreateCar.DataError"));
 				}
 			}
 		});
+		
+		lblNewLabel = new JLabel(""); //$NON-NLS-1$ //$NON-NLS-2$
+		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
+		gbc_lblNewLabel.gridwidth = 5;
+		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel.gridx = 0;
+		gbc_lblNewLabel.gridy = 8;
+		contentPane.add(lblNewLabel, gbc_lblNewLabel);
 		GridBagConstraints gbc_btnSortu = new GridBagConstraints();
 		gbc_btnSortu.weighty = 1.0;
 		gbc_btnSortu.insets = new Insets(0, 0, 0, 5);
 		gbc_btnSortu.gridx = 2;
-		gbc_btnSortu.gridy = 8;
+		gbc_btnSortu.gridy = 9;
 		contentPane.add(btnSortu, gbc_btnSortu);
 		
 		btnItxi = new JButton(ResourceBundle.getBundle("Etiquetas").getString("CreateCar.Itxi"));
@@ -172,7 +185,7 @@ public class KotxeaSortuGUI extends JFrame {
 		});
 		GridBagConstraints gbc_btnItxi = new GridBagConstraints();
 		gbc_btnItxi.gridx = 4;
-		gbc_btnItxi.gridy = 8;
+		gbc_btnItxi.gridy = 9;
 		contentPane.add(btnItxi, gbc_btnItxi);
 	}
 
