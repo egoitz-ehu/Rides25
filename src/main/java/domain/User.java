@@ -1,5 +1,6 @@
 package domain;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Vector;
 
@@ -8,9 +9,16 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToMany;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlSeeAlso;
 
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlSeeAlso({Traveler.class,Driver.class})
 @MappedSuperclass
-public abstract class User {
+public abstract class User implements Serializable{
+	@XmlID
 	@Id
 	private String email;
 	private String password;
@@ -28,6 +36,10 @@ public abstract class User {
 		this.surname = surname;
 		this.cash = 0;
 		this.setFrozenMoney(0);
+	}
+	
+	public User() {
+		super();
 	}
 	
 	public String getName() {

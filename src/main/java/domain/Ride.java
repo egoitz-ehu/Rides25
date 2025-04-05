@@ -2,6 +2,7 @@ package domain;
 
 import java.io.*;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Vector;
 
@@ -41,7 +42,7 @@ public class Ride implements Serializable {
 
 	private float price;
 	
-	@OneToOne(fetch=FetchType.EAGER, cascade = CascadeType.MERGE)
+	@OneToOne(fetch=FetchType.EAGER)
 	private Driver driver;
 	
 	@OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)

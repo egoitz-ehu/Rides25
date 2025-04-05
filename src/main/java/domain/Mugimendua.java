@@ -1,5 +1,6 @@
 package domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -9,16 +10,25 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlIDREF;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+@XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-public class Mugimendua {
+public class Mugimendua implements Serializable{
+	@XmlID
 	@Id
+	@XmlJavaTypeAdapter(IntegerAdapter.class)
 	@GeneratedValue
-	private int id;
+	private Integer id;
 	private Date data;
 	private double kopurua;
 	@Enumerated(EnumType.STRING)
 	private MugimenduMota type;
+	@XmlIDREF
 	@OneToOne
 	private User user;
 	
@@ -27,6 +37,10 @@ public class Mugimendua {
 		this.type=type;
 		this.user=u;
 		this.data= new Date();
+	}
+	
+	public Mugimendua() {
+		super();
 	}
 
 	public int getId() {

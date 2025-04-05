@@ -1,5 +1,6 @@
 package domain;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Vector;
 
@@ -9,17 +10,26 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlIDREF;
 
+@XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-public class Car {
+public class Car implements Serializable{
+	@XmlID
 	@Id
 	private String matrikula;
 	private int eserKop;
 	private String kolorea;
 	private String modeloa;
 	
+	@XmlIDREF
+	@OneToOne(fetch=FetchType.EAGER)
 	private Driver jabea;
 	
+	@XmlIDREF
 	@OneToMany(fetch=FetchType.EAGER)
 	private List<Ride> rideList=new Vector<Ride>();
 	
@@ -30,6 +40,10 @@ public class Car {
 		this.modeloa=modeloa;
 		this.jabea=jabea;
 
+	}
+	
+	public Car() {
+		super();
 	}
 	
 	public void gehituBidaia(Ride r) {
@@ -79,9 +93,5 @@ public class Car {
 
 	public void setJabea(Driver jabea) {
 		this.jabea = jabea;
-	}
-	
-	public void addRide(Ride r) {
-		this.rideList.add(r);
 	}
 }

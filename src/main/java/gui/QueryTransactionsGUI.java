@@ -110,7 +110,7 @@ public class QueryTransactionsGUI extends JFrame {
 		table.setModel(tableModelMugimenduak);
 		table.setDefaultRenderer(Object.class, new RowColorRenderer());
 		
-		List<Mugimendua> mugimenduList = u.getMugimenduak();
+		List<Mugimendua> mugimenduList = WelcomeGUI.getBusinessLogic().getUserMovements(u.getEmail());
 		System.out.println(mugimenduList);
 		if(!mugimenduList.isEmpty()) {
 			for (Mugimendua m:mugimenduList){

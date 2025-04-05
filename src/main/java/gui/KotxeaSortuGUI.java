@@ -146,8 +146,12 @@ public class KotxeaSortuGUI extends JFrame {
 						String kolorea = fieldKolorea.getText();
 						String mota = fieldMota.getText();
 						if(!matrikula.equals("") && !kolorea.equals("") && !mota.equals("")) {
-							WelcomeGUI.getBusinessLogic().sortuKotxea(matrikula,eserKop,kolorea,mota,d);
-							lblNewLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("CreateCar.Create"));
+							boolean b = WelcomeGUI.getBusinessLogic().sortuKotxea(matrikula,eserKop,kolorea,mota,d);
+							if(b) {
+								lblNewLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("CreateCar.Create"));
+							} else {
+								lblNewLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("CreateCar.Error"));
+							}
 						} else {
 							System.out.println("Eremu guztiak bete behar dira");
 							lblNewLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("CreateCar.Empty"));

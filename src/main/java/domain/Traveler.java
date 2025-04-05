@@ -25,6 +25,10 @@ public class Traveler extends User implements Serializable{
 	public Traveler (String email, String pass, String name, String surname) {
 		super(email, pass, name, surname);
 	}
+	
+	public Traveler() {
+		super();
+	}
 
 	public List<Erreserba> getBookedRides() {
 		return bookedRides;

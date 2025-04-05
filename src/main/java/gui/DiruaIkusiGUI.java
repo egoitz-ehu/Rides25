@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import businessLogic.BLFacade;
 import domain.User;
 
 import java.awt.GridBagLayout;
@@ -48,14 +49,16 @@ public class DiruaIkusiGUI extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("DiruaIkusi.Title"));
+		
+		BLFacade businessLogic = WelcomeGUI.getBusinessLogic();
 
 		setContentPane(contentPane);
 		contentPane.setLayout(new GridLayout(0, 1, 0, 0));
 		
-		JLabel lblNewLabel = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("DiruaIkusiGUI.RealMoney")+u.getCash()+"€");
+		JLabel lblNewLabel = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("DiruaIkusiGUI.RealMoney")+businessLogic.getUserMoney(u.getEmail())+"€");
 		contentPane.add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("DiruaIkusiGUI.FrozenMoney")+u.getFrozenMoney()+"€");
+		JLabel lblNewLabel_1 = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("DiruaIkusiGUI.FrozenMoney")+businessLogic.getUserFrozenMoney(u.getEmail())+"€");
 		contentPane.add(lblNewLabel_1);
 		
 		JButton btnNewButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Close"));

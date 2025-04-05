@@ -5,11 +5,14 @@ import java.util.List;
 
 //import domain.Booking;
 import domain.Ride;
+import domain.RideErreserbaContainer;
 import domain.Traveler;
+import domain.TravelerErreserbaConatainer;
 import domain.User;
 import domain.Car;
 import domain.Driver;
 import domain.Erreserba;
+import domain.Mugimendua;
 import exceptions.RideMustBeLaterThanTodayException;
 import exceptions.DiruaEzDaukaException;
 import exceptions.ErreserbaAlreadyExistsException;
@@ -86,9 +89,9 @@ public interface BLFacade  {
 	
 	@WebMethod public User login(String email, String password);
 
-	@WebMethod public boolean diruaAtera(User u, double kop);
+	@WebMethod public boolean diruaAtera(String u, double kop);
 	
-	@WebMethod public boolean diruaSartu(User t, double kop);
+	@WebMethod public boolean diruaSartu(String t, double kop);
 	
 	@WebMethod public boolean sortuErreserba(Traveler t, int rNumber, int kop) throws EserlekurikLibreEzException, ErreserbaAlreadyExistsException, DiruaEzDaukaException;
 	
@@ -104,13 +107,25 @@ public interface BLFacade  {
 	
 	@WebMethod public boolean sortuKotxea(String matrikula,int eserKop,String kolorea, String mota, Driver d);
 	
-	@WebMethod public void erreserbaBaieztatu(Erreserba e);
+	@WebMethod public void erreserbaBaieztatu(RideErreserbaContainer e);
 	
-	@WebMethod public void erreserbaEzeztatu(Erreserba e, Traveler t);
+	@WebMethod public void erreserbaEzeztatu(RideErreserbaContainer e, Traveler t);
 	
 	@WebMethod public List<Erreserba> erreserbakLortu(Traveler t);
 	
-	@WebMethod public void kantzelatuBidaia(Ride r, Driver d);
+	@WebMethod public void kantzelatuBidaia(Ride r, String d);
 	
 	@WebMethod public List<Ride> getRidesDriver(Driver d);
+	
+	@WebMethod public List<Car> getDriverCars(String dEmail);
+	
+	@WebMethod public double getUserMoney(String email);
+	
+	@WebMethod public double getUserFrozenMoney(String email);
+	
+	@WebMethod public List<Mugimendua> getUserMovements(String email);
+	
+	@WebMethod public List<TravelerErreserbaConatainer> getErreserbaTravelerContainers(Ride r);
+	
+	@WebMethod public List<RideErreserbaContainer> getRideErreserbaContainers(Traveler t);
 }

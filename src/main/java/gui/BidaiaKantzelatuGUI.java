@@ -134,7 +134,7 @@ public class BidaiaKantzelatuGUI extends JFrame {
 		buttonKantzelatu = new JButton(ResourceBundle.getBundle("Etiquetas").getString("BidaiaKantzelatuGUI.Kantzelatu"));
 		buttonKantzelatu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				WelcomeGUI.getBusinessLogic().kantzelatuBidaia(selectedRide, d);
+				WelcomeGUI.getBusinessLogic().kantzelatuBidaia(selectedRide, d.getEmail());
 				lblNewLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("BidaiaKantzelatuGUI.EzeztatuDa"));
 				tableModel.getDataVector().removeAllElements();
 				buttonKantzelatu.setEnabled(false);

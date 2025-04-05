@@ -75,7 +75,7 @@ public class CreateRideGUI extends JFrame {
 		jTextFieldSeats.setBounds(new Rectangle(139, 119, 60, 20));
 		jTextFieldSeats.setModel(carModel);
 		
-		carModel.addAll(driver.getCars());
+		carModel.addAll(WelcomeGUI.getBusinessLogic().getDriverCars(driver.getEmail()));
 		
 		jLabelPrice.setBounds(new Rectangle(6, 159, 173, 20));
 		jTextFieldPrice.setBounds(new Rectangle(139, 159, 60, 20));

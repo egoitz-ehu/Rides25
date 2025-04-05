@@ -12,6 +12,7 @@ import domain.Driver;
 import domain.Erreserba;
 import domain.ErreserbaEgoera;
 import domain.Ride;
+import domain.TravelerErreserbaConatainer;
 
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
@@ -204,13 +205,14 @@ public class ErreserbakGestionatuGUI extends JFrame {
 		//List<Erreserba> erreserbaList = WelcomeGUI.getBusinessLogic().lortuErreserbak(((Ride) ridesModel.getSelectedItem()).getRideNumber());
 		selectedRide =  (Ride) ridesModel.getSelectedItem();
 		if(selectedRide != null) {
-			List<Erreserba> erreserbaList =selectedRide.getErreserbak();
-			if(erreserbaList.isEmpty()) {
+			List<TravelerErreserbaConatainer> containerList =WelcomeGUI.getBusinessLogic().getErreserbaTravelerContainers(selectedRide);
+			if(containerList.isEmpty()) {
 				messageLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("ErreserbakGestionatuGUI.MezuaGabe"));
 			} else {
 				messageLabel.setText("");
-				for(Erreserba err:erreserbaList) {
+				for(TravelerErreserbaConatainer c:containerList) {
 					//modeloErreserba.addElement(err.toString());
+					Erreserba err = c.getErreserba();
 					if(err.getEgoera()==ErreserbaEgoera.ZAIN) {
 						Vector<Object> row = new Vector<Object>();
 						row.add(err.getEskaeraNum());
@@ -227,7 +229,7 @@ public class ErreserbakGestionatuGUI extends JFrame {
 							egoera = ResourceBundle.getBundle("Etiquetas").getString("ErreserbakGestionatuGUI.ONARTUA");
 						}
 						row.add(egoera);
-						row.add(err.getBidaiaria().getEmail());
+						row.add(c.getTraveler().getEmail());
 						tableModel.addRow(row);	
 					}
 				}

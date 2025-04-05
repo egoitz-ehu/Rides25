@@ -1,5 +1,6 @@
 package domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -12,11 +13,19 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlIDREF;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+@XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-public class Erreserba {
+public class Erreserba implements Serializable{
+	@XmlID
 	@Id
+	@XmlJavaTypeAdapter(IntegerAdapter.class)
 	@GeneratedValue
-	private int eskaeraNum;
+	private Integer eskaeraNum;
 	private int plazaKop;
 	
 	@Enumerated(EnumType.STRING)
@@ -32,8 +41,10 @@ public class Erreserba {
 	}
 
 	private Date erreserbaData;
+	@XmlIDREF
 	@OneToOne(fetch=FetchType.EAGER, cascade=CascadeType.MERGE)
 	private Traveler bidaiaria;
+	@XmlIDREF
 	@OneToOne(fetch=FetchType.EAGER, cascade=CascadeType.MERGE)
 	private Ride ride;
 	
@@ -96,6 +107,10 @@ public class Erreserba {
 		this.ride=ride;
 		this.erreserbaData= new Date();
 		this.egoera=ErreserbaEgoera.ZAIN;
+	}
+	
+	public Erreserba() {
+		super();
 	}
 	
 	public boolean containsRide(Ride r) {

@@ -30,6 +30,10 @@ public class Driver extends User implements Serializable{
 		super(email, pass, name, surname);
 	}
 	
+	public Driver() {
+		super();
+	}
+	
 	public List<Ride> getRides() {
 		return rides;
 	}

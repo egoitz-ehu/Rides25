@@ -1,5 +1,6 @@
 package dataAccess;
 
+import java.awt.Container;
 import java.io.File;
 import java.net.NoRouteToHostException;
 import java.text.ParseException;
@@ -7,10 +8,10 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -26,7 +27,9 @@ import domain.MugimenduMota;
 import domain.Mugimendua;
 import domain.Ride;
 import domain.RideEgoera;
+import domain.RideErreserbaContainer;
 import domain.Traveler;
+import domain.TravelerErreserbaConatainer;
 import domain.User;
 import exceptions.DiruaEzDaukaException;
 import exceptions.ErreserbaAlreadyExistsException;
@@ -159,25 +162,26 @@ public class DataAccess  {
 		else return l.get(0);
 	}
 	
-	public boolean diruaAtera(User u, double diruKop) {
+	public boolean diruaAtera(String email, double diruKop) {
 		db.getTransaction().begin();
+		User u = db.find(User.class, email);
 		boolean b = u.diruaAtera(diruKop);
 		if(b) {
 			u.addMugimendua(diruKop,MugimenduMota.DIRU_IRTEERA);
-			db.merge(u);
+			//db.merge(u);
 			db.getTransaction().commit();
 		}
 		return b;
 	}
 	
-	public boolean diruaSartu(User t, double kop) {
+	public boolean diruaSartu(String email, double kop) {
 
 			db.getTransaction().begin();
-			//User u = db.find(User.class, t.getEmail());
-			boolean b =t.diruaSartu(kop);
+			User u = db.find(User.class, email);
+			boolean b =u.diruaSartu(kop);
 			if(b) {
-				t.addMugimendua(kop,MugimenduMota.DIRU_SARRERA);
-				db.merge(t);
+				u.addMugimendua(kop,MugimenduMota.DIRU_SARRERA);
+				//db.merge(t);
 				db.getTransaction().commit();
 			}
 		return b;
@@ -289,11 +293,12 @@ public class DataAccess  {
 		return erreserbak;
 	}
 	
-	public void erreserbaBaieztatu(Erreserba e) {
+	public void erreserbaBaieztatu(RideErreserbaContainer c) {
 		db.getTransaction().begin();
+		Erreserba e = c.getErreserba(); 
 		e.setEgoera(ErreserbaEgoera.BAIEZTATUA);
-		double prezioa = e.prezioaKalkulatu();
-		Ride r = e.getRide();
+		Ride r = c.getRide();
+		double prezioa = e.getPlazaKop()*r.getPrice();
 		Driver d = r.getDriver();
 		d.removeFrozenMoney(prezioa);
 		d.diruaSartu(prezioa);
@@ -302,11 +307,12 @@ public class DataAccess  {
 		db.getTransaction().commit();;
 	}
 	
-	public void erreserbaEzeztatu(Erreserba e, Traveler t) {
+	public void erreserbaEzeztatu(RideErreserbaContainer c, Traveler t) {
 		db.getTransaction().begin();
+		Erreserba e = c.getErreserba();
+		Ride r = c.getRide();
 		e.setEgoera(ErreserbaEgoera.EZEZTATUA);
-		double prezioa = e.prezioaKalkulatu();
-		Ride r = e.getRide();
+		double prezioa = e.getPlazaKop()*r.getPrice();
 		Driver d = r.getDriver();
 		d.removeFrozenMoney(prezioa);
 		d.addMugimendua(prezioa, MugimenduMota.ERRESERBA_EZEZTATU_GIDARI);
@@ -317,11 +323,13 @@ public class DataAccess  {
 		db.getTransaction().commit();
 	}
 	
-	public void kantzelatuBidaia(Ride r, Driver d) {
+	public void kantzelatuBidaia(Ride r, String dMail) {
 		db.getTransaction().begin();
 		List<Erreserba> erreserbaList = r.getErreserbak();
 		r.setEgoera(RideEgoera.KANTZELATUTA);
-		for(Erreserba e:erreserbaList) {
+		Driver  d = db.find(Driver.class, dMail);
+		for(Erreserba err:erreserbaList) {
+			Erreserba e = db.find(Erreserba.class, err.getEskaeraNum());
 			ErreserbaEgoera egoera = e.getEgoera();
 			e.setEgoera(ErreserbaEgoera.KANTZELATUA);
 			e.setKantzelatuData(new Date());
@@ -339,13 +347,61 @@ public class DataAccess  {
 			}
 		}
 		db.merge(r);
-		db.merge(d);
+		db.persist(d);
 		db.getTransaction().commit();
+	}
+	
+	public List<RideErreserbaContainer> getRideErreserbaContainers(Traveler t) {
+		List<RideErreserbaContainer> containerList = new LinkedList<RideErreserbaContainer>();
+		TypedQuery<Erreserba> query = db.createQuery("SELECT e FROM Erreserba e WHERE bidaiaria=?1", Erreserba.class);
+		query.setParameter(1, t);
+		List<Erreserba> erreserbaList = query.getResultList();
+		for(Erreserba e: erreserbaList) {
+			containerList.add(new RideErreserbaContainer(e.getRide(),e));
+		}
+		return containerList;
+	}
+	
+	public List<TravelerErreserbaConatainer> getErresebraTravelerContainers(Ride r){
+		List<TravelerErreserbaConatainer> containerList = new LinkedList<TravelerErreserbaConatainer>();
+		TypedQuery<Erreserba> query = db.createQuery("SELECT e FROM Erreserba e WHERE ride=?1",Erreserba.class);
+		query.setParameter(1, r);
+		List<Erreserba> erreserbaList = query.getResultList();
+		for(Erreserba e:erreserbaList) {
+			containerList.add(new TravelerErreserbaConatainer(e,e.getBidaiaria()));
+		}
+		return containerList;
+	}
+	
+	public List<Car> getDriverCars(String dMail){
+		TypedQuery<Car> query = db.createQuery("SELECT c FROM Car c WHERE jabea.email=?1",Car.class);
+		query.setParameter(1, dMail);
+		return query.getResultList();
 	}
 	
 	public List<Ride> getRidesDriver(Driver d){
 		TypedQuery<Ride> query = db.createQuery("SELECT r FROM Ride r WHERE driver=?1",Ride.class);
 		query.setParameter(1, d);
+		return query.getResultList();
+	}
+	
+	public double getUserMoney(String email) {
+		TypedQuery<Double> query = db.createQuery("SELECT u.cash FROM User u WHERE email=?1", Double.class);
+		query.setParameter(1, email);
+		List<Double> res = query.getResultList();
+		return res.get(0);
+	}
+	
+	public double getUserFrozenMoney(String email) {
+		TypedQuery<Double> query = db.createQuery("SELECT u.frozenMoney FROM User u WHERE email=?1", Double.class);
+		query.setParameter(1, email);
+		List<Double> res = query.getResultList();
+		return res.get(0);
+	}
+	
+	public List<Mugimendua> getUserMovements(String email) {
+		TypedQuery<Mugimendua> query = db.createQuery("SELECT m FROM Mugimendua m WHERE user.email=?1", Mugimendua.class);
+		query.setParameter(1, email);
 		return query.getResultList();
 	}
 	
@@ -403,7 +459,7 @@ public class DataAccess  {
 
 			//next instruction can be obviated
 			//db.persist(driver);
-			ci.addRide(ride);
+			ci.gehituBidaia(ride);
 			db.persist(ci);
 			db.getTransaction().commit();
 

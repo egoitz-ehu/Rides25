@@ -9,11 +9,14 @@ import javax.jws.WebService;
 import configuration.ConfigXML;
 import dataAccess.DataAccess;
 import domain.Ride;
+import domain.RideErreserbaContainer;
 import domain.Traveler;
+import domain.TravelerErreserbaConatainer;
 import domain.User;
 import domain.Car;
 import domain.Driver;
 import domain.Erreserba;
+import domain.Mugimendua;
 import exceptions.RideMustBeLaterThanTodayException;
 import exceptions.DiruaEzDaukaException;
 import exceptions.ErreserbaAlreadyExistsException;
@@ -143,7 +146,7 @@ public class BLFacadeImplementation  implements BLFacade {
 	}
 
 	@WebMethod
-	public boolean diruaAtera(User u, double kop) {
+	public boolean diruaAtera(String u, double kop) {
 		boolean b;
 		dbManager.open();
 		b=dbManager.diruaAtera(u, kop);
@@ -152,7 +155,7 @@ public class BLFacadeImplementation  implements BLFacade {
 	}
 
 	@WebMethod
-	public boolean diruaSartu(User t, double kop) {
+	public boolean diruaSartu(String t, double kop) {
 		dbManager.open();
 		boolean b = dbManager.diruaSartu(t, kop);
 		dbManager.close();
@@ -214,7 +217,7 @@ public class BLFacadeImplementation  implements BLFacade {
 	}
 
 	@WebMethod
-	public void erreserbaBaieztatu(Erreserba e) {
+	public void erreserbaBaieztatu(RideErreserbaContainer e) {
 		dbManager.open();
 		dbManager.erreserbaBaieztatu(e);
 		dbManager.close();
@@ -229,14 +232,14 @@ public class BLFacadeImplementation  implements BLFacade {
 	}
 
 	@WebMethod
-	public void erreserbaEzeztatu(Erreserba e, Traveler t) {
+	public void erreserbaEzeztatu(RideErreserbaContainer e, Traveler t) {
 		dbManager.open();
 		dbManager.erreserbaEzeztatu(e,t);
 		dbManager.close();
 	}
 
 	@WebMethod
-	public void kantzelatuBidaia(Ride r, Driver d) {
+	public void kantzelatuBidaia(Ride r, String d) {
 		dbManager.open();
 		dbManager.kantzelatuBidaia(r, d);
 		dbManager.close();
@@ -249,6 +252,54 @@ public class BLFacadeImplementation  implements BLFacade {
 		List<Ride> rideList = dbManager.getRidesDriver(d);
 		dbManager.close();
 		return rideList;
+	}
+
+	@WebMethod
+	public List<Car> getDriverCars(String dEmail) {
+		dbManager.open();
+		List<Car> carList = dbManager.getDriverCars(dEmail);
+		dbManager.close();
+		return carList;
+	}
+
+	@WebMethod
+	public double getUserMoney(String email) {
+		dbManager.open();
+		double kop = dbManager.getUserMoney(email);
+		dbManager.close();
+		return kop;
+	}
+
+	@WebMethod
+	public double getUserFrozenMoney(String email) {
+		dbManager.open();
+		double kop = dbManager.getUserFrozenMoney(email);
+		dbManager.close();
+		return kop;
+	}
+
+	@WebMethod
+	public List<Mugimendua> getUserMovements(String email) {
+		dbManager.open();
+		List<Mugimendua> list = dbManager.getUserMovements(email);
+		dbManager.close();
+		return list;
+	}
+
+	@WebMethod
+	public List<TravelerErreserbaConatainer> getErreserbaTravelerContainers(Ride r) {
+		dbManager.open();
+		List<TravelerErreserbaConatainer> list = dbManager.getErresebraTravelerContainers(r);
+		dbManager.close();
+		return list;
+	}
+
+	@WebMethod
+	public List<RideErreserbaContainer> getRideErreserbaContainers(Traveler t) {
+		dbManager.open();
+		List<RideErreserbaContainer> list = dbManager.getRideErreserbaContainers(t);
+		dbManager.close();
+		return list;
 	}
 	
 	

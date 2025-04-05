@@ -31,6 +31,7 @@ import domain.Driver;
 import domain.Erreserba;
 import domain.ErreserbaEgoera;
 import domain.Ride;
+import domain.RideErreserbaContainer;
 import domain.Traveler;
 
 public class ErreserbakKontsultatuGUI extends JFrame {
@@ -42,7 +43,7 @@ private JPanel contentPane;
 	private JButton onartuButton;
 	private JButton ukatuButton;
 	
-	private Erreserba selectedErreserba;
+	private RideErreserbaContainer selectedErreserba;
 	
 	private JLabel messageLabel;
 	private JLabel lblMessage;
@@ -97,16 +98,16 @@ private JPanel contentPane;
 			public void mouseClicked(MouseEvent e) {
 				int selectedRow = table.getSelectedRow();
 				if(selectedRow != -1) {
-					selectedErreserba = (Erreserba) tableModel.getValueAt(selectedRow, 3);
-					System.out.println("Selected a new erreserba:"+selectedErreserba);
-					if(selectedErreserba!=null && selectedErreserba.getEgoera().equals(ErreserbaEgoera.ONARTUA)) {
+					selectedErreserba = (RideErreserbaContainer) tableModel.getValueAt(selectedRow, 3);
+					//System.out.println("Selected a new erreserba:"+selectedErreserba);
+					if(selectedErreserba!=null && selectedErreserba.getErreserba().getEgoera().equals(ErreserbaEgoera.ONARTUA)) {
 						onartuButton.setEnabled(true);
 						ukatuButton.setEnabled(true);
 						lblMessage.setText("");
 					} else {
-						if(selectedErreserba.getEgoera().equals(ErreserbaEgoera.ZAIN)) {
+						if(selectedErreserba.getErreserba().getEgoera().equals(ErreserbaEgoera.ZAIN)) {
 							lblMessage.setText(ResourceBundle.getBundle("Etiquetas").getString("ErreserbakKontsultatuGUI.MessageZain"));
-						} else if(selectedErreserba.getEgoera().equals(ErreserbaEgoera.BAIEZTATUA)) {
+						} else if(selectedErreserba.getErreserba().getEgoera().equals(ErreserbaEgoera.BAIEZTATUA)) {
 							lblMessage.setText(ResourceBundle.getBundle("Etiquetas").getString("ErreserbakKontsultatuGUI.MessageBaieztatua"));
 						}
 						onartuButton.setEnabled(false);
@@ -142,6 +143,7 @@ private JPanel contentPane;
 				onartuButton.setEnabled(false);
 				ukatuButton.setEnabled(false);
 				selectedErreserba=null;
+				ezarriErreserbak(t);
 			}
 		});
 		
@@ -166,6 +168,7 @@ private JPanel contentPane;
 				onartuButton.setEnabled(false);
 				ukatuButton.setEnabled(false);
 				selectedErreserba=null;
+				ezarriErreserbak(t);
 			}
 		});
 		GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
@@ -189,15 +192,16 @@ private JPanel contentPane;
 		String egoera = "";
 		tableModel.getDataVector().removeAllElements();
 			//List<Erreserba> erreserbaList = t.getBookedRides();
-			List<Erreserba> erreserbaList = WelcomeGUI.getBusinessLogic().erreserbakLortu(t);
-			System.out.println(erreserbaList);
+			List<RideErreserbaContainer> erreserbaList = WelcomeGUI.getBusinessLogic().getRideErreserbaContainers(t);
+			//System.out.println(erreserbaList);
 			if(erreserbaList.isEmpty()) {
 				messageLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("ErreserbakGestionatuGUI.MezuaGabe"));
 			} else {
 				messageLabel.setText("");
-				for(Erreserba err:erreserbaList) {
+				for(RideErreserbaContainer c:erreserbaList) {
 					//modeloErreserba.addElement(err.toString());
 					Vector<Object> row = new Vector<Object>();
+					Erreserba err = c.getErreserba();
 					row.add(err.getEskaeraNum());
 					switch(err.getEgoera()) {
 					case ZAIN:
@@ -213,12 +217,13 @@ private JPanel contentPane;
 						break;
 					case EZEZTATUA:
 						egoera = ResourceBundle.getBundle("Etiquetas").getString("ErreserbakGestionatuGUI.Ezeztatua");
+						break;
 					default:
 						break;
 					}
 					row.add(egoera);
 					row.add(err.getErreserbaData());
-					row.add(err);
+					row.add(c);
 					tableModel.addRow(row);	
 					}
 				}

@@ -77,7 +77,7 @@ public class DiruaSartuGUI extends JFrame {
 					double kop = Double.parseDouble(textField.getText());
 					if(kop<0) throw new NumberFormatException();
 					BLFacade facade = WelcomeGUI.getBusinessLogic();
-					boolean b = facade.diruaSartu((User) t, kop);
+					boolean b = facade.diruaSartu(t.getEmail(), kop);
 					if(b)labelError.setText(kop+ResourceBundle.getBundle("Etiquetas").getString("DiruaSartuGUI.ondo"));
 					else labelError.setText(kop+ResourceBundle.getBundle("Etiquetas").getString("DiruaSartuGUI.error"));
 				} catch(NumberFormatException e1) {
