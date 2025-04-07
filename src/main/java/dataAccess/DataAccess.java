@@ -506,12 +506,13 @@ public class DataAccess  {
 		Date lastDayMonthDate= UtilDate.lastDayMonth(date);
 				
 		
-		TypedQuery<Date> query = db.createQuery("SELECT DISTINCT r.date FROM Ride r WHERE r.from=?1 AND r.to=?2 AND r.date BETWEEN ?3 and ?4",Date.class);   
+		TypedQuery<Date> query = db.createQuery("SELECT DISTINCT r.date FROM Ride r WHERE r.from=?1 AND r.to=?2 AND r.egoera=?3 AND r.date BETWEEN ?4 and ?5",Date.class);   
 		
 		query.setParameter(1, from);
 		query.setParameter(2, to);
-		query.setParameter(3, firstDayMonthDate);
-		query.setParameter(4, lastDayMonthDate);
+		query.setParameter(3, RideEgoera.MARTXAN);
+		query.setParameter(4, firstDayMonthDate);
+		query.setParameter(5, lastDayMonthDate);
 		List<Date> dates = query.getResultList();
 	 	 for (Date d:dates){
 		   res.add(d);

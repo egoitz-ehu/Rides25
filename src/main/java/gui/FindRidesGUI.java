@@ -5,6 +5,8 @@ import configuration.UtilDate;
 
 import com.toedter.calendar.JCalendar;
 import domain.Ride;
+import domain.RideEgoera;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -180,12 +182,14 @@ public class FindRidesGUI extends JFrame {
 						if (rides.isEmpty() ) jLabelEvents.setText(ResourceBundle.getBundle("Etiquetas").getString("FindRidesGUI.NoRides")+ ": "+dateformat1.format(calendarAct.getTime()));
 						else jLabelEvents.setText(ResourceBundle.getBundle("Etiquetas").getString("FindRidesGUI.Rides")+ ": "+dateformat1.format(calendarAct.getTime()));
 						for (domain.Ride ride:rides){
-							Vector<Object> row = new Vector<Object>();
-							row.add(ride.getDriver().getName());
-							row.add(ride.getnPlaces());
-							row.add(ride.getPrice());
-							row.add(ride); // ev object added in order to obtain it with tableModelEvents.getValueAt(i,3)
-							tableModelRides.addRow(row);		
+							if(ride.getEgoera().equals(RideEgoera.MARTXAN)) {
+								Vector<Object> row = new Vector<Object>();
+								row.add(ride.getDriver().getName());
+								row.add(ride.getnPlaces());
+								row.add(ride.getPrice());
+								row.add(ride); // ev object added in order to obtain it with tableModelEvents.getValueAt(i,3)
+								tableModelRides.addRow(row);		
+							}
 						}
 						datesWithRidesCurrentMonth=facade.getThisMonthDatesWithRides((String)jComboBoxOrigin.getSelectedItem(),(String)jComboBoxDestination.getSelectedItem(),jCalendar1.getDate());
 						paintDaysWithEvents(jCalendar1,datesWithRidesCurrentMonth,Color.CYAN);
