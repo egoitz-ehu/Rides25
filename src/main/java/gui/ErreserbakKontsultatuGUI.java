@@ -218,6 +218,8 @@ private JPanel contentPane;
 					case EZEZTATUA:
 						egoera = ResourceBundle.getBundle("Etiquetas").getString("ErreserbakGestionatuGUI.Ezeztatua");
 						break;
+					case KANTZELATUA:
+						egoera = ResourceBundle.getBundle("Etiquetas").getString("ErreserbakGestionatuGUI.Kantzelatua");
 					default:
 						break;
 					}
