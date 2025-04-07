@@ -213,26 +213,19 @@ public class ErreserbakGestionatuGUI extends JFrame {
 				for(TravelerErreserbaConatainer c:containerList) {
 					//modeloErreserba.addElement(err.toString());
 					Erreserba err = c.getErreserba();
-					if(err.getEgoera()==ErreserbaEgoera.ZAIN) {
+					if(err.getEgoera().equals(ErreserbaEgoera.ZAIN)) {
 						Vector<Object> row = new Vector<Object>();
+						System.out.println("Bidaiari:"+c.getTraveler());
 						row.add(err.getEskaeraNum());
 						row.add(err.getPlazaKop());
 						row.add(err.getErreserbaData());
-						switch(err.getEgoera()) {
-						case ZAIN:
-							egoera = ResourceBundle.getBundle("Etiquetas").getString("ErreserbakGestionatuGUI.ZAIN");
-							break;
-						case UKATUA:
-							egoera = ResourceBundle.getBundle("Etiquetas").getString("ErreserbakGestionatuGUI.UKATUA");
-							break;
-						case ONARTUA:
-							egoera = ResourceBundle.getBundle("Etiquetas").getString("ErreserbakGestionatuGUI.ONARTUA");
-						}
+						egoera = ResourceBundle.getBundle("Etiquetas").getString("ErreserbakGestionatuGUI.ZAIN");
 						row.add(egoera);
 						row.add(c.getTraveler().getEmail());
 						tableModel.addRow(row);	
+						}
+					
 					}
-				}
 			}
 		}
 	}

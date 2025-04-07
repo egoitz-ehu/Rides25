@@ -45,7 +45,7 @@ public class Ride implements Serializable {
 	@OneToOne(fetch=FetchType.EAGER)
 	private Driver driver;
 	
-	@OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(fetch=FetchType.EAGER)
 	private List<Erreserba> erreserbak=new Vector<Erreserba>();
 	
 	@Enumerated(EnumType.STRING)

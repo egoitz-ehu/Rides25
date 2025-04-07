@@ -191,7 +191,6 @@ public class DataAccess  {
 		if(kop>0) {
 			db.getTransaction().begin();
 			Ride r = db.find(Ride.class, rNumber);
-			//Traveler t = db.find(Traveler.class, tEmail);
 			double kostua = r.prezioaKalkulatu(kop);
 			Traveler tr = db.find(Traveler.class, t.getEmail());
 			if(!tr.existBook(r)) {
@@ -201,8 +200,8 @@ public class DataAccess  {
 						Erreserba erreserbaBerria = tr.sortuErreserba(r, kop);
 						r.gehituErreserba(erreserbaBerria);
 						tr.addMugimendua(kostua,MugimenduMota.ERRESERBA_SORTU);
-						db.persist(erreserbaBerria);
-						//db.persist(r);
+						//db.persist(erreserbaBerria);
+						db.persist(r);
 						//db.persist(erreserbaBerria);
 						//db.merge(t);
 						db.getTransaction().commit();
@@ -258,19 +257,15 @@ public class DataAccess  {
 	public void erreserbaUkatu(int erreserbaNum, Ride r) {
 		db.getTransaction().begin();
 		Erreserba e = db.find(Erreserba.class, erreserbaNum);
-		Traveler t = db.find(Traveler.class, e.getBidaiariaEmail());
-		//Ride r = e.getRide();
+		Traveler t = e.getBidaiaria();
 		double kop = e.prezioaKalkulatu();
 		int eserKop = e.getPlazaKop();
 		e.setEgoera(ErreserbaEgoera.UKATUA);
 		t.removeFrozenMoney(kop);
 		t.diruaSartu(kop);
-		t.ezabatuErreserba(e);
 		r.itzuliEserlekuak(eserKop);
 		t.addMugimendua(kop, MugimenduMota.ERRESERBA_UKATU);
-		//db.persist(e);
 		db.merge(r);
-		db.merge(t);
 		db.getTransaction().commit();
 	}
 	
