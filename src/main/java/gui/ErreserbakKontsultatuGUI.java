@@ -212,6 +212,7 @@ private JPanel contentPane;
 						break;
 					case ONARTUA:
 						egoera = ResourceBundle.getBundle("Etiquetas").getString("ErreserbakGestionatuGUI.ONARTUA");
+						break;
 					case BAIEZTATUA:
 						egoera = ResourceBundle.getBundle("Etiquetas").getString("ErreserbakGestionatuGUI.Baieztatua");
 						break;

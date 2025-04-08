@@ -290,7 +290,7 @@ public class DataAccess  {
 	
 	public void erreserbaBaieztatu(RideErreserbaContainer c) {
 		db.getTransaction().begin();
-		Erreserba e = c.getErreserba(); 
+		Erreserba e = db.find(Erreserba.class, c.getErreserba().getEskaeraNum()); // Bestela arazoa eguneratzean web zerbitzu bat denean
 		e.setEgoera(ErreserbaEgoera.BAIEZTATUA);
 		Ride r = c.getRide();
 		double prezioa = e.getPlazaKop()*r.getPrice();
@@ -299,6 +299,7 @@ public class DataAccess  {
 		d.diruaSartu(prezioa);
 		d.addMugimendua(prezioa, MugimenduMota.ERRESERBA_BAIEZTATU);
 		db.merge(e);
+		db.merge(r);
 		db.getTransaction().commit();;
 	}
 	
