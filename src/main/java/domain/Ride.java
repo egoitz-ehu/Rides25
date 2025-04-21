@@ -51,6 +51,9 @@ public class Ride implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private RideEgoera egoera;
 	
+	@OneToMany(fetch=FetchType.EAGER)
+	private List<Geldialdia> rideList=new Vector<Geldialdia>();
+	
 	
 	public RideEgoera getEgoera() {
 		return egoera;
@@ -261,5 +264,9 @@ public class Ride implements Serializable {
 	
 	public double prezioaKalkulatu(int eserKop) {
 		return this.price*eserKop;
+	}
+	
+	public void addGeldialdia(int pos, City hiria) {
+		Geldialdia g = new Geldialdia(pos, hiria, this);
 	}
 }
