@@ -8,13 +8,15 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.XmlIDREF;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 public class Geldialdia {
 	@XmlID
+	@XmlJavaTypeAdapter(IntegerAdapter.class)
 	@Id
-	private int pos;
+	private Integer pos;
 	
 	@XmlIDREF
 	@OneToOne(fetch=FetchType.EAGER)

@@ -1,0 +1,178 @@
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-04-21 18:53:19 #1 store] 
+Database 'C:\Users\egoit\git\Rides25\src\main\resources\rides.temp' has been recovered (tr. 20-20)
+
+[2025-04-21 18:53:19 #2 store] 
+Database 'C:\Users\egoit\git\Rides25\src\main\resources\rides.temp' is opened by 15964@LAPTOP-2PN1U6VU
+
+[2025-04-21 18:53:19 #3 type] 
+Type domain.User is not enhanced.
+
+[2025-04-21 18:53:19 #4 type] 
+Type domain.Driver is not enhanced.
+
+[2025-04-21 18:53:19 #5 type] 
+Type domain.Mugimendua is not enhanced.
+
+[2025-04-21 18:53:19 #6 type] 
+Type domain.Car is not enhanced.
+
+[2025-04-21 18:53:19 #7 type] 
+Type domain.Ride is not enhanced.
+
+[2025-04-21 18:53:19 #8 type.registry] 
+New type domain.Geldialdia
+
+[2025-04-21 18:53:19 #9 type] 
+Type domain.Erreserba is not enhanced.
+
+[2025-04-21 18:53:19 #10 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-04-21 18:53:19 #11 type] 
+Type domain.Geldialdia is not enhanced.
+
+[2025-04-21 18:53:19 #12 type.registry] 
+New type domain.City
+
+[2025-04-21 18:53:19 #13 type] 
+Type domain.City is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-04-21 18:53:28 #1 store] 
+Database 'C:\Users\egoit\git\Rides25\src\main\resources\rides.temp' has been recovered (tr. 21-21)
+
+[2025-04-21 18:53:28 #2 store] 
+Database 'C:\Users\egoit\git\Rides25\src\main\resources\rides.temp' is opened by 16232@LAPTOP-2PN1U6VU
+
+[2025-04-21 18:53:28 #3 type] 
+Type domain.User is not enhanced.
+
+[2025-04-21 18:53:28 #4 type] 
+Type domain.Driver is not enhanced.
+
+[2025-04-21 18:53:28 #5 type] 
+Type domain.Mugimendua is not enhanced.
+
+[2025-04-21 18:53:28 #6 type] 
+Type domain.Car is not enhanced.
+
+[2025-04-21 18:53:28 #7 type] 
+Type domain.Ride is not enhanced.
+
+[2025-04-21 18:53:28 #8 type] 
+Type domain.Erreserba is not enhanced.
+
+[2025-04-21 18:53:28 #9 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-04-21 18:53:28 #10 type] 
+Type domain.Geldialdia is not enhanced.
+
+[2025-04-21 18:53:28 #11 type] 
+Type domain.City is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-04-21 18:55:12 #1 store] 
+Database 'C:\Users\egoit\git\Rides25\src\main\resources\rides.temp' is opened by 2756@LAPTOP-2PN1U6VU
+
+[2025-04-21 18:55:12 #2 type] 
+Type domain.User is not enhanced.
+
+[2025-04-21 18:55:12 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-04-21 18:55:12 #4 type] 
+Type domain.Mugimendua is not enhanced.
+
+[2025-04-21 18:55:12 #5 type] 
+Type domain.Car is not enhanced.
+
+[2025-04-21 18:55:12 #6 type] 
+Type domain.Ride is not enhanced.
+
+[2025-04-21 18:55:12 #7 type] 
+Type domain.Erreserba is not enhanced.
+
+[2025-04-21 18:55:12 #8 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-04-21 18:55:12 #9 type] 
+Type domain.Geldialdia is not enhanced.
+
+[2025-04-21 18:55:12 #10 type] 
+Type domain.City is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-04-21 18:55:41 #1 store] 
+Database 'C:\Users\egoit\git\Rides25\src\main\resources\rides.temp' is opened by 18356@LAPTOP-2PN1U6VU
+
+[2025-04-21 18:55:41 #2 type] 
+Type domain.User is not enhanced.
+
+[2025-04-21 18:55:41 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-04-21 18:55:41 #4 type] 
+Type domain.Mugimendua is not enhanced.
+
+[2025-04-21 18:55:41 #5 type] 
+Type domain.Car is not enhanced.
+
+[2025-04-21 18:55:41 #6 type] 
+Type domain.Ride is not enhanced.
+
+[2025-04-21 18:55:41 #7 type] 
+Type domain.Erreserba is not enhanced.
+
+[2025-04-21 18:55:41 #8 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-04-21 18:55:41 #9 type] 
+Type domain.Geldialdia is not enhanced.
+
+[2025-04-21 18:55:41 #10 type] 
+Type domain.City is not enhanced.
+
+[2025-04-21 18:55:52 #11 type.registry] 
+New type java.util.Vector<domain.Geldialdia>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-04-21 19:13:17 #1 store] 
+Database 'C:\Users\egoit\git\Rides25\src\main\resources\rides.temp' has been recovered (tr. 22-23)
+
+[2025-04-21 19:13:17 #2 store] 
+Database 'C:\Users\egoit\git\Rides25\src\main\resources\rides.temp' is opened by 20612@LAPTOP-2PN1U6VU
+
+[2025-04-21 19:13:17 #3 type] 
+Type domain.User is not enhanced.
+
+[2025-04-21 19:13:17 #4 type] 
+Type domain.Driver is not enhanced.
+
+[2025-04-21 19:13:17 #5 type] 
+Type domain.Mugimendua is not enhanced.
+
+[2025-04-21 19:13:17 #6 type] 
+Type domain.Car is not enhanced.
+
+[2025-04-21 19:13:17 #7 type] 
+Type domain.Ride is not enhanced.
+
+[2025-04-21 19:13:17 #8 type] 
+Type domain.Erreserba is not enhanced.
+
+[2025-04-21 19:13:17 #9 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-04-21 19:13:17 #10 type] 
+Type domain.Geldialdia is not enhanced.
+
+[2025-04-21 19:13:17 #11 type] 
+Type domain.City is not enhanced.
+
