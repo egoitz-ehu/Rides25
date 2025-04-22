@@ -1,5 +1,7 @@
 package gui;
 
+import java.awt.datatransfer.StringSelection;
+import java.awt.datatransfer.Transferable;
 import java.text.DateFormat;
 import java.util.*;
 import java.util.List;
@@ -197,6 +199,11 @@ public class CreateRideGUI extends JFrame {
 		tableModel = new DefaultTableModel(null, columnNamesRides);
 		scrollPane.setViewportView(table);
 		table.setModel(tableModel);
+
+		table.setDragEnabled(true);
+		table.setDropMode(DropMode.INSERT_ROWS);
+		table.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		table.setTransferHandler(new TableRowTransferHandler(table));
 		
 		JButton btnNewButton = new JButton("Add"); //$NON-NLS-1$ //$NON-NLS-2$
 		btnNewButton.addActionListener(new ActionListener() {
@@ -278,5 +285,59 @@ public class CreateRideGUI extends JFrame {
 			return null;
 
 		}
+	}
+
+	class TableRowTransferHandler extends TransferHandler {
+		private final JTable table;
+		private int[] rows = null;
+
+		public TableRowTransferHandler(JTable table) {
+			this.table=table;
+		}
+
+		@Override
+		protected Transferable createTransferable(JComponent c) {
+			rows = table.getSelectedRows();
+			return new StringSelection("");
+		}
+
+		@Override
+		public int getSourceActions(JComponent c) {
+			return MOVE;
+		}
+		@Override
+		public boolean canImport(TransferHandler.TransferSupport support) {
+			return support.isDrop();
+		}
+
+		@Override
+		public boolean importData(TransferHandler.TransferSupport support) {
+			if(!canImport(support)) return false;
+			JTable.DropLocation d1 = (JTable.DropLocation) support.getDropLocation();
+			int dropRow = d1.getRow();
+			if(rows==null || rows.length==0) return false;
+			DefaultTableModel  model = (DefaultTableModel) table.getModel();
+			List<Object[]> rowData = new ArrayList<>();
+			for(int row:rows) {
+				int colCount = model.getColumnCount();
+				Object[] rowValues = new Object[colCount];
+				for(int col = 0; col<colCount; col++) {
+					rowValues[col]=model.getValueAt(row,col);
+				}
+				rowData.add(rowValues);
+			}
+			for(int i = rows.length-1;i>=0;i--) {
+				model.removeRow(rows[i]);
+				if(rows[i]<dropRow) dropRow--;
+			}
+			for(Object[] row:rowData) {
+				model.insertRow(dropRow++,row);
+			}
+			for(int i = 0; i < model.getRowCount(); i++) {
+				model.setValueAt(i+1,i,0);
+			}
+			return true;
+		}
+
 	}
 }
