@@ -45,16 +45,9 @@ public class Driver extends User implements Serializable{
 	public String toString(){
 		return super.toString()+";"+rides;
 	}
-	
-	/**
-	 * This method creates a bet with a question, minimum bet ammount and percentual profit
-	 * 
-	 * @param question to be added to the event
-	 * @param betMinimum of that question
-	 * @return Bet
-	 */
-	public Ride addRide(String from, String to, Date date, int nPlaces, float price, Car c)  {
-        Ride ride=new Ride(from,to,date,nPlaces,price, this,c);
+
+	public Ride addRide(List<City> hiriList, Date date, int nPlaces, float price, Car c)  {
+        Ride ride=new Ride(hiriList,date,nPlaces,price, this,c);
         rides.add(ride);
         return ride;
 	}
@@ -67,15 +60,15 @@ public class Driver extends User implements Serializable{
 	 * @param date the date of the ride 
 	 * @return true if the ride exists and false in other case
 	 */
-	public boolean doesRideExists(String from, String to, Date date)  {	
-		for (Ride r:rides)
-			if ( (java.util.Objects.equals(r.getFrom(),from)) && (java.util.Objects.equals(r.getTo(),to)) && (java.util.Objects.equals(r.getDate(),date)) )
-			 return true;
+	//public boolean doesRideExists(String from, String to, Date date)  {	
+		//for (Ride r:rides)
+			//if ( (java.util.Objects.equals(r.getFrom(),from)) && (java.util.Objects.equals(r.getTo(),to)) && (java.util.Objects.equals(r.getDate(),date)) )
+			 //return true;
 		
-		return false;
-	}
+		//return false;
+	//}
 
-	public Ride removeRide(String from, String to, Date date) {
+	/*public Ride removeRide(String from, String to, Date date) {
 		boolean found=false;
 		int index=0;
 		Ride r=null;
@@ -89,7 +82,7 @@ public class Driver extends User implements Serializable{
 			rides.remove(index);
 			return r;
 		} else return null;
-	}
+	}*/
 	
 	public Car addCar(String matrikula, int eserKop, String kolorea, String modeloa) {
 		Car c = new Car(matrikula,eserKop,kolorea,modeloa,this);

@@ -19,18 +19,7 @@ import javax.persistence.TypedQuery;
 
 import configuration.ConfigXML;
 import configuration.UtilDate;
-import domain.Car;
-import domain.Driver;
-import domain.Erreserba;
-import domain.ErreserbaEgoera;
-import domain.MugimenduMota;
-import domain.Mugimendua;
-import domain.Ride;
-import domain.RideEgoera;
-import domain.RideErreserbaContainer;
-import domain.Traveler;
-import domain.TravelerErreserbaConatainer;
-import domain.User;
+import domain.*;
 import exceptions.DiruaEzDaukaException;
 import exceptions.ErreserbaAlreadyExistsException;
 import exceptions.EserlekurikLibreEzException;
@@ -98,11 +87,11 @@ public class DataAccess  {
 			Car c1 = driver1.addCar("123", 4, "Green", "Seat");
 			
 			//Create rides
-			driver1.addRide("Donostia", "Bilbo", UtilDate.newDate(year,month,15), 4, 7,c1);
-			driver1.addRide("Donostia", "Gazteiz", UtilDate.newDate(year,month,6), 4, 8,c1);
-			driver1.addRide("Bilbo", "Donostia", UtilDate.newDate(year,month,25), 4, 4,c1);
+			//driver1.addRide("Donostia", "Bilbo", UtilDate.newDate(year,month,15), 4, 7,c1);
+			//driver1.addRide("Donostia", "Gazteiz", UtilDate.newDate(year,month,6), 4, 8,c1);
+			//driver1.addRide("Bilbo", "Donostia", UtilDate.newDate(year,month,25), 4, 4,c1);
 
-			driver1.addRide("Donostia", "Iruña", UtilDate.newDate(year,month,7), 4, 8,c1);
+			//driver1.addRide("Donostia", "Iruña", UtilDate.newDate(year,month,7), 4, 8,c1);
 			
 			//driver2.addRide("Donostia", "Bilbo", UtilDate.newDate(year,month,15), 3, 3);
 			//driver2.addRide("Bilbo", "Donostia", UtilDate.newDate(year,month,25), 2, 5);
@@ -424,21 +413,9 @@ public class DataAccess  {
 		return arrivingCities;
 		
 	}
-	/**
-	 * This method creates a ride for a driver
-	 * 
-	 * @param from the origin location of a ride
-	 * @param to the destination location of a ride
-	 * @param date the date of the ride 
-	 * @param nPlaces available seats
-	 * @param driverEmail to which ride is added
-	 * 
-	 * @return the created ride, or null, or an exception
-	 * @throws RideMustBeLaterThanTodayException if the ride date is before today 
- 	 * @throws RideAlreadyExistException if the same ride already exists for the driver
-	 */
-	public Ride createRide(String from, String to, Date date, Car c, float price, String driverEmail) throws  RideAlreadyExistException, RideMustBeLaterThanTodayException {
-		System.out.println(">> DataAccess: createRide=> from= "+from+" to= "+to+" driver="+driverEmail+" date "+date);
+
+	public Ride createRide(List<String> hiriakLista,Date date, Car c, float price, String driverEmail) throws  RideAlreadyExistException, RideMustBeLaterThanTodayException {
+		//System.out.println(">> DataAccess: createRide=> from= "+from+" to= "+to+" driver="+driverEmail+" date "+date);
 		try {
 			if(new Date().compareTo(date)>0) {
 				throw new RideMustBeLaterThanTodayException(ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.ErrorRideMustBeLaterThanToday"));
@@ -447,11 +424,19 @@ public class DataAccess  {
 			
 			Driver driver = db.find(Driver.class, driverEmail);
 			Car ci = db.find(Car.class, c.getMatrikula());
-			if (driver.doesRideExists(from, to, date)) {
-				db.getTransaction().commit();
-				throw new RideAlreadyExistException(ResourceBundle.getBundle("Etiquetas").getString("DataAccess.RideAlreadyExist"));
+
+			List<City> cityList = new LinkedList<City>();
+			for(String hiria:hiriakLista) {
+				City city = db.find(City.class, hiria);
+				if(city == null) city = new City(hiria);
+				cityList.add(city);
 			}
-			Ride ride = driver.addRide(from, to, date,ci.getEserKop(), price,ci);
+
+			//if (driver.doesRideExists(from, to, date)) {
+			//	db.getTransaction().commit();
+			//	throw new RideAlreadyExistException(ResourceBundle.getBundle("Etiquetas").getString("DataAccess.RideAlreadyExist"));
+			//}
+			Ride ride = driver.addRide(cityList, date,ci.getEserKop(), price,ci);
 
 			//next instruction can be obviated
 			//db.persist(driver);
@@ -507,7 +492,9 @@ public class DataAccess  {
 		Date lastDayMonthDate= UtilDate.lastDayMonth(date);
 				
 		
-		TypedQuery<Date> query = db.createQuery("SELECT DISTINCT r.date FROM Ride r WHERE r.from=?1 AND r.to=?2 AND r.egoera=?3 AND r.date BETWEEN ?4 and ?5",Date.class);   
+		TypedQuery<Date> query = db.createQuery("SELECT DISTINCT r.date "
+				+ "FROM Ride r JOIN r.geldialdiList g1 JOIN r.geldialdiList g2 "
+				+ "WHERE g1.hiria.name=?1 AND g2.hiria.name=?2 AND g1.pos<=g2.pos AND r.egoera=?3 AND r.date BETWEEN ?4 and ?5",Date.class);   
 		
 		query.setParameter(1, from);
 		query.setParameter(2, to);

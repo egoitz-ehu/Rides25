@@ -105,7 +105,7 @@ public class TestDataAccess {
 				return null;
 	    }
 		
-		
+		/*
 		public boolean existRide(String email, String from, String to, Date date) {
 			System.out.println(">> TestDataAccess: existRide");
 			Driver d = db.find(Driver.class, email);
@@ -126,7 +126,7 @@ public class TestDataAccess {
 			} else 
 			return null;
 
-		}
+		}*/
 
 
 		

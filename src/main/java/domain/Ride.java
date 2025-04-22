@@ -23,8 +23,6 @@ public class Ride implements Serializable {
 	@XmlJavaTypeAdapter(IntegerAdapter.class)
 	@GeneratedValue
 	private Integer rideNumber;
-	private String from;
-	private String to;
 	private int nPlaces;
 	private int eserLibre;
 	private Date date;
@@ -51,8 +49,8 @@ public class Ride implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private RideEgoera egoera;
 	
-	@OneToMany(fetch=FetchType.EAGER)
-	private List<Geldialdia> rideList=new Vector<Geldialdia>();
+	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
+	private List<Geldialdia> geldialdiList=new Vector<Geldialdia>();
 	
 	
 	public RideEgoera getEgoera() {
@@ -74,7 +72,7 @@ public class Ride implements Serializable {
 	public Ride(){
 		super();
 	}
-	
+	/*
 	public Ride(Integer rideNumber, String from, String to, Date date, int nPlaces, float price, Driver driver) {
 		super();
 		this.rideNumber = rideNumber;
@@ -101,6 +99,20 @@ public class Ride implements Serializable {
 		this.eserLibre=nPlaces;
 		this.car=c;
 		this.egoera=RideEgoera.MARTXAN;
+	}*/
+
+	public Ride(List<City> hiriList, Date date, int nPlaces, float price, Driver driver, Car c) {
+		super();
+		this.nPlaces = nPlaces;
+		this.date=date;
+		this.price=price;
+		this.driver = driver;
+		this.eserLibre=nPlaces;
+		this.car=c;
+		this.egoera=RideEgoera.MARTXAN;
+		for(int i =0;i<hiriList.size();i++){
+			this.addGeldialdia(i,hiriList.get(i));
+		}
 	}
 	
 	/**
@@ -120,48 +132,6 @@ public class Ride implements Serializable {
 	
 	public void setRideNumber(Integer rideNumber) {
 		this.rideNumber = rideNumber;
-	}
-
-
-	/**
-	 * Get the origin  of the ride
-	 * 
-	 * @return the origin location
-	 */
-
-	public String getFrom() {
-		return from;
-	}
-
-
-	/**
-	 * Set the origin of the ride
-	 * 
-	 * @param origin to be set
-	 */	
-	
-	public void setFrom(String origin) {
-		this.from = origin;
-	}
-
-	/**
-	 * Get the destination  of the ride
-	 * 
-	 * @return the destination location
-	 */
-
-	public String getTo() {
-		return to;
-	}
-
-
-	/**
-	 * Set the origin of the ride
-	 * 
-	 * @param destination to be set
-	 */	
-	public void setTo(String destination) {
-		this.to = destination;
 	}
 
 	/**
@@ -230,9 +200,9 @@ public class Ride implements Serializable {
 
 
 
-	public String toString(){
-		return rideNumber+";"+";"+from+";"+to+";"+date;  
-	}
+	//public String toString(){
+		//return rideNumber+";"+";"+from+";"+to+";"+date;  
+	//}
 
 	public void gehituErreserba(Erreserba e) {
 		this.erreserbak.add(e);
@@ -268,5 +238,11 @@ public class Ride implements Serializable {
 	
 	public void addGeldialdia(int pos, City hiria) {
 		Geldialdia g = new Geldialdia(pos, hiria, this);
+		this.geldialdiList.add(g);
+		hiria.addGeldialdia(g);
+	}
+
+	public List<Geldialdia> getGeldialdiList(){
+		return this.geldialdiList;
 	}
 }

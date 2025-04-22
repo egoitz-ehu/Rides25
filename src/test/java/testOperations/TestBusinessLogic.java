@@ -49,7 +49,7 @@ public class TestBusinessLogic {
 			dbManagerTest.close();
 			return driver;
 
-		}
+		}/*
 		public boolean existRide(String email, String from, String to, Date date) {
 			dbManagerTest.open();
 			boolean b=dbManagerTest.existRide(email, from, to, date);
@@ -61,7 +61,7 @@ public class TestBusinessLogic {
 			Ride r=dbManagerTest.removeRide( email, from,  to,  date );
 			dbManagerTest.close();
 			return r;
-		}
+		}*/
 		
 
 

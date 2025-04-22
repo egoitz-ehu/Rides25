@@ -174,6 +174,7 @@ public class BidaiaKantzelatuGUI extends JFrame {
 	}
 	
 	private void taulaOsatu(Driver d) {
+		/*
 		List<Ride> rideList = WelcomeGUI.getBusinessLogic().getRidesDriver(d);
 		for(Ride r:rideList) {
 			Vector<Object> row = new Vector<Object>();
@@ -193,7 +194,7 @@ public class BidaiaKantzelatuGUI extends JFrame {
 			row.add(eg);
 			row.add(r); //Informazio gordetzeko zutabea
 			tableModel.addRow(row);
-		}
+		}*/
 	}
 	
 	private void itxi(ActionEvent e) {

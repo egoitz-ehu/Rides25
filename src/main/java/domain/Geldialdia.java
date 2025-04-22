@@ -1,5 +1,6 @@
 package domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
@@ -19,7 +20,7 @@ public class Geldialdia {
 	private Integer pos;
 	
 	@XmlIDREF
-	@OneToOne(fetch=FetchType.EAGER)
+	@OneToOne(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
 	private City hiria;
 	
 	@XmlIDREF
