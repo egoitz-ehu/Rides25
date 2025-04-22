@@ -301,8 +301,15 @@ public class BLFacadeImplementation  implements BLFacade {
 		dbManager.close();
 		return list;
 	}
-	
-	
+
+	@WebMethod
+	public List<String> getStopCitiesNames() {
+		dbManager.open();
+		List<String> hList = dbManager.getStopCitiesNames();
+		dbManager.close();
+		return hList;
+	}
+
 
 }
 

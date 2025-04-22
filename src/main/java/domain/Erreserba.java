@@ -45,7 +45,7 @@ public class Erreserba implements Serializable{
 	@OneToOne(fetch=FetchType.EAGER, cascade=CascadeType.MERGE)
 	private Traveler bidaiaria;
 	@XmlIDREF
-	@OneToOne(fetch=FetchType.EAGER, cascade=CascadeType.MERGE)
+	@OneToOne(fetch=FetchType.EAGER)
 	private Ride ride;
 	
 	

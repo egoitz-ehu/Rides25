@@ -1,10 +1,8 @@
 package domain;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import java.io.Serializable;
+
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlID;
@@ -13,10 +11,15 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-public class Geldialdia {
+public class Geldialdia implements Serializable{
+	
 	@XmlID
-	@XmlJavaTypeAdapter(IntegerAdapter.class)
 	@Id
+	@GeneratedValue
+	@XmlJavaTypeAdapter(IntegerAdapter.class)
+	private Integer id;
+
+	@XmlJavaTypeAdapter(IntegerAdapter.class)
 	private Integer pos;
 	
 	@XmlIDREF
@@ -26,14 +29,21 @@ public class Geldialdia {
 	@XmlIDREF
 	@OneToOne(fetch=FetchType.EAGER)
 	private Ride bidaia;
+
+	private Boolean helmugaDa;
 	
 	public Geldialdia() {
 		
 	}
 	
-	public Geldialdia(int pos, City hiria, Ride bidaia) {
+	public Geldialdia(int pos, City hiria, Ride bidaia, Boolean helmugaDa) {
 		this.pos=pos;
 		this.hiria=hiria;
 		this.bidaia=bidaia;
+		this.helmugaDa=helmugaDa;
+	}
+
+	public String getCityName(){
+		return this.hiria.getName();
 	}
 }

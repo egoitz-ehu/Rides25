@@ -128,4 +128,6 @@ public interface BLFacade  {
 	@WebMethod public List<TravelerErreserbaConatainer> getErreserbaTravelerContainers(Ride r);
 	
 	@WebMethod public List<RideErreserbaContainer> getRideErreserbaContainers(Traveler t);
+
+	@WebMethod public List<String> getStopCitiesNames();
 }

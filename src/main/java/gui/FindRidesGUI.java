@@ -78,7 +78,7 @@ public class FindRidesGUI extends JFrame {
 			}
 		});
 		BLFacade facade = WelcomeGUI.getBusinessLogic();
-		List<String> origins=facade.getDepartCities();
+		List<String> origins=facade.getStopCitiesNames();
 		
 		for(String location:origins) originLocations.addElement(location);
 		

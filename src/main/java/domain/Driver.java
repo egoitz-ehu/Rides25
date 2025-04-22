@@ -60,15 +60,15 @@ public class Driver extends User implements Serializable{
 	 * @param date the date of the ride 
 	 * @return true if the ride exists and false in other case
 	 */
-	//public boolean doesRideExists(String from, String to, Date date)  {	
-		//for (Ride r:rides)
-			//if ( (java.util.Objects.equals(r.getFrom(),from)) && (java.util.Objects.equals(r.getTo(),to)) && (java.util.Objects.equals(r.getDate(),date)) )
-			 //return true;
+	public boolean doesRideExists(List<String> hiriList, Date date)  {
+		for (Ride r:rides)
+			if (r.haveSameStops(hiriList) && (java.util.Objects.equals(r.getDate(),date)) )
+			 return true;
 		
-		//return false;
-	//}
-
-	/*public Ride removeRide(String from, String to, Date date) {
+		return false;
+	}
+	/*
+	public Ride removeRide(String from, String to, Date date) {
 		boolean found=false;
 		int index=0;
 		Ride r=null;

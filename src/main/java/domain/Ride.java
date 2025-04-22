@@ -40,7 +40,7 @@ public class Ride implements Serializable {
 
 	private float price;
 	
-	@OneToOne(fetch=FetchType.EAGER, cascade=CascadeType.MERGE)
+	@OneToOne(fetch=FetchType.EAGER)
 	private Driver driver;
 	
 	@OneToMany(fetch=FetchType.EAGER)
@@ -111,7 +111,7 @@ public class Ride implements Serializable {
 		this.car=c;
 		this.egoera=RideEgoera.MARTXAN;
 		for(int i =0;i<hiriList.size();i++){
-			this.addGeldialdia(i,hiriList.get(i));
+            this.addGeldialdia(i,hiriList.get(i), i == hiriList.size() - 1);
 		}
 	}
 	
@@ -132,6 +132,10 @@ public class Ride implements Serializable {
 	
 	public void setRideNumber(Integer rideNumber) {
 		this.rideNumber = rideNumber;
+	}
+
+	public void setGeldialdiList(List<Geldialdia> geldialdiList) {
+		this.geldialdiList = geldialdiList;
 	}
 
 	/**
@@ -197,12 +201,12 @@ public class Ride implements Serializable {
 	public void setPrice(float price) {
 		this.price = price;
 	}
+	
+	@Override
+	public String toString() {
+		return this.rideNumber+";"+this.date;
+	}
 
-
-
-	//public String toString(){
-		//return rideNumber+";"+";"+from+";"+to+";"+date;  
-	//}
 
 	public void gehituErreserba(Erreserba e) {
 		this.erreserbak.add(e);
@@ -236,13 +240,20 @@ public class Ride implements Serializable {
 		return this.price*eserKop;
 	}
 	
-	public void addGeldialdia(int pos, City hiria) {
-		Geldialdia g = new Geldialdia(pos, hiria, this);
+	public void addGeldialdia(int pos, City hiria, Boolean azkenaDa) {
+		Geldialdia g = new Geldialdia(pos, hiria, this, azkenaDa);
 		this.geldialdiList.add(g);
 		hiria.addGeldialdia(g);
 	}
 
 	public List<Geldialdia> getGeldialdiList(){
 		return this.geldialdiList;
+	}
+
+	public boolean haveSameStops(List<String> hiriList) {
+		for(Geldialdia g:geldialdiList){
+			if(!hiriList.contains(g.getCityName())) return false;
+ 		}
+		return true;
 	}
 }

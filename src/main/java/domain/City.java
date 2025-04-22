@@ -1,5 +1,6 @@
 package domain;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Vector;
 
@@ -14,7 +15,7 @@ import javax.xml.bind.annotation.XmlIDREF;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-public class City {
+public class City implements Serializable{
 	@XmlID
 	@Id
 	private String name;
@@ -32,5 +33,9 @@ public class City {
 	
 	public void addGeldialdia(Geldialdia g) {
 		this.geldialdiLista.add(g);
+	}
+
+	public String getName(){
+		return name;
 	}
 }

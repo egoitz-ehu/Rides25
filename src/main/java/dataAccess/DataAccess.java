@@ -240,7 +240,7 @@ public class DataAccess  {
 		//db.persist(e);
 		db.merge(d);
 		db.persist(t);
-		db.getTransaction().commit();
+		db.getTransaction().commit(); 
 	}
 	
 	public void erreserbaUkatu(int erreserbaNum, Ride r) {
@@ -289,6 +289,7 @@ public class DataAccess  {
 		d.addMugimendua(prezioa, MugimenduMota.ERRESERBA_BAIEZTATU);
 		db.merge(e);
 		db.merge(r);
+		db.merge(d);
 		db.getTransaction().commit();;
 	}
 	
@@ -305,6 +306,7 @@ public class DataAccess  {
 		t.addMugimendua(prezioa, MugimenduMota.ERRESERBA_EZEZTATU_BIDAIARI);
 		db.merge(e);
 		db.merge(t);
+		db.merge(d);
 		db.getTransaction().commit();
 	}
 	
@@ -389,6 +391,12 @@ public class DataAccess  {
 		query.setParameter(1, email);
 		return query.getResultList();
 	}
+
+	public List<String> getStopCitiesNames(){
+		TypedQuery<String> query = db.createQuery("SELECT DISTINCT g.hiria.name FROM Geldialdia g WHERE g.helmugaDa=?1",String.class);
+		query.setParameter(1, Boolean.FALSE);
+		return query.getResultList();
+	}
 	
 	/**
 	 * This method returns all the cities where rides depart 
@@ -407,7 +415,7 @@ public class DataAccess  {
 	 * @return all the arrival destinations
 	 */
 	public List<String> getArrivalCities(String from){
-		TypedQuery<String> query = db.createQuery("SELECT DISTINCT r.to FROM Ride r WHERE r.from=?1 ORDER BY r.to",String.class);
+		TypedQuery<String> query = db.createQuery("SELECT DISTINCT g.hiria.name FROM Geldialdia g,Geldialdia g2 WHERE g.bidaia=g2.bidaia AND g.pos>g2.pos AND g2.hiria.name=?1",String.class);
 		query.setParameter(1, from);
 		List<String> arrivingCities = query.getResultList(); 
 		return arrivingCities;
@@ -432,10 +440,10 @@ public class DataAccess  {
 				cityList.add(city);
 			}
 
-			//if (driver.doesRideExists(from, to, date)) {
-			//	db.getTransaction().commit();
-			//	throw new RideAlreadyExistException(ResourceBundle.getBundle("Etiquetas").getString("DataAccess.RideAlreadyExist"));
-			//}
+			if (driver.doesRideExists(hiriakLista, date)) {
+				db.getTransaction().commit();
+				throw new RideAlreadyExistException(ResourceBundle.getBundle("Etiquetas").getString("DataAccess.RideAlreadyExist"));
+			}
 			Ride ride = driver.addRide(cityList, date,ci.getEserKop(), price,ci);
 
 			//next instruction can be obviated
@@ -466,7 +474,7 @@ public class DataAccess  {
 		System.out.println(">> DataAccess: getRides=> from= "+from+" to= "+to+" date "+date);
 
 		List<Ride> res = new ArrayList<>();	
-		TypedQuery<Ride> query = db.createQuery("SELECT r FROM Ride r WHERE r.from=?1 AND r.to=?2 AND r.date=?3",Ride.class);   
+		TypedQuery<Ride> query = db.createQuery("SELECT r FROM Ride r JOIN r.geldialdiList g1 JOIN r.geldialdiList g2 WHERE g1.hiria.name=?1 AND g2.hiria.name=?2 AND g1.pos<g2.pos AND r.date=?3",Ride.class);   
 		query.setParameter(1, from);
 		query.setParameter(2, to);
 		query.setParameter(3, date);
