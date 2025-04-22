@@ -204,6 +204,62 @@ public class CreateRideGUI extends JFrame {
 		table.setDropMode(DropMode.INSERT_ROWS);
 		table.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		table.setTransferHandler(new TableRowTransferHandler(table));
+
+		JPopupMenu popupMenu = new JPopupMenu();
+		JMenuItem deleteItem = new JMenuItem("Delete");
+		JMenuItem upItem = new JMenuItem("Move up");
+		JMenuItem downItem = new JMenuItem("Move down");
+		popupMenu.add(deleteItem);
+		popupMenu.add(upItem);
+		popupMenu.add(downItem);
+
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(e.isPopupTrigger()) showPopup(e);
+			}
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				if(e.isPopupTrigger()) showPopup(e);
+			}
+
+			private void showPopup(MouseEvent e) {
+				int row = table.rowAtPoint(e.getPoint());
+				if(row>=0 && row<table.getRowCount()) {
+					table.setRowSelectionInterval(row,row);
+					popupMenu.show(e.getComponent(),e.getX(),e.getY());
+				}
+			}
+
+		});
+
+		deleteItem.addActionListener(e->{
+			int selectedRow = table.getSelectedRow();
+			if(selectedRow!=-1) {
+				tableModel.removeRow(selectedRow);
+				eguneratuPos(tableModel);
+			}
+		});
+
+		upItem.addActionListener(e->{
+			int selectedRow = table.getSelectedRow();
+			if(selectedRow>0){
+				Object city = table.getValueAt(selectedRow,1);
+				tableModel.removeRow(selectedRow);
+				tableModel.insertRow(selectedRow-1,new Object[]{null,city});
+				eguneratuPos(tableModel);
+			}
+		});
+
+		downItem.addActionListener(e->{
+			int selectedRow = table.getSelectedRow();
+			if(selectedRow>=0 && selectedRow<table.getRowCount()-1){
+				Object city = table.getValueAt(selectedRow,1);
+				tableModel.removeRow(selectedRow);
+				tableModel.insertRow(selectedRow+1,new Object[]{null,city});
+				eguneratuPos(tableModel);
+			}
+		});
 		
 		JButton btnNewButton = new JButton("Add"); //$NON-NLS-1$ //$NON-NLS-2$
 		btnNewButton.addActionListener(new ActionListener() {
@@ -333,11 +389,15 @@ public class CreateRideGUI extends JFrame {
 			for(Object[] row:rowData) {
 				model.insertRow(dropRow++,row);
 			}
-			for(int i = 0; i < model.getRowCount(); i++) {
-				model.setValueAt(i+1,i,0);
-			}
+			eguneratuPos(model);
 			return true;
 		}
 
+	}
+
+	private void eguneratuPos(DefaultTableModel model){
+		for(int i = 0; i < model.getRowCount(); i++) {
+			model.setValueAt(i+1,i,0);
+		}
 	}
 }

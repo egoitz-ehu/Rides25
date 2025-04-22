@@ -1,0 +1,32 @@
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-04-22 13:10:54 #1 store] 
+Database 'C:\Users\egoit\git\Rides25\src\main\resources\rides.temp' is opened by 19980@LAPTOP-2PN1U6VU
+
+[2025-04-22 13:10:54 #2 type] 
+Type domain.User is not enhanced.
+
+[2025-04-22 13:10:54 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-04-22 13:10:54 #4 type] 
+Type domain.Mugimendua is not enhanced.
+
+[2025-04-22 13:10:54 #5 type] 
+Type domain.Car is not enhanced.
+
+[2025-04-22 13:10:54 #6 type] 
+Type domain.Ride is not enhanced.
+
+[2025-04-22 13:10:54 #7 type] 
+Type domain.Erreserba is not enhanced.
+
+[2025-04-22 13:10:54 #8 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-04-22 13:10:54 #9 type] 
+Type domain.Geldialdia is not enhanced.
+
+[2025-04-22 13:10:54 #10 type] 
+Type domain.City is not enhanced.
+
