@@ -9,10 +9,8 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToMany;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlID;
-import javax.xml.bind.annotation.XmlSeeAlso;
+import javax.persistence.criteria.Fetch;
+import javax.xml.bind.annotation.*;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlSeeAlso({Traveler.class,Driver.class})
@@ -28,6 +26,14 @@ public abstract class User implements Serializable{
 	private double frozenMoney;
 	@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	private List<Mugimendua> mugimenduList = new Vector<Mugimendua>();
+
+	@XmlIDREF
+	@OneToMany(fetch=FetchType.EAGER)
+	private List<Balorazioa> jasotakoBalorazioak = new Vector<Balorazioa>();
+
+	@XmlIDREF
+	@OneToMany(fetch=FetchType.EAGER)
+	List<Balorazioa> jarritakoBalorazioak = new Vector<Balorazioa>();
 
 	public User(String email, String pass, String name, String surname) {
 		this.email = email;

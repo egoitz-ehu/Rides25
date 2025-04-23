@@ -2,6 +2,8 @@ package domain;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+import java.util.Vector;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -47,6 +49,10 @@ public class Erreserba implements Serializable{
 	@XmlIDREF
 	@OneToOne(fetch=FetchType.EAGER)
 	private Ride ride;
+
+	@XmlIDREF
+	@OneToMany
+	private List<Balorazioa> balorazioak = new Vector<Balorazioa>();
 	
 	
 	public ErreserbaEgoera getEgoera() {
