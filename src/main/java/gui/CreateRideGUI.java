@@ -7,6 +7,7 @@ import java.util.*;
 import java.util.List;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import com.toedter.calendar.JCalendar;
@@ -206,9 +207,9 @@ public class CreateRideGUI extends JFrame {
 		table.setTransferHandler(new TableRowTransferHandler(table));
 
 		JPopupMenu popupMenu = new JPopupMenu();
-		JMenuItem deleteItem = new JMenuItem("Delete");
-		JMenuItem upItem = new JMenuItem("Move up");
-		JMenuItem downItem = new JMenuItem("Move down");
+		JMenuItem deleteItem = new JMenuItem(ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.menuDelete"));
+		JMenuItem upItem = new JMenuItem(ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.menuUp"));
+		JMenuItem downItem = new JMenuItem(ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.menuDown"));
 		popupMenu.add(deleteItem);
 		popupMenu.add(upItem);
 		popupMenu.add(downItem);
@@ -260,8 +261,26 @@ public class CreateRideGUI extends JFrame {
 				eguneratuPos(tableModel);
 			}
 		});
+
+		table.setDefaultRenderer(Object.class, new DefaultTableCellRenderer(){
+			@Override
+			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+				Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+				int pos = (int) table.getValueAt(row,0);
+				if(pos==1){
+					c.setBackground(Color.GREEN);
+					if(column==0) setText(ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.First"));
+				}
+				else if (pos==lastPos) {
+					c.setBackground(Color.RED);
+					if(column==0) setText(ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.Last"));
+				}
+				else c.setBackground(Color.WHITE);
+				return c;
+			}
+		});
 		
-		JButton btnNewButton = new JButton("Add"); //$NON-NLS-1$ //$NON-NLS-2$
+		JButton btnNewButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.Add")); //$NON-NLS-1$ //$NON-NLS-2$
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(!fieldOrigin.getText().isEmpty() && !dagoenekoBadago(fieldOrigin.getText())) {
