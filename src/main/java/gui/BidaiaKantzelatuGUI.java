@@ -40,8 +40,6 @@ public class BidaiaKantzelatuGUI extends JFrame {
 	
 	private String[] columnNamesRides = new String[] {
 			ResourceBundle.getBundle("Etiquetas").getString("BidaiaKantzelatuGUI.Number"),
-			ResourceBundle.getBundle("Etiquetas").getString("BidaiaKantzelatuGUI.From"),
-			ResourceBundle.getBundle("Etiquetas").getString("BidaiaKantzelatuGUI.To"),
 			ResourceBundle.getBundle("Etiquetas").getString("BidaiaKantzelatuGUI.Date"),
 			ResourceBundle.getBundle("Etiquetas").getString("BidaiaKantzelatuGUI.State")
 	};
@@ -92,7 +90,7 @@ public class BidaiaKantzelatuGUI extends JFrame {
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
 				new Object[][] {
-					{null, null, null, null, null},
+					{null, null, null},
 				},columnNamesRides
 			));
 		
@@ -102,7 +100,7 @@ public class BidaiaKantzelatuGUI extends JFrame {
 				int selectedRow = table.getSelectedRow();
 				System.out.println("Selected row:"+selectedRow);
 				if (selectedRow != -1) {
-		            selectedRide = (Ride) tableModel.getValueAt(selectedRow, 5);
+		            selectedRide = (Ride) tableModel.getValueAt(selectedRow, 3);
 		            if(selectedRide.getEgoera().equals(RideEgoera.KANTZELATUTA)) {
 		            	lblNewLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("BidaiaKantzelatuGUI.Arazoa"));
 		            	buttonKantzelatu.setEnabled(false);
@@ -124,10 +122,10 @@ public class BidaiaKantzelatuGUI extends JFrame {
 		table.getColumnModel().getColumn(3).setPreferredWidth(90);
 		table.getColumnModel().getColumn(4).setPreferredWidth(40);
 		*/
-		tableModel.setColumnCount(6);
+		tableModel.setColumnCount(4);
 		table.setModel(tableModel);
 		
-		table.getColumnModel().removeColumn(table.getColumnModel().getColumn(5));
+		table.getColumnModel().removeColumn(table.getColumnModel().getColumn(3));
 		
 		scrollPane.setViewportView(table);
 		
@@ -174,14 +172,11 @@ public class BidaiaKantzelatuGUI extends JFrame {
 	}
 	
 	private void taulaOsatu(Driver d) {
-		/*
 		List<Ride> rideList = WelcomeGUI.getBusinessLogic().getRidesDriver(d);
 		for(Ride r:rideList) {
 			Vector<Object> row = new Vector<Object>();
 			String eg = null;
 			row.add(r.getRideNumber());
-			row.add(r.getFrom());
-			row.add(r.getTo());
 			row.add(r.getDate());
 			switch(r.getEgoera()){
 			case KANTZELATUTA:
@@ -194,7 +189,7 @@ public class BidaiaKantzelatuGUI extends JFrame {
 			row.add(eg);
 			row.add(r); //Informazio gordetzeko zutabea
 			tableModel.addRow(row);
-		}*/
+		}
 	}
 	
 	private void itxi(ActionEvent e) {

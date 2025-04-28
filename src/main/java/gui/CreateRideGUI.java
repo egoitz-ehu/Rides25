@@ -338,7 +338,7 @@ public class CreateRideGUI extends JFrame {
 	private String field_Errors() {
 		
 		try {
-			if ((fieldOrigin.getText().length()==0) || (selectedCar == null) || (jTextFieldPrice.getText().length()==0))
+			if ((fieldOrigin.getText().length()==0) || (jTextFieldPrice.getText().length()==0) || (tableModel.getRowCount()<2))
 				return ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.ErrorQuery");
 			else {
 
