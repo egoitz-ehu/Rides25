@@ -17,19 +17,28 @@ public class Balorazioa implements Serializable {
     @GeneratedValue
     @XmlJavaTypeAdapter(IntegerAdapter.class)
     private Integer id;
-
+    
     private int puntuazioa;
 
     private String mezua;
 
     private Date ezarritakoData;
 
-    @OneToOne(fetch=FetchType.EAGER)
+    @OneToOne(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
     private User nori;
 
     @OneToOne(fetch=FetchType.EAGER)
     private User nork;
 
-    @OneToOne
+    @OneToOne(cascade=CascadeType.PERSIST)
     private Erreserba erreserba;
+    
+    public Balorazioa(User nork, User nori, Erreserba er, int puntuazioa, String mezua) {
+    	this.nork=nork;
+    	this.nori=nori;
+    	this.erreserba=er;
+    	this.puntuazioa=puntuazioa;
+    	this.mezua=mezua;
+    	this.ezarritakoData=new Date();
+    }
 }

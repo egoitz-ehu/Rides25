@@ -12,7 +12,7 @@ import domain.Driver;
 import domain.Erreserba;
 import domain.ErreserbaEgoera;
 import domain.Ride;
-import domain.TravelerErreserbaConatainer;
+import domain.TravelerErreserbaContainer;
 
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
@@ -205,12 +205,12 @@ public class ErreserbakGestionatuGUI extends JFrame {
 		//List<Erreserba> erreserbaList = WelcomeGUI.getBusinessLogic().lortuErreserbak(((Ride) ridesModel.getSelectedItem()).getRideNumber());
 		selectedRide =  (Ride) ridesModel.getSelectedItem();
 		if(selectedRide != null) {
-			List<TravelerErreserbaConatainer> containerList =WelcomeGUI.getBusinessLogic().getErreserbaTravelerContainers(selectedRide);
+			List<TravelerErreserbaContainer> containerList =WelcomeGUI.getBusinessLogic().getErreserbaTravelerContainers(selectedRide);
 			if(containerList.isEmpty()) {
 				messageLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("ErreserbakGestionatuGUI.MezuaGabe"));
 			} else {
 				messageLabel.setText("");
-				for(TravelerErreserbaConatainer c:containerList) {
+				for(TravelerErreserbaContainer c:containerList) {
 					//modeloErreserba.addElement(err.toString());
 					Erreserba err = c.getErreserba();
 					if(err.getEgoera().equals(ErreserbaEgoera.ZAIN)) {

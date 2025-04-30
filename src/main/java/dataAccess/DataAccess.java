@@ -349,13 +349,13 @@ public class DataAccess  {
 		return containerList;
 	}
 	
-	public List<TravelerErreserbaConatainer> getErresebraTravelerContainers(Ride r){
-		List<TravelerErreserbaConatainer> containerList = new LinkedList<TravelerErreserbaConatainer>();
+	public List<TravelerErreserbaContainer> getErresebraTravelerContainers(Ride r){
+		List<TravelerErreserbaContainer> containerList = new LinkedList<TravelerErreserbaContainer>();
 		TypedQuery<Erreserba> query = db.createQuery("SELECT e FROM Erreserba e WHERE ride=?1",Erreserba.class);
 		query.setParameter(1, r);
 		List<Erreserba> erreserbaList = query.getResultList();
 		for(Erreserba e:erreserbaList) {
-			containerList.add(new TravelerErreserbaConatainer(e,e.getBidaiaria()));
+			containerList.add(new TravelerErreserbaContainer(e,e.getBidaiaria()));
 		}
 		return containerList;
 	}
@@ -517,7 +517,7 @@ public class DataAccess  {
 	}
 	
 
-public void open(){
+	public void open(){
 		
 		String fileName=c.getDbFilename();
 		if (c.isDatabaseLocal()) {
@@ -539,6 +539,51 @@ public void open(){
 	public void close(){
 		db.close();
 		System.out.println("DataAcess closed");
+	}
+	
+	public List<TravelerErreserbaContainer> lortuBalorazioErreserbak(User u){
+		if(u instanceof Traveler) {
+			TypedQuery<Erreserba> q1 = db.createQuery(
+				    "SELECT e FROM Erreserba e WHERE e.bidaiaria = :u", Erreserba.class);
+			q1.setParameter("u", u);
+			List<Erreserba> erreserbak = q1.getResultList();
+			TypedQuery<Erreserba> q2 = db.createQuery(
+					   "SELECT b.erreserba FROM Balorazioa b WHERE b.nork = :u", Erreserba.class);
+			q2.setParameter("u", u);
+			List<Erreserba> baloratuak = q2.getResultList();
+			List<Erreserba> gabe = new ArrayList<>();
+			for (Erreserba e : erreserbak) {
+			    if (!baloratuak.contains(e)) {
+			        gabe.add(e);
+			    }
+			}
+			List<TravelerErreserbaContainer> containerList = new LinkedList<TravelerErreserbaContainer>();
+			for(Erreserba e:gabe) {
+				containerList.add(new TravelerErreserbaContainer(e,e.getBidaiaria()));
+			}
+			return containerList;
+		}
+		return null;
+	}
+	
+	public void sortuBalorazioa(String eMail, int eNum, int puntuzioa, String mezua) {
+		db.getTransaction().begin();
+		User u;
+		User e = db.find(User.class, eMail);
+		Erreserba er = db.find(Erreserba.class, eNum);
+		if(e instanceof Traveler) {
+			TypedQuery<User> query = db.createQuery("SELECT r.driver FROM Ride r WHERE :er MEMBER OF r.erreserbak", User.class);
+			query.setParameter("er", er);
+			u = query.getSingleResult();
+		} else {
+			u = er.getBidaiaria();
+		}
+		Balorazioa ba = e.sortuBalorazioa(er, puntuzioa, mezua, u);
+		u.gehituJasotakoBalorazioa(ba);
+		er.gehituBalorazioa(ba);
+		db.persist(e);
+		db.getTransaction().commit();
+		System.out.println("Balorazioa sortu da");
 	}
 	
 }

@@ -145,4 +145,8 @@ public class Erreserba implements Serializable{
 			return true;
 		return false;
 	}
+	
+	public void gehituBalorazioa(Balorazioa ba) {
+		this.balorazioak.add(ba);
+	}
 }

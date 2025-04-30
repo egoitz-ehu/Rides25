@@ -32,8 +32,8 @@ public abstract class User implements Serializable{
 	private List<Balorazioa> jasotakoBalorazioak = new Vector<Balorazioa>();
 
 	@XmlIDREF
-	@OneToMany(fetch=FetchType.EAGER)
-	List<Balorazioa> jarritakoBalorazioak = new Vector<Balorazioa>();
+	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
+	private List<Balorazioa> jarritakoBalorazioak = new Vector<Balorazioa>();
 
 	public User(String email, String pass, String name, String surname) {
 		this.email = email;
@@ -138,5 +138,19 @@ public abstract class User implements Serializable{
 	public void addMugimendua(double kop, MugimenduMota mota) {
 		Mugimendua m = new Mugimendua(kop,mota,this);
 		this.mugimenduList.add(m);
+	}
+	
+	public Balorazioa sortuBalorazioa(Erreserba er, int puntuazioa, String mezua, User nori) {
+		Balorazioa ba = new Balorazioa(this,nori,er,puntuazioa,mezua);
+		this.gehituJarritakoBalorazioa(ba);
+		return ba;
+	}
+	
+	public void gehituJarritakoBalorazioa(Balorazioa ba) {
+		this.jarritakoBalorazioak.add(ba);
+	}
+	
+	public void gehituJasotakoBalorazioa(Balorazioa ba) {
+		this.jasotakoBalorazioak.add(ba);
 	}
 }

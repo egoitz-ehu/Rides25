@@ -7,7 +7,7 @@ import java.util.List;
 import domain.Ride;
 import domain.RideErreserbaContainer;
 import domain.Traveler;
-import domain.TravelerErreserbaConatainer;
+import domain.TravelerErreserbaContainer;
 import domain.User;
 import domain.Car;
 import domain.Driver;
@@ -125,9 +125,13 @@ public interface BLFacade  {
 	
 	@WebMethod public List<Mugimendua> getUserMovements(String email);
 	
-	@WebMethod public List<TravelerErreserbaConatainer> getErreserbaTravelerContainers(Ride r);
+	@WebMethod public List<TravelerErreserbaContainer> getErreserbaTravelerContainers(Ride r);
 	
 	@WebMethod public List<RideErreserbaContainer> getRideErreserbaContainers(Traveler t);
 
 	@WebMethod public List<String> getStopCitiesNames();
+	
+	@WebMethod public List<TravelerErreserbaContainer> lortuBalorazioErreserbak(User u);
+	
+	@WebMethod public void sortuBalorazioa(String u, int er, int puntuzioa, String mezua);
 }

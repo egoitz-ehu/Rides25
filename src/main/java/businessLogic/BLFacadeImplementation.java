@@ -11,7 +11,7 @@ import dataAccess.DataAccess;
 import domain.Ride;
 import domain.RideErreserbaContainer;
 import domain.Traveler;
-import domain.TravelerErreserbaConatainer;
+import domain.TravelerErreserbaContainer;
 import domain.User;
 import domain.Car;
 import domain.Driver;
@@ -287,9 +287,9 @@ public class BLFacadeImplementation  implements BLFacade {
 	}
 
 	@WebMethod
-	public List<TravelerErreserbaConatainer> getErreserbaTravelerContainers(Ride r) {
+	public List<TravelerErreserbaContainer> getErreserbaTravelerContainers(Ride r) {
 		dbManager.open();
-		List<TravelerErreserbaConatainer> list = dbManager.getErresebraTravelerContainers(r);
+		List<TravelerErreserbaContainer> list = dbManager.getErresebraTravelerContainers(r);
 		dbManager.close();
 		return list;
 	}
@@ -308,6 +308,21 @@ public class BLFacadeImplementation  implements BLFacade {
 		List<String> hList = dbManager.getStopCitiesNames();
 		dbManager.close();
 		return hList;
+	}
+
+	@WebMethod
+	public List<TravelerErreserbaContainer> lortuBalorazioErreserbak(User u) {
+		dbManager.open();
+		List<TravelerErreserbaContainer> eList = dbManager.lortuBalorazioErreserbak(u);
+		dbManager.close();
+		return eList;
+	}
+
+	@WebMethod
+	public void sortuBalorazioa(String u, int er, int puntuzioa, String mezua) {
+		dbManager.open();
+		dbManager.sortuBalorazioa(u, er, puntuzioa, mezua);
+		dbManager.close();
 	}
 
 

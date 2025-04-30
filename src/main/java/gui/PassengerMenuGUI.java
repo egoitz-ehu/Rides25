@@ -38,6 +38,8 @@ public class PassengerMenuGUI extends JFrame {
 	private JMenuItem itemIkusi;
 	private JMenuItem itemMugimenduak;
 	private JButton btnNewButton;
+	private JMenu mnNewMenu;
+	private JMenuItem mntmNewMenuItem;
 
 	/**
 	 * Launch the application.
@@ -98,6 +100,18 @@ public class PassengerMenuGUI extends JFrame {
 			}
 		});
 		moneyMenu.add(itemMugimenduak);
+		
+		mnNewMenu = new JMenu("a"); //$NON-NLS-1$ //$NON-NLS-2$
+		menuBar.add(mnNewMenu);
+		
+		mntmNewMenuItem = new JMenuItem("a"); //$NON-NLS-1$ //$NON-NLS-2$
+		mntmNewMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CreateReviewGUI cR = new CreateReviewGUI(traveler);
+				cR.setVisible(true);
+			}
+		});
+		mnNewMenu.add(mntmNewMenuItem);
 		itemIkusi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DiruaIkusiGUI dI = new DiruaIkusiGUI(traveler);

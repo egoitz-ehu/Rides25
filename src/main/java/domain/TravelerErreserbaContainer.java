@@ -6,15 +6,15 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-public class TravelerErreserbaConatainer implements Serializable{
+public class TravelerErreserbaContainer implements Serializable{
 	private Erreserba erreserba;
 	private Traveler traveler;
 	
-	public TravelerErreserbaConatainer() {
+	public TravelerErreserbaContainer() {
 		super();
 	}
 	
-	public TravelerErreserbaConatainer(Erreserba e, Traveler t) {
+	public TravelerErreserbaContainer(Erreserba e, Traveler t) {
 		this.erreserba=e;
 		this.traveler=t;
 	}
