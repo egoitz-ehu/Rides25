@@ -99,7 +99,7 @@ public interface BLFacade  {
 	
 	@WebMethod public List<Erreserba> lortuErreserbak(int rideNumber);
 	
-	@WebMethod public void onartuErreserba(int erreserbaNum, Driver d);
+	@WebMethod public void onartuErreserba(int erreserbaNum, String d);
 	
 	@WebMethod public void ukatuErreserba(int erreserbaNum, Ride r);
 	
@@ -109,7 +109,7 @@ public interface BLFacade  {
 	
 	@WebMethod public void erreserbaBaieztatu(RideErreserbaContainer e);
 	
-	@WebMethod public void erreserbaEzeztatu(RideErreserbaContainer e, Traveler t);
+	@WebMethod public void erreserbaEzeztatu(RideErreserbaContainer e, String t);
 	
 	@WebMethod public List<Erreserba> erreserbakLortu(Traveler t);
 	

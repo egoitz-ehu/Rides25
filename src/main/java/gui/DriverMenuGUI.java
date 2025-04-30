@@ -41,6 +41,8 @@ public class DriverMenuGUI extends JFrame {
 	private JMenuItem createRide;
 	private JMenuItem cancelRide;
 	private JMenuItem itemMugimenduak;
+	private JMenu mnNewMenu;
+	private JMenuItem mntmNewMenuItem;
 
 	/**
 	 * Launch the application.
@@ -117,6 +119,18 @@ public class DriverMenuGUI extends JFrame {
 			}
 		});
 		ridesMenu.add(cancelRide);
+		
+		mnNewMenu = new JMenu(ResourceBundle.getBundle("Etiquetas").getString("MenuBalorazioa")); //$NON-NLS-1$ //$NON-NLS-2$
+		menuBar.add(mnNewMenu);
+		
+		mntmNewMenuItem = new JMenuItem(ResourceBundle.getBundle("Etiquetas").getString("MenuBalorazioa.Create")); //$NON-NLS-1$ //$NON-NLS-2$
+		mntmNewMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CreateReviewGUI cR = new CreateReviewGUI(driver);
+				cR.setVisible(true);
+			}
+		});
+		mnNewMenu.add(mntmNewMenuItem);
 		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

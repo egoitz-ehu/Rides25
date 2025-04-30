@@ -164,7 +164,7 @@ private JPanel contentPane;
 		ukatuButton.setEnabled(false);
 		ukatuButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				WelcomeGUI.getBusinessLogic().erreserbaEzeztatu(selectedErreserba,t);
+				WelcomeGUI.getBusinessLogic().erreserbaEzeztatu(selectedErreserba,t.getEmail());
 				onartuButton.setEnabled(false);
 				ukatuButton.setEnabled(false);
 				selectedErreserba=null;

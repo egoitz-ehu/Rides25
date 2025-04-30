@@ -187,7 +187,7 @@ public class BLFacadeImplementation  implements BLFacade {
 	}
 
 	@WebMethod
-	public void onartuErreserba(int erreserbaNum, Driver d) {
+	public void onartuErreserba(int erreserbaNum, String d) {
 		dbManager.open();
 		dbManager.erreserbaOnartu(erreserbaNum, d);
 		dbManager.close();
@@ -232,7 +232,7 @@ public class BLFacadeImplementation  implements BLFacade {
 	}
 
 	@WebMethod
-	public void erreserbaEzeztatu(RideErreserbaContainer e, Traveler t) {
+	public void erreserbaEzeztatu(RideErreserbaContainer e, String t) {
 		dbManager.open();
 		dbManager.erreserbaEzeztatu(e,t);
 		dbManager.close();

@@ -101,10 +101,10 @@ public class PassengerMenuGUI extends JFrame {
 		});
 		moneyMenu.add(itemMugimenduak);
 		
-		mnNewMenu = new JMenu("a"); //$NON-NLS-1$ //$NON-NLS-2$
+		mnNewMenu = new JMenu(ResourceBundle.getBundle("Etiquetas").getString("MenuBalorazioa")); //$NON-NLS-1$ //$NON-NLS-2$
 		menuBar.add(mnNewMenu);
 		
-		mntmNewMenuItem = new JMenuItem("a"); //$NON-NLS-1$ //$NON-NLS-2$
+		mntmNewMenuItem = new JMenuItem(ResourceBundle.getBundle("Etiquetas").getString("MenuBalorazioa.Create")); //$NON-NLS-1$ //$NON-NLS-2$
 		mntmNewMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CreateReviewGUI cR = new CreateReviewGUI(traveler);

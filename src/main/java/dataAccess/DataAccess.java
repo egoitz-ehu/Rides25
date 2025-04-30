@@ -227,19 +227,17 @@ public class DataAccess  {
 		return query.getResultList();
 	}
 	
-	public void erreserbaOnartu(int erreserbaNum, Driver d) {
+	public void erreserbaOnartu(int erreserbaNum, String dMail) {
 		db.getTransaction().begin();
 		Erreserba e = db.find(Erreserba.class, erreserbaNum);
 		Traveler t = db.find(Traveler.class, e.getBidaiariaEmail());
+		Driver d = db.find(Driver.class, dMail);
 		double prezioa = e.prezioaKalkulatu();
 		e.setEgoera(ErreserbaEgoera.ONARTUA);
 		t.removeFrozenMoney(prezioa);
 		d.addFrozenMoney(prezioa);
 		d.addMugimendua(prezioa, MugimenduMota.ERRESERBA_ONARTU_GIDARI);
 		t.addMugimendua(prezioa, MugimenduMota.ERRESERBA_ONARTU_BIDAIARI);
-		//db.persist(e);
-		db.merge(d);
-		db.persist(t);
 		db.getTransaction().commit(); 
 	}
 	
@@ -283,30 +281,29 @@ public class DataAccess  {
 		e.setEgoera(ErreserbaEgoera.BAIEZTATUA);
 		Ride r = c.getRide();
 		double prezioa = e.getPlazaKop()*r.getPrice();
-		Driver d = r.getDriver();
+		Driver d = db.find(Driver.class, c.getRide().getDriver().getEmail());
 		d.removeFrozenMoney(prezioa);
 		d.diruaSartu(prezioa);
 		d.addMugimendua(prezioa, MugimenduMota.ERRESERBA_BAIEZTATU);
 		db.merge(e);
 		db.merge(r);
-		db.merge(d);
 		db.getTransaction().commit();;
 	}
 	
-	public void erreserbaEzeztatu(RideErreserbaContainer c, Traveler t) {
+	public void erreserbaEzeztatu(RideErreserbaContainer c, String tMail) {
 		db.getTransaction().begin();
 		Erreserba e = c.getErreserba();
 		Ride r = c.getRide();
 		e.setEgoera(ErreserbaEgoera.EZEZTATUA);
 		double prezioa = e.getPlazaKop()*r.getPrice();
-		Driver d = r.getDriver();
+		Driver d = db.find(Driver.class, c.getRide().getDriver().getEmail());
+		Traveler t = db.find(Traveler.class, tMail);
 		d.removeFrozenMoney(prezioa);
 		d.addMugimendua(prezioa, MugimenduMota.ERRESERBA_EZEZTATU_GIDARI);
 		t.diruaSartu(prezioa);
 		t.addMugimendua(prezioa, MugimenduMota.ERRESERBA_EZEZTATU_BIDAIARI);
 		db.merge(e);
 		db.merge(t);
-		db.merge(d);
 		db.getTransaction().commit();
 	}
 	
@@ -542,28 +539,37 @@ public class DataAccess  {
 	}
 	
 	public List<TravelerErreserbaContainer> lortuBalorazioErreserbak(User u){
+		List<Erreserba> erreserbak;
 		if(u instanceof Traveler) {
 			TypedQuery<Erreserba> q1 = db.createQuery(
-				    "SELECT e FROM Erreserba e WHERE e.bidaiaria = :u", Erreserba.class);
+				    "SELECT e FROM Erreserba e WHERE e.bidaiaria = :u AND (e.egoera=:j OR e.egoera=:k)", Erreserba.class);
 			q1.setParameter("u", u);
-			List<Erreserba> erreserbak = q1.getResultList();
-			TypedQuery<Erreserba> q2 = db.createQuery(
-					   "SELECT b.erreserba FROM Balorazioa b WHERE b.nork = :u", Erreserba.class);
-			q2.setParameter("u", u);
-			List<Erreserba> baloratuak = q2.getResultList();
-			List<Erreserba> gabe = new ArrayList<>();
-			for (Erreserba e : erreserbak) {
-			    if (!baloratuak.contains(e)) {
-			        gabe.add(e);
-			    }
-			}
-			List<TravelerErreserbaContainer> containerList = new LinkedList<TravelerErreserbaContainer>();
-			for(Erreserba e:gabe) {
-				containerList.add(new TravelerErreserbaContainer(e,e.getBidaiaria()));
-			}
-			return containerList;
+			q1.setParameter("j", ErreserbaEgoera.BAIEZTATUA);
+			q1.setParameter("k", ErreserbaEgoera.EZEZTATUA);
+			erreserbak = q1.getResultList();
+
+		} else {
+			TypedQuery<Erreserba> q1 = db.createQuery("SELECT e FROM Erreserba e JOIN e.ride r WHERE r.driver=:u AND (e.egoera=:j OR e.egoera=:k)",Erreserba.class);
+			q1.setParameter("u", u);
+			q1.setParameter("j", ErreserbaEgoera.BAIEZTATUA);
+			q1.setParameter("k", ErreserbaEgoera.EZEZTATUA);
+			erreserbak = q1.getResultList();
 		}
-		return null;
+		TypedQuery<Erreserba> q2 = db.createQuery(
+				   "SELECT b.erreserba FROM Balorazioa b WHERE b.nork = :u", Erreserba.class);
+		q2.setParameter("u", u);
+		List<Erreserba> baloratuak = q2.getResultList();
+		List<Erreserba> gabe = new ArrayList<>();
+		for (Erreserba e : erreserbak) {
+		    if (!baloratuak.contains(e)) {
+		        gabe.add(e);
+		    }
+		}
+		List<TravelerErreserbaContainer> containerList = new LinkedList<TravelerErreserbaContainer>();
+		for(Erreserba e:gabe) {
+			containerList.add(new TravelerErreserbaContainer(e,e.getBidaiaria()));
+		}
+		return containerList;
 	}
 	
 	public void sortuBalorazioa(String eMail, int eNum, int puntuzioa, String mezua) {

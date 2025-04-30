@@ -153,7 +153,7 @@ public class ErreserbakGestionatuGUI extends JFrame {
 		onartuButton.setEnabled(false);
 		onartuButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				WelcomeGUI.getBusinessLogic().onartuErreserba(selectedErreserbaNumber, d);
+				WelcomeGUI.getBusinessLogic().onartuErreserba(selectedErreserbaNumber, d.getEmail());
 				ezarriErreserbak();
 				onartuButton.setEnabled(false);
 				ukatuButton.setEnabled(false);
