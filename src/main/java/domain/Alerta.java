@@ -1,5 +1,8 @@
 package domain;
 
+import java.io.Serializable;
+import java.util.Date;
+
 import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -14,8 +17,14 @@ import javax.xml.bind.annotation.XmlIDREF;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@Embeddable
-public class Alerta {
+@Entity
+public class Alerta implements Serializable{
+	@XmlID
+	@Id 
+	@XmlJavaTypeAdapter(IntegerAdapter.class)
+	@GeneratedValue
+	private Integer id;
+	
 	 @Enumerated(EnumType.STRING)
 	 private AlertaEgoera amaituta;
 	 
@@ -23,20 +32,69 @@ public class Alerta {
 	 @OneToOne
 	 private Traveler traveler;
 	 
-	 @OneToOne
-	 private City from;
+	 private String from;
 	 
-	 @OneToOne
-	 private City to;
+	 private String to;
 	 
-	 public Alerta() {
+	 private Date date;
+	 
+	 public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public AlertaEgoera getAmaituta() {
+		return amaituta;
+	}
+
+	public void setAmaituta(AlertaEgoera amaituta) {
+		this.amaituta = amaituta;
+	}
+
+	public Traveler getTraveler() {
+		return traveler;
+	}
+
+	public void setTraveler(Traveler traveler) {
+		this.traveler = traveler;
+	}
+
+	public String getFrom() {
+		return from;
+	}
+
+	public void setFrom(String from) {
+		this.from = from;
+	}
+
+	public String getTo() {
+		return to;
+	}
+
+	public void setTo(String to) {
+		this.to = to;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	public Alerta() {
 		 super();
 	 }
 	 
-	 public Alerta(Traveler traveler, City from, City to) {
+	 public Alerta(Traveler traveler, String from, String to, Date d) {
 		 this.amaituta=AlertaEgoera.ZAIN;
 		 this.traveler=traveler;
 		 this.from=from;
 		 this.to=to;
+		 this.date=d;
 	 }
 }

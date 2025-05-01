@@ -54,6 +54,10 @@ public class Erreserba implements Serializable{
 	@OneToMany
 	private List<Balorazioa> balorazioak = new Vector<Balorazioa>();
 	
+	private String from;
+	
+	private String to;
+	
 	
 	public ErreserbaEgoera getEgoera() {
 		return egoera;
@@ -107,14 +111,32 @@ public class Erreserba implements Serializable{
 		this.ride = ride;
 	}
 
-	public Erreserba(int kop, Traveler bidaiaria, Ride ride) {
+	public Erreserba(int kop, Traveler bidaiaria, Ride ride, String from, String to) {
 		this.plazaKop=kop;
 		this.bidaiaria=bidaiaria;
 		this.ride=ride;
 		this.erreserbaData= new Date();
 		this.egoera=ErreserbaEgoera.ZAIN;
+		this.from=from;
+		this.to=to;
 	}
 	
+	public String getFrom() {
+		return from;
+	}
+
+	public void setFrom(String from) {
+		this.from = from;
+	}
+
+	public String getTo() {
+		return to;
+	}
+
+	public void setTo(String to) {
+		this.to = to;
+	}
+
 	public Erreserba() {
 		super();
 	}
@@ -148,5 +170,9 @@ public class Erreserba implements Serializable{
 	
 	public void gehituBalorazioa(Balorazioa ba) {
 		this.balorazioak.add(ba);
+	}
+	
+	public Date getRideDate() {
+		return this.ride.getDate();
 	}
 }

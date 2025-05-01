@@ -181,7 +181,7 @@ public class DataAccess  {
 		return b;
 	}
 	
-	public boolean sortuErreserba(Traveler t, int rNumber, int kop) throws EserlekurikLibreEzException, ErreserbaAlreadyExistsException, DiruaEzDaukaException {
+	public boolean sortuErreserba(Traveler t, int rNumber, int kop, String from, String to) throws EserlekurikLibreEzException, ErreserbaAlreadyExistsException, DiruaEzDaukaException {
 		if(kop>0) {
 			db.getTransaction().begin();
 			Ride r = db.find(Ride.class, rNumber);
@@ -191,7 +191,7 @@ public class DataAccess  {
 				if(tr.diruaDauka(r, kop)) {
 					if(r.eserlekuakLibre(kop)) {
 						//Erreserba e = new Erreserba(kop,t, r);
-						Erreserba erreserbaBerria = tr.sortuErreserba(r, kop);
+						Erreserba erreserbaBerria = tr.sortuErreserba(r, kop, from, to);
 						r.gehituErreserba(erreserbaBerria);
 						tr.addMugimendua(kostua,MugimenduMota.ERRESERBA_SORTU);
 						//db.persist(erreserbaBerria);
@@ -517,7 +517,7 @@ public class DataAccess  {
 		
 		TypedQuery<Ride> query = db.createQuery(
 			    "SELECT r FROM Ride r " +
-			    "WHERE r.egoera = :egoera AND r.date BETWEEN :first AND :last", Ride.class);
+			    "WHERE r.egoera = :egoera AND r.date BETWEEN :first AND :last AND r.eserLibre<>0", Ride.class);
 		query.setParameter("egoera", RideEgoera.MARTXAN);
 		query.setParameter("first", firstDayMonthDate);
 		query.setParameter("last", lastDayMonthDate);
@@ -617,6 +617,15 @@ public class DataAccess  {
 		TypedQuery<Balorazioa> query = db.createQuery("SELECT b FROM Balorazioa b WHERE b.nori.email=?1", Balorazioa.class);
 		query.setParameter(1, email);
 		return query.getResultList();
+	}
+	
+	public void sortuAlerta(String email, String from, String to, Date d) {
+		db.getTransaction().begin();
+		Traveler t = db.find(Traveler.class, email);
+		if(!t.baduAlertaBerdina(from, to, d)&&!t.baduErreserba(from, to, d)) {
+			t.sortuAlerta(from, to, d);
+		}
+		db.getTransaction().commit();
 	}
 	
 }

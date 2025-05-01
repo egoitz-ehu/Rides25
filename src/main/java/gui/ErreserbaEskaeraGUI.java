@@ -65,6 +65,9 @@ public class ErreserbaEskaeraGUI extends JFrame {
 	private Ride selectedRide;
 	
 	private JLabel erreserbaMessageLabel;
+	
+	JLabel lblEz;
+	JButton btnAlerta;
 
 	public ErreserbaEskaeraGUI(Traveler t)
 	{
@@ -90,7 +93,7 @@ public class ErreserbaEskaeraGUI extends JFrame {
 		});
 		BLFacade facade = WelcomeGUI.getBusinessLogic();
 		List<String> origins=facade.getStopCitiesNames();
-		
+		originLocations.addElement("");
 		for(String location:origins) originLocations.addElement(location);
 		
 		jLabelOrigin.setBounds(new Rectangle(6, 56, 92, 20));
@@ -103,10 +106,10 @@ public class ErreserbaEskaeraGUI extends JFrame {
 		jComboBoxOrigin.setBounds(new Rectangle(103, 50, 172, 20));
 		
 
-		List<String> aCities=facade.getDestinationCities((String)jComboBoxOrigin.getSelectedItem());
-		for(String aciti:aCities) {
-			destinationCities.addElement(aciti);
-		}
+		//List<String> aCities=facade.getDestinationCities((String)jComboBoxOrigin.getSelectedItem());
+		//for(String aciti:aCities) {
+			//destinationCities.addElement(aciti);
+		//}
 		
 		jComboBoxOrigin.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
@@ -129,7 +132,6 @@ public class ErreserbaEskaeraGUI extends JFrame {
 		jComboBoxDestination.setBounds(new Rectangle(103, 80, 172, 20));
 		jComboBoxDestination.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
-
 				paintDaysWithEvents(jCalendar1,datesWithRidesCurrentMonth,	new Color(210,228,238));
 
 				BLFacade facade = WelcomeGUI.getBusinessLogic();
@@ -204,6 +206,15 @@ public class ErreserbaEskaeraGUI extends JFrame {
 							}
 						}
 						datesWithRidesCurrentMonth=facade.getThisMonthDatesWithRides((String)jComboBoxOrigin.getSelectedItem(),(String)jComboBoxDestination.getSelectedItem(),jCalendar1.getDate());
+						if(datesWithRidesCurrentMonth.isEmpty() && !((String)jComboBoxOrigin.getSelectedItem()).equals("")) {
+							btnAlerta.setEnabled(true);
+							lblEz.setEnabled(true);
+							lblEz.setText(ResourceBundle.getBundle("Etiquetas").getString("ErreserbaEskaeraGUI.BidairikEz"));
+						} else {
+							btnAlerta.setEnabled(false);
+							lblEz.setEnabled(false);
+							lblEz.setText("");
+						}
 						paintDaysWithEvents(jCalendar1,datesWithRidesCurrentMonth,Color.CYAN);
 
 
@@ -276,7 +287,7 @@ public class ErreserbaEskaeraGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					int kop = Integer.parseInt(eserKop.getText());
-					boolean b = WelcomeGUI.getBusinessLogic().sortuErreserba(t, selectedRide.getRideNumber(), kop);
+					boolean b = WelcomeGUI.getBusinessLogic().sortuErreserba(t, selectedRide.getRideNumber(), kop, (String)jComboBoxOrigin.getSelectedItem(),(String)jComboBoxDestination.getSelectedItem());
 					tableModelRides.setDataVector(null, columnNamesRides);
 					//tableModelRides.setColumnCount(5);
 					if(b) {
@@ -303,6 +314,25 @@ public class ErreserbaEskaeraGUI extends JFrame {
 		erreserbaMessageLabel.setBounds(414, 406, 234, 43);
 		erreserbaMessageLabel.setForeground(Color.red);
 		getContentPane().add(erreserbaMessageLabel);
+		
+		lblEz = new JLabel(); //$NON-NLS-1$ //$NON-NLS-2$
+		lblEz.setBounds(10, 145, 265, 14);
+		getContentPane().add(lblEz);
+		
+		btnAlerta = new JButton(ResourceBundle.getBundle("Etiquetas").getString("ErreserbaEskaeraGUI.AlertaSortu")); //$NON-NLS-1$ //$NON-NLS-2$
+		btnAlerta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				WelcomeGUI.getBusinessLogic().sortuAlerta(t.getEmail(),(String)jComboBoxOrigin.getSelectedItem(),(String)jComboBoxDestination.getSelectedItem(),jCalendar1.getDate());
+				btnAlerta.setEnabled(false);
+				lblEz.setEnabled(false);
+				lblEz.setText("");
+			}
+		});
+		btnAlerta.setBounds(83, 177, 122, 23);
+		getContentPane().add(btnAlerta);
+		
+		btnAlerta.setEnabled(false);
+		lblEz.setEnabled(false);
 
 	}
 	public static void paintDaysWithEvents(JCalendar jCalendar,List<Date> datesWithEventsCurrentMonth, Color color) {

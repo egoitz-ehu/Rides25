@@ -164,9 +164,9 @@ public class BLFacadeImplementation  implements BLFacade {
 	}
 
 	@WebMethod
-	public boolean sortuErreserba(Traveler t, int rNumber, int kop) throws EserlekurikLibreEzException, ErreserbaAlreadyExistsException, DiruaEzDaukaException {
+	public boolean sortuErreserba(Traveler t, int rNumber, int kop, String from, String to) throws EserlekurikLibreEzException, ErreserbaAlreadyExistsException, DiruaEzDaukaException {
 		dbManager.open();
-		boolean b = dbManager.sortuErreserba(t, rNumber, kop);
+		boolean b = dbManager.sortuErreserba(t, rNumber, kop, from, to);
 		dbManager.close();
 		return b;
 	}
@@ -326,12 +326,19 @@ public class BLFacadeImplementation  implements BLFacade {
 		dbManager.close();
 	}
 
-	@Override
+	@WebMethod
 	public List<Balorazioa> lortuBalorazioak(String email) {
 		dbManager.open();
 		List<Balorazioa> list = dbManager.lortuBaloraizoak(email);
 		dbManager.close();
 		return list;
+	}
+
+	@WebMethod
+	public void sortuAlerta(String email, String from, String to, Date date) {
+		dbManager.open();
+		dbManager.sortuAlerta(email, from, to, date);
+		dbManager.close();
 	}
 
 

@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.Locale;
 
 import javax.swing.UIManager;
+import javax.swing.UIManager.LookAndFeelInfo;
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
 

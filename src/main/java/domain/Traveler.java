@@ -22,7 +22,7 @@ public class Traveler extends User implements Serializable{
 	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
 	private List<Erreserba> bookedRides = new Vector<Erreserba>();
 	
-	@OneToMany(fetch=FetchType.EAGER)
+	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
 	private List<Alerta> alertaList = new Vector<Alerta>();
 	
 	public Traveler (String email, String pass, String name, String surname) {
@@ -49,11 +49,11 @@ public class Traveler extends User implements Serializable{
 		return (this.getCash()>=r.getPrice()*eserKop);
 	}
 	
-	public Erreserba sortuErreserba(Ride r, int eserKop) {
+	public Erreserba sortuErreserba(Ride r, int eserKop, String from, String to) {
 		double prezioa = r.getPrice()*eserKop;
 		this.diruaAtera(prezioa);
 		this.addFrozenMoney(prezioa);
-		Erreserba erre = new Erreserba(eserKop, this, r);
+		Erreserba erre = new Erreserba(eserKop, this, r, from, to);
 		bookedRides.add(erre);
 		return erre;
 	}
@@ -61,4 +61,27 @@ public class Traveler extends User implements Serializable{
 	public void ezabatuErreserba(Erreserba e) {
 		bookedRides.remove(e);
 	}*/
+	
+	public void sortuAlerta(String from, String to, Date d) {
+		Alerta a = new Alerta(this,from,to,d);
+		alertaList.add(a);
+	}
+	
+	public boolean baduAlertaBerdina(String from, String to, Date date) {
+		for(Alerta a:alertaList) {
+			if(a.getFrom().equals(from)&&a.getTo().equals(to)&&a.getDate().equals(date)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean baduErreserba(String from, String to, Date date) {
+		for(Erreserba e:bookedRides) {
+			if(e.getFrom().equals(from)&&e.getTo().equals(to)&&e.getErreserbaData().equals(date)) {
+				return true;
+			}
+		}
+		return false;
+	}
 }
