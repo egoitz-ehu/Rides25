@@ -1,5 +1,6 @@
 package domain;
 
+import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -13,14 +14,8 @@ import javax.xml.bind.annotation.XmlIDREF;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@Entity
+@Embeddable
 public class Alerta {
-	 @XmlID
-	 @Id
-	 @GeneratedValue
-	 @XmlJavaTypeAdapter(IntegerAdapter.class)
-	 private Integer id;
-	 
 	 @Enumerated(EnumType.STRING)
 	 private AlertaEgoera amaituta;
 	 

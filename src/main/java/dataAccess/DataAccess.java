@@ -12,6 +12,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -393,9 +395,18 @@ public class DataAccess  {
 	}
 
 	public List<String> getStopCitiesNames(){
-		TypedQuery<String> query = db.createQuery("SELECT DISTINCT g.hiria.name FROM Geldialdia g WHERE g.helmugaDa=?1",String.class);
-		query.setParameter(1, Boolean.FALSE);
-		return query.getResultList();
+		TypedQuery<Ride> query = db.createQuery("SELECT r FROM Ride r",Ride.class);
+		List<Ride> rides = query.getResultList();
+		List<String> cityList = new LinkedList<String>();
+		for(Ride r:rides) {
+			List<String> geldialdiak = r.getGeldialdiak();
+			for(String g:geldialdiak) {
+				if(!geldialdiak.get(geldialdiak.size()-1).equals(g) && !cityList.contains(g)) {
+					cityList.add(g);
+				}
+			}
+		}
+		return cityList;
 	}
 	
 	/**
@@ -415,11 +426,19 @@ public class DataAccess  {
 	 * @return all the arrival destinations
 	 */
 	public List<String> getArrivalCities(String from){
-		TypedQuery<String> query = db.createQuery("SELECT DISTINCT g.hiria.name FROM Geldialdia g,Geldialdia g2 WHERE g.bidaia=g2.bidaia AND g.pos>g2.pos AND g2.hiria.name=?1",String.class);
-		query.setParameter(1, from);
-		List<String> arrivingCities = query.getResultList(); 
-		return arrivingCities;
-		
+		TypedQuery<Ride> query = db.createQuery("SELECT r FROM Ride r",Ride.class);
+		List<Ride> rides = query.getResultList();
+		List<String> cities = new LinkedList<String>();
+		for(Ride r:rides) {
+			List<String> geldialdiak = r.getGeldialdiak();
+			if(geldialdiak.contains(from)) {
+				int i = geldialdiak.indexOf(from);
+				for(int j=i+1;j<geldialdiak.size();j++) {
+					cities.add(geldialdiak.get(j));
+				}
+			}
+		}
+		return cities;
 	}
 
 	public Ride createRide(List<String> hiriakLista,Date date, Car c, float price, String driverEmail) throws  RideAlreadyExistException, RideMustBeLaterThanTodayException {
@@ -433,18 +452,11 @@ public class DataAccess  {
 			Driver driver = db.find(Driver.class, driverEmail);
 			Car ci = db.find(Car.class, c.getMatrikula());
 
-			List<City> cityList = new LinkedList<City>();
-			for(String hiria:hiriakLista) {
-				City city = db.find(City.class, hiria);
-				if(city == null) city = new City(hiria);
-				cityList.add(city);
-			}
-
 			if (driver.doesRideExists(hiriakLista, date)) {
 				db.getTransaction().commit();
 				throw new RideAlreadyExistException(ResourceBundle.getBundle("Etiquetas").getString("DataAccess.RideAlreadyExist"));
 			}
-			Ride ride = driver.addRide(cityList, date,ci.getEserKop(), price,ci);
+			Ride ride = driver.addRide(hiriakLista, date,ci.getEserKop(), price,ci);
 
 			//next instruction can be obviated
 			//db.persist(driver);
@@ -474,15 +486,18 @@ public class DataAccess  {
 		System.out.println(">> DataAccess: getRides=> from= "+from+" to= "+to+" date "+date);
 
 		List<Ride> res = new ArrayList<>();	
-		TypedQuery<Ride> query = db.createQuery("SELECT r FROM Ride r JOIN r.geldialdiList g1 JOIN r.geldialdiList g2 WHERE g1.hiria.name=?1 AND g2.hiria.name=?2 AND g1.pos<g2.pos AND r.date=?3",Ride.class);   
-		query.setParameter(1, from);
-		query.setParameter(2, to);
-		query.setParameter(3, date);
+		TypedQuery<Ride> query = db.createQuery("SELECT r FROM Ride r WHERE r.date = ?1",Ride.class);   
+		query.setParameter(1, date);
 		List<Ride> rides = query.getResultList();
-	 	 for (Ride ride:rides){
-		   res.add(ride);
-		  }
-	 	return res;
+		List<Ride> filtradas = rides.stream()
+			    .filter(r -> {
+			        List<String> g = r.getGeldialdiak();
+			        int i1 = g.indexOf(from);
+			        int i2 = g.indexOf(to);
+			        return i1 != -1 && i2 != -1 && i1 < i2;
+			    })
+			    .collect(Collectors.toList());
+	 	return filtradas;
 	}
 	
 	/**
@@ -500,19 +515,22 @@ public class DataAccess  {
 		Date lastDayMonthDate= UtilDate.lastDayMonth(date);
 				
 		
-		TypedQuery<Date> query = db.createQuery("SELECT DISTINCT r.date "
-				+ "FROM Ride r JOIN r.geldialdiList g1 JOIN r.geldialdiList g2 "
-				+ "WHERE g1.hiria.name=?1 AND g2.hiria.name=?2 AND g1.pos<=g2.pos AND r.egoera=?3 AND r.date BETWEEN ?4 and ?5",Date.class);   
-		
-		query.setParameter(1, from);
-		query.setParameter(2, to);
-		query.setParameter(3, RideEgoera.MARTXAN);
-		query.setParameter(4, firstDayMonthDate);
-		query.setParameter(5, lastDayMonthDate);
-		List<Date> dates = query.getResultList();
-	 	 for (Date d:dates){
-		   res.add(d);
-		  }
+		TypedQuery<Ride> query = db.createQuery(
+			    "SELECT r FROM Ride r " +
+			    "WHERE r.egoera = :egoera AND r.date BETWEEN :first AND :last", Ride.class);
+		query.setParameter("egoera", RideEgoera.MARTXAN);
+		query.setParameter("first", firstDayMonthDate);
+		query.setParameter("last", lastDayMonthDate);
+
+		List<Ride> rides = query.getResultList();
+		for (Ride r : rides) {
+			List<String> stops = r.getGeldialdiak();
+		    int i1 = stops.indexOf(from);
+		    int i2 = stops.indexOf(to);
+		    if (i1 != -1 && i2 != -1 && i1 <= i2) {
+		    	res.add(r.getDate());
+		    }
+		}
 	 	return res;
 	}
 	

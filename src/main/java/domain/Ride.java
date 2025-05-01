@@ -49,8 +49,7 @@ public class Ride implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private RideEgoera egoera;
 	
-	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
-	private List<Geldialdia> geldialdiList=new Vector<Geldialdia>();
+	private List<String> geldialdiak = new Vector<String>();
 	
 	
 	public RideEgoera getEgoera() {
@@ -101,7 +100,7 @@ public class Ride implements Serializable {
 		this.egoera=RideEgoera.MARTXAN;
 	}*/
 
-	public Ride(List<City> hiriList, Date date, int nPlaces, float price, Driver driver, Car c) {
+	public Ride(List<String> hiriList, Date date, int nPlaces, float price, Driver driver, Car c) {
 		super();
 		this.nPlaces = nPlaces;
 		this.date=date;
@@ -110,9 +109,7 @@ public class Ride implements Serializable {
 		this.eserLibre=nPlaces;
 		this.car=c;
 		this.egoera=RideEgoera.MARTXAN;
-		for(int i =0;i<hiriList.size();i++){
-            this.addGeldialdia(i,hiriList.get(i), i == hiriList.size() - 1);
-		}
+		this.geldialdiak=hiriList;
 	}
 	
 	/**
@@ -134,8 +131,8 @@ public class Ride implements Serializable {
 		this.rideNumber = rideNumber;
 	}
 
-	public void setGeldialdiList(List<Geldialdia> geldialdiList) {
-		this.geldialdiList = geldialdiList;
+	public void setGeldialdiList(List<String> geldialdiList) {
+		this.geldialdiak = geldialdiList;
 	}
 
 	/**
@@ -240,20 +237,15 @@ public class Ride implements Serializable {
 		return this.price*eserKop;
 	}
 	
-	public void addGeldialdia(int pos, City hiria, Boolean azkenaDa) {
-		Geldialdia g = new Geldialdia(pos, hiria, this, azkenaDa);
-		this.geldialdiList.add(g);
-		hiria.addGeldialdia(g);
+	public void addGeldialdia(int pos, String hiria, Boolean azkenaDa) {
+		this.geldialdiak.add(hiria);
 	}
 
-	public List<Geldialdia> getGeldialdiList(){
-		return this.geldialdiList;
+	public List<String> getGeldialdiak(){
+		return this.geldialdiak;
 	}
 
 	public boolean haveSameStops(List<String> hiriList) {
-		for(Geldialdia g:geldialdiList){
-			if(!hiriList.contains(g.getCityName())) return false;
- 		}
-		return true;
+		return hiriList.containsAll(geldialdiak);
 	}
 }
