@@ -13,6 +13,7 @@ import domain.RideErreserbaContainer;
 import domain.Traveler;
 import domain.TravelerErreserbaContainer;
 import domain.User;
+import domain.Balorazioa;
 import domain.Car;
 import domain.Driver;
 import domain.Erreserba;
@@ -323,6 +324,14 @@ public class BLFacadeImplementation  implements BLFacade {
 		dbManager.open();
 		dbManager.sortuBalorazioa(u, er, puntuzioa, mezua);
 		dbManager.close();
+	}
+
+	@Override
+	public List<Balorazioa> lortuBalorazioak(String email) {
+		dbManager.open();
+		List<Balorazioa> list = dbManager.lortuBaloraizoak(email);
+		dbManager.close();
+		return list;
 	}
 
 

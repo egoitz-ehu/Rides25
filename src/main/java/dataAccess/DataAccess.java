@@ -84,7 +84,7 @@ public class DataAccess  {
 		   
 		    //Create drivers 
 			Driver driver1=new Driver("driver1@gmail.com","abc123", "Ane", "Gaztañaga");
-			Car c1 = driver1.addCar("123", 4, "Green", "Seat");
+			//Car c1 = driver1.addCar("123", 4, "Green", "Seat");
 			
 			//Create rides
 			//driver1.addRide("Donostia", "Bilbo", UtilDate.newDate(year,month,15), 4, 7,c1);
@@ -98,12 +98,15 @@ public class DataAccess  {
 			//driver2.addRide("Eibar", "Gasteiz", UtilDate.newDate(year,month,6), 2, 5);
 
 			//driver3.addRide("Bilbo", "Donostia", UtilDate.newDate(year,month,14), 1, 3);
+			
+			Driver driver2 = new Driver("1","1","1","1");
+			Traveler traveler1 = new Traveler("2","2","2","2");
 
 			
 						
 			db.persist(driver1);
-			//db.persist(driver2);
-			//db.persist(driver3);
+			db.persist(driver2);
+			db.persist(traveler1);
 
 	
 			db.getTransaction().commit();
@@ -590,6 +593,12 @@ public class DataAccess  {
 		db.persist(e);
 		db.getTransaction().commit();
 		System.out.println("Balorazioa sortu da");
+	}
+	
+	public List<Balorazioa> lortuBaloraizoak(String email){
+		TypedQuery<Balorazioa> query = db.createQuery("SELECT b FROM Balorazioa b WHERE b.nori.email=?1", Balorazioa.class);
+		query.setParameter(1, email);
+		return query.getResultList();
 	}
 	
 }

@@ -129,7 +129,7 @@ public class Erreserba implements Serializable{
 	
 	@Override
 	public String toString() {
-		return "Num:"+eskaeraNum + ";Plaza kop:" + plazaKop + ";Egoera:" + egoera + ";Data:" + erreserbaData + ";Bidaiaria mail:" + bidaiaria.getEmail();
+		return eskaeraNum + " " + plazaKop + " " + egoera + " " + erreserbaData + " " + bidaiaria.getEmail();
 	}
 	
 	@Override

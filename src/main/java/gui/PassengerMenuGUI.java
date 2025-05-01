@@ -40,6 +40,7 @@ public class PassengerMenuGUI extends JFrame {
 	private JButton btnNewButton;
 	private JMenu mnNewMenu;
 	private JMenuItem mntmNewMenuItem;
+	private JMenuItem menuItem;
 
 	/**
 	 * Launch the application.
@@ -91,7 +92,12 @@ public class PassengerMenuGUI extends JFrame {
 		
 		itemIkusi = new JMenuItem(ResourceBundle.getBundle("Etiquetas").getString("PassengerMenuGUI.See")); //$NON-NLS-1$ //$NON-NLS-2$
 		moneyMenu.add(itemIkusi);
-		
+		itemIkusi.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				DiruaIkusiGUI dI = new DiruaIkusiGUI(traveler);
+				dI.setVisible(true);
+			}
+		});
 		itemMugimenduak = new JMenuItem(ResourceBundle.getBundle("Etiquetas").getString("PassengerMenuGUI.SeeMovements")); //$NON-NLS-1$ //$NON-NLS-2$
 		itemMugimenduak.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -112,12 +118,16 @@ public class PassengerMenuGUI extends JFrame {
 			}
 		});
 		mnNewMenu.add(mntmNewMenuItem);
-		itemIkusi.addActionListener(new ActionListener() {
+		
+		menuItem = new JMenuItem(ResourceBundle.getBundle("Etiquetas").getString("MenuBalorazioa.See"));
+		mnNewMenu.add(menuItem);
+		menuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DiruaIkusiGUI dI = new DiruaIkusiGUI(traveler);
-				dI.setVisible(true);
+				BalorazioakIkusiGUI bI = new BalorazioakIkusiGUI();
+				bI.setVisible(true);
 			}
 		});
+
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 

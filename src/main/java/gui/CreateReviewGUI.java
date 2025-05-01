@@ -156,6 +156,8 @@ public class CreateReviewGUI extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				WelcomeGUI.getBusinessLogic().sortuBalorazioa(u.getEmail(), selectedErreserba.getEskaeraNum(), puntuazioa, textArea.getText());
+				model.removeAllElements();
+				lortuErreserbak(u);
 			}
 		});
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
@@ -164,6 +166,10 @@ public class CreateReviewGUI extends JFrame {
 		gbc_btnNewButton.gridy = 9;
 		contentPane.add(btnNewButton, gbc_btnNewButton);
 		
+		lortuErreserbak(u);
+	}
+	
+	private void lortuErreserbak(User u) {
 		List<TravelerErreserbaContainer> eContainerList = WelcomeGUI.getBusinessLogic().lortuBalorazioErreserbak(u);
 		List<Erreserba> eList = new LinkedList<Erreserba>();
 		for(TravelerErreserbaContainer x:eContainerList) {

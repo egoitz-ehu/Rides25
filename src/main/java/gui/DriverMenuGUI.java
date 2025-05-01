@@ -43,6 +43,7 @@ public class DriverMenuGUI extends JFrame {
 	private JMenuItem itemMugimenduak;
 	private JMenu mnNewMenu;
 	private JMenuItem mntmNewMenuItem;
+	private JMenuItem mntmNewMenuItem_1;
 
 	/**
 	 * Launch the application.
@@ -131,6 +132,15 @@ public class DriverMenuGUI extends JFrame {
 			}
 		});
 		mnNewMenu.add(mntmNewMenuItem);
+		
+		mntmNewMenuItem_1 = new JMenuItem(ResourceBundle.getBundle("Etiquetas").getString("MenuBalorazioa.See")); //$NON-NLS-1$ //$NON-NLS-2$
+		mntmNewMenuItem_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				BalorazioakIkusiGUI bI = new BalorazioakIkusiGUI();
+				bI.setVisible(true);
+			}
+		});
+		mnNewMenu.add(mntmNewMenuItem_1);
 		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

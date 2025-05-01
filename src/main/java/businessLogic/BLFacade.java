@@ -9,6 +9,7 @@ import domain.RideErreserbaContainer;
 import domain.Traveler;
 import domain.TravelerErreserbaContainer;
 import domain.User;
+import domain.Balorazioa;
 import domain.Car;
 import domain.Driver;
 import domain.Erreserba;
@@ -134,4 +135,6 @@ public interface BLFacade  {
 	@WebMethod public List<TravelerErreserbaContainer> lortuBalorazioErreserbak(User u);
 	
 	@WebMethod public void sortuBalorazioa(String u, int er, int puntuzioa, String mezua);
+	
+	@WebMethod public List<Balorazioa> lortuBalorazioak(String email);
 }

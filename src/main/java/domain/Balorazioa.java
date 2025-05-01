@@ -33,6 +33,10 @@ public class Balorazioa implements Serializable {
     @OneToOne(cascade=CascadeType.PERSIST)
     private Erreserba erreserba;
     
+    public Balorazioa() {
+    	super();
+    }
+    
     public Balorazioa(User nork, User nori, Erreserba er, int puntuazioa, String mezua) {
     	this.nork=nork;
     	this.nori=nori;
@@ -40,5 +44,17 @@ public class Balorazioa implements Serializable {
     	this.puntuazioa=puntuazioa;
     	this.mezua=mezua;
     	this.ezarritakoData=new Date();
+    }
+    
+    public String getNorkIzena() {
+    	return this.nork.getName();
+    }
+    
+    public int getPuntuazioa() {
+    	return this.puntuazioa;
+    }
+    
+    public String getMezua() {
+    	return this.mezua;
     }
 }
