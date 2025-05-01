@@ -29,6 +29,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
+import java.util.ResourceBundle;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextArea;
 
@@ -61,7 +62,7 @@ public class BalorazioakIkusiGUI extends JFrame {
 		gbl_contentPane.rowWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 		
-		JLabel lblNewLabel = new JLabel("New label");
+		JLabel lblNewLabel = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("BalorazioakIkusiGUI.Select"));
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
 		gbc_lblNewLabel.gridwidth = 3;
 		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
@@ -77,7 +78,7 @@ public class BalorazioakIkusiGUI extends JFrame {
 		gbc_textField.gridy = 0;
 		contentPane.add(textField, gbc_textField);
 		textField.setColumns(10);
-		JButton btnNewButton = new JButton("Button");
+		JButton btnNewButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("BalorazioakIkusiGUI.Find"));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				balorazioList = WelcomeGUI.getBusinessLogic().lortuBalorazioak(textField.getText());

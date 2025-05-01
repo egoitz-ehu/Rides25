@@ -22,6 +22,9 @@ public class Traveler extends User implements Serializable{
 	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
 	private List<Erreserba> bookedRides = new Vector<Erreserba>();
 	
+	@OneToMany(fetch=FetchType.EAGER)
+	private List<Alerta> alertaList = new Vector<Alerta>();
+	
 	public Traveler (String email, String pass, String name, String surname) {
 		super(email, pass, name, surname);
 	}
