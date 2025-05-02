@@ -9,6 +9,7 @@ import domain.RideErreserbaContainer;
 import domain.Traveler;
 import domain.TravelerErreserbaContainer;
 import domain.User;
+import domain.Alerta;
 import domain.Balorazioa;
 import domain.Car;
 import domain.Driver;
@@ -141,4 +142,6 @@ public interface BLFacade  {
 	@WebMethod public List<Balorazioa> lortuBalorazioak(String email);
 	
 	@WebMethod public void sortuAlerta(String email, String from, String to, Date date) throws BadagoRideException, ErreserbaAlreadyExistsException, AlertaAlreadyExistsException;
+	
+	@WebMethod public List<Alerta> lortuAlertak(String email);
 }

@@ -643,4 +643,10 @@ public class DataAccess  {
 		db.getTransaction().commit();
 	}
 	
+	public List<Alerta> lortuAlertak(String email){
+		TypedQuery<Alerta> query = db.createQuery("SELECT a FROM Alerta a WHERE a.traveler.email=?1",Alerta.class);
+		query.setParameter(1, email);
+		return query.getResultList();
+	}
+	
 }

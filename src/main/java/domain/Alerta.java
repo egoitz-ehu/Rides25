@@ -26,7 +26,7 @@ public class Alerta implements Serializable{
 	private Integer id;
 	
 	 @Enumerated(EnumType.STRING)
-	 private AlertaEgoera amaituta;
+	 private AlertaEgoera egoera;
 	 
 	 @XmlIDREF
 	 @OneToOne
@@ -46,12 +46,12 @@ public class Alerta implements Serializable{
 		this.id = id;
 	}
 
-	public AlertaEgoera getAmaituta() {
-		return amaituta;
+	public AlertaEgoera getEgoera() {
+		return egoera;
 	}
 
-	public void setAmaituta(AlertaEgoera amaituta) {
-		this.amaituta = amaituta;
+	public void setEgoera(AlertaEgoera amaituta) {
+		this.egoera = amaituta;
 	}
 
 	public Traveler getTraveler() {
@@ -91,7 +91,7 @@ public class Alerta implements Serializable{
 	 }
 	 
 	 public Alerta(Traveler traveler, String from, String to, Date d) {
-		 this.amaituta=AlertaEgoera.ZAIN;
+		 this.egoera=AlertaEgoera.ZAIN;
 		 this.traveler=traveler;
 		 this.from=from;
 		 this.to=to;

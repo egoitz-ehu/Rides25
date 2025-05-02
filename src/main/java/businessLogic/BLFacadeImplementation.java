@@ -13,6 +13,7 @@ import domain.RideErreserbaContainer;
 import domain.Traveler;
 import domain.TravelerErreserbaContainer;
 import domain.User;
+import domain.Alerta;
 import domain.Balorazioa;
 import domain.Car;
 import domain.Driver;
@@ -341,6 +342,14 @@ public class BLFacadeImplementation  implements BLFacade {
 		dbManager.open();
 		dbManager.sortuAlerta(email, from, to, date);
 		dbManager.close();
+	}
+
+	@WebMethod
+	public List<Alerta> lortuAlertak(String email) {
+		dbManager.open();
+		List<Alerta> list = dbManager.lortuAlertak(email);
+		dbManager.close();
+		return list;
 	}
 
 

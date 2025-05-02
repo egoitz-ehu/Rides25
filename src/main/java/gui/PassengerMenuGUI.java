@@ -137,7 +137,8 @@ public class PassengerMenuGUI extends JFrame {
 		itemIkusiAlerta = new JMenuItem(ResourceBundle.getBundle("Etiquetas").getString("AlertMenu.See")); //$NON-NLS-1$ //$NON-NLS-2$
 		itemIkusiAlerta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				AlertakIkusiGUI aI = new AlertakIkusiGUI(traveler);
+				aI.setVisible(true);
 			}
 		});
 		alertaMenu.add(itemIkusiAlerta);
