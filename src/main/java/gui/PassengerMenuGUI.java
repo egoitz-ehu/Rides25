@@ -41,6 +41,9 @@ public class PassengerMenuGUI extends JFrame {
 	private JMenu mnNewMenu;
 	private JMenuItem mntmNewMenuItem;
 	private JMenuItem menuItem;
+	private JMenu alertaMenu;
+	private JMenuItem itemIkusiAlerta;
+	private JMenuItem itemSortuAlerta;
 
 	/**
 	 * Launch the application.
@@ -127,6 +130,27 @@ public class PassengerMenuGUI extends JFrame {
 				bI.setVisible(true);
 			}
 		});
+		
+		alertaMenu = new JMenu(ResourceBundle.getBundle("Etiquetas").getString("AlertaMenu.Title"));
+		menuBar.add(alertaMenu);
+		
+		itemIkusiAlerta = new JMenuItem(ResourceBundle.getBundle("Etiquetas").getString("AlertMenu.See")); //$NON-NLS-1$ //$NON-NLS-2$
+		itemIkusiAlerta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		alertaMenu.add(itemIkusiAlerta);
+		
+		itemSortuAlerta = new JMenuItem(ResourceBundle.getBundle("Etiquetas").getString("AlertMenu.Sortu")); //$NON-NLS-1$ //$NON-NLS-2$
+		itemSortuAlerta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AlertaSortuGUI aS = new AlertaSortuGUI(traveler);
+				aS.setVisible(true);
+			}
+		});
+		alertaMenu.add(itemSortuAlerta);
+		
 
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
