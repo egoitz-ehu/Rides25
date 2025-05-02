@@ -19,6 +19,8 @@ import domain.Driver;
 import domain.Erreserba;
 import domain.Mugimendua;
 import exceptions.RideMustBeLaterThanTodayException;
+import exceptions.AlertaAlreadyExistsException;
+import exceptions.BadagoRideException;
 import exceptions.DiruaEzDaukaException;
 import exceptions.ErreserbaAlreadyExistsException;
 import exceptions.EserlekurikLibreEzException;
@@ -335,7 +337,7 @@ public class BLFacadeImplementation  implements BLFacade {
 	}
 
 	@WebMethod
-	public void sortuAlerta(String email, String from, String to, Date date) {
+	public void sortuAlerta(String email, String from, String to, Date date) throws BadagoRideException, ErreserbaAlreadyExistsException, AlertaAlreadyExistsException {
 		dbManager.open();
 		dbManager.sortuAlerta(email, from, to, date);
 		dbManager.close();

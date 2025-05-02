@@ -7,6 +7,8 @@ import com.toedter.calendar.JCalendar;
 import domain.Ride;
 import domain.RideEgoera;
 import domain.Traveler;
+import exceptions.AlertaAlreadyExistsException;
+import exceptions.BadagoRideException;
 import exceptions.DiruaEzDaukaException;
 import exceptions.ErreserbaAlreadyExistsException;
 import exceptions.EserlekurikLibreEzException;
@@ -205,7 +207,9 @@ public class ErreserbaEskaeraGUI extends JFrame {
 								tableModelRides.addRow(row);	
 							}
 						}
-						datesWithRidesCurrentMonth=facade.getThisMonthDatesWithRides((String)jComboBoxOrigin.getSelectedItem(),(String)jComboBoxDestination.getSelectedItem(),jCalendar1.getDate());
+						Date d = jCalendar1.getDate();
+
+						datesWithRidesCurrentMonth=facade.getThisMonthDatesWithRides((String)jComboBoxOrigin.getSelectedItem(),(String)jComboBoxDestination.getSelectedItem(), UtilDate.trim(d));
 						if(datesWithRidesCurrentMonth.isEmpty() && !((String)jComboBoxOrigin.getSelectedItem()).equals("")) {
 							btnAlerta.setEnabled(true);
 							lblEz.setEnabled(true);
@@ -322,7 +326,17 @@ public class ErreserbaEskaeraGUI extends JFrame {
 		btnAlerta = new JButton(ResourceBundle.getBundle("Etiquetas").getString("ErreserbaEskaeraGUI.AlertaSortu")); //$NON-NLS-1$ //$NON-NLS-2$
 		btnAlerta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				WelcomeGUI.getBusinessLogic().sortuAlerta(t.getEmail(),(String)jComboBoxOrigin.getSelectedItem(),(String)jComboBoxDestination.getSelectedItem(),jCalendar1.getDate());
+				try {
+					Date d =jCalendar1.getDate();
+					WelcomeGUI.getBusinessLogic().sortuAlerta(t.getEmail(),(String)jComboBoxOrigin.getSelectedItem(),(String)jComboBoxDestination.getSelectedItem(), UtilDate.trim(d));
+					JOptionPane.showMessageDialog(null, ResourceBundle.getBundle("Etiquetas").getString("Alerta.Sortu"));
+				} catch (BadagoRideException e1) {
+					JOptionPane.showMessageDialog(null, ResourceBundle.getBundle("Etiquetas").getString("Alerta.BadagoRide"));
+				} catch (ErreserbaAlreadyExistsException e1) {
+					JOptionPane.showMessageDialog(null, ResourceBundle.getBundle("Etiquetas").getString("Alerta.ErreserbaExists"));
+				} catch (AlertaAlreadyExistsException e1) {
+					JOptionPane.showMessageDialog(null, ResourceBundle.getBundle("Etiquetas").getString("Alerta.AlertaExists"));
+				}
 				btnAlerta.setEnabled(false);
 				lblEz.setEnabled(false);
 				lblEz.setText("");

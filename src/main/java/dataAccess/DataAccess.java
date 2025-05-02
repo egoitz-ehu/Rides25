@@ -22,6 +22,8 @@ import javax.persistence.TypedQuery;
 import configuration.ConfigXML;
 import configuration.UtilDate;
 import domain.*;
+import exceptions.AlertaAlreadyExistsException;
+import exceptions.BadagoRideException;
 import exceptions.DiruaEzDaukaException;
 import exceptions.ErreserbaAlreadyExistsException;
 import exceptions.EserlekurikLibreEzException;
@@ -619,11 +621,24 @@ public class DataAccess  {
 		return query.getResultList();
 	}
 	
-	public void sortuAlerta(String email, String from, String to, Date d) {
+	public void sortuAlerta(String email, String from, String to, Date d) throws BadagoRideException, ErreserbaAlreadyExistsException, AlertaAlreadyExistsException {
 		db.getTransaction().begin();
 		Traveler t = db.find(Traveler.class, email);
-		if(!t.baduAlertaBerdina(from, to, d)&&!t.baduErreserba(from, to, d)) {
-			t.sortuAlerta(from, to, d);
+		if(!t.baduAlertaBerdina(from, to, d)) {
+			if(!t.baduErreserba(from, to, d)) {
+				if(getThisMonthDatesWithRides(from,to,d).isEmpty()) {
+					t.sortuAlerta(from, to, d);
+				} else {
+					db.getTransaction().commit();
+					throw new BadagoRideException();
+				}
+			} else {
+				db.getTransaction().commit();
+				throw new ErreserbaAlreadyExistsException();
+			}
+		} else {
+			db.getTransaction().commit();
+			throw new AlertaAlreadyExistsException();
 		}
 		db.getTransaction().commit();
 	}
