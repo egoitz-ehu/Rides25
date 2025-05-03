@@ -248,10 +248,11 @@ public class DataAccess  {
 		db.getTransaction().commit(); 
 	}
 	
-	public void erreserbaUkatu(int erreserbaNum, Ride r) {
+	public void erreserbaUkatu(int erreserbaNum, int rNumber) {
 		db.getTransaction().begin();
 		Erreserba e = db.find(Erreserba.class, erreserbaNum);
 		Traveler t = e.getBidaiaria();
+		Ride r = db.find(Ride.class, rNumber);
 		double kop = e.prezioaKalkulatu();
 		int eserKop = e.getPlazaKop();
 		e.setEgoera(ErreserbaEgoera.UKATUA);
@@ -259,7 +260,6 @@ public class DataAccess  {
 		t.diruaSartu(kop);
 		r.itzuliEserlekuak(eserKop);
 		t.addMugimendua(kop, MugimenduMota.ERRESERBA_UKATU);
-		db.merge(r);
 		db.getTransaction().commit();
 	}
 	
@@ -657,6 +657,22 @@ public class DataAccess  {
 		db.remove(a);
 		db.getTransaction().commit();;
 		System.out.println("Alerta ezabatu da");
+	}
+	
+	public void alertaAurkitu(List<String> hiriak, Date date) {
+		db.getTransaction().begin();
+		TypedQuery<Alerta> query = db.createQuery("SELECT a FROM Alerta a WHERE a.date=?1 AND a.egoera=?2", Alerta.class);
+		query.setParameter(1, date);
+		query.setParameter(2, AlertaEgoera.ZAIN);
+		List<Alerta> aList = query.getResultList();
+		for(Alerta a: aList) {
+			int indexFrom = hiriak.indexOf(a.getFrom());
+			int indexTo = hiriak.indexOf(a.getTo());
+			if(indexFrom!=-1 && indexTo!=-1 && indexFrom<=indexTo) {
+				a.setEgoera(AlertaEgoera.AURKITUA);
+			}
+		}
+		db.getTransaction().commit();
 	}
 	
 }

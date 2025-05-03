@@ -32,6 +32,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Date;
 
 public class ErreserbakGestionatuGUI extends JFrame {
 
@@ -173,7 +174,9 @@ public class ErreserbakGestionatuGUI extends JFrame {
 		ukatuButton.setEnabled(false);
 		ukatuButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				WelcomeGUI.getBusinessLogic().ukatuErreserba(selectedErreserbaNumber, selectedRide);
+				List<String> hiriak = selectedRide.getGeldialdiak();
+				Date da = selectedRide.getDate();
+				WelcomeGUI.getBusinessLogic().ukatuErreserba(selectedErreserbaNumber, selectedRide.getRideNumber());
 				ezarriErreserbak();
 				onartuButton.setEnabled(false);
 				ukatuButton.setEnabled(false);
@@ -181,6 +184,10 @@ public class ErreserbakGestionatuGUI extends JFrame {
 				ridesComboBox.removeAllItems();
 				List<Ride> driverRides = WelcomeGUI.getBusinessLogic().getDriverAllRides(d.getEmail());
 				ridesModel.addAll(driverRides);
+				System.out.println(selectedRide);
+				System.out.println(hiriak);
+				System.out.println(da);
+				WelcomeGUI.getBusinessLogic().alertaAurkitua(hiriak, da);
 			}
 		});
 		GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();

@@ -198,7 +198,7 @@ public class BLFacadeImplementation  implements BLFacade {
 	}
 
 	@WebMethod
-	public void ukatuErreserba(int erreserbaNum, Ride r) {
+	public void ukatuErreserba(int erreserbaNum, int r) {
 		dbManager.open();
 		dbManager.erreserbaUkatu(erreserbaNum, r);
 		dbManager.close();
@@ -356,6 +356,13 @@ public class BLFacadeImplementation  implements BLFacade {
 	public void ezabatuAlerta(int id) {
 		dbManager.open();
 		dbManager.ezabatuAlerta(id);
+		dbManager.close();
+	}
+
+	@WebMethod
+	public void alertaAurkitua(List<String> hiriak, Date d) {
+		dbManager.open();
+		dbManager.alertaAurkitu(hiriak, d);
 		dbManager.close();
 	}
 }

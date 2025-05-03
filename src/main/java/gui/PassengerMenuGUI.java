@@ -167,7 +167,7 @@ public class PassengerMenuGUI extends JFrame {
 		buttonQuery = new JButton(ResourceBundle.getBundle("Etiquetas").getString("PassengerMenuGUI.Query"));
 		buttonQuery.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ErreserbaEskaeraGUI eE = new ErreserbaEskaeraGUI(traveler);
+				ErreserbaEskaeraGUI eE = new ErreserbaEskaeraGUI(traveler, null, null, null);
 				eE.setVisible(true);
 			}
 		});

@@ -105,7 +105,7 @@ public interface BLFacade  {
 	
 	@WebMethod public void onartuErreserba(int erreserbaNum, String d);
 	
-	@WebMethod public void ukatuErreserba(int erreserbaNum, Ride r);
+	@WebMethod public void ukatuErreserba(int erreserbaNum, int r);
 	
 	@WebMethod public List<Ride> getDriverAllRides(String driverEmail);
 	
@@ -146,4 +146,6 @@ public interface BLFacade  {
 	@WebMethod public List<Alerta> lortuAlertak(String email);
 	
 	@WebMethod public void ezabatuAlerta(int id);
+	
+	@WebMethod public void alertaAurkitua(List<String> hiriak, Date d);
 }

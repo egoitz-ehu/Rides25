@@ -71,7 +71,7 @@ public class ErreserbaEskaeraGUI extends JFrame {
 	JLabel lblEz;
 	JButton btnAlerta;
 
-	public ErreserbaEskaeraGUI(Traveler t)
+	public ErreserbaEskaeraGUI(Traveler t, String from, String to, Date date)
 	{
 
 		this.getContentPane().setLayout(null);
@@ -97,6 +97,9 @@ public class ErreserbaEskaeraGUI extends JFrame {
 		List<String> origins=facade.getStopCitiesNames();
 		originLocations.addElement("");
 		for(String location:origins) originLocations.addElement(location);
+		if(from!=null) {
+			originLocations.setSelectedItem(from);
+		}
 		
 		jLabelOrigin.setBounds(new Rectangle(6, 56, 92, 20));
 		jLabelDestination.setBounds(6, 81, 61, 16);
@@ -125,7 +128,9 @@ public class ErreserbaEskaeraGUI extends JFrame {
 				tableModelRides.getDataVector().removeAllElements();
 				tableModelRides.fireTableDataChanged();
 
-				
+				if(to!=null) {
+					destinationCities.setSelectedItem(to);
+				}
 			}
 		});
 
@@ -140,7 +145,10 @@ public class ErreserbaEskaeraGUI extends JFrame {
 
 				datesWithRidesCurrentMonth=facade.getThisMonthDatesWithRides((String)jComboBoxOrigin.getSelectedItem(),(String)jComboBoxDestination.getSelectedItem(),jCalendar1.getDate());
 				paintDaysWithEvents(jCalendar1,datesWithRidesCurrentMonth,Color.CYAN);
-
+				
+				if(date!=null) {
+					jCalendar1.setDate(date);
+				}
 			}
 		});
 

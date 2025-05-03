@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Vector;
+import java.util.ArrayList;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -49,7 +50,8 @@ public class Ride implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private RideEgoera egoera;
 	
-	private List<String> geldialdiak = new Vector<String>();
+	@ElementCollection(fetch=FetchType.EAGER)
+	private List<String> geldialdiak = new ArrayList<String>();
 	
 	
 	public RideEgoera getEgoera() {

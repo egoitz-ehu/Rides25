@@ -321,6 +321,7 @@ public class CreateRideGUI extends JFrame {
 				Ride r=facade.createRide(hiriak,UtilDate.trim(jCalendar.getDate()), selectedCar, price, driver.getEmail());
 				jLabelMsg.setText(ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.RideCreated"));
 
+				facade.alertaAurkitua(hiriak, UtilDate.trim(jCalendar.getDate()));
 			} catch (RideMustBeLaterThanTodayException e1) {
 				// TODO Auto-generated catch block
 				jLabelMsg.setText(e1.getMessage());
