@@ -23,8 +23,11 @@ public class AlertakIkusiGUI extends JFrame {
 	JPanel listaAurkitua;
 	JScrollPane panelZain;
 	JPanel listaZain;
+	
+	private Traveler t;
 
-	public AlertakIkusiGUI(Traveler t) {
+	public AlertakIkusiGUI(Traveler tr) {
+		t=tr;
 		setBounds(100, 100, 500, 400);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -56,16 +59,16 @@ public class AlertakIkusiGUI extends JFrame {
 			final int index = i;
 			Alerta a = aList.get(i);
 			if(a.getEgoera().equals(AlertaEgoera.AURKITUA)) {
-				listaAurkitua.add(sortuElementua(a.getFrom(),a.getTo(),a.getDate(),index));
+				listaAurkitua.add(sortuElementua(a.getFrom(),a.getTo(),a.getDate(),index, true));
 				listaAurkitua.add(Box.createVerticalStrut(10));
 			} else if(a.getEgoera().equals(AlertaEgoera.ZAIN)) {
-				listaZain.add(sortuElementua(a.getFrom(),a.getTo(),a.getDate(),index));
+				listaZain.add(sortuElementua(a.getFrom(),a.getTo(),a.getDate(),index, false));
 				listaZain.add(Box.createVerticalStrut(10));
 			}
 		}
 	}
 
-	private JPanel sortuElementua(String from, String to, Date date, int index) {
+	private JPanel sortuElementua(String from, String to, Date date, int index, boolean aurkitua) {
 	    JPanel panel = new JPanel(new BorderLayout());
 	    panel.setBackground(new Color(230, 240, 255));
 	    panel.setBorder(BorderFactory.createCompoundBorder(
@@ -86,37 +89,59 @@ public class AlertakIkusiGUI extends JFrame {
 
 	    panelTextos.add(lblLekuak);
 	    panelTextos.add(lblDescripcion);
+	    
+	    JPanel panelBtn = new JPanel();
+	    panelBtn.setLayout(new BoxLayout(panelBtn, BoxLayout.X_AXIS));
+	    panelBtn.setOpaque(false);
 
 	    JButton boton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("AlertaSortuGUI.Delete"));
 	    boton.setFont(new Font("SansSerif", Font.PLAIN, 12));
-	    
-	    boton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				int id = aList.get(index).getId();
-				WelcomeGUI.getBusinessLogic().ezabatuAlerta(id);
-				
-				 Component panelToRemove = boton.getParent();
-			     Container parent = panelToRemove.getParent();
-			     parent.remove(panelToRemove);
-			     int idx = -1;
-			     Component[] comps = parent.getComponents();
-			     for (int i = 0; i < comps.length; i++) {
-			    	 if (comps[i] == panelToRemove) {
-			    		 idx = i;
-			    		 break;
-			    	 }
-			     }
-			     if (idx != -1 && idx + 1 < comps.length && comps[idx + 1] instanceof Box.Filler) {
-			    	 parent.remove(comps[idx + 1]);
-			     }
 
-			     parent.revalidate();
-			     parent.repaint();
-			}}
-	    );
+	    boton.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            int id = aList.get(index).getId();
+	            WelcomeGUI.getBusinessLogic().ezabatuAlerta(id);
+	            
+	            Component panelToRemove = boton.getParent().getParent();
+	            Container parent = panelToRemove.getParent();
+	            parent.remove(panelToRemove);
+	            int idx = -1;
+	            Component[] comps = parent.getComponents();
+	            for (int i = 0; i < comps.length; i++) {
+	            	if (comps[i] == panelToRemove) {
+	            		idx = i;
+	            		break;
+	            	}
+	            }
+	            if (idx != -1 && idx + 1 < comps.length && comps[idx + 1] instanceof Box.Filler) {
+	            	parent.remove(comps[idx + 1]);
+	            }
+	            parent.revalidate();
+	            parent.repaint();
+	        }
+	    });
+
+	    
+	    JButton btnQuery = null;
+	    if(aurkitua) {
+	    	btnQuery = new JButton("a");
+		    btnQuery.setFont(new Font("SansSerif", Font.PLAIN, 12));
+		    btnQuery.addActionListener(new ActionListener() {
+		        public void actionPerformed(ActionEvent e) {
+		        	ErreserbaEskaeraGUI ee = new ErreserbaEskaeraGUI(t, from, to, date);
+		        	ee.setVisible(true);
+		        }
+		    });
+	    }
+	    
+	    if(btnQuery!=null) {
+		    panelBtn.add(btnQuery);
+	    }
+	    panelBtn.add(boton);
+
 
 	    panel.add(panelTextos, BorderLayout.CENTER);
-	    panel.add(boton, BorderLayout.EAST);
+	    panel.add(panelBtn, BorderLayout.EAST);
 
 	    return panel;
 	}

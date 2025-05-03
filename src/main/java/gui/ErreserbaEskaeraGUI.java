@@ -97,9 +97,6 @@ public class ErreserbaEskaeraGUI extends JFrame {
 		List<String> origins=facade.getStopCitiesNames();
 		originLocations.addElement("");
 		for(String location:origins) originLocations.addElement(location);
-		if(from!=null) {
-			originLocations.setSelectedItem(from);
-		}
 		
 		jLabelOrigin.setBounds(new Rectangle(6, 56, 92, 20));
 		jLabelDestination.setBounds(6, 81, 61, 16);
@@ -127,10 +124,6 @@ public class ErreserbaEskaeraGUI extends JFrame {
 				}
 				tableModelRides.getDataVector().removeAllElements();
 				tableModelRides.fireTableDataChanged();
-
-				if(to!=null) {
-					destinationCities.setSelectedItem(to);
-				}
 			}
 		});
 
@@ -145,10 +138,6 @@ public class ErreserbaEskaeraGUI extends JFrame {
 
 				datesWithRidesCurrentMonth=facade.getThisMonthDatesWithRides((String)jComboBoxOrigin.getSelectedItem(),(String)jComboBoxDestination.getSelectedItem(),jCalendar1.getDate());
 				paintDaysWithEvents(jCalendar1,datesWithRidesCurrentMonth,Color.CYAN);
-				
-				if(date!=null) {
-					jCalendar1.setDate(date);
-				}
 			}
 		});
 
@@ -352,6 +341,46 @@ public class ErreserbaEskaeraGUI extends JFrame {
 		});
 		btnAlerta.setBounds(83, 177, 122, 23);
 		getContentPane().add(btnAlerta);
+		
+		if (from != null) {
+		    jComboBoxOrigin.setSelectedItem(from);
+
+		    // Forzar actualización de destinos
+		    List<String> aCities = facade.getDestinationCities(from);
+		    destinationCities.removeAllElements();
+		    for (String aciti : aCities) {
+		        destinationCities.addElement(aciti);
+		    }
+
+		    if (to != null) {
+		        jComboBoxDestination.setSelectedItem(to);
+		    }
+
+		    if (date != null) {
+		        jCalendar1.setDate(date);
+
+		        // Pintar días con rides
+		        datesWithRidesCurrentMonth = facade.getThisMonthDatesWithRides(from, to, UtilDate.trim(date));
+		        paintDaysWithEvents(jCalendar1, datesWithRidesCurrentMonth, Color.CYAN);
+
+		        // Cargar rides automáticamente
+		        List<Ride> rides = facade.getRides(from, to, UtilDate.trim(date));
+		        tableModelRides.setDataVector(null, columnNamesRides);
+		        tableModelRides.setColumnCount(5);
+		        for (Ride ride : rides) {
+		            if (ride.getEgoera().equals(RideEgoera.MARTXAN)) {
+		                Vector<Object> row = new Vector<>();
+		                row.add(ride.getDriver().getName());
+		                row.add(ride.getnPlaces());
+		                row.add(ride.getPrice());
+		                row.add(ride.getEserLibre());
+		                row.add(ride);
+		                tableModelRides.addRow(row);
+		            }
+		        }
+		        tableRides.getColumnModel().removeColumn(tableRides.getColumnModel().getColumn(4));
+		    }
+		}
 		
 		btnAlerta.setEnabled(false);
 		lblEz.setEnabled(false);
