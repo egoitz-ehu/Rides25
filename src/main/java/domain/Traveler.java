@@ -84,4 +84,8 @@ public class Traveler extends User implements Serializable{
 		}
 		return false;
 	}
+	
+	public void kenduAlerta(Alerta a) {
+		this.alertaList.remove(a);
+	}
 }

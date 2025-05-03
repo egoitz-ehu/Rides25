@@ -351,7 +351,12 @@ public class BLFacadeImplementation  implements BLFacade {
 		dbManager.close();
 		return list;
 	}
-
-
+	
+	@WebMethod
+	public void ezabatuAlerta(int id) {
+		dbManager.open();
+		dbManager.ezabatuAlerta(id);
+		dbManager.close();
+	}
 }
 

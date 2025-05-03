@@ -144,4 +144,6 @@ public interface BLFacade  {
 	@WebMethod public void sortuAlerta(String email, String from, String to, Date date) throws BadagoRideException, ErreserbaAlreadyExistsException, AlertaAlreadyExistsException;
 	
 	@WebMethod public List<Alerta> lortuAlertak(String email);
+	
+	@WebMethod public void ezabatuAlerta(int id);
 }

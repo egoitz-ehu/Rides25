@@ -649,4 +649,14 @@ public class DataAccess  {
 		return query.getResultList();
 	}
 	
+	public void ezabatuAlerta(int id) {
+		db.getTransaction().begin();
+		Alerta a = db.find(Alerta.class, id);
+		Traveler t = a.getTraveler();
+		t.kenduAlerta(a);
+		db.remove(a);
+		db.getTransaction().commit();;
+		System.out.println("Alerta ezabatu da");
+	}
+	
 }
