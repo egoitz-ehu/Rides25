@@ -248,6 +248,6 @@ public class Ride implements Serializable {
 	}
 
 	public boolean haveSameStops(List<String> hiriList) {
-		return hiriList.containsAll(geldialdiak);
+		return hiriList.equals(geldialdiak);
 	}
 }
