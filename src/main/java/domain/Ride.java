@@ -49,8 +49,7 @@ public class Ride implements Serializable {
 	
 	@Enumerated(EnumType.STRING)
 	private RideEgoera egoera;
-	
-	@ElementCollection(fetch=FetchType.EAGER)
+	@ElementCollection(fetch = FetchType.EAGER)
 	private List<String> geldialdiak = new ArrayList<String>();
 	
 	

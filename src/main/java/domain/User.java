@@ -34,6 +34,14 @@ public abstract class User implements Serializable{
 	@XmlIDREF
 	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
 	private List<Balorazioa> jarritakoBalorazioak = new Vector<Balorazioa>();
+	
+	@XmlIDREF
+	@OneToMany
+	private List<Erreklamazioa> jarritakoErreklamazioak = new Vector<Erreklamazioa>();
+	
+	@XmlIDREF
+	@OneToMany
+	private List<Erreklamazioa> jasotakoErreklamazioak = new Vector<Erreklamazioa>();
 
 	public User(String email, String pass, String name, String surname) {
 		this.email = email;

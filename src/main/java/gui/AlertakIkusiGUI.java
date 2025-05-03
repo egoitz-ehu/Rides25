@@ -94,7 +94,7 @@ public class AlertakIkusiGUI extends JFrame {
 	    panelBtn.setLayout(new BoxLayout(panelBtn, BoxLayout.X_AXIS));
 	    panelBtn.setOpaque(false);
 
-	    JButton boton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("AlertaSortuGUI.Delete"));
+	    JButton boton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("AlertaIkusiGUI.Delete"));
 	    boton.setFont(new Font("SansSerif", Font.PLAIN, 12));
 
 	    boton.addActionListener(new ActionListener() {
@@ -124,7 +124,7 @@ public class AlertakIkusiGUI extends JFrame {
 	    
 	    JButton btnQuery = null;
 	    if(aurkitua) {
-	    	btnQuery = new JButton("a");
+	    	btnQuery = new JButton(ResourceBundle.getBundle("Etiquetas").getString("AlertaIkusiGUI.See"));
 		    btnQuery.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		    btnQuery.addActionListener(new ActionListener() {
 		        public void actionPerformed(ActionEvent e) {
