@@ -38,8 +38,6 @@ public class Ride implements Serializable {
 	public void setErreserbak(List<Erreserba> erreserbak) {
 		this.erreserbak = erreserbak;
 	}
-
-	private float price;
 	
 	@OneToOne(fetch=FetchType.EAGER)
 	private Driver driver;
@@ -49,8 +47,8 @@ public class Ride implements Serializable {
 	
 	@Enumerated(EnumType.STRING)
 	private RideEgoera egoera;
-	@ElementCollection(fetch = FetchType.EAGER)
-	private List<String> geldialdiak = new ArrayList<String>();
+	@OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.PERSIST)
+	private List<Geldialdia> geldialdiak = new ArrayList<Geldialdia>();
 	
 	
 	public RideEgoera getEgoera() {
@@ -101,16 +99,25 @@ public class Ride implements Serializable {
 		this.egoera=RideEgoera.MARTXAN;
 	}*/
 
-	public Ride(List<String> hiriList, Date date, int nPlaces, float price, Driver driver, Car c) {
+	public Ride(List<String> hiriList, List<Double> prezioList, Date date, int nPlaces, Driver driver, Car c) {
 		super();
 		this.nPlaces = nPlaces;
 		this.date=date;
-		this.price=price;
 		this.driver = driver;
 		this.eserLibre=nPlaces;
 		this.car=c;
 		this.egoera=RideEgoera.MARTXAN;
-		this.geldialdiak=hiriList;
+		List<Geldialdia> geldialdiList = new LinkedList<Geldialdia>();
+		for(int i=0;i<hiriList.size();i++) {
+			Geldialdia g = null;
+			if(i==hiriList.size()-1) {
+				g = new Geldialdia(i+1,0,i==hiriList.size()-1,hiriList.get(i));
+			} else {
+				g = new Geldialdia(i+1,prezioList.get(i),i==hiriList.size()-1,hiriList.get(i));
+			}
+			geldialdiList.add(g);
+		}
+		this.geldialdiak=geldialdiList;
 	}
 	
 	/**
@@ -130,10 +137,6 @@ public class Ride implements Serializable {
 	
 	public void setRideNumber(Integer rideNumber) {
 		this.rideNumber = rideNumber;
-	}
-
-	public void setGeldialdiList(List<String> geldialdiList) {
-		this.geldialdiak = geldialdiList;
 	}
 
 	/**
@@ -191,14 +194,6 @@ public class Ride implements Serializable {
 	public void setDriver(Driver driver) {
 		this.driver = driver;
 	}
-
-	public float getPrice() {
-		return price;
-	}
-
-	public void setPrice(float price) {
-		this.price = price;
-	}
 	
 	@Override
 	public String toString() {
@@ -233,20 +228,29 @@ public class Ride implements Serializable {
 	public void itzuliEserlekuak(int kop) {
 		this.eserLibre+=kop;
 	}
-	
-	public double prezioaKalkulatu(int eserKop) {
-		return this.price*eserKop;
-	}
-	
-	public void addGeldialdia(int pos, String hiria, Boolean azkenaDa) {
-		this.geldialdiak.add(hiria);
-	}
 
-	public List<String> getGeldialdiak(){
+	public List<Geldialdia> getGeldialdiak(){
 		return this.geldialdiak;
 	}
 
 	public boolean haveSameStops(List<String> hiriList) {
 		return hiriList.equals(geldialdiak);
+	}
+	
+	public double prezioaKalkulatu(String from, String to) {
+		double kop = 0.0;
+		boolean fromAurkitua=false;
+		for(Geldialdia g:geldialdiak) {
+			if(fromAurkitua) {
+				if(g.getHiria().equals(to)) {
+					break;
+				}
+				kop+=g.getPrezioa();
+			} else if(g.getHiria().equals(from)) {
+				fromAurkitua=true;
+				kop+=g.getPrezioa();
+			}
+		}
+		return kop;
 	}
 }

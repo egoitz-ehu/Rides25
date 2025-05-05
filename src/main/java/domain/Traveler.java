@@ -45,15 +45,14 @@ public class Traveler extends User implements Serializable{
 		return false;
 	}
 	
-	public boolean diruaDauka(Ride r, int eserKop) {
-		return (this.getCash()>=r.getPrice()*eserKop);
+	public boolean diruaDauka(double kop) {
+		return (this.getCash()>=kop);
 	}
 	
-	public Erreserba sortuErreserba(Ride r, int eserKop, String from, String to) {
-		double prezioa = r.getPrice()*eserKop;
+	public Erreserba sortuErreserba(Ride r, int eserKop, String from, String to, double prezioa) {
 		this.diruaAtera(prezioa);
 		this.addFrozenMoney(prezioa);
-		Erreserba erre = new Erreserba(eserKop, this, r, from, to);
+		Erreserba erre = new Erreserba(eserKop, this, r, from, to, prezioa*eserKop);
 		bookedRides.add(erre);
 		return erre;
 	}

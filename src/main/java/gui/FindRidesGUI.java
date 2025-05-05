@@ -186,7 +186,7 @@ public class FindRidesGUI extends JFrame {
 								Vector<Object> row = new Vector<Object>();
 								row.add(ride.getDriver().getName());
 								row.add(ride.getnPlaces());
-								row.add(ride.getPrice());
+								row.add(ride.prezioaKalkulatu((String) originLocations.getSelectedItem(), (String) destinationCities.getSelectedItem()));
 								row.add(ride); // ev object added in order to obtain it with tableModelEvents.getValueAt(i,3)
 								tableModelRides.addRow(row);		
 							}

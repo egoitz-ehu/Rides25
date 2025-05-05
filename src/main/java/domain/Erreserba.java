@@ -38,6 +38,14 @@ public class Erreserba implements Serializable{
 		return kantzelatuData;
 	}
 
+	public double getPrezioa() {
+		return prezioa;
+	}
+
+	public void setPrezioa(double prezioa) {
+		this.prezioa = prezioa;
+	}
+
 	public void setKantzelatuData(Date kantzelatuData) {
 		this.kantzelatuData = kantzelatuData;
 	}
@@ -57,6 +65,8 @@ public class Erreserba implements Serializable{
 	private String from;
 	
 	private String to;
+	
+	private double prezioa;
 	
 	
 	public ErreserbaEgoera getEgoera() {
@@ -111,7 +121,7 @@ public class Erreserba implements Serializable{
 		this.ride = ride;
 	}
 
-	public Erreserba(int kop, Traveler bidaiaria, Ride ride, String from, String to) {
+	public Erreserba(int kop, Traveler bidaiaria, Ride ride, String from, String to, double prezioa) {
 		this.plazaKop=kop;
 		this.bidaiaria=bidaiaria;
 		this.ride=ride;
@@ -119,6 +129,7 @@ public class Erreserba implements Serializable{
 		this.egoera=ErreserbaEgoera.ZAIN;
 		this.from=from;
 		this.to=to;
+		this.prezioa=prezioa;
 	}
 	
 	public String getFrom() {
@@ -143,10 +154,6 @@ public class Erreserba implements Serializable{
 	
 	public boolean containsRide(Ride r) {
 		return (this.ride.equals(r));
-	}
-	
-	public double prezioaKalkulatu() {
-		return (this.plazaKop*this.ride.getPrice());
 	}
 	
 	@Override

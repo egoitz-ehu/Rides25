@@ -185,13 +185,13 @@ public class DataAccess  {
 		if(kop>0) {
 			db.getTransaction().begin();
 			Ride r = db.find(Ride.class, rNumber);
-			double kostua = r.prezioaKalkulatu(kop);
+			double kostua = r.prezioaKalkulatu(from, to);
 			Traveler tr = db.find(Traveler.class, t.getEmail());
 			if(!tr.existBook(r)) {
-				if(tr.diruaDauka(r, kop)) {
+				if(tr.diruaDauka(kostua)) {
 					if(r.eserlekuakLibre(kop)) {
 						//Erreserba e = new Erreserba(kop,t, r);
-						Erreserba erreserbaBerria = tr.sortuErreserba(r, kop, from, to);
+						Erreserba erreserbaBerria = tr.sortuErreserba(r, kop, from, to, kostua);
 						r.gehituErreserba(erreserbaBerria);
 						tr.addMugimendua(kostua,MugimenduMota.ERRESERBA_SORTU);
 						//db.persist(erreserbaBerria);
@@ -237,7 +237,7 @@ public class DataAccess  {
 		Erreserba e = db.find(Erreserba.class, erreserbaNum);
 		Traveler t = db.find(Traveler.class, e.getBidaiariaEmail());
 		Driver d = db.find(Driver.class, dMail);
-		double prezioa = e.prezioaKalkulatu();
+		double prezioa = e.getPrezioa();
 		e.setEgoera(ErreserbaEgoera.ONARTUA);
 		t.removeFrozenMoney(prezioa);
 		d.addFrozenMoney(prezioa);
@@ -251,7 +251,7 @@ public class DataAccess  {
 		Erreserba e = db.find(Erreserba.class, erreserbaNum);
 		Traveler t = e.getBidaiaria();
 		Ride r = db.find(Ride.class, rNumber);
-		double kop = e.prezioaKalkulatu();
+		double kop = e.getPrezioa();
 		int eserKop = e.getPlazaKop();
 		e.setEgoera(ErreserbaEgoera.UKATUA);
 		t.removeFrozenMoney(kop);
@@ -285,7 +285,7 @@ public class DataAccess  {
 		Erreserba e = db.find(Erreserba.class, c.getErreserba().getEskaeraNum()); // Bestela arazoa eguneratzean web zerbitzu bat denean
 		e.setEgoera(ErreserbaEgoera.BAIEZTATUA);
 		Ride r = c.getRide();
-		double prezioa = e.getPlazaKop()*r.getPrice();
+		double prezioa = e.getPrezioa();
 		Driver d = db.find(Driver.class, c.getRide().getDriver().getEmail());
 		d.removeFrozenMoney(prezioa);
 		d.diruaSartu(prezioa);
@@ -319,7 +319,7 @@ public class DataAccess  {
 			e.setEgoera(ErreserbaEgoera.KANTZELATUA);
 			e.setKantzelatuData(new Date());
 			Traveler t = e.getBidaiaria();
-			double prezioa = e.prezioaKalkulatu();
+			double prezioa = e.getPrezioa();
 			if(egoera.equals(ErreserbaEgoera.ONARTUA)) {
 				d.removeFrozenMoney(prezioa);
 				t.diruaSartu(prezioa);
@@ -395,10 +395,10 @@ public class DataAccess  {
 		List<Ride> rides = query.getResultList();
 		List<String> cityList = new LinkedList<String>();
 		for(Ride r:rides) {
-			List<String> geldialdiak = r.getGeldialdiak();
-			for(String g:geldialdiak) {
-				if(!geldialdiak.get(geldialdiak.size()-1).equals(g) && !cityList.contains(g)) {
-					cityList.add(g);
+			List<Geldialdia> geldialdiak = r.getGeldialdiak();
+			for(Geldialdia g:geldialdiak) {
+				if(!geldialdiak.get(geldialdiak.size()-1).equals(g) && !cityList.contains(g.getHiria())) {
+					cityList.add(g.getHiria());
 				}
 			}
 		}
@@ -426,7 +426,11 @@ public class DataAccess  {
 		List<Ride> rides = query.getResultList();
 		List<String> cities = new LinkedList<String>();
 		for(Ride r:rides) {
-			List<String> geldialdiak = r.getGeldialdiak();
+			List<Geldialdia> gList = r.getGeldialdiak();
+			List<String> geldialdiak = new LinkedList<String>();
+			for(Geldialdia g:gList) {
+				geldialdiak.add(g.getHiria());
+			}
 			if(geldialdiak.contains(from)) {
 				int i = geldialdiak.indexOf(from);
 				for(int j=i+1;j<geldialdiak.size();j++) {
@@ -437,7 +441,7 @@ public class DataAccess  {
 		return cities;
 	}
 
-	public Ride createRide(List<String> hiriakLista,Date date, Car c, float price, String driverEmail) throws  RideAlreadyExistException, RideMustBeLaterThanTodayException {
+	public Ride createRide(List<String> hiriakLista, List<Double> prezioList, Date date, Car c, String driverEmail) throws  RideAlreadyExistException, RideMustBeLaterThanTodayException {
 		//System.out.println(">> DataAccess: createRide=> from= "+from+" to= "+to+" driver="+driverEmail+" date "+date);
 		try {
 			if(new Date().compareTo(date)>0) {
@@ -452,7 +456,7 @@ public class DataAccess  {
 				db.getTransaction().commit();
 				throw new RideAlreadyExistException(ResourceBundle.getBundle("Etiquetas").getString("DataAccess.RideAlreadyExist"));
 			}
-			Ride ride = driver.addRide(hiriakLista, date,ci.getEserKop(), price,ci);
+			Ride ride = driver.addRide(hiriakLista, prezioList, date,ci.getEserKop(),ci);
 
 			//next instruction can be obviated
 			//db.persist(driver);
@@ -479,22 +483,27 @@ public class DataAccess  {
 	 * @return collection of rides
 	 */
 	public List<Ride> getRides(String from, String to, Date date) {
-		System.out.println(">> DataAccess: getRides=> from= "+from+" to= "+to+" date "+date);
+	    System.out.println(">> DataAccess: getRides=> from= " + from + " to= " + to + " date " + date);
 
-		List<Ride> res = new ArrayList<>();	
-		TypedQuery<Ride> query = db.createQuery("SELECT r FROM Ride r WHERE r.date = ?1",Ride.class);   
-		query.setParameter(1, date);
-		List<Ride> rides = query.getResultList();
-		List<Ride> filtradas = rides.stream()
-			    .filter(r -> {
-			        List<String> g = r.getGeldialdiak();
-			        int i1 = g.indexOf(from);
-			        int i2 = g.indexOf(to);
-			        return i1 != -1 && i2 != -1 && i1 < i2;
-			    })
-			    .collect(Collectors.toList());
-	 	return filtradas;
+	    List<Ride> res = new ArrayList<>();
+	    TypedQuery<Ride> query = db.createQuery("SELECT r FROM Ride r WHERE r.date = ?1", Ride.class);   
+	    query.setParameter(1, date);
+	    List<Ride> rides = query.getResultList();
+	    List<Ride> filtradas = rides.stream()
+	        .filter(r -> {
+	            List<Geldialdia> geldialdiak = r.getGeldialdiak();
+	            List<String> nombres = geldialdiak.stream()
+	                                               .map(Geldialdia::getHiria)
+	                                               .collect(Collectors.toList());
+	            int i1 = nombres.indexOf(from);
+	            int i2 = nombres.indexOf(to);
+	            return i1 != -1 && i2 != -1 && i1 < i2;
+	        })
+	        .collect(Collectors.toList());
+
+	    return filtradas;
 	}
+
 	
 	/**
 	 * This method retrieves from the database the dates a month for which there are events
@@ -504,31 +513,34 @@ public class DataAccess  {
 	 * @return collection of rides
 	 */
 	public List<Date> getThisMonthDatesWithRides(String from, String to, Date date) {
-		System.out.println(">> DataAccess: getEventsMonth");
-		List<Date> res = new ArrayList<>();	
-		
-		Date firstDayMonthDate= UtilDate.firstDayMonth(date);
-		Date lastDayMonthDate= UtilDate.lastDayMonth(date);
-				
-		
-		TypedQuery<Ride> query = db.createQuery(
-			    "SELECT r FROM Ride r " +
-			    "WHERE r.egoera = :egoera AND r.date BETWEEN :first AND :last AND r.eserLibre<>0", Ride.class);
-		query.setParameter("egoera", RideEgoera.MARTXAN);
-		query.setParameter("first", firstDayMonthDate);
-		query.setParameter("last", lastDayMonthDate);
+	    System.out.println(">> DataAccess: getEventsMonth");
+	    List<Date> res = new ArrayList<>();	
 
-		List<Ride> rides = query.getResultList();
-		for (Ride r : rides) {
-			List<String> stops = r.getGeldialdiak();
-		    int i1 = stops.indexOf(from);
-		    int i2 = stops.indexOf(to);
-		    if (i1 != -1 && i2 != -1 && i1 <= i2) {
-		    	res.add(r.getDate());
-		    }
-		}
-	 	return res;
+	    Date firstDayMonthDate = UtilDate.firstDayMonth(date);
+	    Date lastDayMonthDate = UtilDate.lastDayMonth(date);
+
+	    TypedQuery<Ride> query = db.createQuery(
+	        "SELECT r FROM Ride r " +
+	        "WHERE r.egoera = :egoera AND r.date BETWEEN :first AND :last AND r.eserLibre<>0", Ride.class);
+	    query.setParameter("egoera", RideEgoera.MARTXAN);
+	    query.setParameter("first", firstDayMonthDate);
+	    query.setParameter("last", lastDayMonthDate);
+
+	    List<Ride> rides = query.getResultList();
+	    for (Ride r : rides) {
+	        List<Geldialdia> geldialdiak = r.getGeldialdiak();
+	        List<String> nombres = geldialdiak.stream()
+	                                          .map(Geldialdia::getHiria)
+	                                          .collect(Collectors.toList());
+	        int i1 = nombres.indexOf(from);
+	        int i2 = nombres.indexOf(to);
+	        if (i1 != -1 && i2 != -1 && i1 <= i2) {
+	            res.add(r.getDate());
+	        }
+	    }
+	    return res;
 	}
+
 	
 
 	public void open(){

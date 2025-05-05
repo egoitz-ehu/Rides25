@@ -35,14 +35,11 @@ public class CreateRideGUI extends JFrame {
 	private JLabel jLabelOrigin = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.LeavingFrom"));
 	private JLabel jLabelSeats = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.SelectCar"));
 	private JLabel jLabRideDate = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.RideDate"));
-	private JLabel jLabelPrice = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.Price"));
 
 	
 	
 	private JComboBox<Car> jTextFieldSeats = new JComboBox<Car>();
 	private DefaultComboBoxModel<Car> carModel = new DefaultComboBoxModel<Car>();
-	
-	private JTextField jTextFieldPrice = new JTextField();
 
 	private JCalendar jCalendar = new JCalendar();
 	private Calendar calendarAct = null;
@@ -60,7 +57,7 @@ public class CreateRideGUI extends JFrame {
 	private JTable table;
 	
 	private String[] columnNamesRides = new String[] {
-			"Pos","city"
+			"Pos","city","Precio"
 	};
 	
 	private DefaultTableModel tableModel;
@@ -68,16 +65,17 @@ public class CreateRideGUI extends JFrame {
 	private int lastPos=0;
 	
 	private Car selectedCar;
+	private JTextField textFieldPrezioGeld;
 
 
 	public CreateRideGUI(Driver driver) {
 
 		this.driver=driver;
 		this.getContentPane().setLayout(null);
-		this.setSize(new Dimension(604, 370));
+		this.setSize(new Dimension(683, 370));
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.CreateRide"));
 
-		jLabelOrigin.setBounds(new Rectangle(6, 56, 92, 20));
+		jLabelOrigin.setBounds(new Rectangle(6, 18, 92, 20));
 		jLabelSeats.setBounds(new Rectangle(6, 200, 173, 20));
 		jTextFieldSeats.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -88,11 +86,8 @@ public class CreateRideGUI extends JFrame {
 		jTextFieldSeats.setModel(carModel);
 		
 		carModel.addAll(WelcomeGUI.getBusinessLogic().getDriverCars(driver.getEmail()));
-		
-		jLabelPrice.setBounds(new Rectangle(6, 233, 173, 20));
-		jTextFieldPrice.setBounds(new Rectangle(139, 233, 60, 20));
 
-		jCalendar.setBounds(new Rectangle(300, 50, 225, 150));
+		jCalendar.setBounds(new Rectangle(432, 53, 225, 150));
 		scrollPaneEvents.setBounds(new Rectangle(25, 44, 346, 116));
 
 		jButtonCreate.setBounds(new Rectangle(100, 263, 130, 30));
@@ -129,9 +124,6 @@ public class CreateRideGUI extends JFrame {
 		
 
 		this.getContentPane().add(jCalendar, null);
-		
-		this.getContentPane().add(jLabelPrice, null);
-		this.getContentPane().add(jTextFieldPrice, null);
 
 		
 		
@@ -140,11 +132,11 @@ public class CreateRideGUI extends JFrame {
 		datesWithEventsCurrentMonth=facade.getThisMonthDatesWithRides("a","b",jCalendar.getDate());		
 		
 		jLabRideDate.setBounds(new Rectangle(40, 15, 140, 25));
-		jLabRideDate.setBounds(298, 16, 140, 25);
+		jLabRideDate.setBounds(440, 16, 140, 25);
 		getContentPane().add(jLabRideDate);
 		
 		
-		fieldOrigin.setBounds(83, 53, 130, 26);
+		fieldOrigin.setBounds(119, 15, 130, 26);
 		getContentPane().add(fieldOrigin);
 		fieldOrigin.setColumns(10);
 		
@@ -191,12 +183,13 @@ public class CreateRideGUI extends JFrame {
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null},
+				{null, null, null},
 			},columnNamesRides
 			
 		));
 		table.getColumnModel().getColumn(0).setPreferredWidth(50);
 		table.getColumnModel().getColumn(1).setPreferredWidth(90);
+		table.getColumnModel().getColumn(2).setPreferredWidth(90);
 		tableModel = new DefaultTableModel(null, columnNamesRides);
 		scrollPane.setViewportView(table);
 		table.setModel(tableModel);
@@ -238,6 +231,7 @@ public class CreateRideGUI extends JFrame {
 			int selectedRow = table.getSelectedRow();
 			if(selectedRow!=-1) {
 				tableModel.removeRow(selectedRow);
+				lastPos--;
 				eguneratuPos(tableModel);
 			}
 		});
@@ -283,17 +277,34 @@ public class CreateRideGUI extends JFrame {
 		JButton btnNewButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.Add")); //$NON-NLS-1$ //$NON-NLS-2$
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(!fieldOrigin.getText().isEmpty() && !dagoenekoBadago(fieldOrigin.getText())) {
-					lastPos++;
-					Vector<Object> v = new Vector<Object>();
-					v.add(lastPos);
-					v.add(fieldOrigin.getText());
-					tableModel.addRow(v);
+				try {
+					if(!fieldOrigin.getText().isEmpty() && !dagoenekoBadago(fieldOrigin.getText()) && !textFieldPrezioGeld.getText().isEmpty()) {
+						double p = Double.parseDouble(textFieldPrezioGeld.getText());
+						if(p>0.0) {
+							lastPos++;
+							Vector<Object> v = new Vector<Object>();
+							v.add(lastPos);
+							v.add(fieldOrigin.getText());
+							v.add(p);
+							tableModel.addRow(v);
+						}
+					}
+				} catch (NumberFormatException e1) {
+					JOptionPane.showMessageDialog(null, ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.diruEgoki"));
 				}
 			}
 		});
-		btnNewButton.setBounds(223, 55, 65, 23);
+		btnNewButton.setBounds(275, 55, 130, 23);
 		getContentPane().add(btnNewButton);
+		
+		JLabel lblPrezioaGeld = new JLabel("a"); //$NON-NLS-1$ //$NON-NLS-2$
+		lblPrezioaGeld.setBounds(10, 49, 71, 14);
+		getContentPane().add(lblPrezioaGeld);
+		
+		textFieldPrezioGeld = new JTextField();
+		textFieldPrezioGeld.setBounds(119, 46, 130, 20);
+		getContentPane().add(textFieldPrezioGeld);
+		textFieldPrezioGeld.setColumns(10);
 	}
 	
 	private boolean dagoenekoBadago(String name) {
@@ -312,13 +323,15 @@ public class CreateRideGUI extends JFrame {
 		else
 			try {
 				BLFacade facade = WelcomeGUI.getBusinessLogic();
-				float price = Float.parseFloat(jTextFieldPrice.getText());
 				List<String> hiriak = new ArrayList<String>();
+				List<Double> prezioak = new ArrayList<Double>();
 				for(int i = 0; i<tableModel.getRowCount();i++){
 					String h = (String) tableModel.getValueAt(i,1);
 					hiriak.add(h);
+					Double d = (Double) tableModel.getValueAt(i, 2);
+					prezioak.add(d);
 				}
-				Ride r=facade.createRide(hiriak,UtilDate.trim(jCalendar.getDate()), selectedCar, price, driver.getEmail());
+				Ride r=facade.createRide(hiriak,prezioak,UtilDate.trim(jCalendar.getDate()), selectedCar, driver.getEmail());
 				jLabelMsg.setText(ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.RideCreated"));
 
 				facade.alertaAurkitua(hiriak, UtilDate.trim(jCalendar.getDate()));
@@ -336,35 +349,19 @@ public class CreateRideGUI extends JFrame {
 	private void jButtonClose_actionPerformed(ActionEvent e) {
 		this.setVisible(false);
 	}
+	
+	
 	private String field_Errors() {
 		
-		try {
-			if ((fieldOrigin.getText().length()==0) || (jTextFieldPrice.getText().length()==0) || (tableModel.getRowCount()<2))
+			if (tableModel.getRowCount()<2)
 				return ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.ErrorQuery");
 			else {
 
 				if (selectedCar == null) {
 					return ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.NotCar");
 				}
-				else {
-					float price = Float.parseFloat(jTextFieldPrice.getText());
-					if (price <= 0) 
-						return ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.PriceMustBeGreaterThan0");
-					
-					else 
-						return null;
-						
-				}
 			}
-		} catch (java.lang.NumberFormatException e1) {
-
-			return  ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.ErrorNumber");		
-		} catch (Exception e1) {
-
-			e1.printStackTrace();
 			return null;
-
-		}
 	}
 
 	class TableRowTransferHandler extends TransferHandler {

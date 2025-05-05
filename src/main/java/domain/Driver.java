@@ -46,8 +46,8 @@ public class Driver extends User implements Serializable{
 		return super.toString()+";"+rides;
 	}
 
-	public Ride addRide(List<String> hiriList, Date date, int nPlaces, float price, Car c)  {
-        Ride ride=new Ride(hiriList,date,nPlaces,price, this,c);
+	public Ride addRide(List<String> hiriList, List<Double> prezioList, Date date, int nPlaces, Car c)  {
+        Ride ride=new Ride(hiriList,prezioList,date,nPlaces,this,c);
         rides.add(ride);
         return ride;
 	}

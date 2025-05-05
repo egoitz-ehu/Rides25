@@ -11,6 +11,7 @@ import javax.swing.table.DefaultTableModel;
 import domain.Driver;
 import domain.Erreserba;
 import domain.ErreserbaEgoera;
+import domain.Geldialdia;
 import domain.Ride;
 import domain.TravelerErreserbaContainer;
 
@@ -28,6 +29,7 @@ import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Vector;
+import java.util.stream.Collectors;
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
@@ -174,7 +176,11 @@ public class ErreserbakGestionatuGUI extends JFrame {
 		ukatuButton.setEnabled(false);
 		ukatuButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				List<String> hiriak = selectedRide.getGeldialdiak();
+				List<String> hiriak = selectedRide.getGeldialdiak()
+                        .stream()
+                        .map(Geldialdia::getHiria)
+                        .collect(Collectors.toList());
+
 				Date da = selectedRide.getDate();
 				WelcomeGUI.getBusinessLogic().ukatuErreserba(selectedErreserbaNumber, selectedRide.getRideNumber());
 				ezarriErreserbak();
@@ -183,10 +189,6 @@ public class ErreserbakGestionatuGUI extends JFrame {
 				messageLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("ErreserbakGestionatuGUI.MezuaUkatu"));
 				ridesComboBox.removeAllItems();
 				List<Ride> driverRides = WelcomeGUI.getBusinessLogic().getDriverAllRides(d.getEmail());
-				ridesModel.addAll(driverRides);
-				System.out.println(selectedRide);
-				System.out.println(hiriak);
-				System.out.println(da);
 				WelcomeGUI.getBusinessLogic().alertaAurkitua(hiriak, da);
 			}
 		});
