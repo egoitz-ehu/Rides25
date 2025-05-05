@@ -1,1 +1,2 @@
-/lib/objectdb.conf
+target/
+**/objectdb.conf
