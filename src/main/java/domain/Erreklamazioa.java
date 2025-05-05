@@ -57,6 +57,7 @@ public class Erreklamazioa implements Serializable{
 		 this.nork=nork;
 		 this.gaia=gaia;
 		 this.date=new Date();
+		 this.egoera=ErreklamazioaEgoera.BURUTZEN;
 	 }
 	 
 	 @Override

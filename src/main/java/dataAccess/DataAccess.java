@@ -107,15 +107,10 @@ public class DataAccess  {
 			Driver driver2 = new Driver("1","1","1","1");
 			Traveler traveler1 = new Traveler("2","2","2","2");
 			
-			Erreklamazioa e = new Erreklamazioa(driver2,traveler1,"Hola");
-			
-			City c = new City("a");
 			
 			db.persist(driver1);
 			db.persist(driver2);
 			db.persist(traveler1);
-			db.persist(e);
-			db.persist(c);
 			db.getTransaction().commit();
 			System.out.println("Db initialized");
 		}
@@ -305,15 +300,11 @@ public class DataAccess  {
 		Erreserba e = c.getErreserba();
 		Ride r = c.getRide();
 		e.setEgoera(ErreserbaEgoera.EZEZTATUA);
-		double prezioa = e.getPlazaKop()*r.getPrice();
 		Driver d = db.find(Driver.class, c.getRide().getDriver().getEmail());
 		Traveler t = db.find(Traveler.class, tMail);
-		d.removeFrozenMoney(prezioa);
-		d.addMugimendua(prezioa, MugimenduMota.ERRESERBA_EZEZTATU_GIDARI);
-		t.diruaSartu(prezioa);
-		t.addMugimendua(prezioa, MugimenduMota.ERRESERBA_EZEZTATU_BIDAIARI);
+		Erreklamazioa err = t.sortuErreklamazioa(d, "ERRESERBA EZEZTATU");
+		d.addJasotakoErreklamazioa(err);
 		db.merge(e);
-		db.merge(t);
 		db.getTransaction().commit();
 	}
 	

@@ -36,7 +36,7 @@ public abstract class User implements Serializable{
 	private List<Balorazioa> jarritakoBalorazioak = new Vector<Balorazioa>();
 	
 	@XmlIDREF
-	@OneToMany
+	@OneToMany(cascade=CascadeType.PERSIST)
 	private List<Erreklamazioa> jarritakoErreklamazioak = new Vector<Erreklamazioa>();
 	
 	@XmlIDREF
@@ -160,5 +160,19 @@ public abstract class User implements Serializable{
 	
 	public void gehituJasotakoBalorazioa(Balorazioa ba) {
 		this.jasotakoBalorazioak.add(ba);
+	}
+	
+	public void addJarritakoErreklamazioa(Erreklamazioa e) {
+		this.jarritakoErreklamazioak.add(e);
+	}
+	
+	public void addJasotakoErreklamazioa (Erreklamazioa e) {
+		this.jasotakoErreklamazioak.add(e);
+	}
+	
+	public Erreklamazioa sortuErreklamazioa(User u, String gaia) {
+		Erreklamazioa e = new Erreklamazioa(this,u,gaia);
+		addJarritakoErreklamazioa(e);
+		return e;
 	}
 }
