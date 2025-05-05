@@ -105,7 +105,6 @@ public class DataAccess  {
 			
 			Driver driver2 = new Driver("1","1","1","1");
 			Traveler traveler1 = new Traveler("2","2","2","2");
-			Admin a = new Admin("3","3","3","3");
 			
 			Erreklamazioa e = new Erreklamazioa(driver2,traveler1,"Hola");
 			
@@ -113,7 +112,6 @@ public class DataAccess  {
 			db.persist(driver2);
 			db.persist(traveler1);
 			db.persist(e);
-			db.persist(a);
 	
 			db.getTransaction().commit();
 			System.out.println("Db initialized");

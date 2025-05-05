@@ -10,10 +10,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@Entity
 public class Admin  extends User implements Serializable{
-	@OneToMany
-	private List<Erreklamazioa> erreklamazioLista = new Vector<>();
 	
 	public Admin (String email, String pass, String name, String surname) {
 		super(email, pass, name, surname);

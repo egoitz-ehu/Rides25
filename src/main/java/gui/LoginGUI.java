@@ -97,18 +97,23 @@ public class LoginGUI extends JFrame {
 				if(mail.isBlank() || pass.isBlank()) {
 					JOptionPane.showMessageDialog(contentPane, ResourceBundle.getBundle("Etiquetas").getString("LoginGUI.ErrorDataBlank"), "Error", JOptionPane.ERROR_MESSAGE);
 				}else {
-					BLFacade facade = WelcomeGUI.getBusinessLogic();
-					User u = facade.login(mail, pass);
-					if(u instanceof Driver) {
-						DriverMenuGUI dMenu = new DriverMenuGUI((Driver) u);
-						dMenu.setVisible(true);
-					}
-					else if(u instanceof Traveler) {
-						PassengerMenuGUI tMenu = new PassengerMenuGUI((Traveler) u);
-						tMenu.setVisible(true);
-					}
-					else{
-						JOptionPane.showMessageDialog(contentPane, ResourceBundle.getBundle("Etiquetas").getString("LoginGUI.NoUser"), "Error", JOptionPane.ERROR_MESSAGE);
+					if(mail.equals("admin") && pass.equals("admin")) {
+						AdminMenuGUI aM = new AdminMenuGUI();
+						aM.setVisible(true);
+					} else {
+						BLFacade facade = WelcomeGUI.getBusinessLogic();
+						User u = facade.login(mail, pass);
+						if(u instanceof Driver) {
+							DriverMenuGUI dMenu = new DriverMenuGUI((Driver) u);
+							dMenu.setVisible(true);
+						}
+						else if(u instanceof Traveler) {
+							PassengerMenuGUI tMenu = new PassengerMenuGUI((Traveler) u);
+							tMenu.setVisible(true);
+						}
+						else{
+							JOptionPane.showMessageDialog(contentPane, ResourceBundle.getBundle("Etiquetas").getString("LoginGUI.NoUser"), "Error", JOptionPane.ERROR_MESSAGE);
+						}
 					}
 				}
 			}
