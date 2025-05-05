@@ -41,10 +41,6 @@ public class Erreklamazioa implements Serializable{
 	 @OneToOne
 	 private User nori;
 	 
-	 @XmlIDREF
-	 @OneToOne
-	 private User admin;
-	 
 	 @ElementCollection(fetch = FetchType.EAGER)
 	 private List<String> norkMezuak = new Vector<>();
 	 @ElementCollection(fetch = FetchType.EAGER)
@@ -61,5 +57,10 @@ public class Erreklamazioa implements Serializable{
 		 this.nork=nork;
 		 this.gaia=gaia;
 		 this.date=new Date();
+	 }
+	 
+	 @Override
+	 public String toString() {
+		 return id + ";" + nork.getName() + ";" + nori.getName();
 	 }
 }

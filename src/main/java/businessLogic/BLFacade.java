@@ -13,6 +13,7 @@ import domain.Alerta;
 import domain.Balorazioa;
 import domain.Car;
 import domain.Driver;
+import domain.Erreklamazioa;
 import domain.Erreserba;
 import domain.Mugimendua;
 import exceptions.RideMustBeLaterThanTodayException;
@@ -148,4 +149,6 @@ public interface BLFacade  {
 	@WebMethod public void ezabatuAlerta(int id);
 	
 	@WebMethod public void alertaAurkitua(List<String> hiriak, Date d);
+	
+	@WebMethod public List<Erreklamazioa> lortuErreklamazioak(String email);
 }

@@ -17,6 +17,7 @@ import domain.Alerta;
 import domain.Balorazioa;
 import domain.Car;
 import domain.Driver;
+import domain.Erreklamazioa;
 import domain.Erreserba;
 import domain.Mugimendua;
 import exceptions.RideMustBeLaterThanTodayException;
@@ -364,6 +365,14 @@ public class BLFacadeImplementation  implements BLFacade {
 		dbManager.open();
 		dbManager.alertaAurkitu(hiriak, d);
 		dbManager.close();
+	}
+
+	@WebMethod
+	public List<Erreklamazioa> lortuErreklamazioak(String email) {
+		dbManager.open();
+		List<Erreklamazioa> list = dbManager.lortuErreklamazioak(email);
+		dbManager.close();
+		return list;
 	}
 }
 

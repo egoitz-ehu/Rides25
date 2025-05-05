@@ -678,4 +678,9 @@ public class DataAccess  {
 		db.getTransaction().commit();
 	}
 	
+	public List<Erreklamazioa> lortuErreklamazioak(String email) {
+		TypedQuery<Erreklamazioa> query = db.createQuery("SELECT e FROM Erreklamazioa e WHERE e.nork=?1 OR e.nori=?2", Erreklamazioa.class);
+		return query.getResultList();
+	}
+	
 }
