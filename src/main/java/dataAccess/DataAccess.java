@@ -41,6 +41,7 @@ public class DataAccess  {
 	ConfigXML c=ConfigXML.getInstance();
 
      public DataAccess()  {
+    	 System.setProperty("objectdb.conf", "lib//objectdb.conf");
 		if (c.isDatabaseInitialized()) {
 			String fileName=c.getDbFilename();
 
@@ -108,11 +109,13 @@ public class DataAccess  {
 			
 			Erreklamazioa e = new Erreklamazioa(driver2,traveler1,"Hola");
 			
+			City c = new City("a");
+			
 			db.persist(driver1);
 			db.persist(driver2);
 			db.persist(traveler1);
 			db.persist(e);
-	
+			db.persist(c);
 			db.getTransaction().commit();
 			System.out.println("Db initialized");
 		}
