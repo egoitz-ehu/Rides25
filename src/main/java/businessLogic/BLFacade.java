@@ -151,4 +151,6 @@ public interface BLFacade  {
 	@WebMethod public void alertaAurkitua(List<String> hiriak, Date d);
 	
 	@WebMethod public List<Erreklamazioa> lortuErreklamazioak(String email);
+	
+	@WebMethod public List<String> lortuErabiltzaileEmailGuztiak();
 }

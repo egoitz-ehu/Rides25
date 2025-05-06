@@ -170,8 +170,8 @@ public abstract class User implements Serializable{
 		this.jasotakoErreklamazioak.add(e);
 	}
 	
-	public Erreklamazioa sortuErreklamazioa(User u, String gaia) {
-		Erreklamazioa e = new Erreklamazioa(this,u,gaia);
+	public Erreklamazioa sortuErreklamazioa(User u, String gaia, double kopurua) {
+		Erreklamazioa e = new Erreklamazioa(this,u,gaia, kopurua);
 		addJarritakoErreklamazioa(e);
 		return e;
 	}

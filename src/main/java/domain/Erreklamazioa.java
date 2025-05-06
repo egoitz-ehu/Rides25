@@ -35,6 +35,8 @@ public class Erreklamazioa implements Serializable{
 	 
 	 private Date date;
 	 
+	 private double kopurua;
+	 
 	 @OneToOne
 	 private User nork;
 	 
@@ -52,12 +54,13 @@ public class Erreklamazioa implements Serializable{
 		 super();
 	 }
 	 
-	 public Erreklamazioa(User nork, User nori, String gaia) {
+	 public Erreklamazioa(User nork, User nori, String gaia, double kopurua) {
 		 this.nori=nori;
 		 this.nork=nork;
 		 this.gaia=gaia;
 		 this.date=new Date();
 		 this.egoera=ErreklamazioaEgoera.BURUTZEN;
+		 this.kopurua=kopurua;
 	 }
 	 
 	 @Override

@@ -302,7 +302,7 @@ public class DataAccess  {
 		e.setEgoera(ErreserbaEgoera.EZEZTATUA);
 		Driver d = db.find(Driver.class, c.getRide().getDriver().getEmail());
 		Traveler t = db.find(Traveler.class, tMail);
-		Erreklamazioa err = t.sortuErreklamazioa(d, "ERRESERBA EZEZTATU");
+		Erreklamazioa err = t.sortuErreklamazioa(d, "ERRESERBA EZEZTATU",e.getPrezioa());
 		d.addJasotakoErreklamazioa(err);
 		db.merge(e);
 		db.getTransaction().commit();
@@ -683,6 +683,11 @@ public class DataAccess  {
 	
 	public List<Erreklamazioa> lortuErreklamazioak(String email) {
 		TypedQuery<Erreklamazioa> query = db.createQuery("SELECT e FROM Erreklamazioa e WHERE e.nork=?1 OR e.nori=?2", Erreklamazioa.class);
+		return query.getResultList();
+	}
+	
+	public List<String> lortuErabiltzaileEmailGuztiak () {
+		TypedQuery<String> query = db.createQuery("SELECT u.email FROM User u", String.class);
 		return query.getResultList();
 	}
 	

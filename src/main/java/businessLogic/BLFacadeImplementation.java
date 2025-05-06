@@ -374,5 +374,13 @@ public class BLFacadeImplementation  implements BLFacade {
 		dbManager.close();
 		return list;
 	}
+
+	@WebMethod
+	public List<String> lortuErabiltzaileEmailGuztiak() {
+		dbManager.open();
+		List<String> list = dbManager.lortuErabiltzaileEmailGuztiak();
+		dbManager.close();
+		return list;
+	}
 }
 

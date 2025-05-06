@@ -44,6 +44,9 @@ public class PassengerMenuGUI extends JFrame {
 	private JMenu alertaMenu;
 	private JMenuItem itemIkusiAlerta;
 	private JMenuItem itemSortuAlerta;
+	private JMenu erreklamazioaMenu;
+	private JMenuItem itemIkusiErreklamazioa;
+	private JMenuItem itemSortuErreklamazioa;
 
 	/**
 	 * Launch the application.
@@ -151,6 +154,21 @@ public class PassengerMenuGUI extends JFrame {
 			}
 		});
 		alertaMenu.add(itemSortuAlerta);
+		
+		erreklamazioaMenu = new JMenu(ResourceBundle.getBundle("Etiquetas").getString("ErreklamazioaMenu.Title")); //$NON-NLS-1$ //$NON-NLS-2$
+		menuBar.add(erreklamazioaMenu);
+		
+		itemIkusiErreklamazioa = new JMenuItem(ResourceBundle.getBundle("Etiquetas").getString("ErreklamazioaMenu.Ikusi")); //$NON-NLS-1$ //$NON-NLS-2$
+		erreklamazioaMenu.add(itemIkusiErreklamazioa);
+		
+		itemSortuErreklamazioa = new JMenuItem(ResourceBundle.getBundle("Etiquetas").getString("ErreklamazioaMenu.Sortu")); //$NON-NLS-1$ //$NON-NLS-2$
+		itemSortuErreklamazioa.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ErreklamazioaSortuGUI eS = new ErreklamazioaSortuGUI(traveler);
+				eS.setVisible(true);
+			}
+		});
+		erreklamazioaMenu.add(itemSortuErreklamazioa);
 		
 
 		contentPane = new JPanel();
