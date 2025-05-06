@@ -12,6 +12,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -43,12 +44,8 @@ public class Erreklamazioa implements Serializable{
 	 @OneToOne
 	 private User nori;
 	 
-	 @ElementCollection(fetch = FetchType.EAGER)
-	 private List<String> norkMezuak = new Vector<>();
-	 @ElementCollection(fetch = FetchType.EAGER)
-	 private List<String> noriMezuak = new Vector<>();
-	 @ElementCollection(fetch = FetchType.EAGER)
-	 private List<String> adminMezuak = new Vector<>();
+	 @OneToMany(fetch=FetchType.EAGER)
+	 private List<Mezua> mezuList = new Vector<Mezua>();
 	 
 	 public Erreklamazioa() {
 		 super();
