@@ -41,6 +41,22 @@ public class Erreklamazioa implements Serializable{
 		this.mezuList = mezuList;
 	}
 
+	public User getNork() {
+		return nork;
+	}
+
+	public void setNork(User nork) {
+		this.nork = nork;
+	}
+
+	public User getNori() {
+		return nori;
+	}
+
+	public void setNori(User nori) {
+		this.nori = nori;
+	}
+
 	private String gaia;
 	 
 	 private Date date;

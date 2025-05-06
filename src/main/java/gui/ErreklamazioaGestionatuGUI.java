@@ -72,7 +72,13 @@ public class ErreklamazioaGestionatuGUI extends JFrame {
 				Erreklamazioa err = (Erreklamazioa) modelErreklamazioa.getSelectedItem();
 				List<Mezua> mezuList = WelcomeGUI.getBusinessLogic().lortuErreklamazioMezuak(err.getId());
 				for(Mezua m:mezuList) {
-					panelNorkMezuak.add(sortuMezua(m.getText()));
+					if(m.getNork().equals(err.getNork())) {
+						panelNorkMezuak.add(sortuMezua(m.getText()));
+					} else if (m.getNork().equals(err.getNori())) {
+						panelNoriMezuak.add(sortuMezua(m.getText()));
+					} else {
+						panelAdminMezuak.add(sortuMezua(m.getText()));
+					}
 				}
 			}
 		});

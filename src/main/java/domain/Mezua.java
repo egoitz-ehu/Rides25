@@ -51,4 +51,12 @@ public class Mezua {
 		this.nork=nork;
 		this.erreklamazioa=e;
 	}
+
+	public User getNork() {
+		return nork;
+	}
+
+	public void setNork(User nork) {
+		this.nork = nork;
+	}
 }

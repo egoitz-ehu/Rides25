@@ -99,8 +99,8 @@ public abstract class User implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Driver other = (Driver) obj;
-		if (getEmail() != other.getEmail())
+		User other = (User) obj;
+		if (!getEmail().equals(other.getEmail()))
 			return false;
 		return true;
 	}
