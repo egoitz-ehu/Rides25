@@ -691,4 +691,13 @@ public class DataAccess  {
 		return query.getResultList();
 	}
 	
+	public void sortuErreklamazioa(String email1, String email2, double kop, String mezua) {
+		db.getTransaction().begin();
+		User nork = db.find(User.class, email1);
+		User nori = db.find(User.class, email2);
+		Erreklamazioa e = nork.sortuErreklamazioa(nori, mezua, kop);
+		nori.addJasotakoErreklamazioa(e);
+		db.getTransaction().commit();
+	}
+	
 }

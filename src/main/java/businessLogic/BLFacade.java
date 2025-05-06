@@ -153,4 +153,6 @@ public interface BLFacade  {
 	@WebMethod public List<Erreklamazioa> lortuErreklamazioak(String email);
 	
 	@WebMethod public List<String> lortuErabiltzaileEmailGuztiak();
+	
+	@WebMethod public void sortuErreklamazioa(String email1, String email2, double kop, String mezua);
 }

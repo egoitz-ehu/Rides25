@@ -382,5 +382,12 @@ public class BLFacadeImplementation  implements BLFacade {
 		dbManager.close();
 		return list;
 	}
+
+	@WebMethod
+	public void sortuErreklamazioa(String email1, String email2, double kop, String mezua) {
+		dbManager.open();
+		dbManager.sortuErreklamazioa(email1, email2, kop, mezua);
+		dbManager.close();
+	}
 }
 

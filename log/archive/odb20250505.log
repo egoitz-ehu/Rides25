@@ -1079,3 +1079,321 @@ New type java.util.ArrayList<java.lang.String>
 [2025-05-05 17:31:03 #37 type.registry] 
 New type java.util.Vector<java.lang.String>
 
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-05-05 18:56:25 #1 store] 
+Database 'C:\Users\egoit\git\Rides25\src\main\resources\rides.temp' is opened by 17168@LAPTOP-2PN1U6VU
+
+[2025-05-05 18:56:25 #2 type] 
+Type domain.User is not enhanced.
+
+[2025-05-05 18:56:25 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-05-05 18:56:25 #4 type] 
+Type domain.Erreklamazioa is not enhanced.
+
+[2025-05-05 18:56:25 #5 type] 
+Type domain.Balorazioa is not enhanced.
+
+[2025-05-05 18:56:25 #6 type] 
+Type domain.Mugimendua is not enhanced.
+
+[2025-05-05 18:56:26 #7 type] 
+Type domain.Car is not enhanced.
+
+[2025-05-05 18:56:26 #8 type] 
+Type domain.Ride is not enhanced.
+
+[2025-05-05 18:56:26 #9 type] 
+Type domain.Erreserba is not enhanced.
+
+[2025-05-05 18:56:26 #10 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-05-05 18:56:26 #11 type] 
+Type domain.Alerta is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-05-05 19:43:20 #1 store] 
+Database 'C:\Users\egoit\git\Rides25\src\main\resources\rides.temp' is opened by 18388@LAPTOP-2PN1U6VU
+
+[2025-05-05 19:43:20 #2 type] 
+Type domain.User is not enhanced.
+
+[2025-05-05 19:43:20 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-05-05 19:43:21 #4 type] 
+Type domain.Erreklamazioa is not enhanced.
+
+[2025-05-05 19:43:21 #5 type] 
+Type domain.Balorazioa is not enhanced.
+
+[2025-05-05 19:43:21 #6 type] 
+Type domain.Mugimendua is not enhanced.
+
+[2025-05-05 19:43:21 #7 type] 
+Type domain.Car is not enhanced.
+
+[2025-05-05 19:43:21 #8 type] 
+Type domain.Ride is not enhanced.
+
+[2025-05-05 19:43:21 #9 type.registry] 
+New type domain.Geldialdia
+
+[2025-05-05 19:43:21 #10 type] 
+Type domain.Erreserba is not enhanced.
+
+[2025-05-05 19:43:21 #11 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-05-05 19:43:21 #12 type] 
+Type domain.Alerta is not enhanced.
+
+[2025-05-05 19:43:21 #13 type] 
+Type domain.Geldialdia is not enhanced.
+
+[2025-05-05 19:43:38 #14 type.registry] 
+New type java.util.ArrayList<domain.Geldialdia>
+
+[2025-05-05 19:48:07 #15 type.registry] 
+New type java.util.LinkedList<java.lang.Object>
+
+[2025-05-05 19:48:07 #16 type.registry] 
+New type java.util.LinkedList<domain.Geldialdia>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-05-05 19:49:09 #1 store] 
+Database 'C:\Users\egoit\git\Rides25\src\main\resources\rides.temp' has been recovered (tr. 22-25)
+
+[2025-05-05 19:49:09 #2 store] 
+Database 'C:\Users\egoit\git\Rides25\src\main\resources\rides.temp' is opened by 13620@LAPTOP-2PN1U6VU
+
+[2025-05-05 19:49:10 #3 type] 
+Type domain.User is not enhanced.
+
+[2025-05-05 19:49:10 #4 type] 
+Type domain.Driver is not enhanced.
+
+[2025-05-05 19:49:10 #5 type] 
+Type domain.Erreklamazioa is not enhanced.
+
+[2025-05-05 19:49:10 #6 type] 
+Type domain.Balorazioa is not enhanced.
+
+[2025-05-05 19:49:10 #7 type] 
+Type domain.Mugimendua is not enhanced.
+
+[2025-05-05 19:49:10 #8 type] 
+Type domain.Car is not enhanced.
+
+[2025-05-05 19:49:10 #9 type] 
+Type domain.Ride is not enhanced.
+
+[2025-05-05 19:49:10 #10 type] 
+Type domain.Erreserba is not enhanced.
+
+[2025-05-05 19:49:10 #11 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-05-05 19:49:10 #12 type] 
+Type domain.Alerta is not enhanced.
+
+[2025-05-05 19:49:10 #13 type] 
+Type domain.Geldialdia is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-05-05 19:50:24 #1 store] 
+Database 'C:\Users\egoit\git\Rides25\src\main\resources\rides.temp' is opened by 16808@LAPTOP-2PN1U6VU
+
+[2025-05-05 19:50:24 #2 type] 
+Type domain.User is not enhanced.
+
+[2025-05-05 19:50:24 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-05-05 19:50:24 #4 type] 
+Type domain.Erreklamazioa is not enhanced.
+
+[2025-05-05 19:50:24 #5 type] 
+Type domain.Balorazioa is not enhanced.
+
+[2025-05-05 19:50:24 #6 type] 
+Type domain.Mugimendua is not enhanced.
+
+[2025-05-05 19:50:24 #7 type] 
+Type domain.Car is not enhanced.
+
+[2025-05-05 19:50:24 #8 type] 
+Type domain.Ride is not enhanced.
+
+[2025-05-05 19:50:24 #9 type] 
+Type domain.Erreserba is not enhanced.
+
+[2025-05-05 19:50:24 #10 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-05-05 19:50:24 #11 type] 
+Type domain.Alerta is not enhanced.
+
+[2025-05-05 19:50:24 #12 type] 
+Type domain.Geldialdia is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-05-05 19:51:37 #1 store] 
+Database 'C:\Users\egoit\git\Rides25\src\main\resources\rides.temp' is opened by 21128@LAPTOP-2PN1U6VU
+
+[2025-05-05 19:51:37 #2 type] 
+Type domain.User is not enhanced.
+
+[2025-05-05 19:51:37 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-05-05 19:51:37 #4 type] 
+Type domain.Erreklamazioa is not enhanced.
+
+[2025-05-05 19:51:37 #5 type] 
+Type domain.Balorazioa is not enhanced.
+
+[2025-05-05 19:51:37 #6 type] 
+Type domain.Mugimendua is not enhanced.
+
+[2025-05-05 19:51:37 #7 type] 
+Type domain.Car is not enhanced.
+
+[2025-05-05 19:51:37 #8 type] 
+Type domain.Ride is not enhanced.
+
+[2025-05-05 19:51:37 #9 type] 
+Type domain.Erreserba is not enhanced.
+
+[2025-05-05 19:51:37 #10 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-05-05 19:51:37 #11 type] 
+Type domain.Alerta is not enhanced.
+
+[2025-05-05 19:51:37 #12 type] 
+Type domain.Geldialdia is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-05-05 19:53:15 #1 store] 
+Database 'C:\Users\egoit\git\Rides25\src\main\resources\rides.temp' is opened by 13356@LAPTOP-2PN1U6VU
+
+[2025-05-05 19:53:15 #2 type.registry] 
+New type domain.User
+
+[2025-05-05 19:53:15 #3 type.registry] 
+New type domain.Driver
+
+[2025-05-05 19:53:15 #4 type] 
+Type domain.User is not enhanced.
+
+[2025-05-05 19:53:15 #5 type.registry] 
+New type domain.Erreklamazioa
+
+[2025-05-05 19:53:15 #6 type.registry] 
+New type domain.Balorazioa
+
+[2025-05-05 19:53:15 #7 type.registry] 
+New type domain.Mugimendua
+
+[2025-05-05 19:53:15 #8 type] 
+Type domain.Driver is not enhanced.
+
+[2025-05-05 19:53:15 #9 type.registry] 
+New type domain.Car
+
+[2025-05-05 19:53:15 #10 type.registry] 
+New type domain.Ride
+
+[2025-05-05 19:53:15 #11 type] 
+Type domain.Erreklamazioa is not enhanced.
+
+[2025-05-05 19:53:15 #12 type.registry] 
+New type domain.ErreklamazioaEgoera
+
+[2025-05-05 19:53:15 #13 type] 
+Type domain.Balorazioa is not enhanced.
+
+[2025-05-05 19:53:15 #14 type.registry] 
+New type domain.Erreserba
+
+[2025-05-05 19:53:15 #15 type] 
+Type domain.Mugimendua is not enhanced.
+
+[2025-05-05 19:53:15 #16 type.registry] 
+New type domain.MugimenduMota
+
+[2025-05-05 19:53:15 #17 type] 
+Type domain.Car is not enhanced.
+
+[2025-05-05 19:53:15 #18 type] 
+Type domain.Ride is not enhanced.
+
+[2025-05-05 19:53:15 #19 type.registry] 
+New type domain.Geldialdia
+
+[2025-05-05 19:53:15 #20 type.registry] 
+New type domain.RideEgoera
+
+[2025-05-05 19:53:15 #21 type] 
+Type domain.Erreserba is not enhanced.
+
+[2025-05-05 19:53:15 #22 type.registry] 
+New type domain.Traveler
+
+[2025-05-05 19:53:15 #23 type.registry] 
+New type domain.ErreserbaEgoera
+
+[2025-05-05 19:53:15 #24 type] 
+Type domain.Geldialdia is not enhanced.
+
+[2025-05-05 19:53:15 #25 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-05-05 19:53:15 #26 type.registry] 
+New type domain.Alerta
+
+[2025-05-05 19:53:15 #27 type] 
+Type domain.Alerta is not enhanced.
+
+[2025-05-05 19:53:15 #28 type.registry] 
+New type domain.AlertaEgoera
+
+[2025-05-05 19:53:15 #29 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-05-05 19:53:15 #30 type.registry] 
+New type java.util.Vector<domain.Mugimendua>
+
+[2025-05-05 19:53:15 #31 type.registry] 
+New type java.util.Vector<domain.Balorazioa>
+
+[2025-05-05 19:53:15 #32 type.registry] 
+New type java.util.Vector<domain.Erreklamazioa>
+
+[2025-05-05 19:53:15 #33 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2025-05-05 19:53:15 #34 type.registry] 
+New type java.util.Vector<domain.Car>
+
+[2025-05-05 19:53:15 #35 type.registry] 
+New type java.util.Vector<domain.Erreserba>
+
+[2025-05-05 19:53:15 #36 type.registry] 
+New type java.util.Vector<domain.Alerta>
+
+[2025-05-05 19:53:50 #37 type.registry] 
+New type java.util.LinkedList<java.lang.Object>
+
+[2025-05-05 19:53:50 #38 type.registry] 
+New type java.util.LinkedList<domain.Geldialdia>
+
