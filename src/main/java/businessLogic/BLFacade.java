@@ -15,6 +15,7 @@ import domain.Car;
 import domain.Driver;
 import domain.Erreklamazioa;
 import domain.Erreserba;
+import domain.Mezua;
 import domain.Mugimendua;
 import exceptions.RideMustBeLaterThanTodayException;
 import exceptions.AlertaAlreadyExistsException;
@@ -155,4 +156,8 @@ public interface BLFacade  {
 	@WebMethod public List<String> lortuErabiltzaileEmailGuztiak();
 	
 	@WebMethod public void sortuErreklamazioa(String email1, String email2, double kop, String mezua);
+	
+	@WebMethod public List<Mezua> lortuErreklamazioMezuak(int id);
+	
+	@WebMethod public void bidaliMezua(String email, String text, int id);
 }

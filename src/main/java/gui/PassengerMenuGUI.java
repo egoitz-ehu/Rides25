@@ -160,6 +160,12 @@ public class PassengerMenuGUI extends JFrame {
 		
 		itemIkusiErreklamazioa = new JMenuItem(ResourceBundle.getBundle("Etiquetas").getString("ErreklamazioaMenu.Ikusi")); //$NON-NLS-1$ //$NON-NLS-2$
 		erreklamazioaMenu.add(itemIkusiErreklamazioa);
+		itemIkusiErreklamazioa.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ErreklamazioaGestionatuGUI eG = new ErreklamazioaGestionatuGUI(traveler);
+				eG.setVisible(true);
+			}
+		});
 		
 		itemSortuErreklamazioa = new JMenuItem(ResourceBundle.getBundle("Etiquetas").getString("ErreklamazioaMenu.Sortu")); //$NON-NLS-1$ //$NON-NLS-2$
 		itemSortuErreklamazioa.addActionListener(new ActionListener() {

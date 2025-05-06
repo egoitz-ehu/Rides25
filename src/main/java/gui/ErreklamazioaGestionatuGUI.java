@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import domain.Erreklamazioa;
+import domain.Mezua;
 import domain.User;
 
 import javax.swing.JLabel;
@@ -35,12 +36,15 @@ public class ErreklamazioaGestionatuGUI extends JFrame {
 	private JPanel contentPane;
 	
 	private DefaultComboBoxModel<Erreklamazioa> modelErreklamazioa;
+	
+	private JPanel panelNorkMezuak;
+	private JPanel panelNoriMezuak;
+	private JPanel panelAdminMezuak;
 
 	/**
 	 * Create the frame.
 	 */
 	public ErreklamazioaGestionatuGUI(User u) {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 678, 407);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -63,6 +67,16 @@ public class ErreklamazioaGestionatuGUI extends JFrame {
 		contentPane.add(lblAukeratu, gbc_lblAukeratu);
 		
 		JComboBox comboBox = new JComboBox();
+		comboBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Erreklamazioa err = (Erreklamazioa) modelErreklamazioa.getSelectedItem();
+				List<Mezua> mezuList = WelcomeGUI.getBusinessLogic().lortuErreklamazioMezuak(err.getId());
+				for(Mezua m:mezuList) {
+					panelNorkMezuak.add(sortuMezua(m.getText()));
+				}
+			}
+		});
+
 		GridBagConstraints gbc_comboBox = new GridBagConstraints();
 		gbc_comboBox.anchor = GridBagConstraints.NORTH;
 		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
@@ -73,7 +87,7 @@ public class ErreklamazioaGestionatuGUI extends JFrame {
 		contentPane.add(comboBox, gbc_comboBox);
 		
 		modelErreklamazioa = new DefaultComboBoxModel<Erreklamazioa>();
-		
+		comboBox.setModel(modelErreklamazioa);
 		JLabel lblNorkMezuak = new JLabel("New label");
 		GridBagConstraints gbc_lblNorkMezuak = new GridBagConstraints();
 		gbc_lblNorkMezuak.gridwidth = 2;
@@ -99,14 +113,14 @@ public class ErreklamazioaGestionatuGUI extends JFrame {
 		gbc_lblAdminMezuak.gridy = 2;
 		contentPane.add(lblAdminMezuak, gbc_lblAdminMezuak);
 		
-		JPanel panelNorkMezuak = new JPanel();
+		panelNorkMezuak = new JPanel();
 		panelNorkMezuak.setLayout(new GridLayout(0, 1, 0, 5));
 		panelNorkMezuak.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 		
 		JScrollPane scrollPaneNork = new JScrollPane();
 		scrollPaneNork.setViewportView(panelNorkMezuak);
 		
-		JPanel panelNoriMezuak = new JPanel();
+		panelNoriMezuak = new JPanel();
 		panelNoriMezuak.setLayout(new GridLayout(0, 1, 0, 5));
 		panelNoriMezuak.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
@@ -114,7 +128,7 @@ public class ErreklamazioaGestionatuGUI extends JFrame {
 		JScrollPane scrollPaneNori = new JScrollPane();
 		scrollPaneNori.setViewportView(panelNoriMezuak);
 		
-		JPanel panelAdminMezuak = new JPanel();
+		panelAdminMezuak = new JPanel();
 		panelAdminMezuak.setLayout(new GridLayout(0, 1, 0, 5));
 		panelAdminMezuak.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 		
@@ -154,10 +168,17 @@ public class ErreklamazioaGestionatuGUI extends JFrame {
 		gbc_scrollPane.gridy = 5;
 		contentPane.add(scrollPane, gbc_scrollPane);
 		
+		JTextArea textArea = new JTextArea();
+		scrollPane.setViewportView(textArea);
+		
 		JButton btnNewButton = new JButton("New button");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				String text = textArea.getText();
+				Erreklamazioa err =(Erreklamazioa) modelErreklamazioa.getSelectedItem();
+				if(!(text.isEmpty() || text.isBlank()) && err!=null)  {
+					WelcomeGUI.getBusinessLogic().bidaliMezua(u.getEmail(), text, err.getId());
+				}
 			}
 		});
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
@@ -166,11 +187,7 @@ public class ErreklamazioaGestionatuGUI extends JFrame {
 		gbc_btnNewButton.gridy = 5;
 		contentPane.add(btnNewButton, gbc_btnNewButton);
 		
-		for (int i = 1; i <= 20; i++) {
-			panelNorkMezuak.add(sortuMezua("Mensaje largo número " + i + "...\nCon varias líneas de ejemplo para comprobar que se ajusta correctamente."));
-			panelNoriMezuak.add(sortuMezua("Mensaje largo número " + i + "...\nCon varias líneas de ejemplo para comprobar que se ajusta correctamente."));
-			panelAdminMezuak.add(sortuMezua("Mensaje largo número " + i + "...\nCon varias líneas de ejemplo para comprobar que se ajusta correctamente."));
-		}
+		
 		
 		List<Erreklamazioa> erreklamaioList = WelcomeGUI.getBusinessLogic().lortuErreklamazioak(u.getEmail());
 		modelErreklamazioa.addAll(erreklamaioList);

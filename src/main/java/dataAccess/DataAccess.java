@@ -682,7 +682,9 @@ public class DataAccess  {
 	}
 	
 	public List<Erreklamazioa> lortuErreklamazioak(String email) {
-		TypedQuery<Erreklamazioa> query = db.createQuery("SELECT e FROM Erreklamazioa e WHERE e.nork=?1 OR e.nori=?2", Erreklamazioa.class);
+		TypedQuery<Erreklamazioa> query = db.createQuery("SELECT e FROM Erreklamazioa e WHERE e.nork.email=?1 OR e.nori.email=?2", Erreklamazioa.class);
+		query.setParameter(1, email);
+		query.setParameter(2, email);
 		return query.getResultList();
 	}
 	
@@ -700,4 +702,16 @@ public class DataAccess  {
 		db.getTransaction().commit();
 	}
 	
+	public List<Mezua> lortuErreklamazioMezuak(int id){
+		Erreklamazioa e = db.find(Erreklamazioa.class, id);
+		return e.getMezuList();
+	}
+	
+	public void bidaliMezua(String email, String text, int id) {
+		db.getTransaction().begin();
+		User u = db.find(User.class, email);
+		Erreklamazioa e = db.find(Erreklamazioa.class, id);
+		Mezua m = e.sortuMezua(text, u);
+		db.getTransaction().commit();
+	}
 }

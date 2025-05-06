@@ -19,6 +19,7 @@ import domain.Car;
 import domain.Driver;
 import domain.Erreklamazioa;
 import domain.Erreserba;
+import domain.Mezua;
 import domain.Mugimendua;
 import exceptions.RideMustBeLaterThanTodayException;
 import exceptions.AlertaAlreadyExistsException;
@@ -387,6 +388,21 @@ public class BLFacadeImplementation  implements BLFacade {
 	public void sortuErreklamazioa(String email1, String email2, double kop, String mezua) {
 		dbManager.open();
 		dbManager.sortuErreklamazioa(email1, email2, kop, mezua);
+		dbManager.close();
+	}
+
+	@WebMethod
+	public List<Mezua> lortuErreklamazioMezuak(int id) {
+		dbManager.open();
+		List<Mezua> l = dbManager.lortuErreklamazioMezuak(id);
+		dbManager.close();
+		return l;
+	}
+
+	@Override
+	public void bidaliMezua(String email, String text, int id) {
+		dbManager.open();
+		dbManager.bidaliMezua(email, text, id);
 		dbManager.close();
 	}
 }

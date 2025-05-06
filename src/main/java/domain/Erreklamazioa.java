@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Vector;
 
+import javax.persistence.CascadeType;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -32,7 +33,15 @@ public class Erreklamazioa implements Serializable{
 	@Enumerated(EnumType.STRING)
 	private ErreklamazioaEgoera egoera;
 	 
-	 private String gaia;
+	 public List<Mezua> getMezuList() {
+		return mezuList;
+	}
+
+	public void setMezuList(List<Mezua> mezuList) {
+		this.mezuList = mezuList;
+	}
+
+	private String gaia;
 	 
 	 private Date date;
 	 
@@ -44,10 +53,18 @@ public class Erreklamazioa implements Serializable{
 	 @OneToOne
 	 private User nori;
 	 
-	 @OneToMany(fetch=FetchType.EAGER)
+	 @OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
 	 private List<Mezua> mezuList = new Vector<Mezua>();
 	 
-	 public Erreklamazioa() {
+	 public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public Erreklamazioa() {
 		 super();
 	 }
 	 
@@ -63,5 +80,15 @@ public class Erreklamazioa implements Serializable{
 	 @Override
 	 public String toString() {
 		 return id + ";" + nork.getName() + ";" + nori.getName();
+	 }
+	 
+	 public Mezua sortuMezua(String text, User u) {
+		 Mezua m = new Mezua(text,u,this);
+		 gehituMezua(m);
+		 return m;
+	 }
+	 
+	 public void gehituMezua(Mezua m) {
+		 this.mezuList.add(m);
 	 }
 }
