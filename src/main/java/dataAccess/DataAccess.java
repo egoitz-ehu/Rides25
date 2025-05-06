@@ -682,9 +682,16 @@ public class DataAccess  {
 	}
 	
 	public List<Erreklamazioa> lortuErreklamazioak(String email) {
-		TypedQuery<Erreklamazioa> query = db.createQuery("SELECT e FROM Erreklamazioa e WHERE e.nork.email=?1 OR e.nori.email=?2", Erreklamazioa.class);
-		query.setParameter(1, email);
-		query.setParameter(2, email);
+		TypedQuery<Erreklamazioa> query = null;
+		if(email!=null) {
+			query= db.createQuery("SELECT e FROM Erreklamazioa e WHERE (e.nork.email=?1 OR e.nori.email=?2) AND e.egoera=?3", Erreklamazioa.class);
+			query.setParameter(1, email);
+			query.setParameter(2, email);
+			query.setParameter(3, ErreklamazioaEgoera.BURUTZEN);
+		} else {
+			query = db.createQuery("SELECT e FROM Erreklamazioa e WHERE e.egoera=?1", Erreklamazioa.class);
+			query.setParameter(1, ErreklamazioaEgoera.BURUTZEN);
+		}
 		return query.getResultList();
 	}
 	
@@ -711,7 +718,11 @@ public class DataAccess  {
 		db.getTransaction().begin();
 		User u = db.find(User.class, email);
 		Erreklamazioa e = db.find(Erreklamazioa.class, id);
-		Mezua m = e.sortuMezua(text, u);
+		if(u!=null) {
+			e.sortuMezua(text, u);
+		} else {
+			e.sortuMezua(text, null);
+		}
 		db.getTransaction().commit();
 	}
 }

@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import businessLogic.BLFacade;
+import domain.Admin;
 import domain.Driver;
 import domain.Traveler;
 import domain.User;
@@ -98,7 +99,7 @@ public class LoginGUI extends JFrame {
 					JOptionPane.showMessageDialog(contentPane, ResourceBundle.getBundle("Etiquetas").getString("LoginGUI.ErrorDataBlank"), "Error", JOptionPane.ERROR_MESSAGE);
 				}else {
 					if(mail.equals("admin") && pass.equals("admin")) {
-						AdminMenuGUI aM = new AdminMenuGUI();
+						AdminMenuGUI aM = new AdminMenuGUI(new Admin("Admin", "Admin", "Admin", "Admin"));
 						aM.setVisible(true);
 					} else {
 						BLFacade facade = WelcomeGUI.getBusinessLogic();

@@ -19,6 +19,7 @@ import javax.swing.BoxLayout;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
 import javax.swing.JTextArea;
 
 import java.awt.GridBagLayout;
@@ -32,7 +33,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class ErreklamazioaGestionatuGUI extends JFrame {
+public class ErreklamazioaBurutuGUI extends JFrame {
 
 	private JPanel contentPane;
 	
@@ -48,12 +49,15 @@ public class ErreklamazioaGestionatuGUI extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ErreklamazioaGestionatuGUI(User u) {
-		setBounds(100, 100, 678, 407);
+	public ErreklamazioaBurutuGUI(User u) {
+		setBounds(100, 100, 767, 407);
+		JPanel panelNagusia = new JPanel();
+		panelNagusia.setBorder(new EmptyBorder(5, 5, 5, 5));
+		JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
+		
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
-		setContentPane(contentPane);
+		setContentPane(splitPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 		gbl_contentPane.columnWidths = new int[]{55, 31, 45, 87, 49, 72, 87, 213, 0};
 		gbl_contentPane.rowHeights = new int[]{21, 30, 13, 159, 0, 0, 0};
@@ -190,9 +194,22 @@ public class ErreklamazioaGestionatuGUI extends JFrame {
 		gbc_btnNewButton.gridy = 5;
 		contentPane.add(btnNewButton, gbc_btnNewButton);
 		
+		JPanel panelEsk = new JPanel();
+		
+		splitPane.setLeftComponent(contentPane);
+		splitPane.setRightComponent(panelEsk);
+		splitPane.setResizeWeight(0.7);
+		splitPane.setOneTouchExpandable(true);
+		panelEsk.setLayout(new GridLayout(2, 1, 0, 0));
+		
+		JButton btnNewButton_1 = new JButton(ResourceBundle.getBundle("Etiquetas").getString("ErreklamazioaBurutu.Onartu")); //$NON-NLS-1$ //$NON-NLS-2$
+		panelEsk.add(btnNewButton_1);
+		
+		JButton btnNewButton_2 = new JButton(ResourceBundle.getBundle("Etiquetas").getString("ErreklamazioaBurutu.Ukatu")); //$NON-NLS-1$ //$NON-NLS-2$
+		panelEsk.add(btnNewButton_2);
 		
 		
-		List<Erreklamazioa> erreklamaioList = WelcomeGUI.getBusinessLogic().lortuErreklamazioak(u.getEmail());
+		List<Erreklamazioa> erreklamaioList = WelcomeGUI.getBusinessLogic().lortuErreklamazioak(null);
 		modelErreklamazioa.addAll(erreklamaioList);
 	}
 	
@@ -221,15 +238,24 @@ public class ErreklamazioaGestionatuGUI extends JFrame {
 		Erreklamazioa err = (Erreklamazioa) modelErreklamazioa.getSelectedItem();
 		List<Mezua> mezuList = WelcomeGUI.getBusinessLogic().lortuErreklamazioMezuak(err.getId());
 		for(Mezua m:mezuList) {
-			if(m.getNork().equals(err.getNork())) {
-				panelNorkMezuak.add(sortuMezua(m.getText()));
-			} else if (m.getNork().equals(err.getNori())) {
-				panelNoriMezuak.add(sortuMezua(m.getText()));
-			} else {
+			if(m.getNork()==null) {
 				panelAdminMezuak.add(sortuMezua(m.getText()));
+			}else if(m.getNork().equals(err.getNork())) {
+				panelNorkMezuak.add(sortuMezua(m.getText()));
+			} else {
+				panelNoriMezuak.add(sortuMezua(m.getText()));
 			}
 		}
 		lblNorkMezuak.setText(ResourceBundle.getBundle("Etiquetas").getString("ErreklamazioaGestionatu.Mezuak") + " " + err.getNork().getName());
 		lblNoriMezuak.setText(ResourceBundle.getBundle("Etiquetas").getString("ErreklamazioaGestionatu.Mezuak") + " " + err.getNori().getName());
+		panelNorkMezuak.revalidate();
+		panelNorkMezuak.repaint();
+
+		panelNoriMezuak.revalidate();
+		panelNoriMezuak.repaint();
+
+		panelAdminMezuak.revalidate();
+		panelAdminMezuak.repaint();
+
 	}
 }
