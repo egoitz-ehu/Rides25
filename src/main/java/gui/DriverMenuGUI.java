@@ -44,6 +44,9 @@ public class DriverMenuGUI extends JFrame {
 	private JMenu mnNewMenu;
 	private JMenuItem mntmNewMenuItem;
 	private JMenuItem mntmNewMenuItem_1;
+	private JMenu erreklamazioaMenu;
+	private JMenuItem itemErreklamazioakIkusi;
+	private JMenuItem itemErreklamazioaSortu;
 
 	/**
 	 * Launch the application.
@@ -141,6 +144,27 @@ public class DriverMenuGUI extends JFrame {
 			}
 		});
 		mnNewMenu.add(mntmNewMenuItem_1);
+		
+		erreklamazioaMenu = new JMenu(ResourceBundle.getBundle("Etiquetas").getString("ErreklamazioaMenu.Title")); //$NON-NLS-1$ //$NON-NLS-2$
+		menuBar.add(erreklamazioaMenu);
+		
+		itemErreklamazioakIkusi = new JMenuItem(ResourceBundle.getBundle("Etiquetas").getString("ErreklamazioaMenu.Ikusi")); //$NON-NLS-1$ //$NON-NLS-2$
+		itemErreklamazioakIkusi.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ErreklamazioaGestionatuGUI eG = new ErreklamazioaGestionatuGUI(driver);
+				eG.setVisible(true);
+			}
+		});
+		erreklamazioaMenu.add(itemErreklamazioakIkusi);
+		
+		itemErreklamazioaSortu = new JMenuItem(ResourceBundle.getBundle("Etiquetas").getString("ErreklamazioaMenu.Sortu")); //$NON-NLS-1$ //$NON-NLS-2$
+		itemErreklamazioaSortu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ErreklamazioaSortuGUI eS = new ErreklamazioaSortuGUI(driver);
+				eS.setVisible(true);
+			}
+		});
+		erreklamazioaMenu.add(itemErreklamazioaSortu);
 		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
