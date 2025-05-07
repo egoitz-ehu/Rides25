@@ -160,4 +160,8 @@ public interface BLFacade  {
 	@WebMethod public List<Mezua> lortuErreklamazioMezuak(int id);
 	
 	@WebMethod public void bidaliMezua(String email, String text, int id);
+	
+	@WebMethod public void onartuErreklamazioa(int id);
+	
+	@WebMethod public void ukatuErreklamazioa(int id);
 }

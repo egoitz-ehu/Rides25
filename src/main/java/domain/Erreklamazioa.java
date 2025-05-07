@@ -37,6 +37,30 @@ public class Erreklamazioa implements Serializable{
 		return mezuList;
 	}
 
+	public ErreklamazioaEgoera getEgoera() {
+		return egoera;
+	}
+
+	public void setEgoera(ErreklamazioaEgoera egoera) {
+		this.egoera = egoera;
+	}
+
+	public String getGaia() {
+		return gaia;
+	}
+
+	public void setGaia(String gaia) {
+		this.gaia = gaia;
+	}
+
+	public double getKopurua() {
+		return kopurua;
+	}
+
+	public void setKopurua(double kopurua) {
+		this.kopurua = kopurua;
+	}
+
 	public void setMezuList(List<Mezua> mezuList) {
 		this.mezuList = mezuList;
 	}

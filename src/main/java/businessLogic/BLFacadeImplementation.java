@@ -399,10 +399,24 @@ public class BLFacadeImplementation  implements BLFacade {
 		return l;
 	}
 
-	@Override
+	@WebMethod
 	public void bidaliMezua(String email, String text, int id) {
 		dbManager.open();
 		dbManager.bidaliMezua(email, text, id);
+		dbManager.close();
+	}
+
+	@WebMethod
+	public void onartuErreklamazioa(int id) {
+		dbManager.open();
+		dbManager.onartuErreklamazioa(id);
+		dbManager.close();
+	}
+
+	@WebMethod
+	public void ukatuErreklamazioa(int id) {
+		dbManager.open();
+		dbManager.ukatuErreklamazioa(id);
 		dbManager.close();
 	}
 }

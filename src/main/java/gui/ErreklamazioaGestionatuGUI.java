@@ -44,21 +44,22 @@ public class ErreklamazioaGestionatuGUI extends JFrame {
 	private JLabel lblNorkMezuak;
 	private JLabel lblNoriMezuak;
 	private JLabel lblAdminMezuak;
+	private JLabel lblGaia;
 
 	/**
 	 * Create the frame.
 	 */
 	public ErreklamazioaGestionatuGUI(User u) {
-		setBounds(100, 100, 678, 407);
+		setBounds(100, 100, 678, 450);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 		gbl_contentPane.columnWidths = new int[]{55, 31, 45, 87, 49, 72, 87, 213, 0};
-		gbl_contentPane.rowHeights = new int[]{21, 30, 13, 159, 0, 0, 0};
+		gbl_contentPane.rowHeights = new int[]{21, 30, 0, 0, 13, 159, 0, 0, 0};
 		gbl_contentPane.columnWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 		
 		JLabel lblAukeratu = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("ErreklamazioaGestionatu.Aukeratu"));
@@ -88,13 +89,32 @@ public class ErreklamazioaGestionatuGUI extends JFrame {
 		
 		modelErreklamazioa = new DefaultComboBoxModel<Erreklamazioa>();
 		comboBox.setModel(modelErreklamazioa);
+		
+		JLabel lblNewLabel_1 = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("ErreklamazioaGestionatu.Gaia")); //$NON-NLS-1$ //$NON-NLS-2$
+		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
+		gbc_lblNewLabel_1.anchor = GridBagConstraints.WEST;
+		gbc_lblNewLabel_1.gridwidth = 3;
+		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_1.gridx = 0;
+		gbc_lblNewLabel_1.gridy = 1;
+		contentPane.add(lblNewLabel_1, gbc_lblNewLabel_1);
+		
+		lblGaia = new JLabel(""); //$NON-NLS-1$ //$NON-NLS-2$
+		GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
+		gbc_lblNewLabel_2.anchor = GridBagConstraints.NORTHWEST;
+		gbc_lblNewLabel_2.gridheight = 2;
+		gbc_lblNewLabel_2.gridwidth = 7;
+		gbc_lblNewLabel_2.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_2.gridx = 0;
+		gbc_lblNewLabel_2.gridy = 2;
+		contentPane.add(lblGaia, gbc_lblNewLabel_2);
 		lblNorkMezuak = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("ErreklamazioaGestionatu.Mezuak"));
 		GridBagConstraints gbc_lblNorkMezuak = new GridBagConstraints();
 		gbc_lblNorkMezuak.gridwidth = 4;
 		gbc_lblNorkMezuak.anchor = GridBagConstraints.NORTHWEST;
 		gbc_lblNorkMezuak.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNorkMezuak.gridx = 0;
-		gbc_lblNorkMezuak.gridy = 2;
+		gbc_lblNorkMezuak.gridy = 4;
 		contentPane.add(lblNorkMezuak, gbc_lblNorkMezuak);
 		
 		lblNoriMezuak = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("ErreklamazioaGestionatu.Mezuak"));
@@ -103,7 +123,7 @@ public class ErreklamazioaGestionatuGUI extends JFrame {
 		gbc_lblNoriMezuak.anchor = GridBagConstraints.NORTHWEST;
 		gbc_lblNoriMezuak.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNoriMezuak.gridx = 4;
-		gbc_lblNoriMezuak.gridy = 2;
+		gbc_lblNoriMezuak.gridy = 4;
 		contentPane.add(lblNoriMezuak, gbc_lblNoriMezuak);
 		
 		lblAdminMezuak = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("ErreklamazioaGestionatu.Mezuak") + " Admin");
@@ -111,7 +131,7 @@ public class ErreklamazioaGestionatuGUI extends JFrame {
 		gbc_lblAdminMezuak.anchor = GridBagConstraints.NORTHWEST;
 		gbc_lblAdminMezuak.insets = new Insets(0, 0, 5, 5);
 		gbc_lblAdminMezuak.gridx = 7;
-		gbc_lblAdminMezuak.gridy = 2;
+		gbc_lblAdminMezuak.gridy = 4;
 		contentPane.add(lblAdminMezuak, gbc_lblAdminMezuak);
 		
 		panelNorkMezuak = new JPanel();
@@ -146,7 +166,7 @@ public class ErreklamazioaGestionatuGUI extends JFrame {
 		gbc_panelScrolls.insets = new Insets(0, 0, 5, 0);
 		gbc_panelScrolls.fill = GridBagConstraints.BOTH;
 		gbc_panelScrolls.gridx = 0;
-		gbc_panelScrolls.gridy = 3;
+		gbc_panelScrolls.gridy = 5;
 		gbc_panelScrolls.gridwidth = GridBagConstraints.REMAINDER;
 		gbc_panelScrolls.weightx = 1.0;
 		gbc_panelScrolls.weighty = 1.0;
@@ -158,7 +178,7 @@ public class ErreklamazioaGestionatuGUI extends JFrame {
 		gbc_lblNewLabel.gridwidth = 7;
 		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel.gridx = 0;
-		gbc_lblNewLabel.gridy = 4;
+		gbc_lblNewLabel.gridy = 6;
 		contentPane.add(lblNewLabel, gbc_lblNewLabel);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -167,7 +187,7 @@ public class ErreklamazioaGestionatuGUI extends JFrame {
 		gbc_scrollPane.insets = new Insets(0, 0, 0, 5);
 		gbc_scrollPane.fill = GridBagConstraints.BOTH;
 		gbc_scrollPane.gridx = 0;
-		gbc_scrollPane.gridy = 5;
+		gbc_scrollPane.gridy = 7;
 		contentPane.add(scrollPane, gbc_scrollPane);
 		
 		JTextArea textArea = new JTextArea();
@@ -187,7 +207,7 @@ public class ErreklamazioaGestionatuGUI extends JFrame {
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
 		gbc_btnNewButton.insets = new Insets(0, 0, 0, 5);
 		gbc_btnNewButton.gridx = 7;
-		gbc_btnNewButton.gridy = 5;
+		gbc_btnNewButton.gridy = 7;
 		contentPane.add(btnNewButton, gbc_btnNewButton);
 		
 		
@@ -231,5 +251,15 @@ public class ErreklamazioaGestionatuGUI extends JFrame {
 		}
 		lblNorkMezuak.setText(ResourceBundle.getBundle("Etiquetas").getString("ErreklamazioaGestionatu.Mezuak") + " " + err.getNork().getName());
 		lblNoriMezuak.setText(ResourceBundle.getBundle("Etiquetas").getString("ErreklamazioaGestionatu.Mezuak") + " " + err.getNori().getName());
+		lblGaia.setText(err.getGaia());
+		
+		panelNorkMezuak.revalidate();
+		panelNorkMezuak.repaint();
+
+		panelNoriMezuak.revalidate();
+		panelNoriMezuak.repaint();
+
+		panelAdminMezuak.revalidate();
+		panelAdminMezuak.repaint();
 	}
 }

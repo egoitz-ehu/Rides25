@@ -151,6 +151,12 @@ public class QueryTransactionsGUI extends JFrame {
 				case ERRESERBA_EZEZTATU_BIDAIARI:
 					row.add(ResourceBundle.getBundle("Etiquetas").getString("QueryTransactionGUI.EzeztatuBidaiari"));
 					break;
+				case ERREKLAMAZIOA_GALDU:
+					row.add(ResourceBundle.getBundle("Etiquetas").getString("QueryTransactionGUI.ErreklamazioaOnartu"));
+					break;
+				case ERREKLAMAZIOA_IRABAZI:
+					row.add(ResourceBundle.getBundle("Etiquetas").getString("QueryTransactionGUI.ErreklamazioaEzeztatu"));
+					break;
 				default:
 					break;
 				}

@@ -725,4 +725,31 @@ public class DataAccess  {
 		}
 		db.getTransaction().commit();
 	}
+	
+	public void onartuErreklamazioa(int id) {
+		db.getTransaction().begin();
+		Erreklamazioa e = db.find(Erreklamazioa.class, id);
+		e.setEgoera(ErreklamazioaEgoera.ONARTUA);
+		double kop = e.getKopurua();
+		User uNork = e.getNork();
+		User uNori = e.getNori();
+		uNork.diruaSartu(kop);
+		uNori.removeFrozenMoney(kop);
+		uNork.addMugimendua(kop, MugimenduMota.ERREKLAMAZIOA_IRABAZI);
+		uNori.addMugimendua(kop, MugimenduMota.ERREKLAMAZIOA_GALDU);
+		db.getTransaction().commit();
+	}
+	
+	public void ukatuErreklamazioa(int id) {
+		db.getTransaction().begin();
+		Erreklamazioa e = db.find(Erreklamazioa.class, id);
+		e.setEgoera(ErreklamazioaEgoera.EZEZTATUA);
+		double kop = e.getKopurua();
+		User uNork = e.getNork();
+		User uNori = e.getNori();
+		uNori.removeFrozenMoney(kop);
+		uNori.diruaSartu(kop);
+		uNori.addMugimendua(kop, MugimenduMota.ERREKLAMAZIOA_IRABAZI);
+		db.getTransaction().commit();
+	}
 }
