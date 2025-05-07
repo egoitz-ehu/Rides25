@@ -706,6 +706,9 @@ public class DataAccess  {
 		User nori = db.find(User.class, email2);
 		Erreklamazioa e = nork.sortuErreklamazioa(nori, mezua, kop);
 		nori.addJasotakoErreklamazioa(e);
+		nori.setCash(nori.getCash()-kop);
+		nori.addFrozenMoney(kop);
+		nori.addMugimendua(kop, MugimenduMota.ERREKLAMAZIOA_SORTU);
 		db.getTransaction().commit();
 	}
 	

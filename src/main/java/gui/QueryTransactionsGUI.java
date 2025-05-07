@@ -152,10 +152,13 @@ public class QueryTransactionsGUI extends JFrame {
 					row.add(ResourceBundle.getBundle("Etiquetas").getString("QueryTransactionGUI.EzeztatuBidaiari"));
 					break;
 				case ERREKLAMAZIOA_GALDU:
-					row.add(ResourceBundle.getBundle("Etiquetas").getString("QueryTransactionGUI.ErreklamazioaOnartu"));
+					row.add(ResourceBundle.getBundle("Etiquetas").getString("QueryTransactionGUI.ErreklamazioaEzeztatu"));
 					break;
 				case ERREKLAMAZIOA_IRABAZI:
-					row.add(ResourceBundle.getBundle("Etiquetas").getString("QueryTransactionGUI.ErreklamazioaEzeztatu"));
+					row.add(ResourceBundle.getBundle("Etiquetas").getString("QueryTransactionGUI.ErreklamazioaOnartu"));
+					break;
+				case ERREKLAMAZIOA_SORTU:
+					row.add(ResourceBundle.getBundle("Etiquetas").getString("QueryTransactionGUI.ErreklamazioaSortu"));
 					break;
 				default:
 					break;
@@ -164,7 +167,6 @@ public class QueryTransactionsGUI extends JFrame {
 			}
 		}
 	}
-	
 	class RowColorRenderer extends DefaultTableCellRenderer {
 	    @Override
 	    public Component getTableCellRendererComponent(JTable table, Object value,

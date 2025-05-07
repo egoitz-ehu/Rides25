@@ -241,12 +241,12 @@ public class ErreklamazioaGestionatuGUI extends JFrame {
 		Erreklamazioa err = (Erreklamazioa) modelErreklamazioa.getSelectedItem();
 		List<Mezua> mezuList = WelcomeGUI.getBusinessLogic().lortuErreklamazioMezuak(err.getId());
 		for(Mezua m:mezuList) {
-			if(m.getNork().equals(err.getNork())) {
-				panelNorkMezuak.add(sortuMezua(m.getText()));
-			} else if (m.getNork().equals(err.getNori())) {
-				panelNoriMezuak.add(sortuMezua(m.getText()));
-			} else {
+			if(m.getNork()==null) {
 				panelAdminMezuak.add(sortuMezua(m.getText()));
+			}else if(m.getNork().equals(err.getNork())) {
+				panelNorkMezuak.add(sortuMezua(m.getText()));
+			} else {
+				panelNoriMezuak.add(sortuMezua(m.getText()));
 			}
 		}
 		lblNorkMezuak.setText(ResourceBundle.getBundle("Etiquetas").getString("ErreklamazioaGestionatu.Mezuak") + " " + err.getNork().getName());
