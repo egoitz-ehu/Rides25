@@ -45,6 +45,7 @@ public class BalorazioakIkusiGUI extends JFrame {
 	private JTextArea textArea;
 	
 	private int selectedIndex;
+	private JLabel lblMedia;
 
 	/**
 	 * Create the frame.
@@ -57,9 +58,9 @@ public class BalorazioakIkusiGUI extends JFrame {
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 		gbl_contentPane.columnWidths = new int[]{0, 0, 0, 0, 0, 0};
-		gbl_contentPane.rowHeights = new int[]{0, 0, 0};
+		gbl_contentPane.rowHeights = new int[]{0, 0, 0, 0};
 		gbl_contentPane.columnWeights = new double[]{1.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
-		gbl_contentPane.rowWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
+		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 1.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 		
 		JLabel lblNewLabel = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("BalorazioakIkusiGUI.Select"));
@@ -91,13 +92,22 @@ public class BalorazioakIkusiGUI extends JFrame {
 		gbc_btnNewButton.gridy = 0;
 		contentPane.add(btnNewButton, gbc_btnNewButton);
 		
+		lblMedia = new JLabel(""); //$NON-NLS-1$ //$NON-NLS-2$
+		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
+		gbc_lblNewLabel_1.anchor = GridBagConstraints.WEST;
+		gbc_lblNewLabel_1.gridwidth = 2;
+		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_1.gridx = 0;
+		gbc_lblNewLabel_1.gridy = 1;
+		contentPane.add(lblMedia, gbc_lblNewLabel_1);
+		
 		panelBalorazioak = new JScrollPane();
 		GridBagConstraints gbc_panelBalorazioak = new GridBagConstraints();
 		gbc_panelBalorazioak.gridwidth = 3;
 		gbc_panelBalorazioak.insets = new Insets(0, 0, 0, 5);
 		gbc_panelBalorazioak.fill = GridBagConstraints.BOTH;
 		gbc_panelBalorazioak.gridx = 0;
-		gbc_panelBalorazioak.gridy = 1;
+		gbc_panelBalorazioak.gridy = 2;
 		contentPane.add(panelBalorazioak, gbc_panelBalorazioak);
 		
 		listaPanel = new JPanel();
@@ -108,10 +118,9 @@ public class BalorazioakIkusiGUI extends JFrame {
 		scrollPane = new JScrollPane();
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
 		gbc_scrollPane.gridwidth = 2;
-		gbc_scrollPane.insets = new Insets(0, 0, 0, 5);
 		gbc_scrollPane.fill = GridBagConstraints.BOTH;
 		gbc_scrollPane.gridx = 3;
-		gbc_scrollPane.gridy = 1;
+		gbc_scrollPane.gridy = 2;
 		contentPane.add(scrollPane, gbc_scrollPane);
 		
 		textArea = new JTextArea();
@@ -119,7 +128,7 @@ public class BalorazioakIkusiGUI extends JFrame {
 		textArea.setEditable(false);
 	}
 	
-	private JPanel sortuItem(String izena, int puntu) {
+	private JPanel sortuItem(String izena, int puntu, int index) {
         JPanel panel = new JPanel(new BorderLayout());
         panel.setBackground(new Color(230, 240, 255));
         panel.setBorder(BorderFactory.createCompoundBorder(
@@ -141,8 +150,7 @@ public class BalorazioakIkusiGUI extends JFrame {
         panel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-            	selectedIndex = listaPanel.getComponentZOrder(panel);
-            	textArea.setText(balorazioList.get(selectedIndex).getMezua());
+            	textArea.setText(balorazioList.get(index).getMezua());
             }
         });
 
@@ -151,13 +159,32 @@ public class BalorazioakIkusiGUI extends JFrame {
 	
 	private void gehitu() {
 		listaPanel.removeAll();
+		double media = 0.0;
+		int index = 0;
 		for (Balorazioa b : balorazioList) {
 			System.out.println(b);
-		    JPanel item = sortuItem(b.getNorkIzena(), b.getPuntuazioa());
+		    JPanel item = sortuItem(b.getNorkIzena(), b.getPuntuazioa(), index);
 		    System.out.println(item);
 		    listaPanel.add(item);
 		    listaPanel.add(Box.createVerticalStrut(10));
+		    media+=b.getPuntuazioa();
+		    index++;
 		}
+		media = media / balorazioList.size();
+		int mediaOsoa = (int) media;
+		StringBuilder html = new StringBuilder("<html>");
+
+		for (int i = 0; i < mediaOsoa; i++) {
+			html.append("<span style='color:yellow;'>★</span>");
+		}
+
+		for (int i = mediaOsoa; i < 5; i++) {
+			html.append("<span style='color:lightGray;'>★</span>");
+		}
+
+		html.append(" (" + mediaOsoa + ")</html>");
+
+		lblMedia.setText(html.toString());
 		panelBalorazioak.revalidate();
 		panelBalorazioak.repaint();
 	}
