@@ -4,10 +4,12 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.FlowLayout;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.ImageIcon;
 
 import domain.Erreklamazioa;
 import domain.Mezua;
@@ -45,6 +47,7 @@ public class ErreklamazioaGestionatuGUI extends JFrame {
 	private JLabel lblNoriMezuak;
 	private JLabel lblAdminMezuak;
 	private JLabel lblGaia;
+	private JButton btnRecharge;
 
 	/**
 	 * Create the frame.
@@ -75,6 +78,7 @@ public class ErreklamazioaGestionatuGUI extends JFrame {
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				mezuakKargatu();
+				btnRecharge.setEnabled(true);
 			}
 		});
 
@@ -108,6 +112,20 @@ public class ErreklamazioaGestionatuGUI extends JFrame {
 		gbc_lblNewLabel_2.gridx = 0;
 		gbc_lblNewLabel_2.gridy = 2;
 		contentPane.add(lblGaia, gbc_lblNewLabel_2);
+		
+		btnRecharge = new JButton("\u21BB");
+		btnRecharge.setFont(btnRecharge.getFont().deriveFont(16f));
+		btnRecharge.setEnabled(false);
+		btnRecharge.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				mezuakKargatu();
+			}
+		});
+		GridBagConstraints gbc_btnRecharge = new GridBagConstraints();
+		gbc_btnRecharge.insets = new Insets(0, 0, 5, 5);
+		gbc_btnRecharge.gridx = 7;
+		gbc_btnRecharge.gridy = 3;
+		contentPane.add(btnRecharge, gbc_btnRecharge);
 		lblNorkMezuak = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("ErreklamazioaGestionatu.Mezuak"));
 		GridBagConstraints gbc_lblNorkMezuak = new GridBagConstraints();
 		gbc_lblNorkMezuak.gridwidth = 4;
@@ -217,21 +235,17 @@ public class ErreklamazioaGestionatuGUI extends JFrame {
 	}
 	
 	private JTextArea sortuMezua(String mezua) {
-		 	JTextArea textArea = new JTextArea(mezua);
-		    textArea.setLineWrap(true);              
-		    textArea.setLineWrap(true);
-		    textArea.setWrapStyleWord(true);           
-		    textArea.setEditable(false);               
-		    textArea.setOpaque(true);
-		    int preferredHeight = textArea.getPreferredSize().height;
-		    textArea.setBackground(new Color(230, 240, 255));
-		    textArea.setBorder(BorderFactory.createCompoundBorder(
-		        BorderFactory.createLineBorder(Color.GRAY, 1),
-		        BorderFactory.createEmptyBorder(5, 10, 5, 10)
-		    ));
-		    textArea.setMaximumSize(new Dimension(Integer.MAX_VALUE, Integer.MAX_VALUE));
-		    textArea.setAlignmentX(LEFT_ALIGNMENT);
-		    return textArea;
+	    JTextArea textArea = new JTextArea(mezua);
+	    textArea.setLineWrap(true);
+	    textArea.setWrapStyleWord(true);
+	    textArea.setEditable(false);
+	    textArea.setOpaque(true);
+	    textArea.setBackground(new Color(230, 240, 255));
+	    textArea.setBorder(BorderFactory.createCompoundBorder(
+	        BorderFactory.createLineBorder(Color.GRAY, 1),
+	        BorderFactory.createEmptyBorder(5, 10, 5, 10)
+	    ));
+	    return textArea;
 	}
 	
 	private void mezuakKargatu() {

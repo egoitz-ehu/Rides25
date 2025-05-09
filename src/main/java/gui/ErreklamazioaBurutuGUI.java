@@ -46,6 +46,7 @@ public class ErreklamazioaBurutuGUI extends JFrame {
 	private JLabel lblNoriMezuak;
 	private JLabel lblAdminMezuak;
 	private JLabel lblGaia;
+	private JButton btnRecharge;
 
 	/**
 	 * Create the frame.
@@ -79,6 +80,7 @@ public class ErreklamazioaBurutuGUI extends JFrame {
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				mezuakKargatu();
+				btnRecharge.setEnabled(true);
 			}
 		});
 
@@ -112,6 +114,15 @@ public class ErreklamazioaBurutuGUI extends JFrame {
 		gbc_lblNewLabel_2.gridx = 0;
 		gbc_lblNewLabel_2.gridy = 2;
 		contentPane.add(lblGaia, gbc_lblNewLabel_2);
+		
+		btnRecharge = new JButton("\u21BB");
+		btnRecharge.setFont(btnRecharge.getFont().deriveFont(16f));
+		btnRecharge.setEnabled(false);
+		GridBagConstraints gbc_btnNewButton_3 = new GridBagConstraints();
+		gbc_btnNewButton_3.insets = new Insets(0, 0, 5, 5);
+		gbc_btnNewButton_3.gridx = 7;
+		gbc_btnNewButton_3.gridy = 3;
+		contentPane.add(btnRecharge, gbc_btnNewButton_3);
 		lblNorkMezuak = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("ErreklamazioaGestionatu.Mezuak"));
 		GridBagConstraints gbc_lblNorkMezuak = new GridBagConstraints();
 		gbc_lblNorkMezuak.gridwidth = 4;
