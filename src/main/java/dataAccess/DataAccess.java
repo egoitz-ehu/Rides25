@@ -683,15 +683,16 @@ public class DataAccess  {
 	
 	public List<Erreklamazioa> lortuErreklamazioak(String email) {
 		TypedQuery<Erreklamazioa> query = null;
-		if(email!=null) {
-			query= db.createQuery("SELECT e FROM Erreklamazioa e WHERE (e.nork.email=?1 OR e.nori.email=?2) AND e.egoera=?3", Erreklamazioa.class);
-			query.setParameter(1, email);
-			query.setParameter(2, email);
-			query.setParameter(3, ErreklamazioaEgoera.BURUTZEN);
-		} else {
-			query = db.createQuery("SELECT e FROM Erreklamazioa e WHERE e.egoera=?1", Erreklamazioa.class);
-			query.setParameter(1, ErreklamazioaEgoera.BURUTZEN);
-		}
+		query= db.createQuery("SELECT e FROM Erreklamazioa e WHERE (e.nork.email=?1 OR e.nori.email=?2) AND e.egoera=?3", Erreklamazioa.class);
+		query.setParameter(1, email);
+		query.setParameter(2, email);
+		query.setParameter(3, ErreklamazioaEgoera.BURUTZEN);
+		return query.getResultList();
+	}
+	
+	public List<Erreklamazioa> lortuErreklamazioakGuztiak() {
+		TypedQuery<Erreklamazioa> query = db.createQuery("SELECT e FROM Erreklamazioa e WHERE e.egoera=?1", Erreklamazioa.class);
+		query.setParameter(1, ErreklamazioaEgoera.BURUTZEN);
 		return query.getResultList();
 	}
 	
@@ -748,7 +749,6 @@ public class DataAccess  {
 		Erreklamazioa e = db.find(Erreklamazioa.class, id);
 		e.setEgoera(ErreklamazioaEgoera.EZEZTATUA);
 		double kop = e.getKopurua();
-		User uNork = e.getNork();
 		User uNori = e.getNori();
 		uNori.removeFrozenMoney(kop);
 		uNori.diruaSartu(kop);

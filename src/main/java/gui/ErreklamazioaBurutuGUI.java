@@ -256,7 +256,7 @@ public class ErreklamazioaBurutuGUI extends JFrame {
 		panelEsk.add(btnNewButton_2);
 		
 		
-		List<Erreklamazioa> erreklamaioList = WelcomeGUI.getBusinessLogic().lortuErreklamazioak(null);
+		List<Erreklamazioa> erreklamaioList = WelcomeGUI.getBusinessLogic().lortuErreklamazioakGuztiak();
 		modelErreklamazioa.addAll(erreklamaioList);
 	}
 	
