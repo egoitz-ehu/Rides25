@@ -57,7 +57,7 @@ public class CreateRideGUI extends JFrame {
 	private JTable table;
 	
 	private String[] columnNamesRides = new String[] {
-			"Pos","city","Precio"
+			ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.PosArea"),ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.CityArea"),ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.PriceArea")
 	};
 	
 	private DefaultTableModel tableModel;
@@ -297,7 +297,7 @@ public class CreateRideGUI extends JFrame {
 		btnNewButton.setBounds(275, 55, 130, 23);
 		getContentPane().add(btnNewButton);
 		
-		JLabel lblPrezioaGeld = new JLabel("a"); //$NON-NLS-1$ //$NON-NLS-2$
+		JLabel lblPrezioaGeld = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.PriceArea")); //$NON-NLS-1$ //$NON-NLS-2$
 		lblPrezioaGeld.setBounds(10, 49, 71, 14);
 		getContentPane().add(lblPrezioaGeld);
 		
@@ -328,7 +328,7 @@ public class CreateRideGUI extends JFrame {
 				for(int i = 0; i<tableModel.getRowCount();i++){
 					String h = (String) tableModel.getValueAt(i,1);
 					hiriak.add(h);
-					Double d = (Double) tableModel.getValueAt(i, 2);
+					Double d = Double.parseDouble(tableModel.getValueAt(i, 2).toString());
 					prezioak.add(d);
 				}
 				Ride r=facade.createRide(hiriak,prezioak,UtilDate.trim(jCalendar.getDate()), selectedCar, driver.getEmail());
@@ -341,6 +341,8 @@ public class CreateRideGUI extends JFrame {
 			} catch (RideAlreadyExistException e1) {
 				// TODO Auto-generated catch block
 				jLabelMsg.setText(e1.getMessage());
+			} catch (IllegalArgumentException e1) {
+				jLabelMsg.setText(ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.ErrorIncorrectData"));
 			}
 
 		}
