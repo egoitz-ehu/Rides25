@@ -98,7 +98,7 @@ private JPanel contentPane;
 			public void mouseClicked(MouseEvent e) {
 				int selectedRow = table.getSelectedRow();
 				if(selectedRow != -1) {
-					selectedErreserba = (RideErreserbaContainer) tableModel.getValueAt(selectedRow, 3);
+					selectedErreserba = (RideErreserbaContainer) tableModel.getValueAt(selectedRow, 6);
 					//System.out.println("Selected a new erreserba:"+selectedErreserba);
 					if(selectedErreserba!=null && selectedErreserba.getErreserba().getEgoera().equals(ErreserbaEgoera.ONARTUA)) {
 						onartuButton.setEnabled(true);
@@ -124,14 +124,22 @@ private JPanel contentPane;
 				new Object[][] {
 				},
 				new String[] {
-						"Number","Egoera","Data"
+						ResourceBundle.getBundle("Etiquetas").getString("ErreserbakKontsultatuGUI.Zenbakia"),
+						ResourceBundle.getBundle("Etiquetas").getString("ErreserbakKontsultatuGUI.Egoera"),
+						ResourceBundle.getBundle("Etiquetas").getString("ErreserbakKontsultatuGUI.Data"),
+						ResourceBundle.getBundle("Etiquetas").getString("ErreserbakKontsultatuGUI.Kop"),
+						ResourceBundle.getBundle("Etiquetas").getString("ErreserbakKontsultatuGUI.From"),
+						ResourceBundle.getBundle("Etiquetas").getString("ErreserbakKontsultatuGUI.To")
 				});
-		tableModel.setColumnCount(4);
+		tableModel.setColumnCount(7);
 		table.setModel(tableModel);
 		table.getColumnModel().getColumn(0).setPreferredWidth(30);
 		table.getColumnModel().getColumn(1).setPreferredWidth(30);
 		table.getColumnModel().getColumn(2).setPreferredWidth(30);
-		table.getColumnModel().removeColumn(table.getColumnModel().getColumn(3));
+		table.getColumnModel().getColumn(3).setPreferredWidth(30);
+		table.getColumnModel().getColumn(4).setPreferredWidth(30);
+		table.getColumnModel().getColumn(5).setPreferredWidth(30);
+		table.getColumnModel().removeColumn(table.getColumnModel().getColumn(6));
 		
 		scrollPane.setViewportView(table);
 		
@@ -226,6 +234,9 @@ private JPanel contentPane;
 					}
 					row.add(egoera);
 					row.add(err.getErreserbaData());
+					row.add(err.getPlazaKop());
+					row.add(err.getFrom());
+					row.add(err.getTo());
 					row.add(c);
 					tableModel.addRow(row);	
 					}
