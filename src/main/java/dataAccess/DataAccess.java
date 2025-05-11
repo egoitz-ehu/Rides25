@@ -89,28 +89,20 @@ public class DataAccess  {
 		   
 		    //Create drivers 
 			Driver driver1=new Driver("driver1@gmail.com","abc123", "Ane", "Gaztañaga");
-			//Car c1 = driver1.addCar("123", 4, "Green", "Seat");
-			
-			//Create rides
-			//driver1.addRide("Donostia", "Bilbo", UtilDate.newDate(year,month,15), 4, 7,c1);
-			//driver1.addRide("Donostia", "Gazteiz", UtilDate.newDate(year,month,6), 4, 8,c1);
-			//driver1.addRide("Bilbo", "Donostia", UtilDate.newDate(year,month,25), 4, 4,c1);
-
-			//driver1.addRide("Donostia", "Iruña", UtilDate.newDate(year,month,7), 4, 8,c1);
-			
-			//driver2.addRide("Donostia", "Bilbo", UtilDate.newDate(year,month,15), 3, 3);
-			//driver2.addRide("Bilbo", "Donostia", UtilDate.newDate(year,month,25), 2, 5);
-			//driver2.addRide("Eibar", "Gasteiz", UtilDate.newDate(year,month,6), 2, 5);
-
-			//driver3.addRide("Bilbo", "Donostia", UtilDate.newDate(year,month,14), 1, 3);
-			
 			Driver driver2 = new Driver("1","1","1","1");
-			Traveler traveler1 = new Traveler("2","2","2","2");
 			
+			//Create traveler
+			Traveler traveler1 = new Traveler("2","2","2","2");
+			Traveler traveler2 = new Traveler("3","3","3","3");
+			
+			//Create Car
+			driver2.addCar("1234ABC", 5, "urdina", "Audi");
+			driver2.addCar("1234DEF", 3, "gorria", "Audi");
 			
 			db.persist(driver1);
 			db.persist(driver2);
 			db.persist(traveler1);
+			db.persist(traveler2);
 			db.getTransaction().commit();
 			System.out.println("Db initialized");
 		}

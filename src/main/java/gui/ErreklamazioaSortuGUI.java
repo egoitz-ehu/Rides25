@@ -115,7 +115,7 @@ public class ErreklamazioaSortuGUI extends JFrame {
 					String emailNori = (String) modelPerson.getSelectedItem();
 					String kop = textFieldKopurua.getText();
 					String mezua = textArea.getText();
-					if(emailNori.isEmpty() || kop.isEmpty() || mezua.isEmpty() || mezua.isBlank()) {
+					if(emailNori.isEmpty() || kop.isEmpty() || mezua.isEmpty() || mezua.isBlank() || Double.parseDouble(kop)<=0.0) {
 						lblError.setText(ResourceBundle.getBundle("Etiquetas").getString("ErreklamazioaSortuGUI.ErrorCampos"));
 					} else {
 						WelcomeGUI.getBusinessLogic().sortuErreklamazioa(u.getEmail(), emailNori, Double.parseDouble(kop), mezua);

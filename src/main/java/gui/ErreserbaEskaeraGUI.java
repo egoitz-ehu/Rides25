@@ -207,14 +207,18 @@ public class ErreserbaEskaeraGUI extends JFrame {
 						Date d = jCalendar1.getDate();
 
 						datesWithRidesCurrentMonth=facade.getThisMonthDatesWithRides((String)jComboBoxOrigin.getSelectedItem(),(String)jComboBoxDestination.getSelectedItem(), UtilDate.trim(d));
-						if(datesWithRidesCurrentMonth.isEmpty() && !((String)jComboBoxOrigin.getSelectedItem()).equals("")) {
-							btnAlerta.setEnabled(true);
-							lblEz.setEnabled(true);
-							lblEz.setText(ResourceBundle.getBundle("Etiquetas").getString("ErreserbaEskaeraGUI.BidairikEz"));
+						Date selectedDate = UtilDate.trim(jCalendar1.getDate());
+						boolean isDateAvailable = datesWithRidesCurrentMonth.stream()
+						    .anyMatch(date -> UtilDate.trim(date).equals(selectedDate));
+
+						if (!isDateAvailable && !((String) jComboBoxOrigin.getSelectedItem()).equals("")) {
+						    btnAlerta.setEnabled(true);
+						    lblEz.setEnabled(true);
+						    lblEz.setText(ResourceBundle.getBundle("Etiquetas").getString("ErreserbaEskaeraGUI.BidairikEz"));
 						} else {
-							btnAlerta.setEnabled(false);
-							lblEz.setEnabled(false);
-							lblEz.setText("");
+						    btnAlerta.setEnabled(false);
+						    lblEz.setEnabled(false);
+						    lblEz.setText("");
 						}
 						paintDaysWithEvents(jCalendar1,datesWithRidesCurrentMonth,Color.CYAN);
 

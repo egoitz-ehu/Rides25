@@ -155,9 +155,11 @@ public class CreateReviewGUI extends JFrame {
 		JButton btnNewButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("CreateReviewGUI.bidali"));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				WelcomeGUI.getBusinessLogic().sortuBalorazioa(u.getEmail(), selectedErreserba.getEskaeraNum(), puntuazioa, textArea.getText());
-				model.removeAllElements();
-				lortuErreserbak(u);
+				if(selectedErreserba!=null && puntuazioa!=0 && textArea.getText().length()>0) {
+					WelcomeGUI.getBusinessLogic().sortuBalorazioa(u.getEmail(), selectedErreserba.getEskaeraNum(), puntuazioa, textArea.getText());
+					model.removeAllElements();
+					lortuErreserbak(u);	
+				}
 			}
 		});
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();

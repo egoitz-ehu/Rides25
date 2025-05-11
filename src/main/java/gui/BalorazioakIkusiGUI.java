@@ -9,6 +9,7 @@ import java.awt.Font;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -32,11 +33,11 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextArea;
+import javax.swing.JComboBox;
 
 public class BalorazioakIkusiGUI extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
 	
 	private List<Balorazioa> balorazioList;
 	private JPanel listaPanel;
@@ -46,6 +47,8 @@ public class BalorazioakIkusiGUI extends JFrame {
 	
 	private int selectedIndex;
 	private JLabel lblMedia;
+	private JComboBox comboBox;
+	private DefaultComboBoxModel<String> model = new DefaultComboBoxModel<String>();
 
 	/**
 	 * Create the frame.
@@ -71,26 +74,23 @@ public class BalorazioakIkusiGUI extends JFrame {
 		gbc_lblNewLabel.gridy = 0;
 		contentPane.add(lblNewLabel, gbc_lblNewLabel);
 		
-		textField = new JTextField();
-		GridBagConstraints gbc_textField = new GridBagConstraints();
-		gbc_textField.insets = new Insets(0, 0, 5, 5);
-		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField.gridx = 3;
-		gbc_textField.gridy = 0;
-		contentPane.add(textField, gbc_textField);
-		textField.setColumns(10);
-		JButton btnNewButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("BalorazioakIkusiGUI.Find"));
-		btnNewButton.addActionListener(new ActionListener() {
+		comboBox = new JComboBox();
+		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				balorazioList = WelcomeGUI.getBusinessLogic().lortuBalorazioak(textField.getText());
-				gehitu();
+				selectedIndex = comboBox.getSelectedIndex();
+				if (selectedIndex != -1) {
+					balorazioList = WelcomeGUI.getBusinessLogic().lortuBalorazioak(model.getElementAt(selectedIndex));
+					gehitu();
+				}
 			}
 		});
-		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
-		gbc_btnNewButton.insets = new Insets(0, 0, 5, 0);
-		gbc_btnNewButton.gridx = 4;
-		gbc_btnNewButton.gridy = 0;
-		contentPane.add(btnNewButton, gbc_btnNewButton);
+		GridBagConstraints gbc_comboBox = new GridBagConstraints();
+		gbc_comboBox.insets = new Insets(0, 0, 5, 5);
+		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
+		gbc_comboBox.gridx = 3;
+		gbc_comboBox.gridy = 0;
+		contentPane.add(comboBox, gbc_comboBox);
+		comboBox.setModel(model);
 		
 		lblMedia = new JLabel(""); //$NON-NLS-1$ //$NON-NLS-2$
 		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
@@ -126,6 +126,8 @@ public class BalorazioakIkusiGUI extends JFrame {
 		textArea = new JTextArea();
 		scrollPane.setViewportView(textArea);
 		textArea.setEditable(false);
+		
+		model.addAll(WelcomeGUI.getBusinessLogic().lortuErabiltzaileEmailGuztiak());
 	}
 	
 	private JPanel sortuItem(String izena, int puntu, int index) {

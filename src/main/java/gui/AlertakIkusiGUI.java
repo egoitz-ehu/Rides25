@@ -25,6 +25,8 @@ public class AlertakIkusiGUI extends JFrame {
 	JPanel listaZain;
 	
 	private Traveler t;
+	private JLabel lblNewLabel;
+	private JLabel lblNewLabel_1;
 
 	public AlertakIkusiGUI(Traveler tr) {
 		t=tr;
@@ -32,18 +34,50 @@ public class AlertakIkusiGUI extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(new GridLayout(0, 1, 0, 0));
-
-		panelAurkitua = new JScrollPane();
-		contentPane.add(panelAurkitua);
+		GridBagLayout gbl_contentPane = new GridBagLayout();
+		gbl_contentPane.columnWidths = new int[]{474, 0};
+		gbl_contentPane.rowHeights = new int[]{87, 0, 87, 87, 0, 87, 0};
+		gbl_contentPane.columnWeights = new double[]{0.0, Double.MIN_VALUE};
+		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		contentPane.setLayout(gbl_contentPane);
 		
-		listaAurkitua = new JPanel();
-		listaAurkitua.setLayout(new BoxLayout(listaAurkitua, BoxLayout.Y_AXIS));
-		listaAurkitua.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-		panelAurkitua.setViewportView(listaAurkitua);
+		lblNewLabel = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("AlertakIkusiGUI.Aurkituak"));
+		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
+		gbc_lblNewLabel.fill = GridBagConstraints.BOTH;
+		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 0);
+		gbc_lblNewLabel.gridx = 0;
+		gbc_lblNewLabel.gridy = 0;
+		contentPane.add(lblNewLabel, gbc_lblNewLabel);
+		
+				panelAurkitua = new JScrollPane();
+				GridBagConstraints gbc_panelAurkitua = new GridBagConstraints();
+				gbc_panelAurkitua.gridheight = 2;
+				gbc_panelAurkitua.fill = GridBagConstraints.BOTH;
+				gbc_panelAurkitua.insets = new Insets(0, 0, 5, 0);
+				gbc_panelAurkitua.gridx = 0;
+				gbc_panelAurkitua.gridy = 1;
+				contentPane.add(panelAurkitua, gbc_panelAurkitua);
+				
+				listaAurkitua = new JPanel();
+				listaAurkitua.setLayout(new BoxLayout(listaAurkitua, BoxLayout.Y_AXIS));
+				listaAurkitua.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+				panelAurkitua.setViewportView(listaAurkitua);
+		
+		lblNewLabel_1 = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("AlertakIkusiGUI.Finding"));
+		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
+		gbc_lblNewLabel_1.fill = GridBagConstraints.BOTH;
+		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 0);
+		gbc_lblNewLabel_1.gridx = 0;
+		gbc_lblNewLabel_1.gridy = 3;
+		contentPane.add(lblNewLabel_1, gbc_lblNewLabel_1);
 		
 		panelZain = new JScrollPane();
-		contentPane.add(panelZain);
+		GridBagConstraints gbc_panelZain = new GridBagConstraints();
+		gbc_panelZain.gridheight = 2;
+		gbc_panelZain.fill = GridBagConstraints.BOTH;
+		gbc_panelZain.gridx = 0;
+		gbc_panelZain.gridy = 4;
+		contentPane.add(panelZain, gbc_panelZain);
 		
 		listaZain = new JPanel();
 		listaZain.setLayout(new BoxLayout(listaZain, BoxLayout.Y_AXIS));
