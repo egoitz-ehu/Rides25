@@ -99,11 +99,30 @@ public class DataAccess  {
 			driver2.addCar("1234ABC", 5, "urdina", "Audi");
 			driver2.addCar("1234DEF", 3, "gorria", "Audi");
 			
+			List<String> hiriak = new ArrayList<String>();
+			hiriak.add("Bilbo");
+			hiriak.add("Donostia");
+			List<Double> prezioak = new ArrayList<Double>();
+			prezioak.add(10.0);
+			prezioak.add(0.0);
+			Date data = new Date();
+			Calendar c = Calendar.getInstance();
+			c.set(2025, 5, 20);
+			data = c.getTime();
+			Ride r = driver2.addRide(hiriak, prezioak, UtilDate.trim(data), driver2.getCars().get(0).getEserKop(), driver2.getCars().get(0));
+			driver2.getCars().get(0).gehituBidaia(r);
+			
+			traveler1.setCash(100);
+			Erreserba e = traveler1.sortuErreserba(r, 5, "Bilbo", "Donostia", r.prezioaKalkulatu("Bilbo", "Donostia"));
+			
+			r.gehituErreserba(e);
+			
 			db.persist(driver1);
 			db.persist(driver2);
 			db.persist(traveler1);
 			db.persist(traveler2);
 			db.getTransaction().commit();
+			
 			System.out.println("Db initialized");
 		}
 		catch (Exception e){
@@ -276,27 +295,22 @@ public class DataAccess  {
 		db.getTransaction().begin();
 		Erreserba e = db.find(Erreserba.class, c.getErreserba().getEskaeraNum()); // Bestela arazoa eguneratzean web zerbitzu bat denean
 		e.setEgoera(ErreserbaEgoera.BAIEZTATUA);
-		Ride r = c.getRide();
 		double prezioa = e.getPrezioa();
 		Driver d = db.find(Driver.class, c.getRide().getDriver().getEmail());
 		d.removeFrozenMoney(prezioa);
 		d.diruaSartu(prezioa);
 		d.addMugimendua(prezioa, MugimenduMota.ERRESERBA_BAIEZTATU);
-		db.merge(e);
-		db.merge(r);
 		db.getTransaction().commit();;
 	}
 	
 	public void erreserbaEzeztatu(RideErreserbaContainer c, String tMail) {
 		db.getTransaction().begin();
-		Erreserba e = c.getErreserba();
-		Ride r = c.getRide();
+		Erreserba e = db.find(Erreserba.class,c.getErreserba().getEskaeraNum());
 		e.setEgoera(ErreserbaEgoera.EZEZTATUA);
 		Driver d = db.find(Driver.class, c.getRide().getDriver().getEmail());
 		Traveler t = db.find(Traveler.class, tMail);
 		Erreklamazioa err = t.sortuErreklamazioa(d, "ERRESERBA EZEZTATU",e.getPrezioa());
 		d.addJasotakoErreklamazioa(err);
-		db.merge(e);
 		db.getTransaction().commit();
 	}
 	
