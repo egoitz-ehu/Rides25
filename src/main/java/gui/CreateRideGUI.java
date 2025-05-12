@@ -240,8 +240,9 @@ public class CreateRideGUI extends JFrame {
 			int selectedRow = table.getSelectedRow();
 			if(selectedRow>0){
 				Object city = table.getValueAt(selectedRow,1);
+				Object price = table.getValueAt(selectedRow,2);
 				tableModel.removeRow(selectedRow);
-				tableModel.insertRow(selectedRow-1,new Object[]{null,city});
+				tableModel.insertRow(selectedRow-1,new Object[]{null,city,price});
 				eguneratuPos(tableModel);
 			}
 		});
@@ -250,8 +251,9 @@ public class CreateRideGUI extends JFrame {
 			int selectedRow = table.getSelectedRow();
 			if(selectedRow>=0 && selectedRow<table.getRowCount()-1){
 				Object city = table.getValueAt(selectedRow,1);
+				Object price = table.getValueAt(selectedRow,2);
 				tableModel.removeRow(selectedRow);
-				tableModel.insertRow(selectedRow+1,new Object[]{null,city});
+				tableModel.insertRow(selectedRow+1,new Object[]{null,city,price});
 				eguneratuPos(tableModel);
 			}
 		});
@@ -343,8 +345,9 @@ public class CreateRideGUI extends JFrame {
 				jLabelMsg.setText(e1.getMessage());
 			} catch (IllegalArgumentException e1) {
 				jLabelMsg.setText(ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.ErrorIncorrectData"));
+			} catch(NullPointerException e1) {
+				jLabelMsg.setText(ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.ErrorIncorrectData"));
 			}
-
 		}
 	
 
