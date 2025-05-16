@@ -1,0 +1,44 @@
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-05-16 15:45:04 #1 store] 
+Database 'C:\Users\egoit\git\Rides25\src\main\resources\rides.temp' has been recovered (tr. 17-21)
+
+[2025-05-16 15:45:05 #2 store] 
+Database 'C:\Users\egoit\git\Rides25\src\main\resources\rides.temp' is opened by 3960@LAPTOP-2PN1U6VU
+
+[2025-05-16 15:45:05 #3 type] 
+Type domain.User is not enhanced.
+
+[2025-05-16 15:45:05 #4 type] 
+Type domain.Driver is not enhanced.
+
+[2025-05-16 15:45:05 #5 type] 
+Type domain.Erreklamazioa is not enhanced.
+
+[2025-05-16 15:45:05 #6 type] 
+Type domain.Balorazioa is not enhanced.
+
+[2025-05-16 15:45:05 #7 type] 
+Type domain.Mugimendua is not enhanced.
+
+[2025-05-16 15:45:05 #8 type] 
+Type domain.Car is not enhanced.
+
+[2025-05-16 15:45:05 #9 type] 
+Type domain.Ride is not enhanced.
+
+[2025-05-16 15:45:05 #10 type] 
+Type domain.Mezua is not enhanced.
+
+[2025-05-16 15:45:05 #11 type] 
+Type domain.Erreserba is not enhanced.
+
+[2025-05-16 15:45:05 #12 type] 
+Type domain.Geldialdia is not enhanced.
+
+[2025-05-16 15:45:05 #13 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-05-16 15:45:05 #14 type] 
+Type domain.Alerta is not enhanced.
+
