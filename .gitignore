@@ -1,2 +1,4 @@
 target/
 **/objectdb.conf
+sonar-projects.properties
+.scannerwork/
