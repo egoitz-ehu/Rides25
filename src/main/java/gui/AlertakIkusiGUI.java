@@ -34,12 +34,12 @@ public class AlertakIkusiGUI extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		GridBagLayout gbl_contentPane = new GridBagLayout();
-		gbl_contentPane.columnWidths = new int[]{474, 0};
-		gbl_contentPane.rowHeights = new int[]{87, 0, 87, 87, 0, 87, 0};
-		gbl_contentPane.columnWeights = new double[]{0.0, Double.MIN_VALUE};
-		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		contentPane.setLayout(gbl_contentPane);
+		GridBagLayout gblContentPane = new GridBagLayout();
+		gblContentPane.columnWidths = new int[]{474, 0};
+		gblContentPane.rowHeights = new int[]{87, 0, 87, 87, 0, 87, 0};
+		gblContentPane.columnWeights = new double[]{0.0, Double.MIN_VALUE};
+		gblContentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		contentPane.setLayout(gblContentPane);
 		
 		lblNewLabel = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("AlertakIkusiGUI.Aurkituak"));
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();

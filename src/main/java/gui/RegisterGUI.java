@@ -49,7 +49,7 @@ public class RegisterGUI extends JFrame {
     
     private JButton buttonSend;
     
-    private BLFacade bussinessLogic;
+    private transient BLFacade bussinessLogic;
 /*
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {

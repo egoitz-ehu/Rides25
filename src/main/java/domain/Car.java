@@ -1,8 +1,8 @@
 package domain;
 
 import java.io.Serializable;
+import java.util.LinkedList;
 import java.util.List;
-import java.util.Vector;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -31,7 +31,7 @@ public class Car implements Serializable{
 	
 	@XmlIDREF
 	@OneToMany(fetch=FetchType.EAGER)
-	private List<Ride> rideList=new Vector<Ride>();
+	private List<Ride> rideList=new LinkedList<Ride>();
 	
 	public Car(String matrikula, int eserKop, String kolorea, String modeloa, Driver jabea) {
 		this.matrikula=matrikula;

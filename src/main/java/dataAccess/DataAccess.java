@@ -99,21 +99,23 @@ public class DataAccess  {
 			driver2.addCar("1234ABC", 5, "urdina", "Audi");
 			driver2.addCar("1234DEF", 3, "gorria", "Audi");
 			
+			String hiriIzena = "Bilbo";
+			
 			List<String> hiriak = new ArrayList<String>();
-			hiriak.add("Bilbo");
+			hiriak.add(hiriIzena);
 			hiriak.add("Donostia");
 			List<Double> prezioak = new ArrayList<Double>();
 			prezioak.add(10.0);
 			prezioak.add(0.0);
 			Date data = new Date();
-			Calendar c = Calendar.getInstance();
-			c.set(2025, 5, 20);
-			data = c.getTime();
+			Calendar cal = Calendar.getInstance();
+			cal.set(2025, 5, 20);
+			data = cal.getTime();
 			Ride r = driver2.addRide(hiriak, prezioak, UtilDate.trim(data), driver2.getCars().get(0).getEserKop(), driver2.getCars().get(0));
 			driver2.getCars().get(0).gehituBidaia(r);
 			
 			traveler1.setCash(100);
-			Erreserba e = traveler1.sortuErreserba(r, 5, "Bilbo", "Donostia", r.prezioaKalkulatu("Bilbo", "Donostia"));
+			Erreserba e = traveler1.sortuErreserba(r, 5, hiriIzena, "Donostia", r.prezioaKalkulatu(hiriIzena, "Donostia"));
 			
 			r.gehituErreserba(e);
 			
@@ -491,7 +493,6 @@ public class DataAccess  {
 	public List<Ride> getRides(String from, String to, Date date) {
 	    System.out.println(">> DataAccess: getRides=> from= " + from + " to= " + to + " date " + date);
 
-	    List<Ride> res = new ArrayList<>();
 	    TypedQuery<Ride> query = db.createQuery("SELECT r FROM Ride r WHERE r.date = ?1", Ride.class);   
 	    query.setParameter(1, date);
 	    List<Ride> rides = query.getResultList();

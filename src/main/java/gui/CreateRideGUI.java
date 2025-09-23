@@ -343,9 +343,7 @@ public class CreateRideGUI extends JFrame {
 			} catch (RideAlreadyExistException e1) {
 				// TODO Auto-generated catch block
 				jLabelMsg.setText(e1.getMessage());
-			} catch (IllegalArgumentException e1) {
-				jLabelMsg.setText(ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.ErrorIncorrectData"));
-			} catch(NullPointerException e1) {
+			} catch (IllegalArgumentException | NullPointerException e1) {
 				jLabelMsg.setText(ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.ErrorIncorrectData"));
 			}
 		}
