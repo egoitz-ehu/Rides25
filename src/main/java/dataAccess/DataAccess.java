@@ -203,14 +203,10 @@ public class DataAccess  {
 			if(!tr.existBook(r)) {
 				if(tr.diruaDauka(kostua)) {
 					if(r.eserlekuakLibre(kop)) {
-						//Erreserba e = new Erreserba(kop,t, r);
 						Erreserba erreserbaBerria = tr.sortuErreserba(r, kop, from, to, kostua);
 						r.gehituErreserba(erreserbaBerria);
 						tr.addMugimendua(kostua,MugimenduMota.ERRESERBA_SORTU);
-						//db.persist(erreserbaBerria);
 						db.persist(r);
-						//db.persist(erreserbaBerria);
-						//db.merge(t);
 						db.getTransaction().commit();
 						return true;	
 					} else {

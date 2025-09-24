@@ -6,7 +6,9 @@ import static org.junit.Assert.fail;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -23,11 +25,13 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import dataAccess.DataAccess;
+import domain.Car;
 import domain.Driver;
+import domain.Geldialdia;
 import domain.Ride;
 import exceptions.RideAlreadyExistException;
 import exceptions.RideMustBeLaterThanTodayException;
-/*
+
 public class CreateRideMockTest {
 	
 	static DataAccess sut;
@@ -80,7 +84,7 @@ public class CreateRideMockTest {
 		String rideTo="Zarautz";
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-		Date rideDate=null;;
+		Date rideDate=new Date();
 		try {
 			rideDate = sdf.parse("05/10/2025");
 		} catch (ParseException e) {
@@ -90,14 +94,16 @@ public class CreateRideMockTest {
 		try {
 					
 			 driver=new Driver(driverEmail,null,driverName,null);
-			 //driver.addRide(rideFrom, rideTo, rideDate, 0, 0);
+			 driver.addRide(Arrays.asList(rideFrom,rideTo), Arrays.asList(2.2), rideDate, 2, new Car("123",2,"gorria","seat",driver));
+			 
 			//configure the state through mocks 
 	        Mockito.when(db.find(Driver.class, driver.getEmail())).thenReturn(driver);
+	        Mockito.when(db.find(Car.class, "123")).thenReturn(new Car("123",2,"gorria","seat",driver));
 		
 			
 			//invoke System Under Test (sut)  
 			sut.open();
-		    //sut.createRide(rideFrom, rideTo, rideDate, 0, 0, driverEmail);
+		    sut.createRide(Arrays.asList(rideFrom,rideTo), Arrays.asList(2.2), rideDate, new Car("123",2,"gorria","seat",driver), driverEmail);
 			sut.close();
 			
 			fail();
@@ -122,7 +128,7 @@ public class CreateRideMockTest {
 		String rideTo="Zarautz";
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-		Date rideDate=null;;
+		Date rideDate=null;
 		try {
 			rideDate = sdf.parse("05/10/2025");
 		} catch (ParseException e) {
@@ -135,15 +141,17 @@ public class CreateRideMockTest {
 
 			//configure the state through mocks 
 	        Mockito.when(db.find(Driver.class, driver1.getEmail())).thenReturn(driver1);
+	        Mockito.when(db.find(Car.class, "123")).thenReturn(new Car("123",2,"gorria","seat",driver));
 					
 			//invoke System Under Test (sut)  
 			sut.open();
-			Ride ride=sut.createRide(rideFrom, rideTo, rideDate, 0, 0, driverEmail);
+			Ride ride = sut.createRide(Arrays.asList(rideFrom,rideTo), Arrays.asList(2.2), rideDate, new Car("123",2,"gorria","seat",driver), driverEmail);
 			sut.close();
 			//verify the results
 			assertNotNull(ride);
-			assertEquals(ride.getFrom(),rideFrom);
-			assertEquals(ride.getTo(),rideTo);
+			List<Geldialdia> hiriList=ride.getGeldialdiak();
+			assertEquals(hiriList.get(0).getHiria(),rideFrom);
+			assertEquals(hiriList.get(1).getHiria(),rideTo);
 			assertEquals(ride.getDate(),rideDate);
 			
 			//ride is in DB. The persist operation has been invoked.
@@ -188,11 +196,12 @@ public class CreateRideMockTest {
 				}	
 				
 				
-				Mockito.when(db.find(Driver.class, null)).thenThrow(IllegalArgumentException.class);
+				Mockito.when(db.find(Driver.class, null)).thenThrow(NullPointerException.class);
+				Mockito.when(db.find(Car.class, "123")).thenReturn(new Car("123",2,"gorria","seat",driver));
 				
 				//invoke System Under Test (sut)  
 				sut.open();
-				Ride ride=sut.createRide(rideFrom, rideTo, rideDate, 0, 0, driverEmail);
+				Ride ride = sut.createRide(Arrays.asList(rideFrom,rideTo), Arrays.asList(2.2), rideDate, new Car("123",2,"gorria","seat",driver), driverEmail);
 				System.out.println("ride "+ride);
 
 				//verify the results
@@ -243,10 +252,11 @@ public class CreateRideMockTest {
 
 			driver=new Driver(driverEmail,null,driverName,null);
 	        Mockito.when(db.find(Driver.class, driver.getEmail())).thenReturn(driver);
+	        Mockito.when(db.find(Car.class, "123")).thenReturn(new Car("123",2,"gorria","seat",driver));
 			
 	        //invoke System Under Test (sut)  
 			sut.open();
-			 ride=sut.createRide(rideFrom, rideTo, rideDate, 0, 0, driverEmail);
+			ride = sut.createRide(Arrays.asList(rideFrom,rideTo), Arrays.asList(2.2), rideDate, new Car("123",2,"gorria","seat",driver), driverEmail);
 			sut.close();			
 			//verify the results
 			assertNull(ride);
@@ -264,4 +274,4 @@ public class CreateRideMockTest {
 			}
    }
 
-}*/
+}

@@ -234,7 +234,15 @@ public class Ride implements Serializable {
 	}
 
 	public boolean haveSameStops(List<String> hiriList) {
-		return hiriList.equals(geldialdiak);
+	    if (hiriList.size() != geldialdiak.size())
+	        return false;
+	        
+	    for (int i = 0; i < hiriList.size(); i++) {
+	        if (!hiriList.get(i).equals(geldialdiak.get(i).getHiria())) {
+	            return false;
+	        }
+	    }
+	    return true;
 	}
 	
 	public double prezioaKalkulatu(String from, String to) {
