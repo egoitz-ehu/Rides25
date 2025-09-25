@@ -45,9 +45,9 @@ public class TestBusinessLogic {
 		
 		public Driver addDriverWithRide(String email, String name, String from, String to,  Date date, int nPlaces, float price) {
 			dbManagerTest.open();
-			Driver driver=dbManagerTest.addDriverWithRide(email, name, from, to, date, nPlaces, price);
+			Ride r=dbManagerTest.addDriverWithRide(email, name, from, to, date, nPlaces, price, 2);
 			dbManagerTest.close();
-			return driver;
+			return r.getDriver();
 
 		}/*
 		public boolean existRide(String email, String from, String to, Date date) {

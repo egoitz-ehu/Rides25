@@ -88,7 +88,6 @@ public class CreateRideMockTest {
 		try {
 			rideDate = sdf.parse("05/10/2025");
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	
 		try {
@@ -113,7 +112,6 @@ public class CreateRideMockTest {
 				sut.close();
 				assertTrue(true);
 			} catch (RideMustBeLaterThanTodayException e) {
-			// TODO Auto-generated catch block
 			fail();
 		} 
 	} 
@@ -132,7 +130,6 @@ public class CreateRideMockTest {
 		try {
 			rideDate = sdf.parse("05/10/2025");
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	
 		
@@ -154,23 +151,12 @@ public class CreateRideMockTest {
 			assertEquals(hiriList.get(1).getHiria(),rideTo);
 			assertEquals(ride.getDate(),rideDate);
 			
-			//ride is in DB. The persist operation has been invoked.
-			//boolean existRide=testDA.existRide(driverEmail,ride.getFrom(), ride.getTo(), ride.getDate());
-				
-			//assertTrue(existRide);
-			//testDA.close();
 			
-		   } catch (RideAlreadyExistException e) {
+		   } catch (RideAlreadyExistException | RideMustBeLaterThanTodayException e) {
 			// if the program goes to this point fail  
 			fail();
 			
-			} catch (RideMustBeLaterThanTodayException e) {
-				// if the program goes to this point fail  
-
-			fail();
-			//redone state of the system (create object in the database)
-			
-		} 
+			}  
 	} 
 	@Test
 	//sut.createRide:  The Driver is null. The test must return null. If  an Exception is returned the createRide method is not well implemented.
@@ -191,7 +177,6 @@ public class CreateRideMockTest {
 				try {
 					rideDate = sdf.parse("05/10/2025");
 				} catch (ParseException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}	
 				
@@ -208,20 +193,11 @@ public class CreateRideMockTest {
 				assertNull(ride);
 				
 				
-			   } catch (RideAlreadyExistException e) {
-				// TODO Auto-generated catch block
+			   } catch (RideAlreadyExistException | RideMustBeLaterThanTodayException e) {
 				// if the program goes to this point fail  
 				fail();
 
-				} catch (RideMustBeLaterThanTodayException e) {
-				// TODO Auto-generated catch block
-					fail();
-
-				} catch (Exception e) {
-				// TODO Auto-generated catch block
-					fail();
-
-				} finally {
+				}   finally {
 					sut.close();
 				}
 			
@@ -243,7 +219,6 @@ public class CreateRideMockTest {
 		try {
 			rideDate = sdf.parse("05/10/2025");
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	
 		Ride ride=null;
@@ -261,17 +236,9 @@ public class CreateRideMockTest {
 			//verify the results
 			assertNull(ride);
 			
-		   } catch (RideAlreadyExistException e) {
-			// TODO Auto-generated catch block
-			// if the program goes to this point fail  
-			fail();
-			} catch (RideMustBeLaterThanTodayException e) {
-			// TODO Auto-generated catch block
-			fail();
-			}  catch (Exception e) {
-			// TODO Auto-generated catch block
-			fail();
-			}
-   }
+		   } catch (Exception e) {
+			   fail();
+		   }
+	}
 
 }

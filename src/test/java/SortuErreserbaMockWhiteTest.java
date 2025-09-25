@@ -23,7 +23,7 @@ import exceptions.DiruaEzDaukaException;
 import exceptions.ErreserbaAlreadyExistsException;
 import exceptions.EserlekurikLibreEzException;
 
-public class SortuErreserbaMockWitheTest {
+public class SortuErreserbaMockWhiteTest {
 
 	static DataAccess sut;
 	
