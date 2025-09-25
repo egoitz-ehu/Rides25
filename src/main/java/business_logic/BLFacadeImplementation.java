@@ -1,4 +1,5 @@
-package businessLogic;
+package business_logic;
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -8,7 +9,7 @@ import javax.jws.WebMethod;
 import javax.jws.WebService;
 
 import configuration.ConfigXML;
-import dataAccess.DataAccess;
+import data_access.DataAccess;
 import domain.Ride;
 import domain.RideErreserbaContainer;
 import domain.Traveler;
@@ -43,7 +44,12 @@ public class BLFacadeImplementation  implements BLFacade {
 		System.out.println("Creating BLFacadeImplementation instance");
 		
 		
-		    dbManager=new DataAccess();
+		    try {
+				dbManager=new DataAccess();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		    
 		//dbManager.close();
 
@@ -122,9 +128,14 @@ public class BLFacadeImplementation  implements BLFacade {
 	
 	
 	public void close() {
-		DataAccess dB4oManager=new DataAccess();
-
-		dB4oManager.close();
+		DataAccess dB4oManager;
+		try {
+			dB4oManager = new DataAccess();
+			dB4oManager.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 

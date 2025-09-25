@@ -1,8 +1,12 @@
-package dataAccess;
+package data_access;
 
 import java.awt.Container;
 import java.io.File;
+import java.io.IOException;
 import java.net.NoRouteToHostException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -35,33 +39,27 @@ import exceptions.RideMustBeLaterThanTodayException;
  */
 public class DataAccess  {
 	private  EntityManager  db;
-	private  EntityManagerFactory emf;
-
 
 	ConfigXML c=ConfigXML.getInstance();
 
-     public DataAccess()  {
-    	 System.setProperty("objectdb.conf", "lib//objectdb.conf");
-		if (c.isDatabaseInitialized()) {
-			String fileName=c.getDbFilename();
+	public DataAccess() throws IOException  {
+	    System.setProperty("objectdb.conf", "lib//objectdb.conf");
+	    if (c.isDatabaseInitialized()) {
+	        String fileName = c.getDbFilename();
+	        Path fileToDelete = Paths.get(fileName);
+	        Path fileToDeleteTemp = Paths.get(fileName + "$");
 
-			File fileToDelete= new File(fileName);
-			if(fileToDelete.delete()){
-				File fileToDeleteTemp= new File(fileName+"$");
-				fileToDeleteTemp.delete();
+	        Files.delete(fileToDelete);
+	        Files.delete(fileToDeleteTemp);
 
-				  System.out.println("File deleted");
-				} else {
-				  System.out.println("Operation failed");
-				}
-		}
-		open();
-		if  (c.isDatabaseInitialized())initializeDB();
-		
-		System.out.println("DataAccess created => isDatabaseLocal: "+c.isDatabaseLocal()+" isDatabaseInitialized: "+c.isDatabaseInitialized());
+	        System.out.println("File deleted");
+	    }
+	    open();
+	    if (c.isDatabaseInitialized()) initializeDB();
 
-		close();
+	    System.out.println("DataAccess created => isDatabaseLocal: " + c.isDatabaseLocal() + " isDatabaseInitialized: " + c.isDatabaseInitialized());
 
+	    close();
 	}
      
     public DataAccess(EntityManager db) {
@@ -547,7 +545,7 @@ public class DataAccess  {
 	
 
 	public void open(){
-		
+		EntityManagerFactory emf;
 		String fileName=c.getDbFilename();
 		if (c.isDatabaseLocal()) {
 			emf = Persistence.createEntityManagerFactory("objectdb:"+fileName);

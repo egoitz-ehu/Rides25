@@ -1,4 +1,4 @@
-package dataAccess;
+package data_access;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -85,6 +85,7 @@ public class ObjectdbManagerServer extends JDialog {
 								System.exit(1);
 							
 						} catch (Exception e1) {
+							System.out.println("Something has happened in ObjectDbManagerServer: "+e1.toString());
 						}
 						System.exit(1);
 					}

@@ -170,9 +170,8 @@ public class Erreserba implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Erreserba other = (Erreserba) obj;
-		if (this.eskaeraNum==other.eskaeraNum)
-			return true;
-		return false;
+		return this.eskaeraNum==other.eskaeraNum;
+
 	}
 	
 	public void gehituBalorazioa(Balorazioa ba) {

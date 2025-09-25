@@ -19,7 +19,7 @@ import javax.swing.border.EmptyBorder;
 
 import com.toedter.calendar.JCalendar;
 
-import businessLogic.BLFacade;
+import business_logic.BLFacade;
 import configuration.UtilDate;
 import domain.RideEgoera;
 import domain.Traveler;

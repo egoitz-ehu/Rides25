@@ -1,11 +1,13 @@
 import static org.junit.Assert.*;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Date;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
 
-import dataAccess.DataAccess;
+import data_access.DataAccess;
 import domain.Ride;
 import domain.Traveler;
 import exceptions.DiruaEzDaukaException;
@@ -14,7 +16,16 @@ import exceptions.EserlekurikLibreEzException;
 import testOperations.TestDataAccess;
 
 public class SortuErreserbaWhite {
-	static DataAccess sut=new DataAccess();
+	static DataAccess sut;
+
+    @BeforeClass
+    public static void setUpClass() {
+        try {
+			sut = new DataAccess();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    }
 	
 	static TestDataAccess testDA=new TestDataAccess();
 	

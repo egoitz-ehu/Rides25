@@ -9,11 +9,11 @@ import javax.swing.UIManager.LookAndFeelInfo;
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
 
+import business_logic.BLFacade;
+import business_logic.BLFacadeImplementation;
 import configuration.ConfigXML;
-import dataAccess.DataAccess;
+import data_access.DataAccess;
 import domain.Driver;
-import businessLogic.BLFacade;
-import businessLogic.BLFacadeImplementation;
 
 public class ApplicationLauncher { 
 	

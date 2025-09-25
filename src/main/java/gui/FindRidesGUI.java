@@ -1,9 +1,10 @@
 package gui;
 
-import businessLogic.BLFacade;
 import configuration.UtilDate;
 
 import com.toedter.calendar.JCalendar;
+
+import business_logic.BLFacade;
 import domain.Ride;
 import domain.RideEgoera;
 

@@ -1,9 +1,8 @@
-package businessLogic;
+package business_logic;
 
 import java.util.Date;
 import java.util.List;
 
-//import domain.Booking;
 import domain.Ride;
 import domain.RideErreserbaContainer;
 import domain.Traveler;

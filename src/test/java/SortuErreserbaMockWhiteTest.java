@@ -16,7 +16,7 @@ import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
-import dataAccess.DataAccess;
+import data_access.DataAccess;
 import domain.Ride;
 import domain.Traveler;
 import exceptions.DiruaEzDaukaException;
