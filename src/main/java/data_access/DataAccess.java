@@ -28,6 +28,7 @@ import configuration.UtilDate;
 import domain.*;
 import exceptions.AlertaAlreadyExistsException;
 import exceptions.BadagoRideException;
+import exceptions.DatuakNullException;
 import exceptions.DiruaEzDaukaException;
 import exceptions.ErreserbaAlreadyExistsException;
 import exceptions.EserlekurikLibreEzException;
@@ -192,12 +193,17 @@ public class DataAccess  {
 		return b;
 	}
 	
-	public boolean sortuErreserba(Traveler t, int rNumber, int kop, String from, String to) throws EserlekurikLibreEzException, ErreserbaAlreadyExistsException, DiruaEzDaukaException {
+	public boolean sortuErreserba(Traveler t, int rNumber, int kop, String from, String to) throws EserlekurikLibreEzException, ErreserbaAlreadyExistsException,
+	DiruaEzDaukaException, DatuakNullException {
 		if(kop>0) {
 			db.getTransaction().begin();
 			Ride r = db.find(Ride.class, rNumber);
-			double kostua = r.prezioaKalkulatu(from, to);
 			Traveler tr = db.find(Traveler.class, t.getEmail());
+			if(r==null || tr==null) {
+				db.getTransaction().commit();
+				throw new DatuakNullException("Datuak null dira");
+			}
+			double kostua = r.prezioaKalkulatu(from, to);
 			if(!tr.existBook(r)) {
 				if(tr.diruaDauka(kostua)) {
 					if(r.eserlekuakLibre(kop)) {

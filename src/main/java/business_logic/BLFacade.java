@@ -19,6 +19,7 @@ import domain.Mugimendua;
 import exceptions.RideMustBeLaterThanTodayException;
 import exceptions.AlertaAlreadyExistsException;
 import exceptions.BadagoRideException;
+import exceptions.DatuakNullException;
 import exceptions.DiruaEzDaukaException;
 import exceptions.ErreserbaAlreadyExistsException;
 import exceptions.EserlekurikLibreEzException;
@@ -98,7 +99,7 @@ public interface BLFacade  {
 	
 	@WebMethod public boolean diruaSartu(String t, double kop);
 	
-	@WebMethod public boolean sortuErreserba(Traveler t, int rNumber, int kop, String from, String to) throws EserlekurikLibreEzException, ErreserbaAlreadyExistsException, DiruaEzDaukaException;
+	@WebMethod public boolean sortuErreserba(Traveler t, int rNumber, int kop, String from, String to) throws EserlekurikLibreEzException, ErreserbaAlreadyExistsException, DiruaEzDaukaException, DatuakNullException;
 	
 	@WebMethod public List<Integer> getAllRidesNumber(String email);
 	

@@ -10,6 +10,7 @@ import domain.RideEgoera;
 import domain.Traveler;
 import exceptions.AlertaAlreadyExistsException;
 import exceptions.BadagoRideException;
+import exceptions.DatuakNullException;
 import exceptions.DiruaEzDaukaException;
 import exceptions.ErreserbaAlreadyExistsException;
 import exceptions.EserlekurikLibreEzException;
@@ -309,6 +310,8 @@ public class ErreserbaEskaeraGUI extends JFrame {
 					erreserbaMessageLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("ErreserbaEskaeraGUI.ErreserbaDu"));
 				} catch (DiruaEzDaukaException e1) {
 					erreserbaMessageLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("ErreserbaEskaeraGUI.DirurikEz"));
+				} catch (DatuakNullException e1) {
+					System.out.println(e1.getMessage());
 				}
 			}
 		});
