@@ -56,10 +56,6 @@ public class Traveler extends User implements Serializable{
 		bookedRides.add(erre);
 		return erre;
 	}
-	/*
-	public void ezabatuErreserba(Erreserba e) {
-		bookedRides.remove(e);
-	}*/
 	
 	public void sortuAlerta(String from, String to, Date d) {
 		Alerta a = new Alerta(this,from,to,d);

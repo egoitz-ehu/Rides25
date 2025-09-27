@@ -1,3 +1,4 @@
+package sortu_erreserba;
 import static org.junit.Assert.*;
 
 import java.util.Arrays;
