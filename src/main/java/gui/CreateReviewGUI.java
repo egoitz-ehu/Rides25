@@ -24,6 +24,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
 import javax.swing.JToggleButton;
+import javax.swing.SwingConstants;
 import javax.swing.JScrollPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -111,7 +112,7 @@ public class CreateReviewGUI extends JFrame {
 		    starLabels[i] = new JLabel("☆");
 		    starLabels[i].setFont(starLabels[i].getFont().deriveFont(32f));
 		    starLabels[i].setForeground(java.awt.Color.GRAY);
-		    starLabels[i].setHorizontalAlignment(JLabel.CENTER);
+		    starLabels[i].setHorizontalAlignment(SwingConstants.CENTER);
 
 		    starLabels[i].addMouseListener(new java.awt.event.MouseAdapter() {
 		        @Override

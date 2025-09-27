@@ -26,7 +26,7 @@ public class AlertakIkusiGUI extends JFrame {
 	
 	private Traveler t;
 	private JLabel lblNewLabel;
-	private JLabel lblNewLabel_1;
+	private JLabel lblNewLabel1;
 
 	public AlertakIkusiGUI(Traveler tr) {
 		t=tr;
@@ -63,13 +63,13 @@ public class AlertakIkusiGUI extends JFrame {
 				listaAurkitua.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 				panelAurkitua.setViewportView(listaAurkitua);
 		
-		lblNewLabel_1 = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("AlertakIkusiGUI.Finding"));
+		lblNewLabel1 = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("AlertakIkusiGUI.Finding"));
 		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
 		gbc_lblNewLabel_1.fill = GridBagConstraints.BOTH;
 		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 0);
 		gbc_lblNewLabel_1.gridx = 0;
 		gbc_lblNewLabel_1.gridy = 3;
-		contentPane.add(lblNewLabel_1, gbc_lblNewLabel_1);
+		contentPane.add(lblNewLabel1, gbc_lblNewLabel_1);
 		
 		panelZain = new JScrollPane();
 		GridBagConstraints gbc_panelZain = new GridBagConstraints();

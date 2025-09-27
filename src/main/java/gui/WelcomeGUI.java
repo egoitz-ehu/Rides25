@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 
 import business_logic.BLFacade;
@@ -64,7 +65,7 @@ public class WelcomeGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public WelcomeGUI() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("Welcome.Title"));
@@ -82,7 +83,6 @@ public class WelcomeGUI extends JFrame {
 			}
 		});
 		registerButton.setBounds(96, 80, 252, 45);
-		//contentPane.add(registerButton);
 		
 		loginButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("WelcomeGUI.Login"));
 		loginButton.addActionListener(new ActionListener() {
@@ -92,7 +92,6 @@ public class WelcomeGUI extends JFrame {
 			}
 		});
 		loginButton.setBounds(96, 136, 252, 45);
-		//contentPane.add(loginButton);
 		
 		guestButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("WelcomeGUI.Guest"));
 		guestButton.addActionListener(new ActionListener() {
