@@ -40,8 +40,6 @@ public class SortuErreserbaWhite {
 		String driverEmail="driver@gmail.com";
 		String driverName="Driver1";
 		
-		int rideNumber = 1;
-		
 		String from = "Bilbo";
 		String to = "Gasteiz";
 		
@@ -49,6 +47,7 @@ public class SortuErreserbaWhite {
 		
 		testDA.open();
 		Ride r = testDA.addDriverWithRide(driverEmail, driverName, from, to, rideDate, 4, 10,2);
+		int rideNumber = r.getRideNumber();
 		Traveler t = testDA.createTraveler(travelerEmail, travelerName,100);
 		testDA.close();
 		

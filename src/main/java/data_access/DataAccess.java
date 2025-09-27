@@ -50,8 +50,8 @@ public class DataAccess  {
 	        Path fileToDelete = Paths.get(fileName);
 	        Path fileToDeleteTemp = Paths.get(fileName + "$");
 
-	        Files.delete(fileToDelete);
-	        Files.delete(fileToDeleteTemp);
+	        Files.deleteIfExists(fileToDelete);
+	        Files.deleteIfExists(fileToDeleteTemp);
 
 	        System.out.println("File deleted");
 	    }
