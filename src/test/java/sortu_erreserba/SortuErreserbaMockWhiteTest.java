@@ -78,6 +78,7 @@ public class SortuErreserbaMockWhiteTest {
 		try {
 			boolean res = sut.sortuErreserba(t, rideNumber, 0, from, to);
 			assertFalse(res);
+			assertEquals(0,t.getCash(),0.01);
 		} catch (EserlekurikLibreEzException | ErreserbaAlreadyExistsException | DiruaEzDaukaException | DatuakNullException e) {
 			fail();
 		}
@@ -112,6 +113,7 @@ public class SortuErreserbaMockWhiteTest {
 			fail();
 		} catch (ErreserbaAlreadyExistsException e) {
 			assertTrue(true);
+			assertEquals(0,t.getCash(),0.01);
 		} 
 	}
 	
@@ -142,6 +144,7 @@ public class SortuErreserbaMockWhiteTest {
 			fail();
 		} catch (DiruaEzDaukaException e) {
 			assertTrue(true);
+			assertEquals(0,t.getCash(),0.01);
 		} 
 	}
 	
@@ -160,7 +163,8 @@ public class SortuErreserbaMockWhiteTest {
 		Date rideDate = new Date(System.currentTimeMillis()+1000000);
 		
 		Traveler t = new Traveler(travelerEmail, null, travelerName, null);
-		t.diruaSartu(1000);
+		double dirua = 1000;
+		t.diruaSartu(dirua);
 		
 		Ride r = new Ride(Arrays.asList(from,to), Arrays.asList(1.2), rideDate, 2, null, null);
 		r.setEserLibre(0);
@@ -176,6 +180,7 @@ public class SortuErreserbaMockWhiteTest {
 			fail();
 		} catch (EserlekurikLibreEzException e) {
 			assertTrue(true);
+			assertEquals(dirua,t.getCash(),0.01);
 		} 
 	}
 	
@@ -207,6 +212,7 @@ public class SortuErreserbaMockWhiteTest {
 			fail();
 		} catch (DatuakNullException e) {
 			assertTrue(true);
+			assertEquals(0,t.getCash(),0.01);
 		}
 	}
 	@Test
@@ -224,7 +230,8 @@ public class SortuErreserbaMockWhiteTest {
 		Date rideDate = new Date(System.currentTimeMillis()+1000000);
 		
 		Traveler t = new Traveler(travelerEmail, null, travelerName, null);
-		t.diruaSartu(1000);
+		double dirua = 1000;
+		t.diruaSartu(dirua);
 		
 		Ride r = new Ride(Arrays.asList(from,to), Arrays.asList(1.2), rideDate, 2, null, null);
 		
@@ -235,6 +242,8 @@ public class SortuErreserbaMockWhiteTest {
 		try {
 			boolean res = sut.sortuErreserba(t, rideNumber, 1, from, to);
 			assertTrue(res);
+			double prezioa = r.prezioaKalkulatu(from, to);
+			assertEquals(dirua-prezioa,t.getCash(),0.01);
 		} catch (DiruaEzDaukaException | EserlekurikLibreEzException | ErreserbaAlreadyExistsException | DatuakNullException e) {
 			fail();
 		}

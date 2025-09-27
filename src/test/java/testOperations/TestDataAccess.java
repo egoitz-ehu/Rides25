@@ -166,6 +166,15 @@ public class TestDataAccess {
 				db.getTransaction().commit();
 			}
 		}
+		
+		public double getTravelerCash(String email) {
+			System.out.println(">> TestDataAccess: getTravelerCash");
+			Traveler t = db.find(Traveler.class, email);
+			if (t!=null) 
+				return t.getCash();
+			else 
+				return -1;
+		}
 
 		
 }

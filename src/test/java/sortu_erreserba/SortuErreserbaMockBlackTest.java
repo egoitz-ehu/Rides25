@@ -63,7 +63,10 @@ public class SortuErreserbaMockBlackTest {
 	public void test1() {
 		String travelerEmail = "traveler1@gmail.com";
 		Traveler t = new Traveler(travelerEmail, "123", "Pepe", "Lopez");
-		t.diruaSartu(100.0);
+		double dirua = 100.0;
+		t.diruaSartu(dirua);
+		
+		int erosiEserlekuak = 2;
 		
 		int rideNumber = 100;
 		Date rideDate = new Date(System.currentTimeMillis()+1000000);
@@ -74,8 +77,10 @@ public class SortuErreserbaMockBlackTest {
 		
 		sut.open();
 		try {
-			boolean res = sut.sortuErreserba(t, rideNumber, 2, "Donostia", "Bilbo");
+			boolean res = sut.sortuErreserba(t, rideNumber, erosiEserlekuak, "Donostia", "Bilbo");
 			assertTrue(res);
+			double prezioa = r.prezioaKalkulatu("Donostia","Bilbo")*erosiEserlekuak;
+			assertEquals(dirua-prezioa, t.getCash(), 0.01);
 		} catch (Exception e) {
 			fail();
 		} finally {
@@ -112,7 +117,8 @@ public class SortuErreserbaMockBlackTest {
 	public void test3() {
 		String travelerEmail = "traveler1@gmail.com";
 		Traveler t = new Traveler(travelerEmail, "123", "Pepe", "Lopez");
-		t.diruaSartu(100.0);
+		double dirua = 100.0;
+		t.diruaSartu(dirua);
 		
 		int rideNumber = -1;
 		
@@ -125,6 +131,7 @@ public class SortuErreserbaMockBlackTest {
 			fail();
 		} catch(DatuakNullException e) {
 			assertTrue(true);
+			assertEquals(dirua, t.getCash(), 0.01);
 		} catch (Exception e) {
 			fail();
 		} finally {
@@ -137,7 +144,8 @@ public class SortuErreserbaMockBlackTest {
 	public void test4() {
 		String travelerEmail = "traveler1@gmail.com";
 		Traveler t = new Traveler(travelerEmail, "123", "Pepe", "Lopez");
-		t.diruaSartu(100.0);
+		double dirua = 100.0;
+		t.diruaSartu(dirua);
 		
 		int rideNumber = 100;
 		Date rideDate = new Date(System.currentTimeMillis()+1000000);
@@ -150,6 +158,7 @@ public class SortuErreserbaMockBlackTest {
 		try {
 			boolean res = sut.sortuErreserba(t, rideNumber, 0, "Donostia", "Bilbo");
 			assertFalse(res);
+			assertEquals(dirua, t.getCash(), 0.01);
 		} catch (Exception e) {
 			fail();
 		} finally {
@@ -162,7 +171,8 @@ public class SortuErreserbaMockBlackTest {
 	public void test5() {
 		String travelerEmail = "traveler1@gmail.com";
 		Traveler t = new Traveler(travelerEmail, "123", "Pepe", "Lopez");
-		t.diruaSartu(100.0);
+		double dirua = 100.0;
+		t.diruaSartu(dirua);
 		
 		int rideNumber = 100;
 		Date rideDate = new Date(System.currentTimeMillis()+1000000);
@@ -175,6 +185,7 @@ public class SortuErreserbaMockBlackTest {
 		try {
 			boolean res = sut.sortuErreserba(t, rideNumber, 2, null, "Bilbo");
 			assertFalse(res);
+			assertEquals(dirua, t.getCash(), 0.01);
 		} catch (Exception e) {
 			fail();
 		} finally {
@@ -187,7 +198,8 @@ public class SortuErreserbaMockBlackTest {
 	public void test6() {
 		String travelerEmail = "traveler1@gmail.com";
 		Traveler t = new Traveler(travelerEmail, "123", "Pepe", "Lopez");
-		t.diruaSartu(100.0);
+		double dirua = 100.0;
+		t.diruaSartu(dirua);
 		
 		int rideNumber = 100;
 		Date rideDate = new Date(System.currentTimeMillis()+1000000);
@@ -200,6 +212,7 @@ public class SortuErreserbaMockBlackTest {
 		try {
 			boolean res = sut.sortuErreserba(t, rideNumber, 2, "Donostia", null);
 			assertFalse(res);
+			assertEquals(dirua, t.getCash(), 0.01);
 		} catch (Exception e) {
 			fail();
 		} finally {
@@ -212,7 +225,8 @@ public class SortuErreserbaMockBlackTest {
 	public void test7() {
 		String travelerEmail = "traveler1@gmail.com";
 		Traveler t = new Traveler(travelerEmail, "123", "Pepe", "Lopez");
-		t.diruaSartu(100.0);
+		double dirua = 100.0;
+		t.diruaSartu(dirua);
 		
 		int rideNumber = 100;
 		
@@ -225,6 +239,7 @@ public class SortuErreserbaMockBlackTest {
 			fail();
 		} catch(DatuakNullException e) {
 			assertTrue(true);
+			assertEquals(dirua, t.getCash(), 0.01);
 		} catch (Exception e) {
 			fail();
 		} finally {
@@ -237,7 +252,8 @@ public class SortuErreserbaMockBlackTest {
 	public void test8() {
 		String travelerEmail = "traveler1@gmail.com";
 		Traveler t = new Traveler(travelerEmail, "123", "Pepe", "Lopez");
-		t.diruaSartu(100.0);
+		double dirua = 100.0;
+		t.diruaSartu(dirua);
 		
 		int rideNumber = 100;
 		Date rideDate = new Date(System.currentTimeMillis()+1000000);
@@ -252,6 +268,7 @@ public class SortuErreserbaMockBlackTest {
 			fail();
 		} catch(DatuakNullException e) {
 			assertTrue(true);
+			assertEquals(dirua, t.getCash(), 0.01);
 		} catch (Exception e) {
 			fail();
 		} finally {
@@ -264,7 +281,8 @@ public class SortuErreserbaMockBlackTest {
 	public void test9() {
 		String travelerEmail = "traveler1@gmail.com";
 		Traveler t = new Traveler(travelerEmail, "123", "Pepe", "Lopez");
-		t.diruaSartu(100.0);
+		double dirua = 100.0;
+		t.diruaSartu(dirua);
 		
 		int rideNumber = 100;
 		Date rideDate = new Date(System.currentTimeMillis()+1000000);
@@ -279,6 +297,7 @@ public class SortuErreserbaMockBlackTest {
 			fail();
 		} catch(EserlekurikLibreEzException e) {
 			assertTrue(true);
+			assertEquals(dirua, t.getCash(), 0.01);
 		} catch (Exception e) {
 			fail();
 		} finally {
@@ -291,7 +310,8 @@ public class SortuErreserbaMockBlackTest {
 	public void test10() {
 		String travelerEmail = "traveler1@gmail.com";
 		Traveler t = new Traveler(travelerEmail, "123", "Pepe", "Lopez");
-		t.diruaSartu(100.0);
+		double dirua = 100.0;
+		t.diruaSartu(dirua);
 		
 		int rideNumber = 100;
 		Date rideDate = new Date(System.currentTimeMillis()+1000000);
@@ -304,6 +324,7 @@ public class SortuErreserbaMockBlackTest {
 		try {
 			boolean res = sut.sortuErreserba(t, rideNumber, 2, "Zarautz", "Bilbo");
 			assertFalse(res);
+			assertEquals(dirua, t.getCash(), 0.01);
 		} catch (Exception e) {
 			fail();
 		} finally {
@@ -316,7 +337,8 @@ public class SortuErreserbaMockBlackTest {
 	public void test11() {
 		String travelerEmail = "traveler1@gmail.com";
 		Traveler t = new Traveler(travelerEmail, "123", "Pepe", "Lopez");
-		t.diruaSartu(100.0);
+		double dirua = 100.0;
+		t.diruaSartu(dirua);
 		
 		int rideNumber = 100;
 		Date rideDate = new Date(System.currentTimeMillis()+1000000);
@@ -329,6 +351,7 @@ public class SortuErreserbaMockBlackTest {
 		try {
 			boolean res = sut.sortuErreserba(t, rideNumber, 2, "Bilbo", "Zarautz");
 			assertFalse(res);
+			assertEquals(dirua, t.getCash(), 0.01);
 		} catch (Exception e) {
 			fail();
 		} finally {
@@ -341,7 +364,8 @@ public class SortuErreserbaMockBlackTest {
 	public void test12() {
 		String travelerEmail = "traveler1@gmail.com";
 		Traveler t = new Traveler(travelerEmail, "123", "Pepe", "Lopez");
-		t.diruaSartu(100.0);
+		double dirua = 100.0;
+		t.diruaSartu(dirua);
 		
 		int rideNumber = 100;
 		Date rideDate = new Date(System.currentTimeMillis()+1000000);
@@ -354,6 +378,7 @@ public class SortuErreserbaMockBlackTest {
 		try {
 			boolean res = sut.sortuErreserba(t, rideNumber, 2, "Bilbo", "Donostia");
 			assertFalse(res);
+			assertEquals(dirua, t.getCash(), 0.01);
 		} catch (Exception e) {
 			fail();
 		} finally {
@@ -380,6 +405,7 @@ public class SortuErreserbaMockBlackTest {
 			fail();
 		} catch(DiruaEzDaukaException e) {
 			assertTrue(true);
+			assertEquals(0.0, t.getCash(), 0.01);
 		} catch (Exception e) {
 			fail();
 		} finally {
@@ -392,7 +418,8 @@ public class SortuErreserbaMockBlackTest {
 	public void test14() {
 		String travelerEmail = "traveler1@gmail.com";
 		Traveler t = new Traveler(travelerEmail, "123", "Pepe", "Lopez");
-		t.diruaSartu(100.0);
+		double dirua = 100.0;
+		t.diruaSartu(dirua);
 		
 		int rideNumber = 100;
 		Date rideDate = new Date(System.currentTimeMillis()+1000000);
@@ -409,6 +436,7 @@ public class SortuErreserbaMockBlackTest {
 			fail();
 		} catch(ErreserbaAlreadyExistsException e) {
 			assertTrue(true);
+			assertEquals(dirua-1, t.getCash(), 0.01); // lehenengo erreserbarengatik dirua gutxitu egin zaio
 		} catch (Exception e) {
 			fail();
 		} finally {

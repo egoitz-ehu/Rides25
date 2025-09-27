@@ -48,7 +48,8 @@ public class SortuErreserbaWhite {
 		testDA.open();
 		Ride r = testDA.addDriverWithRide(driverEmail, driverName, from, to, rideDate, 4, 10,2);
 		int rideNumber = r.getRideNumber();
-		Traveler t = testDA.createTraveler(travelerEmail, travelerName,100);
+		double dirua = 100;
+		Traveler t = testDA.createTraveler(travelerEmail, travelerName,dirua);
 		testDA.close();
 		
 		sut.open();
@@ -56,6 +57,9 @@ public class SortuErreserbaWhite {
 			boolean res = sut.sortuErreserba(t, rideNumber, 0, from, to);
 			sut.close();
 			assertFalse(res);
+			testDA.open();
+			assertEquals(dirua, testDA.getTravelerCash(travelerEmail),0.01);
+			testDA.close();
 		} catch (EserlekurikLibreEzException |  DiruaEzDaukaException | ErreserbaAlreadyExistsException | DatuakNullException e) {
 			sut.close();
 			fail();
@@ -86,7 +90,8 @@ public class SortuErreserbaWhite {
 		testDA.open();
 		Ride r = testDA.addDriverWithRide(driverEmail, driverName, from, to, rideDate, 4, 10,2);
 		int rideNumber = r.getRideNumber();
-		Traveler t = testDA.createTraveler(travelerEmail, travelerName,100);
+		double dirua = 100;
+		Traveler t = testDA.createTraveler(travelerEmail, travelerName,dirua);
 		testDA.addErreserbaToTraveler(t, rideNumber, 1, from, to, 10);
 		testDA.close();
 		
@@ -101,6 +106,10 @@ public class SortuErreserbaWhite {
 		} catch (ErreserbaAlreadyExistsException e) {
 			sut.close();
 			assertTrue(true);
+			testDA.open();
+			// Dirua gutxiago izan beharko luke, erreserba bat egin duelako
+			assertEquals(dirua-r.prezioaKalkulatu(from, to), testDA.getTravelerCash(travelerEmail),0.01);
+			testDA.close();
 		} finally {
 			testDA.open();
 			testDA.removeRide(rideNumber);
@@ -127,7 +136,8 @@ public class SortuErreserbaWhite {
 		testDA.open();
 		Ride r = testDA.addDriverWithRide(driverEmail, driverName, from, to, rideDate, 4, 10,2);
 		int rideNumber = r.getRideNumber();
-		Traveler t = testDA.createTraveler(travelerEmail, travelerName,0);
+		double dirua = 0;
+		Traveler t = testDA.createTraveler(travelerEmail, travelerName,dirua);
 		testDA.close();
 		
 		sut.open();
@@ -141,6 +151,9 @@ public class SortuErreserbaWhite {
 		} catch (DiruaEzDaukaException e) {
 			sut.close();
 			assertTrue(true);
+			testDA.open();
+			assertEquals(dirua, testDA.getTravelerCash(travelerEmail),0.01);
+			testDA.close();
 		} finally {
 			testDA.open();
 			testDA.removeRide(rideNumber);
@@ -169,7 +182,8 @@ public class SortuErreserbaWhite {
 		testDA.open();
 		Ride r = testDA.addDriverWithRide(driverEmail, driverName, from, to, rideDate, 4, 10,0);
 		int rideNumber = r.getRideNumber();
-		Traveler t = testDA.createTraveler(travelerEmail, travelerName,100);
+		double dirua = 100;
+		Traveler t = testDA.createTraveler(travelerEmail, travelerName,dirua);
 		testDA.close();
 		
 		sut.open();
@@ -183,6 +197,9 @@ public class SortuErreserbaWhite {
 		} catch (EserlekurikLibreEzException e) {
 			sut.close();
 			assertTrue(true);
+			testDA.open();
+			assertEquals(dirua, testDA.getTravelerCash(travelerEmail),0.01);
+			testDA.close();
 		} finally {
 			testDA.open();
 			testDA.removeRide(rideNumber);
@@ -248,7 +265,8 @@ public class SortuErreserbaWhite {
 		testDA.open();
 		Ride r = testDA.addDriverWithRide(driverEmail, driverName, from, to, rideDate, 4, 10,2);
 		int rideNumber = r.getRideNumber();
-		Traveler t = testDA.createTraveler(travelerEmail, travelerName,100);
+		double dirua = 100;
+		Traveler t = testDA.createTraveler(travelerEmail, travelerName,dirua);
 		testDA.close();
 		
 		sut.open();
@@ -256,6 +274,9 @@ public class SortuErreserbaWhite {
 			boolean res = sut.sortuErreserba(t, rideNumber, 1, from, to);
 			sut.close();
 			assertTrue(res);
+			testDA.open();
+			assertEquals(dirua-r.prezioaKalkulatu(from, to), testDA.getTravelerCash(travelerEmail),0.01);
+			testDA.close();
 		} catch (DiruaEzDaukaException | EserlekurikLibreEzException | ErreserbaAlreadyExistsException | DatuakNullException e) {
 			sut.close();
 			fail();
