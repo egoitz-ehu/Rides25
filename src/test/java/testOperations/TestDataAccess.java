@@ -11,6 +11,8 @@ import javax.persistence.Persistence;
 
 import configuration.ConfigXML;
 import domain.Driver;
+import domain.Erreserba;
+import domain.ErreserbaEgoera;
 import domain.Ride;
 import domain.Traveler;
 
@@ -176,7 +178,7 @@ public class TestDataAccess {
 				return -1;
 		}
 
-		public void createTravelerWithErreserba(String email, int rideNumber, int seatNumber, String from, String to, double price) {
+		public Traveler createTravelerWithErreserba(String email, int rideNumber, int seatNumber, String from, String to, double price) {
 			System.out.println(">> TestDataAccess: createTravelerWithErreserba");
 			db.getTransaction().begin();
 			try {
@@ -186,11 +188,37 @@ public class TestDataAccess {
 				System.out.println("Ride:"+r);
 				t.sortuErreserba(r, seatNumber, from, to, price);
 				db.getTransaction().commit();
+				return t;
 			}
 			catch (Exception e){
 				e.printStackTrace();
 			}
-			
+			return null;
+		}
+		
+		public void changeErreserbaStatus(int eskaeraNum, ErreserbaEgoera status) {
+			System.out.println(">> TestDataAccess: changeErreserbaStatus");
+			db.getTransaction().begin();
+			try {
+				Erreserba e = db.find(domain.Erreserba.class, eskaeraNum);
+				if (e!=null) {
+					e.setEgoera(status);
+				}
+				db.getTransaction().commit();
+			}
+			catch (Exception ex){
+				ex.printStackTrace();
+			}
+	    }
+		
+		public Traveler getTraveler(String email) {
+			System.out.println(">> TestDataAccess: getTraveler");
+			return db.find(Traveler.class, email);
+		}
+		
+		public Driver getDriver(String email) {
+			System.out.println(">> TestDataAccess: getDriver");
+			return db.find(Driver.class, email);
 		}
 }
 

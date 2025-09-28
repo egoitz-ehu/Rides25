@@ -64,7 +64,7 @@ public class ErreserbaOnartuMockWhiteTest {
     }
 	
 	@Test
-	// Sartutako identifikatzailea duen ride-rik datu basean
+	// Sartutako identifikatzailea duen erreserbarik datu basean
 	public void test1() {
 		String travelerEmail = "traveler1@gmail.com";
 		String travelerPassword = "traveler1";
