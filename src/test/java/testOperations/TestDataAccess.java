@@ -176,7 +176,22 @@ public class TestDataAccess {
 				return -1;
 		}
 
-		
+		public void createTravelerWithErreserba(String email, int rideNumber, int seatNumber, String from, String to, double price) {
+			System.out.println(">> TestDataAccess: createTravelerWithErreserba");
+			db.getTransaction().begin();
+			try {
+				Traveler t = new Traveler(email,null,email,null);
+				db.persist(t);
+				Ride r = db.find(Ride.class, rideNumber);
+				System.out.println("Ride:"+r);
+				t.sortuErreserba(r, seatNumber, from, to, price);
+				db.getTransaction().commit();
+			}
+			catch (Exception e){
+				e.printStackTrace();
+			}
+			
+		}
 }
 
 

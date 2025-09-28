@@ -28,6 +28,7 @@ import configuration.UtilDate;
 import domain.*;
 import exceptions.AlertaAlreadyExistsException;
 import exceptions.BadagoRideException;
+import exceptions.DagoenekoOnartuaException;
 import exceptions.DatuakNullException;
 import exceptions.DiruaEzDaukaException;
 import exceptions.ErreserbaAlreadyExistsException;
@@ -245,11 +246,23 @@ public class DataAccess  {
 		return query.getResultList();
 	}
 	
-	public void erreserbaOnartu(int erreserbaNum, String dMail) {
+	public void erreserbaOnartu(int erreserbaNum, String dMail) throws DatuakNullException,DagoenekoOnartuaException {
 		db.getTransaction().begin();
 		Erreserba e = db.find(Erreserba.class, erreserbaNum);
+		if(e==null) {
+			db.getTransaction().commit();
+			throw new DatuakNullException("Datuak null dira");
+		}
 		Traveler t = db.find(Traveler.class, e.getBidaiariaEmail());
+		if(e.getEgoera()!=ErreserbaEgoera.ZAIN){
+			db.getTransaction().commit();
+			throw new DagoenekoOnartuaException("Dagoeneko onartua dago");
+		}
 		Driver d = db.find(Driver.class, dMail);
+		if(d==null) {
+			db.getTransaction().commit();
+			throw new DatuakNullException("Datuak null dira");
+		}
 		double prezioa = e.getPrezioa();
 		e.setEgoera(ErreserbaEgoera.ONARTUA);
 		t.removeFrozenMoney(prezioa);

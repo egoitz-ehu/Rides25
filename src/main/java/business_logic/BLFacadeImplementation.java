@@ -26,6 +26,7 @@ import domain.Mugimendua;
 import exceptions.RideMustBeLaterThanTodayException;
 import exceptions.AlertaAlreadyExistsException;
 import exceptions.BadagoRideException;
+import exceptions.DagoenekoOnartuaException;
 import exceptions.DatuakNullException;
 import exceptions.DiruaEzDaukaException;
 import exceptions.ErreserbaAlreadyExistsException;
@@ -208,7 +209,7 @@ public class BLFacadeImplementation  implements BLFacade {
 	}
 
 	@WebMethod
-	public void onartuErreserba(int erreserbaNum, String d) {
+	public void onartuErreserba(int erreserbaNum, String d) throws DatuakNullException, DagoenekoOnartuaException {
 		dbManager.open();
 		dbManager.erreserbaOnartu(erreserbaNum, d);
 		dbManager.close();
