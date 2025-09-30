@@ -1,0 +1,176 @@
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-09-30 17:05:20 #1 store] 
+Database 'C:\Users\egoit\EHU\SI2\workspace\Rides25\src\main\resources\rides.temp' is opened by 21424@LAPTOP-2PN1U6VU
+
+[2025-09-30 17:05:21 #2 type] 
+Type domain.User is not enhanced.
+
+[2025-09-30 17:05:21 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-09-30 17:05:21 #4 type] 
+Type domain.Erreklamazioa is not enhanced.
+
+[2025-09-30 17:05:21 #5 type] 
+Type domain.Balorazioa is not enhanced.
+
+[2025-09-30 17:05:21 #6 type] 
+Type domain.Mugimendua is not enhanced.
+
+[2025-09-30 17:05:21 #7 type] 
+Type domain.Car is not enhanced.
+
+[2025-09-30 17:05:21 #8 type] 
+Type domain.Ride is not enhanced.
+
+[2025-09-30 17:05:21 #9 type] 
+Type domain.Mezua is not enhanced.
+
+[2025-09-30 17:05:21 #10 type] 
+Type domain.Erreserba is not enhanced.
+
+[2025-09-30 17:05:21 #11 type] 
+Type domain.Geldialdia is not enhanced.
+
+[2025-09-30 17:05:21 #12 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-09-30 17:05:21 #13 type] 
+Type domain.Alerta is not enhanced.
+
+[2025-09-30 17:05:22 #14 type.registry] 
+New type java.util.ArrayList<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-09-30 17:06:20 #1 store] 
+Database 'C:\Users\egoit\EHU\SI2\workspace\Rides25\src\main\resources\rides.temp' has been recovered (tr. 150-223)
+
+[2025-09-30 17:06:20 #2 store] 
+Database 'C:\Users\egoit\EHU\SI2\workspace\Rides25\src\main\resources\rides.temp' is opened by 4168@LAPTOP-2PN1U6VU
+
+[2025-09-30 17:06:21 #3 type] 
+Type domain.User is not enhanced.
+
+[2025-09-30 17:06:21 #4 type] 
+Type domain.Driver is not enhanced.
+
+[2025-09-30 17:06:21 #5 type] 
+Type domain.Erreklamazioa is not enhanced.
+
+[2025-09-30 17:06:21 #6 type] 
+Type domain.Balorazioa is not enhanced.
+
+[2025-09-30 17:06:21 #7 type] 
+Type domain.Mugimendua is not enhanced.
+
+[2025-09-30 17:06:21 #8 type] 
+Type domain.Car is not enhanced.
+
+[2025-09-30 17:06:21 #9 type] 
+Type domain.Ride is not enhanced.
+
+[2025-09-30 17:06:21 #10 type] 
+Type domain.Mezua is not enhanced.
+
+[2025-09-30 17:06:21 #11 type] 
+Type domain.Erreserba is not enhanced.
+
+[2025-09-30 17:06:21 #12 type] 
+Type domain.Geldialdia is not enhanced.
+
+[2025-09-30 17:06:21 #13 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-09-30 17:06:21 #14 type] 
+Type domain.Alerta is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-09-30 17:08:00 #1 store] 
+Database 'C:\Users\egoit\EHU\SI2\workspace\Rides25\src\main\resources\rides.temp' has been recovered (tr. 224-301)
+
+[2025-09-30 17:08:00 #2 store] 
+Database 'C:\Users\egoit\EHU\SI2\workspace\Rides25\src\main\resources\rides.temp' is opened by 16040@LAPTOP-2PN1U6VU
+
+[2025-09-30 17:08:01 #3 type] 
+Type domain.User is not enhanced.
+
+[2025-09-30 17:08:01 #4 type] 
+Type domain.Driver is not enhanced.
+
+[2025-09-30 17:08:01 #5 type] 
+Type domain.Erreklamazioa is not enhanced.
+
+[2025-09-30 17:08:01 #6 type] 
+Type domain.Balorazioa is not enhanced.
+
+[2025-09-30 17:08:01 #7 type] 
+Type domain.Mugimendua is not enhanced.
+
+[2025-09-30 17:08:01 #8 type] 
+Type domain.Car is not enhanced.
+
+[2025-09-30 17:08:01 #9 type] 
+Type domain.Ride is not enhanced.
+
+[2025-09-30 17:08:01 #10 type] 
+Type domain.Mezua is not enhanced.
+
+[2025-09-30 17:08:01 #11 type] 
+Type domain.Erreserba is not enhanced.
+
+[2025-09-30 17:08:01 #12 type] 
+Type domain.Geldialdia is not enhanced.
+
+[2025-09-30 17:08:01 #13 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-09-30 17:08:01 #14 type] 
+Type domain.Alerta is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-09-30 17:08:30 #1 store] 
+Database 'C:\Users\egoit\EHU\SI2\workspace\Rides25\src\main\resources\rides.temp' has been recovered (tr. 302-380)
+
+[2025-09-30 17:08:31 #2 store] 
+Database 'C:\Users\egoit\EHU\SI2\workspace\Rides25\src\main\resources\rides.temp' is opened by 9160@LAPTOP-2PN1U6VU
+
+[2025-09-30 17:08:31 #3 type] 
+Type domain.User is not enhanced.
+
+[2025-09-30 17:08:31 #4 type] 
+Type domain.Driver is not enhanced.
+
+[2025-09-30 17:08:31 #5 type] 
+Type domain.Erreklamazioa is not enhanced.
+
+[2025-09-30 17:08:31 #6 type] 
+Type domain.Balorazioa is not enhanced.
+
+[2025-09-30 17:08:31 #7 type] 
+Type domain.Mugimendua is not enhanced.
+
+[2025-09-30 17:08:31 #8 type] 
+Type domain.Car is not enhanced.
+
+[2025-09-30 17:08:31 #9 type] 
+Type domain.Ride is not enhanced.
+
+[2025-09-30 17:08:31 #10 type] 
+Type domain.Mezua is not enhanced.
+
+[2025-09-30 17:08:31 #11 type] 
+Type domain.Erreserba is not enhanced.
+
+[2025-09-30 17:08:31 #12 type] 
+Type domain.Geldialdia is not enhanced.
+
+[2025-09-30 17:08:31 #13 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-09-30 17:08:31 #14 type] 
+Type domain.Alerta is not enhanced.
+

@@ -53,7 +53,7 @@ public class SortuErreserbaBlack {
 		Traveler t = testDA.createTraveler(travelerEmail, travelerName,dirua);
 		testDA.close();
 		
-		int eserlekuKop = 2;
+		int eserlekuKop = 1;
 		
 		sut.open();
 		try {
@@ -591,6 +591,141 @@ public class SortuErreserbaBlack {
 			assertTrue(true);
 			testDA.open();
 			assertEquals(dirua-1, testDA.getTravelerCash(travelerEmail), 0.01); // dirua-1, lehenengo erreserbarengatik
+			testDA.close();
+		} catch (Exception e) {
+			fail();
+		} finally {
+			sut.close();
+			testDA.open();
+			testDA.removeRide(rideNumber);
+			testDA.removeUser(travelerEmail);
+			testDA.removeUser(driverEmail);
+			testDA.close();
+		}
+	}
+	
+	@Test
+	// kop parametroarne muga balioaren proba, beheko muga+1 izanik kop
+	public void test15() {
+		String travelerEmail = "traveler@gmail.com";
+		String travelerName = "Traveler1";
+		
+		String driverEmail="driver@gmail.com";
+		String driverName="Driver1";
+		
+		String from = "Donostia";
+		String to = "Bilbo";
+		
+		Date rideDate = new Date(System.currentTimeMillis()+1000000);
+		
+		int freeSeats = 4;
+		
+		testDA.open();
+		Ride r = testDA.addDriverWithRide(driverEmail, driverName, from, to, rideDate, freeSeats, 10,freeSeats);
+		int rideNumber = r.getRideNumber();
+		double dirua = 100.0;
+		Traveler t = testDA.createTraveler(travelerEmail, travelerName,dirua);
+		testDA.close();
+		
+		int eserlekuKop = 2;
+		
+		sut.open();
+		try {
+			boolean res = sut.sortuErreserba(t, rideNumber, eserlekuKop, "Donostia", "Bilbo");
+			assertTrue(res);
+			double prezioa = r.prezioaKalkulatu(from, to)*eserlekuKop;
+			testDA.open();
+			assertEquals(dirua - prezioa, testDA.getTravelerCash(travelerEmail), 0.01);
+			testDA.close();
+		} catch (Exception e) {
+			fail();
+		} finally {
+			sut.close();
+			testDA.open();
+			testDA.removeRide(rideNumber);
+			testDA.removeUser(travelerEmail);
+			testDA.removeUser(driverEmail);
+			testDA.close();
+		}
+	}
+	
+	@Test
+	// kop parametroarne muga balioaren proba, goiko muga-1 izanik kop. Hau da, eskuragarri dauden eseleku kopurua baino bat gutxiago
+	public void test16() {
+		String travelerEmail = "traveler@gmail.com";
+		String travelerName = "Traveler1";
+		
+		String driverEmail="driver@gmail.com";
+		String driverName="Driver1";
+		
+		String from = "Donostia";
+		String to = "Bilbo";
+		
+		Date rideDate = new Date(System.currentTimeMillis()+1000000);
+		
+		int freeSeats = 4;
+		
+		testDA.open();
+		Ride r = testDA.addDriverWithRide(driverEmail, driverName, from, to, rideDate, freeSeats, 10,freeSeats);
+		int rideNumber = r.getRideNumber();
+		double dirua = 100.0;
+		Traveler t = testDA.createTraveler(travelerEmail, travelerName,dirua);
+		testDA.close();
+		
+		int eserlekuKop = freeSeats - 1;
+		
+		sut.open();
+		try {
+			boolean res = sut.sortuErreserba(t, rideNumber, eserlekuKop, "Donostia", "Bilbo");
+			assertTrue(res);
+			double prezioa = r.prezioaKalkulatu(from, to)*eserlekuKop;
+			testDA.open();
+			assertEquals(dirua - prezioa, testDA.getTravelerCash(travelerEmail), 0.01);
+			testDA.close();
+		} catch (Exception e) {
+			fail();
+		} finally {
+			sut.close();
+			testDA.open();
+			testDA.removeRide(rideNumber);
+			testDA.removeUser(travelerEmail);
+			testDA.removeUser(driverEmail);
+			testDA.close();
+		}
+	}
+	
+	@Test
+	// kop parametroarne muga balioaren proba, goiko mugaren berdina izanik kop. Hau da, eskuragarri dauden eseleku kopurua
+	public void test17() {
+		String travelerEmail = "traveler@gmail.com";
+		String travelerName = "Traveler1";
+		
+		String driverEmail="driver@gmail.com";
+		String driverName="Driver1";
+		
+		String from = "Donostia";
+		String to = "Bilbo";
+		
+		Date rideDate = new Date(System.currentTimeMillis()+1000000);
+		
+		int freeSeats = 4;
+		
+		testDA.open();
+		Ride r = testDA.addDriverWithRide(driverEmail, driverName, from, to, rideDate, freeSeats, 10,freeSeats);
+		int rideNumber = r.getRideNumber();
+		double dirua = 100.0;
+		Traveler t = testDA.createTraveler(travelerEmail, travelerName,dirua);
+		testDA.close();
+		
+		int eserlekuKop = freeSeats;
+		
+		sut.open();
+		try {
+			boolean res = sut.sortuErreserba(t, rideNumber, eserlekuKop, "Donostia", "Bilbo");
+			assertTrue(res);
+			double prezioa = r.prezioaKalkulatu(from, to)*eserlekuKop;
+			testDA.open();
+			assertEquals(dirua - prezioa, testDA.getTravelerCash(travelerEmail), 0.01);
 			testDA.close();
 		} catch (Exception e) {
 			fail();

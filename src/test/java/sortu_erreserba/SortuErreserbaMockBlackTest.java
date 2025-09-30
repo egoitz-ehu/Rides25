@@ -66,7 +66,7 @@ public class SortuErreserbaMockBlackTest {
 		double dirua = 100.0;
 		t.diruaSartu(dirua);
 		
-		int erosiEserlekuak = 2;
+		int erosiEserlekuak = 1;
 		
 		int rideNumber = 100;
 		Date rideDate = new Date(System.currentTimeMillis()+1000000);
@@ -437,6 +437,100 @@ public class SortuErreserbaMockBlackTest {
 		} catch(ErreserbaAlreadyExistsException e) {
 			assertTrue(true);
 			assertEquals(dirua-1, t.getCash(), 0.01); // lehenengo erreserbarengatik dirua gutxitu egin zaio
+		} catch (Exception e) {
+			fail();
+		} finally {
+			sut.close();
+		}
+	}
+	
+	@Test
+	// kop parametroarne muga balioaren proba, beheko muga+1 izanik kop
+	public void test15() {
+		String travelerEmail = "traveler1@gmail.com";
+		Traveler t = new Traveler(travelerEmail, "123", "Pepe", "Lopez");
+		double dirua = 100.0;
+		t.diruaSartu(dirua);
+		
+		int erosiEserlekuak = 2;
+		
+		int rideNumber = 100;
+		Date rideDate = new Date(System.currentTimeMillis()+1000000);
+		Ride r = new Ride(Arrays.asList("Donostia","Bilbo"),Arrays.asList(1.0),rideDate,5,null,null);
+		
+		Mockito.doReturn(t).when(db).find(Traveler.class, travelerEmail);
+		Mockito.doReturn(r).when(db).find(Ride.class, rideNumber);
+		
+		sut.open();
+		try {
+			boolean res = sut.sortuErreserba(t, rideNumber, erosiEserlekuak, "Donostia", "Bilbo");
+			assertTrue(res);
+			double prezioa = r.prezioaKalkulatu("Donostia","Bilbo")*erosiEserlekuak;
+			assertEquals(dirua-prezioa, t.getCash(), 0.01);
+		} catch (Exception e) {
+			fail();
+		} finally {
+			sut.close();
+		}
+	}
+	
+	@Test
+	// kop parametroarne muga balioaren proba, goiko muga-1 izanik kop. Hau da, eskuragarri dauden eseleku kopurua baino bat gutxiago
+	public void test16() {
+		String travelerEmail = "traveler1@gmail.com";
+		Traveler t = new Traveler(travelerEmail, "123", "Pepe", "Lopez");
+		double dirua = 100.0;
+		t.diruaSartu(dirua);
+		
+		int libre = 5;
+		
+		int erosiEserlekuak = libre-1;
+		
+		int rideNumber = 100;
+		Date rideDate = new Date(System.currentTimeMillis()+1000000);
+		Ride r = new Ride(Arrays.asList("Donostia","Bilbo"),Arrays.asList(1.0),rideDate,libre,null,null);
+		
+		Mockito.doReturn(t).when(db).find(Traveler.class, travelerEmail);
+		Mockito.doReturn(r).when(db).find(Ride.class, rideNumber);
+		
+		sut.open();
+		try {
+			boolean res = sut.sortuErreserba(t, rideNumber, erosiEserlekuak, "Donostia", "Bilbo");
+			assertTrue(res);
+			double prezioa = r.prezioaKalkulatu("Donostia","Bilbo")*erosiEserlekuak;
+			assertEquals(dirua-prezioa, t.getCash(), 0.01);
+		} catch (Exception e) {
+			fail();
+		} finally {
+			sut.close();
+		}
+	}
+	
+	@Test
+	// kop parametroarne muga balioaren proba, goiko mugaren berdina izanik kop. Hau da, eskuragarri dauden eseleku kopurua
+	public void test17() {
+		String travelerEmail = "traveler1@gmail.com";
+		Traveler t = new Traveler(travelerEmail, "123", "Pepe", "Lopez");
+		double dirua = 100.0;
+		t.diruaSartu(dirua);
+		
+		int libre = 5;
+		
+		int erosiEserlekuak = libre;
+		
+		int rideNumber = 100;
+		Date rideDate = new Date(System.currentTimeMillis()+1000000);
+		Ride r = new Ride(Arrays.asList("Donostia","Bilbo"),Arrays.asList(1.0),rideDate,libre,null,null);
+		
+		Mockito.doReturn(t).when(db).find(Traveler.class, travelerEmail);
+		Mockito.doReturn(r).when(db).find(Ride.class, rideNumber);
+		
+		sut.open();
+		try {
+			boolean res = sut.sortuErreserba(t, rideNumber, erosiEserlekuak, "Donostia", "Bilbo");
+			assertTrue(res);
+			double prezioa = r.prezioaKalkulatu("Donostia","Bilbo")*erosiEserlekuak;
+			assertEquals(dirua-prezioa, t.getCash(), 0.01);
 		} catch (Exception e) {
 			fail();
 		} finally {
