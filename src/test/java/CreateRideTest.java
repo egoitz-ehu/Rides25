@@ -19,7 +19,7 @@ import domain.Driver;
 /*
 public class CreateRideTest {
 
-	 //sut:system under test
+	 //sut:system undear test
 	 static DataAccess sut=new DataAccess();
 	 
 	 //additional operations needed to execute the test 
