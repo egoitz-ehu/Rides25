@@ -27,8 +27,6 @@ public class TestDataAccess {
 	public TestDataAccess()  {
 		
 		System.out.println("TestDataAccess created");
-
-		//open();
 		
 	}
 

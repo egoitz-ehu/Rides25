@@ -1,13 +1,9 @@
 package data_access;
 
-import java.awt.Container;
-import java.io.File;
 import java.io.IOException;
-import java.net.NoRouteToHostException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -482,7 +478,6 @@ public class DataAccess  {
 	}
 
 	public Ride createRide(List<String> hiriakLista, List<Double> prezioList, Date date, Car c, String driverEmail) throws  RideAlreadyExistException, RideMustBeLaterThanTodayException {
-		//System.out.println(">> DataAccess: createRide=> from= "+from+" to= "+to+" driver="+driverEmail+" date "+date);
 		try {
 			if(new Date().compareTo(date)>0) {
 				throw new RideMustBeLaterThanTodayException(ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.ErrorRideMustBeLaterThanToday"));
@@ -498,15 +493,12 @@ public class DataAccess  {
 			}
 			Ride ride = driver.addRide(hiriakLista, prezioList, date,ci.getEserKop(),ci);
 
-			//next instruction can be obviated
-			//db.persist(driver);
 			ci.gehituBidaia(ride);
 			db.persist(ci);
 			db.getTransaction().commit();
 
 			return ride;
 		} catch (NullPointerException e) {
-			// TODO Auto-generated catch block
 			db.getTransaction().commit();
 			return null;
 		}
@@ -657,7 +649,6 @@ public class DataAccess  {
 		er.gehituBalorazioa(ba);
 		db.persist(e);
 		db.getTransaction().commit();
-		System.out.println("Balorazioa sortu da");
 	}
 	
 	public List<Balorazioa> lortuBaloraizoak(String email){
