@@ -30,6 +30,7 @@ import exceptions.DagoenekoOnartuaException;
 import exceptions.DatuakNullException;
 import exceptions.DiruaEzDaukaException;
 import exceptions.ErreserbaAlreadyExistsException;
+import exceptions.ErreserbaEgoeraEzDaZainException;
 import exceptions.EserlekurikLibreEzException;
 import exceptions.RideAlreadyExistException;
 
@@ -216,7 +217,7 @@ public class BLFacadeImplementation  implements BLFacade {
 	}
 
 	@WebMethod
-	public void ukatuErreserba(int erreserbaNum, int r) {
+	public void ukatuErreserba(int erreserbaNum, int r) throws DatuakNullException, ErreserbaEgoeraEzDaZainException {
 		dbManager.open();
 		dbManager.erreserbaUkatu(erreserbaNum, r);
 		dbManager.close();

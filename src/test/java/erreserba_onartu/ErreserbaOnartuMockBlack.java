@@ -27,7 +27,7 @@ import domain.Traveler;
 import exceptions.DagoenekoOnartuaException;
 import exceptions.DatuakNullException;
 
-public class ErreserbaOnartuMockBlakc {
+public class ErreserbaOnartuMockBlack {
 
 	static DataAccess sut;
 	

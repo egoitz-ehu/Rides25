@@ -16,6 +16,7 @@ import domain.Ride;
 import domain.TravelerErreserbaContainer;
 import exceptions.DagoenekoOnartuaException;
 import exceptions.DatuakNullException;
+import exceptions.ErreserbaEgoeraEzDaZainException;
 
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
@@ -188,7 +189,11 @@ public class ErreserbakGestionatuGUI extends JFrame {
                         .collect(Collectors.toList());
 
 				Date da = selectedRide.getDate();
-				WelcomeGUI.getBusinessLogic().ukatuErreserba(selectedErreserbaNumber, selectedRide.getRideNumber());
+				try {
+					WelcomeGUI.getBusinessLogic().ukatuErreserba(selectedErreserbaNumber, selectedRide.getRideNumber());
+				} catch (DatuakNullException | ErreserbaEgoeraEzDaZainException e1) {
+					e1.printStackTrace();
+				} 
 				ezarriErreserbak();
 				onartuButton.setEnabled(false);
 				ukatuButton.setEnabled(false);

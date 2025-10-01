@@ -32,6 +32,7 @@ import exceptions.DagoenekoOnartuaException;
 import exceptions.DatuakNullException;
 import exceptions.DiruaEzDaukaException;
 import exceptions.ErreserbaAlreadyExistsException;
+import exceptions.ErreserbaEgoeraEzDaZainException;
 import exceptions.EserlekurikLibreEzException;
 import exceptions.RideAlreadyExistException;
 import exceptions.RideMustBeLaterThanTodayException;
@@ -272,19 +273,37 @@ public class DataAccess  {
 		db.getTransaction().commit(); 
 	}
 	
-	public void erreserbaUkatu(int erreserbaNum, int rNumber) {
-		db.getTransaction().begin();
-		Erreserba e = db.find(Erreserba.class, erreserbaNum);
-		Traveler t = e.getBidaiaria();
-		Ride r = db.find(Ride.class, rNumber);
-		double kop = e.getPrezioa();
-		int eserKop = e.getPlazaKop();
-		e.setEgoera(ErreserbaEgoera.UKATUA);
-		t.removeFrozenMoney(kop);
-		t.diruaSartu(kop);
-		r.itzuliEserlekuak(eserKop);
-		t.addMugimendua(kop, MugimenduMota.ERRESERBA_UKATU);
-		db.getTransaction().commit();
+	public void erreserbaUkatu(int erreserbaNum, int rNumber) throws DatuakNullException, ErreserbaEgoeraEzDaZainException {
+	    db.getTransaction().begin();
+	    Erreserba e = db.find(Erreserba.class, erreserbaNum);
+	    if(e == null) {
+	        db.getTransaction().commit();
+	        throw new DatuakNullException("Erreserba null da");
+	    }
+	    if(e.getEgoera() != ErreserbaEgoera.ZAIN) {
+	        db.getTransaction().commit();
+	        throw new ErreserbaEgoeraEzDaZainException();
+	    }
+	    Traveler t = db.find(Traveler.class, e.getBidaiariaEmail());
+	    if(t == null) {
+	        db.getTransaction().commit();
+	        throw new DatuakNullException("Bidaiaria null da");
+	    }
+	    Ride r = db.find(Ride.class, rNumber);
+	    if(r == null) {
+	        db.getTransaction().commit();
+	        throw new DatuakNullException("Ride null da");
+	    }
+	    double kop = e.getPrezioa();
+	    int eserKop = e.getPlazaKop();
+
+	    e.setEgoera(ErreserbaEgoera.UKATUA);
+	    t.removeFrozenMoney(kop);
+	    t.diruaSartu(kop);
+	    r.itzuliEserlekuak(eserKop);
+	    t.addMugimendua(kop, MugimenduMota.ERRESERBA_UKATU);
+
+	    db.getTransaction().commit();
 	}
 	
 	public boolean sortuKotxea(String matrikula, int eserKop, String kolorea, String mota, Driver d) {
