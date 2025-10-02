@@ -20,7 +20,7 @@ import exceptions.DagoenekoOnartuaException;
 import exceptions.DatuakNullException;
 import testOperations.TestDataAccess;
 
-public class ErreserbaOnartuWhite {
+public class ErreserbaOnartuBDWhiteTest {
 	static DataAccess sut;
 
     @BeforeClass
