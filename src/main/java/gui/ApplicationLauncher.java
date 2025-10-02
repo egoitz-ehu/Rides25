@@ -22,14 +22,8 @@ public class ApplicationLauncher {
 	public static void main(String[] args) {
 
 		ConfigXML c=ConfigXML.getInstance();
-	
-		System.out.println(c.getLocale());
 		
 		Locale.setDefault(new Locale(c.getLocale()));
-		
-		System.out.println("Locale: "+Locale.getDefault());
-		
-	    //Driver driver=new Driver("driver3@gmail.com","Test Driver");
 
 		
 		WelcomeGUI a=new WelcomeGUI();
@@ -71,13 +65,9 @@ public class ApplicationLauncher {
 		
 
 			
-		}catch (Exception e) {
-			//a.jLabelSelectOption.setText("Error: "+e.toString());
-			//a.jLabelSelectOption.setForeground(Color.RED);	
-			
+		}catch (Exception e) {	
 			System.out.println("Error in ApplicationLauncher: "+e.toString());
 		}
-		//a.pack();
 
 
 	}

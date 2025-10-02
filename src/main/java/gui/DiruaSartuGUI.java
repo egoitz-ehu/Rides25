@@ -26,23 +26,6 @@ public class DiruaSartuGUI extends JFrame {
 	private JLabel labelTitle;
 	private JLabel labelKop;
 	private JLabel labelError;
-	
-
-	/**
-	 * Launch the application.
-	 *//*
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					DiruaAtera frame = new DiruaAtera();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}*/
 
 	/**
 	 * Create the frame.

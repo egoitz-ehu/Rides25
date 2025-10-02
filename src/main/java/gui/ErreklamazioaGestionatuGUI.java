@@ -58,21 +58,21 @@ public class ErreklamazioaGestionatuGUI extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
-		GridBagLayout gbl_contentPane = new GridBagLayout();
-		gbl_contentPane.columnWidths = new int[]{55, 31, 45, 87, 49, 72, 87, 213, 0};
-		gbl_contentPane.rowHeights = new int[]{21, 30, 0, 0, 13, 159, 0, 0, 0};
-		gbl_contentPane.columnWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
-		contentPane.setLayout(gbl_contentPane);
+		GridBagLayout gblContentPane = new GridBagLayout();
+		gblContentPane.columnWidths = new int[]{55, 31, 45, 87, 49, 72, 87, 213, 0};
+		gblContentPane.rowHeights = new int[]{21, 30, 0, 0, 13, 159, 0, 0, 0};
+		gblContentPane.columnWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gblContentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		contentPane.setLayout(gblContentPane);
 		
 		JLabel lblAukeratu = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("ErreklamazioaGestionatu.Aukeratu"));
-		GridBagConstraints gbc_lblAukeratu = new GridBagConstraints();
-		gbc_lblAukeratu.gridwidth = 3;
-		gbc_lblAukeratu.anchor = GridBagConstraints.WEST;
-		gbc_lblAukeratu.insets = new Insets(0, 0, 5, 5);
-		gbc_lblAukeratu.gridx = 0;
-		gbc_lblAukeratu.gridy = 0;
-		contentPane.add(lblAukeratu, gbc_lblAukeratu);
+		GridBagConstraints gbcLblAukeratu = new GridBagConstraints();
+		gbcLblAukeratu.gridwidth = 3;
+		gbcLblAukeratu.anchor = GridBagConstraints.WEST;
+		gbcLblAukeratu.insets = new Insets(0, 0, 5, 5);
+		gbcLblAukeratu.gridx = 0;
+		gbcLblAukeratu.gridy = 0;
+		contentPane.add(lblAukeratu, gbcLblAukeratu);
 		
 		JComboBox comboBox = new JComboBox();
 		comboBox.addActionListener(new ActionListener() {
@@ -82,36 +82,36 @@ public class ErreklamazioaGestionatuGUI extends JFrame {
 			}
 		});
 
-		GridBagConstraints gbc_comboBox = new GridBagConstraints();
-		gbc_comboBox.anchor = GridBagConstraints.NORTH;
-		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
-		gbc_comboBox.insets = new Insets(0, 0, 5, 5);
-		gbc_comboBox.gridwidth = 3;
-		gbc_comboBox.gridx = 5;
-		gbc_comboBox.gridy = 0;
-		contentPane.add(comboBox, gbc_comboBox);
+		GridBagConstraints gbcComboBox = new GridBagConstraints();
+		gbcComboBox.anchor = GridBagConstraints.NORTH;
+		gbcComboBox.fill = GridBagConstraints.HORIZONTAL;
+		gbcComboBox.insets = new Insets(0, 0, 5, 5);
+		gbcComboBox.gridwidth = 3;
+		gbcComboBox.gridx = 5;
+		gbcComboBox.gridy = 0;
+		contentPane.add(comboBox, gbcComboBox);
 		
 		modelErreklamazioa = new DefaultComboBoxModel<Erreklamazioa>();
 		comboBox.setModel(modelErreklamazioa);
 		
-		JLabel lblNewLabel_1 = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("ErreklamazioaGestionatu.Gaia")); //$NON-NLS-1$ //$NON-NLS-2$
-		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
-		gbc_lblNewLabel_1.anchor = GridBagConstraints.WEST;
-		gbc_lblNewLabel_1.gridwidth = 3;
-		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_1.gridx = 0;
-		gbc_lblNewLabel_1.gridy = 1;
-		contentPane.add(lblNewLabel_1, gbc_lblNewLabel_1);
+		JLabel lblNewLabel1 = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("ErreklamazioaGestionatu.Gaia")); //$NON-NLS-1$ //$NON-NLS-2$
+		GridBagConstraints gbclblNewLabel1 = new GridBagConstraints();
+		gbclblNewLabel1.anchor = GridBagConstraints.WEST;
+		gbclblNewLabel1.gridwidth = 3;
+		gbclblNewLabel1.insets = new Insets(0, 0, 5, 5);
+		gbclblNewLabel1.gridx = 0;
+		gbclblNewLabel1.gridy = 1;
+		contentPane.add(lblNewLabel1, gbclblNewLabel1);
 		
 		lblGaia = new JLabel(""); //$NON-NLS-1$ //$NON-NLS-2$
-		GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
-		gbc_lblNewLabel_2.anchor = GridBagConstraints.NORTHWEST;
-		gbc_lblNewLabel_2.gridheight = 2;
-		gbc_lblNewLabel_2.gridwidth = 7;
-		gbc_lblNewLabel_2.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_2.gridx = 0;
-		gbc_lblNewLabel_2.gridy = 2;
-		contentPane.add(lblGaia, gbc_lblNewLabel_2);
+		GridBagConstraints gbclblNewLabel2 = new GridBagConstraints();
+		gbclblNewLabel2.anchor = GridBagConstraints.NORTHWEST;
+		gbclblNewLabel2.gridheight = 2;
+		gbclblNewLabel2.gridwidth = 7;
+		gbclblNewLabel2.insets = new Insets(0, 0, 5, 5);
+		gbclblNewLabel2.gridx = 0;
+		gbclblNewLabel2.gridy = 2;
+		contentPane.add(lblGaia, gbclblNewLabel2);
 		
 		btnRecharge = new JButton("\u21BB");
 		btnRecharge.setFont(btnRecharge.getFont().deriveFont(16f));
@@ -121,36 +121,36 @@ public class ErreklamazioaGestionatuGUI extends JFrame {
 				mezuakKargatu();
 			}
 		});
-		GridBagConstraints gbc_btnRecharge = new GridBagConstraints();
-		gbc_btnRecharge.insets = new Insets(0, 0, 5, 5);
-		gbc_btnRecharge.gridx = 7;
-		gbc_btnRecharge.gridy = 3;
-		contentPane.add(btnRecharge, gbc_btnRecharge);
+		GridBagConstraints gbcbtnRecharge = new GridBagConstraints();
+		gbcbtnRecharge.insets = new Insets(0, 0, 5, 5);
+		gbcbtnRecharge.gridx = 7;
+		gbcbtnRecharge.gridy = 3;
+		contentPane.add(btnRecharge, gbcbtnRecharge);
 		lblNorkMezuak = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("ErreklamazioaGestionatu.Mezuak"));
-		GridBagConstraints gbc_lblNorkMezuak = new GridBagConstraints();
-		gbc_lblNorkMezuak.gridwidth = 4;
-		gbc_lblNorkMezuak.anchor = GridBagConstraints.NORTHWEST;
-		gbc_lblNorkMezuak.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNorkMezuak.gridx = 0;
-		gbc_lblNorkMezuak.gridy = 4;
-		contentPane.add(lblNorkMezuak, gbc_lblNorkMezuak);
+		GridBagConstraints gbclblNorkMezuak = new GridBagConstraints();
+		gbclblNorkMezuak.gridwidth = 4;
+		gbclblNorkMezuak.anchor = GridBagConstraints.NORTHWEST;
+		gbclblNorkMezuak.insets = new Insets(0, 0, 5, 5);
+		gbclblNorkMezuak.gridx = 0;
+		gbclblNorkMezuak.gridy = 4;
+		contentPane.add(lblNorkMezuak, gbclblNorkMezuak);
 		
 		lblNoriMezuak = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("ErreklamazioaGestionatu.Mezuak"));
-		GridBagConstraints gbc_lblNoriMezuak = new GridBagConstraints();
-		gbc_lblNoriMezuak.gridwidth = 3;
-		gbc_lblNoriMezuak.anchor = GridBagConstraints.NORTHWEST;
-		gbc_lblNoriMezuak.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNoriMezuak.gridx = 4;
-		gbc_lblNoriMezuak.gridy = 4;
-		contentPane.add(lblNoriMezuak, gbc_lblNoriMezuak);
+		GridBagConstraints gbclblNoriMezuak = new GridBagConstraints();
+		gbclblNoriMezuak.gridwidth = 3;
+		gbclblNoriMezuak.anchor = GridBagConstraints.NORTHWEST;
+		gbclblNoriMezuak.insets = new Insets(0, 0, 5, 5);
+		gbclblNoriMezuak.gridx = 4;
+		gbclblNoriMezuak.gridy = 4;
+		contentPane.add(lblNoriMezuak, gbclblNoriMezuak);
 		
 		lblAdminMezuak = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("ErreklamazioaGestionatu.Mezuak") + " Admin");
-		GridBagConstraints gbc_lblAdminMezuak = new GridBagConstraints();
-		gbc_lblAdminMezuak.anchor = GridBagConstraints.NORTHWEST;
-		gbc_lblAdminMezuak.insets = new Insets(0, 0, 5, 5);
-		gbc_lblAdminMezuak.gridx = 7;
-		gbc_lblAdminMezuak.gridy = 4;
-		contentPane.add(lblAdminMezuak, gbc_lblAdminMezuak);
+		GridBagConstraints gbclblAdminMezuak = new GridBagConstraints();
+		gbclblAdminMezuak.anchor = GridBagConstraints.NORTHWEST;
+		gbclblAdminMezuak.insets = new Insets(0, 0, 5, 5);
+		gbclblAdminMezuak.gridx = 7;
+		gbclblAdminMezuak.gridy = 4;
+		contentPane.add(lblAdminMezuak, gbclblAdminMezuak);
 		
 		panelNorkMezuak = new JPanel();
 		panelNorkMezuak.setLayout(new GridLayout(0, 1, 0, 5));
@@ -180,33 +180,33 @@ public class ErreklamazioaGestionatuGUI extends JFrame {
 		panelMezuak.add(scrollPaneNori);
 		panelMezuak.add(scrollPaneAdmin);
 		
-		GridBagConstraints gbc_panelScrolls = new GridBagConstraints();
-		gbc_panelScrolls.insets = new Insets(0, 0, 5, 0);
-		gbc_panelScrolls.fill = GridBagConstraints.BOTH;
-		gbc_panelScrolls.gridx = 0;
-		gbc_panelScrolls.gridy = 5;
-		gbc_panelScrolls.gridwidth = GridBagConstraints.REMAINDER;
-		gbc_panelScrolls.weightx = 1.0;
-		gbc_panelScrolls.weighty = 1.0;
-		contentPane.add(panelMezuak, gbc_panelScrolls);
+		GridBagConstraints gbcpanelScrolls = new GridBagConstraints();
+		gbcpanelScrolls.insets = new Insets(0, 0, 5, 0);
+		gbcpanelScrolls.fill = GridBagConstraints.BOTH;
+		gbcpanelScrolls.gridx = 0;
+		gbcpanelScrolls.gridy = 5;
+		gbcpanelScrolls.gridwidth = GridBagConstraints.REMAINDER;
+		gbcpanelScrolls.weightx = 1.0;
+		gbcpanelScrolls.weighty = 1.0;
+		contentPane.add(panelMezuak, gbcpanelScrolls);
 		
 		JLabel lblNewLabel = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("ErreklamazioaGestionatu.Berria"));
-		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
-		gbc_lblNewLabel.anchor = GridBagConstraints.WEST;
-		gbc_lblNewLabel.gridwidth = 7;
-		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel.gridx = 0;
-		gbc_lblNewLabel.gridy = 6;
-		contentPane.add(lblNewLabel, gbc_lblNewLabel);
+		GridBagConstraints gbclblNewLabel = new GridBagConstraints();
+		gbclblNewLabel.anchor = GridBagConstraints.WEST;
+		gbclblNewLabel.gridwidth = 7;
+		gbclblNewLabel.insets = new Insets(0, 0, 5, 5);
+		gbclblNewLabel.gridx = 0;
+		gbclblNewLabel.gridy = 6;
+		contentPane.add(lblNewLabel, gbclblNewLabel);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
-		gbc_scrollPane.gridwidth = 7;
-		gbc_scrollPane.insets = new Insets(0, 0, 0, 5);
-		gbc_scrollPane.fill = GridBagConstraints.BOTH;
-		gbc_scrollPane.gridx = 0;
-		gbc_scrollPane.gridy = 7;
-		contentPane.add(scrollPane, gbc_scrollPane);
+		GridBagConstraints gbcscrollPane = new GridBagConstraints();
+		gbcscrollPane.gridwidth = 7;
+		gbcscrollPane.insets = new Insets(0, 0, 0, 5);
+		gbcscrollPane.fill = GridBagConstraints.BOTH;
+		gbcscrollPane.gridx = 0;
+		gbcscrollPane.gridy = 7;
+		contentPane.add(scrollPane, gbcscrollPane);
 		
 		JTextArea textArea = new JTextArea();
 		scrollPane.setViewportView(textArea);
@@ -222,11 +222,11 @@ public class ErreklamazioaGestionatuGUI extends JFrame {
 				mezuakKargatu();
 			}
 		});
-		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
-		gbc_btnNewButton.insets = new Insets(0, 0, 0, 5);
-		gbc_btnNewButton.gridx = 7;
-		gbc_btnNewButton.gridy = 7;
-		contentPane.add(btnNewButton, gbc_btnNewButton);
+		GridBagConstraints gbcbtnNewButton = new GridBagConstraints();
+		gbcbtnNewButton.insets = new Insets(0, 0, 0, 5);
+		gbcbtnNewButton.gridx = 7;
+		gbcbtnNewButton.gridy = 7;
+		contentPane.add(btnNewButton, gbcbtnNewButton);
 		
 		
 		

@@ -42,7 +42,8 @@ public class DataAccess  {
 	ConfigXML c=ConfigXML.getInstance();
 
 	public DataAccess() throws IOException  {
-	    System.setProperty("objectdb.conf", "lib//objectdb.conf");
+	    // ObjectDB 10 entitate baino gehiago
+		// System.setProperty("objectdb.conf", "lib//objectdb.conf");
 	    if (c.isDatabaseInitialized()) {
 	        String fileName = c.getDbFilename();
 	        Path fileToDelete = Paths.get(fileName);

@@ -49,21 +49,6 @@ public class DriverMenuGUI extends JFrame {
 	private JMenuItem itemErreklamazioaSortu;
 
 	/**
-	 * Launch the application.
-	 *//*
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					DriverMenuGUI frame = new DriverMenuGUI();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}*/
-	/**
 	 * Create the frame.
 	 */
 	public DriverMenuGUI(Driver driver) {

@@ -338,13 +338,9 @@ public class CreateRideGUI extends JFrame {
 				jLabelMsg.setText(ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.RideCreated"));
 
 				facade.alertaAurkitua(hiriak, UtilDate.trim(jCalendar.getDate()));
-			} catch (RideMustBeLaterThanTodayException e1) {
-				// TODO Auto-generated catch block
+			} catch (RideMustBeLaterThanTodayException | RideAlreadyExistException e1) {
 				jLabelMsg.setText(e1.getMessage());
-			} catch (RideAlreadyExistException e1) {
-				// TODO Auto-generated catch block
-				jLabelMsg.setText(e1.getMessage());
-			} catch (IllegalArgumentException | NullPointerException e1) {
+			}  catch (IllegalArgumentException | NullPointerException e1) {
 				jLabelMsg.setText(ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.ErrorIncorrectData"));
 			}
 		}
