@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 
 import org.junit.After;
 import org.junit.Before;
@@ -39,6 +40,9 @@ public class SortuAlertaMockWhiteTest {
 	protected EntityManager db;
 	@Mock
 	protected EntityTransaction  et;
+	
+	@Mock
+	protected TypedQuery<Ride> typedQueryRide;
 	
 	@Before
     public  void init() {
@@ -168,7 +172,8 @@ public class SortuAlertaMockWhiteTest {
 		Traveler t = new Traveler(travelerEmail, null, "traveler", null);
 
 		Mockito.doReturn(t).when(db).find(Traveler.class, travelerEmail);
-		
+		Mockito.when(db.createQuery("SELECT r FROM Ride r WHERE r.egoera = :egoera AND r.date BETWEEN :first AND :last AND r.eserLibre<>0", Ride.class)).thenReturn(typedQueryRide);
+		Mockito.when(typedQueryRide.getResultList()).thenReturn(Arrays.asList());
 		
 		sut.open();
 		try {
@@ -176,7 +181,7 @@ public class SortuAlertaMockWhiteTest {
 			sut.close();
 			assertTrue(true);
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 			fail();
 		}
 	}
