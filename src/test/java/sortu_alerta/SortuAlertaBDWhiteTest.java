@@ -87,20 +87,15 @@ public class SortuAlertaBDWhiteTest {
 		String travelerEmail = "traveler@gmail.com";
 		String travelerName = "Traveler1";
 		
-		String driverEmail="driver@gmail.com";
-		String driverName="Driver1";
-		
 		String from = "Bilbo";
 		String to = "Gasteiz";
 		
 		Date rideDate = new Date();
 		
 		testDA.open();
-		Ride r = testDA.addDriverWithRide(driverEmail, driverName, from, to, rideDate, 4, 10,2);
-		int rideNumber = r.getRideNumber();
 		double dirua = 100;
 		Traveler t = testDA.createTraveler(travelerEmail, travelerName,dirua);
-		testDA.addErreserbaToTraveler(t, rideNumber, 1, from, to, 10);
+		testDA.addErreserbaToTraveler(t, 100, 1, from, to, 10);
 		testDA.close();
 		
 		sut.open();
@@ -116,9 +111,7 @@ public class SortuAlertaBDWhiteTest {
 			assertTrue(true);
 		} finally {
 			testDA.open();
-			testDA.removeRide(rideNumber);
 			testDA.removeUser(travelerEmail);
-			testDA.removeUser(driverEmail);
 			testDA.close();
 		}
 	}

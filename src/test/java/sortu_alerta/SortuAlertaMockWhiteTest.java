@@ -107,12 +107,10 @@ public class SortuAlertaMockWhiteTest {
 		Date rideDate = new Date(System.currentTimeMillis()+1000000);
 		
 		Traveler t = new Traveler(travelerEmail, null, travelerName, null);
-		Ride r = new Ride(Arrays.asList(from,to), Arrays.asList(1.2), rideDate, 2, null, null);
 		
-		t.sortuErreserba(r, 1, from, to, 1.2);
+		t.sortuErreserba(null, 1, from, to, 1.2);
 		
 		Mockito.doReturn(t).when(db).find(Traveler.class, travelerEmail);
-		Mockito.doReturn(r).when(db).find(Ride.class, rideNumber);
 		Mockito.when(db.createQuery("SELECT r FROM Ride r WHERE r.egoera = :egoera AND r.date BETWEEN :first AND :last AND r.eserLibre<>0", Ride.class)).thenReturn(typedQueryRide);
 		Mockito.when(typedQueryRide.getResultList()).thenReturn(Arrays.asList());
 		
