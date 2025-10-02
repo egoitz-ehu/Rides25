@@ -220,6 +220,18 @@ public class TestDataAccess {
 			System.out.println(">> TestDataAccess: getDriver");
 			return db.find(Driver.class, email);
 		}
+		
+		public void addAlertaToTraveler(Traveler t, String from, String to, Date date) {
+			System.out.println(">> TestDataAccess: addAlertaToTraveler");
+			db.getTransaction().begin();
+			try {
+				t.sortuAlerta(from, to, date);
+				db.getTransaction().commit();
+			}
+			catch (Exception e){
+				e.printStackTrace();
+			}
+		}
 }
 
 
