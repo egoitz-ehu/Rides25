@@ -18,6 +18,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import domain.Driver;
+import domain.ErreserbaEgoera;
 import domain.Ride;
 import domain.RideEgoera;
 
@@ -45,23 +46,6 @@ public class BidaiaKantzelatuGUI extends JFrame {
 	};
 	private JLabel lblNewLabel;
 	/**
-	 * Launch the application.
-	 */
-	/*
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					BidaiaKantzelatuGUI frame = new BidaiaKantzelatuGUI();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-*/
-	/**
 	 * Create the frame.
 	 */
 	public BidaiaKantzelatuGUI(Driver d) {
@@ -70,22 +54,22 @@ public class BidaiaKantzelatuGUI extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
-		GridBagLayout gbl_contentPane = new GridBagLayout();
-		gbl_contentPane.columnWidths = new int[] {0, 0, 0};
-		gbl_contentPane.rowHeights = new int[] {220, 0, 30};
-		gbl_contentPane.columnWeights = new double[]{1.0, 0.0, 1.0};
-		gbl_contentPane.rowWeights = new double[]{1.0, 0.0, 1.0};
-		contentPane.setLayout(gbl_contentPane);
+		GridBagLayout gblContentPane = new GridBagLayout();
+		gblContentPane.columnWidths = new int[] {0, 0, 0};
+		gblContentPane.rowHeights = new int[] {220, 0, 30};
+		gblContentPane.columnWeights = new double[]{1.0, 0.0, 1.0};
+		gblContentPane.rowWeights = new double[]{1.0, 0.0, 1.0};
+		contentPane.setLayout(gblContentPane);
 		
 		JScrollPane scrollPane = new JScrollPane();
 
-		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
-		gbc_scrollPane.gridwidth = 3;
-		gbc_scrollPane.insets = new Insets(0, 0, 5, 0);
-		gbc_scrollPane.fill = GridBagConstraints.BOTH;
-		gbc_scrollPane.gridx = 0;
-		gbc_scrollPane.gridy = 0;
-		contentPane.add(scrollPane, gbc_scrollPane);
+		GridBagConstraints gbcScrollPane = new GridBagConstraints();
+		gbcScrollPane.gridwidth = 3;
+		gbcScrollPane.insets = new Insets(0, 0, 5, 0);
+		gbcScrollPane.fill = GridBagConstraints.BOTH;
+		gbcScrollPane.gridx = 0;
+		gbcScrollPane.gridy = 0;
+		contentPane.add(scrollPane, gbcScrollPane);
 		
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
@@ -98,7 +82,6 @@ public class BidaiaKantzelatuGUI extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				int selectedRow = table.getSelectedRow();
-				System.out.println("Selected row:"+selectedRow);
 				if (selectedRow != -1) {
 		            selectedRide = (Ride) tableModel.getValueAt(selectedRow, 3);
 		            if(selectedRide.getEgoera().equals(RideEgoera.KANTZELATUTA)) {
@@ -115,13 +98,7 @@ public class BidaiaKantzelatuGUI extends JFrame {
 		});
 
 		tableModel = new DefaultTableModel(null,columnNamesRides);
-		/*
-		table.getColumnModel().getColumn(0).setPreferredWidth(30);
-		table.getColumnModel().getColumn(1).setPreferredWidth(30);
-		table.getColumnModel().getColumn(2).setPreferredWidth(30);
-		table.getColumnModel().getColumn(3).setPreferredWidth(90);
-		table.getColumnModel().getColumn(4).setPreferredWidth(40);
-		*/
+
 		tableModel.setColumnCount(4);
 		table.setModel(tableModel);
 		
@@ -142,17 +119,17 @@ public class BidaiaKantzelatuGUI extends JFrame {
 		});
 		
 		lblNewLabel = new JLabel(""); //$NON-NLS-1$ //$NON-NLS-2$
-		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
-		gbc_lblNewLabel.gridwidth = 3;
-		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel.gridx = 0;
-		gbc_lblNewLabel.gridy = 1;
-		contentPane.add(lblNewLabel, gbc_lblNewLabel);
-		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
-		gbc_btnNewButton.insets = new Insets(0, 0, 0, 5);
-		gbc_btnNewButton.gridx = 0;
-		gbc_btnNewButton.gridy = 2;
-		contentPane.add(buttonKantzelatu, gbc_btnNewButton);
+		GridBagConstraints gbcLblNewLabel = new GridBagConstraints();
+		gbcLblNewLabel.gridwidth = 3;
+		gbcLblNewLabel.insets = new Insets(0, 0, 5, 5);
+		gbcLblNewLabel.gridx = 0;
+		gbcLblNewLabel.gridy = 1;
+		contentPane.add(lblNewLabel, gbcLblNewLabel);
+		GridBagConstraints gbcBtnNewButton = new GridBagConstraints();
+		gbcBtnNewButton.insets = new Insets(0, 0, 0, 5);
+		gbcBtnNewButton.gridx = 0;
+		gbcBtnNewButton.gridy = 2;
+		contentPane.add(buttonKantzelatu, gbcBtnNewButton);
 		buttonKantzelatu.setEnabled(false);
 		
 		buttonItxi = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Close"));
@@ -161,10 +138,10 @@ public class BidaiaKantzelatuGUI extends JFrame {
 				itxi(e);
 			}
 		});
-		GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
-		gbc_btnNewButton_1.gridx = 2;
-		gbc_btnNewButton_1.gridy = 2;
-		contentPane.add(buttonItxi, gbc_btnNewButton_1);
+		GridBagConstraints gbcBtnNewButton_1 = new GridBagConstraints();
+		gbcBtnNewButton_1.gridx = 2;
+		gbcBtnNewButton_1.gridy = 2;
+		contentPane.add(buttonItxi, gbcBtnNewButton_1);
 		buttonItxi.setEnabled(false);
 		
 		// Taula osatu
@@ -178,13 +155,11 @@ public class BidaiaKantzelatuGUI extends JFrame {
 			String eg = null;
 			row.add(r.getRideNumber());
 			row.add(r.getDate());
-			switch(r.getEgoera()){
-			case KANTZELATUTA:
+			if(r.getEgoera()==RideEgoera.KANTZELATUTA){
 				eg=ResourceBundle.getBundle("Etiquetas").getString("BidaiaKantzelatuGUI.EgoeraKantzelatua");
-				break;
-			case MARTXAN:
+			}
+			else if(r.getEgoera()==RideEgoera.MARTXAN) {
 				eg=ResourceBundle.getBundle("Etiquetas").getString("BidaiaKantzelatuGUI.EgoeraMartxan");
-				break;
 			}
 			row.add(eg);
 			row.add(r); //Informazio gordetzeko zutabea

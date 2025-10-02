@@ -17,7 +17,7 @@ import java.awt.event.ActionListener;
 public class AlertakIkusiGUI extends JFrame {
 
 	private JPanel contentPane;
-	List<Alerta> aList;
+	private List<Alerta> aList;
 	
 	JScrollPane panelAurkitua;
 	JPanel listaAurkitua;
@@ -42,21 +42,21 @@ public class AlertakIkusiGUI extends JFrame {
 		contentPane.setLayout(gblContentPane);
 		
 		lblNewLabel = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("AlertakIkusiGUI.Aurkituak"));
-		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
-		gbc_lblNewLabel.fill = GridBagConstraints.BOTH;
-		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 0);
-		gbc_lblNewLabel.gridx = 0;
-		gbc_lblNewLabel.gridy = 0;
-		contentPane.add(lblNewLabel, gbc_lblNewLabel);
+		GridBagConstraints gbclLblNewLabel = new GridBagConstraints();
+		gbclLblNewLabel.fill = GridBagConstraints.BOTH;
+		gbclLblNewLabel.insets = new Insets(0, 0, 5, 0);
+		gbclLblNewLabel.gridx = 0;
+		gbclLblNewLabel.gridy = 0;
+		contentPane.add(lblNewLabel, gbclLblNewLabel);
 		
 				panelAurkitua = new JScrollPane();
-				GridBagConstraints gbc_panelAurkitua = new GridBagConstraints();
-				gbc_panelAurkitua.gridheight = 2;
-				gbc_panelAurkitua.fill = GridBagConstraints.BOTH;
-				gbc_panelAurkitua.insets = new Insets(0, 0, 5, 0);
-				gbc_panelAurkitua.gridx = 0;
-				gbc_panelAurkitua.gridy = 1;
-				contentPane.add(panelAurkitua, gbc_panelAurkitua);
+				GridBagConstraints gbcPanelAurkitua = new GridBagConstraints();
+				gbcPanelAurkitua.gridheight = 2;
+				gbcPanelAurkitua.fill = GridBagConstraints.BOTH;
+				gbcPanelAurkitua.insets = new Insets(0, 0, 5, 0);
+				gbcPanelAurkitua.gridx = 0;
+				gbcPanelAurkitua.gridy = 1;
+				contentPane.add(panelAurkitua, gbcPanelAurkitua);
 				
 				listaAurkitua = new JPanel();
 				listaAurkitua.setLayout(new BoxLayout(listaAurkitua, BoxLayout.Y_AXIS));
@@ -64,20 +64,20 @@ public class AlertakIkusiGUI extends JFrame {
 				panelAurkitua.setViewportView(listaAurkitua);
 		
 		lblNewLabel1 = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("AlertakIkusiGUI.Finding"));
-		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
-		gbc_lblNewLabel_1.fill = GridBagConstraints.BOTH;
-		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 0);
-		gbc_lblNewLabel_1.gridx = 0;
-		gbc_lblNewLabel_1.gridy = 3;
-		contentPane.add(lblNewLabel1, gbc_lblNewLabel_1);
+		GridBagConstraints gbcLblNewLabel1 = new GridBagConstraints();
+		gbcLblNewLabel1.fill = GridBagConstraints.BOTH;
+		gbcLblNewLabel1.insets = new Insets(0, 0, 5, 0);
+		gbcLblNewLabel1.gridx = 0;
+		gbcLblNewLabel1.gridy = 3;
+		contentPane.add(lblNewLabel1, gbcLblNewLabel1);
 		
 		panelZain = new JScrollPane();
-		GridBagConstraints gbc_panelZain = new GridBagConstraints();
-		gbc_panelZain.gridheight = 2;
-		gbc_panelZain.fill = GridBagConstraints.BOTH;
-		gbc_panelZain.gridx = 0;
-		gbc_panelZain.gridy = 4;
-		contentPane.add(panelZain, gbc_panelZain);
+		GridBagConstraints gbcPanelZain = new GridBagConstraints();
+		gbcPanelZain.gridheight = 2;
+		gbcPanelZain.fill = GridBagConstraints.BOTH;
+		gbcPanelZain.gridx = 0;
+		gbcPanelZain.gridy = 4;
+		contentPane.add(panelZain, gbcPanelZain);
 		
 		listaZain = new JPanel();
 		listaZain.setLayout(new BoxLayout(listaZain, BoxLayout.Y_AXIS));

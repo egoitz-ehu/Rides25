@@ -23,6 +23,7 @@ import exceptions.DagoenekoOnartuaException;
 import exceptions.DatuakNullException;
 import exceptions.DiruaEzDaukaException;
 import exceptions.ErreserbaAlreadyExistsException;
+import exceptions.ErreserbaEgoeraEzDaZainException;
 import exceptions.EserlekurikLibreEzException;
 import exceptions.RideAlreadyExistException;
 
@@ -108,7 +109,7 @@ public interface BLFacade  {
 	
 	@WebMethod public void onartuErreserba(int erreserbaNum, String d) throws DagoenekoOnartuaException,DatuakNullException;
 	
-	@WebMethod public void ukatuErreserba(int erreserbaNum, int r);
+	@WebMethod public void ukatuErreserba(int erreserbaNum, int r) throws DatuakNullException, ErreserbaEgoeraEzDaZainException;
 	
 	@WebMethod public List<Ride> getDriverAllRides(String driverEmail);
 	

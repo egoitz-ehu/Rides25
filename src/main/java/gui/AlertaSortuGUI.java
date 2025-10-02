@@ -21,8 +21,6 @@ public class AlertaSortuGUI extends JFrame {
     private JTextField textFrom;
     private JTextField textField;
     private JCalendar jCalendar1 = new JCalendar();
-    private Calendar calendarAnt = null;
-    private Calendar calendarAct = null;
 
     public AlertaSortuGUI(Traveler t) {
         setBounds(100, 100, 450, 317);
@@ -79,6 +77,8 @@ public class AlertaSortuGUI extends JFrame {
     }
 
     private void updateCalendar(Calendar oldCal, Calendar newCal) {
+    	Calendar calendarAnt;
+    	Calendar  calendarAct;
         calendarAnt = oldCal;
         calendarAct = newCal;
 
@@ -92,12 +92,6 @@ public class AlertaSortuGUI extends JFrame {
                 newCal.set(Calendar.DAY_OF_MONTH, 1);
             }
             jCalendar1.setCalendar(newCal);
-        }
-
-        try {
-            System.out.println(UtilDate.trim(jCalendar1.getDate()));
-        } catch (Exception e1) {
-            e1.printStackTrace();
         }
     }
 

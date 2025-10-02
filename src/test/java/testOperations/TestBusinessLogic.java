@@ -49,20 +49,6 @@ public class TestBusinessLogic {
 			dbManagerTest.close();
 			return r.getDriver();
 
-		}/*
-		public boolean existRide(String email, String from, String to, Date date) {
-			dbManagerTest.open();
-			boolean b=dbManagerTest.existRide(email, from, to, date);
-			dbManagerTest.close();
-			return b;
 		}
-		public Ride removeRide(String email,String from, String to, Date date ) {
-			dbManagerTest.open();
-			Ride r=dbManagerTest.removeRide( email, from,  to,  date );
-			dbManagerTest.close();
-			return r;
-		}*/
-		
-
 
 }

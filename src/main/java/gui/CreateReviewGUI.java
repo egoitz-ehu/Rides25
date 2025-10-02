@@ -40,22 +40,6 @@ public class CreateReviewGUI extends JFrame {
 	private DefaultComboBoxModel<Erreserba> model = new DefaultComboBoxModel<Erreserba>();
 
 	/**
-	 * Launch the application.
-	 */
-/*	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					CreateReviewGUI frame = new CreateReviewGUI();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}*/
-
-	/**
 	 * Create the frame.
 	 */
 	public CreateReviewGUI(User u) {
@@ -64,12 +48,12 @@ public class CreateReviewGUI extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
-		GridBagLayout gbl_contentPane = new GridBagLayout();
-		gbl_contentPane.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_contentPane.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_contentPane.columnWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
-		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		contentPane.setLayout(gbl_contentPane);
+		GridBagLayout gblContentPane = new GridBagLayout();
+		gblContentPane.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gblContentPane.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gblContentPane.columnWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gblContentPane.rowWeights = new double[]{0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		contentPane.setLayout(gblContentPane);
 		
 		JLabel lblErreserba = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("CreateReviewGUI.erreserba"));
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
@@ -86,22 +70,22 @@ public class CreateReviewGUI extends JFrame {
 			}
 		});
 		comboBox.setModel(model);
-		GridBagConstraints gbc_comboBox = new GridBagConstraints();
-		gbc_comboBox.insets = new Insets(0, 0, 5, 0);
-		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
-		gbc_comboBox.gridx = 7;
-		gbc_comboBox.gridy = 0;
-		contentPane.add(comboBox, gbc_comboBox);
+		GridBagConstraints gbcComboBox = new GridBagConstraints();
+		gbcComboBox.insets = new Insets(0, 0, 5, 0);
+		gbcComboBox.fill = GridBagConstraints.HORIZONTAL;
+		gbcComboBox.gridx = 7;
+		gbcComboBox.gridy = 0;
+		contentPane.add(comboBox, gbcComboBox);
 		
 		JPanel panelStars = new JPanel();
-		GridBagConstraints gbc_panel = new GridBagConstraints();
-		gbc_panel.gridheight = 3;
-		gbc_panel.gridwidth = 8;
-		gbc_panel.insets = new Insets(0, 0, 5, 0);
-		gbc_panel.fill = GridBagConstraints.BOTH;
-		gbc_panel.gridx = 0;
-		gbc_panel.gridy = 2;
-		contentPane.add(panelStars, gbc_panel);
+		GridBagConstraints gbcPanel = new GridBagConstraints();
+		gbcPanel.gridheight = 3;
+		gbcPanel.gridwidth = 8;
+		gbcPanel.insets = new Insets(0, 0, 5, 0);
+		gbcPanel.fill = GridBagConstraints.BOTH;
+		gbcPanel.gridx = 0;
+		gbcPanel.gridy = 2;
+		contentPane.add(panelStars, gbcPanel);
 		
 		panelStars.setLayout(new GridLayout(1, 5, 5, 5));
 
@@ -134,21 +118,21 @@ public class CreateReviewGUI extends JFrame {
 		}
 		
 		JLabel lblMezua = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("CreateReviewGUI.sartuMezua"));
-		GridBagConstraints gbc_lblMezua = new GridBagConstraints();
-		gbc_lblMezua.insets = new Insets(0, 0, 5, 5);
-		gbc_lblMezua.gridx = 0;
-		gbc_lblMezua.gridy = 5;
-		contentPane.add(lblMezua, gbc_lblMezua);
+		GridBagConstraints gbcLblMezua = new GridBagConstraints();
+		gbcLblMezua.insets = new Insets(0, 0, 5, 5);
+		gbcLblMezua.gridx = 0;
+		gbcLblMezua.gridy = 5;
+		contentPane.add(lblMezua, gbcLblMezua);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
-		gbc_scrollPane.gridheight = 2;
-		gbc_scrollPane.gridwidth = 8;
-		gbc_scrollPane.insets = new Insets(0, 0, 5, 0);
-		gbc_scrollPane.fill = GridBagConstraints.BOTH;
-		gbc_scrollPane.gridx = 0;
-		gbc_scrollPane.gridy = 6;
-		contentPane.add(scrollPane, gbc_scrollPane);
+		GridBagConstraints gbcScrollPane = new GridBagConstraints();
+		gbcScrollPane.gridheight = 2;
+		gbcScrollPane.gridwidth = 8;
+		gbcScrollPane.insets = new Insets(0, 0, 5, 0);
+		gbcScrollPane.fill = GridBagConstraints.BOTH;
+		gbcScrollPane.gridx = 0;
+		gbcScrollPane.gridy = 6;
+		contentPane.add(scrollPane, gbcScrollPane);
 		
 		JTextArea textArea = new JTextArea();
 		scrollPane.setViewportView(textArea);
@@ -163,11 +147,11 @@ public class CreateReviewGUI extends JFrame {
 				}
 			}
 		});
-		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
-		gbc_btnNewButton.gridwidth = 8;
-		gbc_btnNewButton.gridx = 0;
-		gbc_btnNewButton.gridy = 9;
-		contentPane.add(btnNewButton, gbc_btnNewButton);
+		GridBagConstraints gbcBtnNewButton = new GridBagConstraints();
+		gbcBtnNewButton.gridwidth = 8;
+		gbcBtnNewButton.gridx = 0;
+		gbcBtnNewButton.gridy = 9;
+		contentPane.add(btnNewButton, gbcBtnNewButton);
 		
 		lortuErreserbak(u);
 	}

@@ -30,6 +30,7 @@ import exceptions.DagoenekoOnartuaException;
 import exceptions.DatuakNullException;
 import exceptions.DiruaEzDaukaException;
 import exceptions.ErreserbaAlreadyExistsException;
+import exceptions.ErreserbaEgoeraEzDaZainException;
 import exceptions.EserlekurikLibreEzException;
 import exceptions.RideAlreadyExistException;
 
@@ -49,11 +50,8 @@ public class BLFacadeImplementation  implements BLFacade {
 		    try {
 				dbManager=new DataAccess();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		    
-		//dbManager.close();
 
 		
 	}
@@ -135,7 +133,6 @@ public class BLFacadeImplementation  implements BLFacade {
 			dB4oManager = new DataAccess();
 			dB4oManager.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -216,7 +213,7 @@ public class BLFacadeImplementation  implements BLFacade {
 	}
 
 	@WebMethod
-	public void ukatuErreserba(int erreserbaNum, int r) {
+	public void ukatuErreserba(int erreserbaNum, int r) throws DatuakNullException, ErreserbaEgoeraEzDaZainException {
 		dbManager.open();
 		dbManager.erreserbaUkatu(erreserbaNum, r);
 		dbManager.close();
@@ -265,7 +262,6 @@ public class BLFacadeImplementation  implements BLFacade {
 		dbManager.open();
 		dbManager.kantzelatuBidaia(r, d);
 		dbManager.close();
-		System.out.println("Bidaia kantzelatu da.");
 	}
 
 	@WebMethod

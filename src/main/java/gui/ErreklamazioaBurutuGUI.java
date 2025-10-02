@@ -68,13 +68,13 @@ public class ErreklamazioaBurutuGUI extends JFrame {
 		contentPane.setLayout(gbl_contentPane);
 		
 		JLabel lblAukeratu = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("ErreklamazioaGestionatu.Aukeratu"));
-		GridBagConstraints gbc_lblAukeratu = new GridBagConstraints();
-		gbc_lblAukeratu.gridwidth = 3;
-		gbc_lblAukeratu.anchor = GridBagConstraints.WEST;
-		gbc_lblAukeratu.insets = new Insets(0, 0, 5, 5);
-		gbc_lblAukeratu.gridx = 0;
-		gbc_lblAukeratu.gridy = 0;
-		contentPane.add(lblAukeratu, gbc_lblAukeratu);
+		GridBagConstraints gbcLblAukeratu = new GridBagConstraints();
+		gbcLblAukeratu.gridwidth = 3;
+		gbcLblAukeratu.anchor = GridBagConstraints.WEST;
+		gbcLblAukeratu.insets = new Insets(0, 0, 5, 5);
+		gbcLblAukeratu.gridx = 0;
+		gbcLblAukeratu.gridy = 0;
+		contentPane.add(lblAukeratu, gbcLblAukeratu);
 		
 		JComboBox comboBox = new JComboBox();
 		comboBox.addActionListener(new ActionListener() {
@@ -84,14 +84,14 @@ public class ErreklamazioaBurutuGUI extends JFrame {
 			}
 		});
 
-		GridBagConstraints gbc_comboBox = new GridBagConstraints();
-		gbc_comboBox.anchor = GridBagConstraints.NORTH;
-		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
-		gbc_comboBox.insets = new Insets(0, 0, 5, 5);
-		gbc_comboBox.gridwidth = 3;
-		gbc_comboBox.gridx = 5;
-		gbc_comboBox.gridy = 0;
-		contentPane.add(comboBox, gbc_comboBox);
+		GridBagConstraints gbcComboBox = new GridBagConstraints();
+		gbcComboBox.anchor = GridBagConstraints.NORTH;
+		gbcComboBox.fill = GridBagConstraints.HORIZONTAL;
+		gbcComboBox.insets = new Insets(0, 0, 5, 5);
+		gbcComboBox.gridwidth = 3;
+		gbcComboBox.gridx = 5;
+		gbcComboBox.gridy = 0;
+		contentPane.add(comboBox, gbcComboBox);
 		
 		modelErreklamazioa = new DefaultComboBoxModel<Erreklamazioa>();
 		comboBox.setModel(modelErreklamazioa);

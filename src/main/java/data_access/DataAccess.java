@@ -1,13 +1,9 @@
 package data_access;
 
-import java.awt.Container;
-import java.io.File;
 import java.io.IOException;
-import java.net.NoRouteToHostException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -32,6 +28,7 @@ import exceptions.DagoenekoOnartuaException;
 import exceptions.DatuakNullException;
 import exceptions.DiruaEzDaukaException;
 import exceptions.ErreserbaAlreadyExistsException;
+import exceptions.ErreserbaEgoeraEzDaZainException;
 import exceptions.EserlekurikLibreEzException;
 import exceptions.RideAlreadyExistException;
 import exceptions.RideMustBeLaterThanTodayException;
@@ -45,7 +42,8 @@ public class DataAccess  {
 	ConfigXML c=ConfigXML.getInstance();
 
 	public DataAccess() throws IOException  {
-	   // System.setProperty("objectdb.conf", "lib//objectdb.conf");
+	    // ObjectDB 10 entitate baino gehiago
+		// System.setProperty("objectdb.conf", "lib//objectdb.conf");
 	    if (c.isDatabaseInitialized()) {
 	        String fileName = c.getDbFilename();
 	        Path fileToDelete = Paths.get(fileName);
@@ -272,19 +270,37 @@ public class DataAccess  {
 		db.getTransaction().commit(); 
 	}
 	
-	public void erreserbaUkatu(int erreserbaNum, int rNumber) {
-		db.getTransaction().begin();
-		Erreserba e = db.find(Erreserba.class, erreserbaNum);
-		Traveler t = e.getBidaiaria();
-		Ride r = db.find(Ride.class, rNumber);
-		double kop = e.getPrezioa();
-		int eserKop = e.getPlazaKop();
-		e.setEgoera(ErreserbaEgoera.UKATUA);
-		t.removeFrozenMoney(kop);
-		t.diruaSartu(kop);
-		r.itzuliEserlekuak(eserKop);
-		t.addMugimendua(kop, MugimenduMota.ERRESERBA_UKATU);
-		db.getTransaction().commit();
+	public void erreserbaUkatu(int erreserbaNum, int rNumber) throws DatuakNullException, ErreserbaEgoeraEzDaZainException {
+	    db.getTransaction().begin();
+	    Erreserba e = db.find(Erreserba.class, erreserbaNum);
+	    if(e == null) {
+	        db.getTransaction().commit();
+	        throw new DatuakNullException("Erreserba null da");
+	    }
+	    if(e.getEgoera() != ErreserbaEgoera.ZAIN) {
+	        db.getTransaction().commit();
+	        throw new ErreserbaEgoeraEzDaZainException();
+	    }
+	    Traveler t = db.find(Traveler.class, e.getBidaiariaEmail());
+	    if(t == null) {
+	        db.getTransaction().commit();
+	        throw new DatuakNullException("Bidaiaria null da");
+	    }
+	    Ride r = db.find(Ride.class, rNumber);
+	    if(r == null) {
+	        db.getTransaction().commit();
+	        throw new DatuakNullException("Ride null da");
+	    }
+	    double kop = e.getPrezioa();
+	    int eserKop = e.getPlazaKop();
+
+	    e.setEgoera(ErreserbaEgoera.UKATUA);
+	    t.removeFrozenMoney(kop);
+	    t.diruaSartu(kop);
+	    r.itzuliEserlekuak(eserKop);
+	    t.addMugimendua(kop, MugimenduMota.ERRESERBA_UKATU);
+
+	    db.getTransaction().commit();
 	}
 	
 	public boolean sortuKotxea(String matrikula, int eserKop, String kolorea, String mota, Driver d) {
@@ -463,7 +479,6 @@ public class DataAccess  {
 	}
 
 	public Ride createRide(List<String> hiriakLista, List<Double> prezioList, Date date, Car c, String driverEmail) throws  RideAlreadyExistException, RideMustBeLaterThanTodayException {
-		//System.out.println(">> DataAccess: createRide=> from= "+from+" to= "+to+" driver="+driverEmail+" date "+date);
 		try {
 			if(new Date().compareTo(date)>0) {
 				throw new RideMustBeLaterThanTodayException(ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.ErrorRideMustBeLaterThanToday"));
@@ -479,15 +494,12 @@ public class DataAccess  {
 			}
 			Ride ride = driver.addRide(hiriakLista, prezioList, date,ci.getEserKop(),ci);
 
-			//next instruction can be obviated
-			//db.persist(driver);
 			ci.gehituBidaia(ride);
 			db.persist(ci);
 			db.getTransaction().commit();
 
 			return ride;
 		} catch (NullPointerException e) {
-			// TODO Auto-generated catch block
 			db.getTransaction().commit();
 			return null;
 		}
@@ -638,7 +650,6 @@ public class DataAccess  {
 		er.gehituBalorazioa(ba);
 		db.persist(e);
 		db.getTransaction().commit();
-		System.out.println("Balorazioa sortu da");
 	}
 	
 	public List<Balorazioa> lortuBaloraizoak(String email){
