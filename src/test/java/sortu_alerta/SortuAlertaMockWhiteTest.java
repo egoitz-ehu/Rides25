@@ -19,12 +19,10 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import data_access.DataAccess;
+import domain.Erreserba;
 import domain.Ride;
 import domain.Traveler;
 import exceptions.AlertaAlreadyExistsException;
-import exceptions.DatuakNullException;
-import exceptions.DiruaEzDaukaException;
-import exceptions.EserlekurikLibreEzException;
 import exceptions.ErreserbaAlreadyExistsException;
 import exceptions.BadagoRideException;
 
@@ -96,6 +94,38 @@ public class SortuAlertaMockWhiteTest {
 	// Traveler datu basean dago, ez dauka alertarik from,to,date datuekin baina bai erreserba.
 	// Ondorioz ErreserbaAlreadyExistsException altxatuko du
 	public void test2() {
+		String travelerEmail = "traveler@gmail.com";
+		Traveler t = new Traveler(travelerEmail, "123", "Pepe", "Lopez");
+		
+		String from = "Bilbo";
+		String to = "Donosti";
+		
+		Date rideDate = new Date();
+		Ride r = new Ride(Arrays.asList("Donostia","Bilbo"),Arrays.asList(1.0),rideDate,3,null,null);
+
+		Erreserba e = t.sortuErreserba(r, 1, from, to, 10);
+		System.out.println(e);
+		
+		Mockito.doReturn(t).when(db).find(Traveler.class, travelerEmail);
+		Mockito.doReturn(r).when(db).find(Traveler.class, r.getRideNumber());
+
+		
+		sut.open();
+		try {
+			sut.sortuAlerta(travelerEmail, from, to, e.getErreserbaData());
+			fail();
+		} catch (BadagoRideException | AlertaAlreadyExistsException  e1) {
+			fail();
+		} catch (ErreserbaAlreadyExistsException e2) {
+			assertTrue(true);
+		} finally {
+			sut.close();
+		}
+	}
+	
+	@Test
+	// Ez dauka alerta berdina, ezta erreserbarik, baian existitzen da bidaia bat baldintzak betetzen dituena
+	public void test3() {
 		String travelerEmail = "traveler@gmail.com";
 		String travelerName = "Traveler1";
 		

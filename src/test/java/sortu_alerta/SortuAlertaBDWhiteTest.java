@@ -14,6 +14,7 @@ import org.mockito.Mockito;
 import data_access.DataAccess;
 import domain.Car;
 import domain.Driver;
+import domain.Erreserba;
 import domain.Ride;
 import domain.Traveler;
 import exceptions.AlertaAlreadyExistsException;
@@ -142,7 +143,6 @@ public class SortuAlertaBDWhiteTest {
 			fail();
 			sut.close();
 		}  catch (AlertaAlreadyExistsException | ErreserbaAlreadyExistsException | NullPointerException e) {
-			System.out.println(e.getMessage());
 			sut.close();
 			fail();
 		} catch(BadagoRideException e) {
