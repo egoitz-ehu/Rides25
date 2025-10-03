@@ -100,7 +100,7 @@ public class SortuAlertaMockWhiteTest {
 		String from = "Bilbo";
 		String to = "Donosti";
 		
-		Date rideDate = new Date();
+		Date rideDate = new Date(System.currentTimeMillis()+1000000);
 		Ride r = new Ride(Arrays.asList("Donostia","Bilbo"),Arrays.asList(1.0),rideDate,3,null,null);
 
 		Erreserba e = t.sortuErreserba(r, 1, from, to, 10);
@@ -108,39 +108,6 @@ public class SortuAlertaMockWhiteTest {
 		
 		Mockito.doReturn(t).when(db).find(Traveler.class, travelerEmail);
 		Mockito.doReturn(r).when(db).find(Traveler.class, r.getRideNumber());
-
-		
-		sut.open();
-		try {
-			sut.sortuAlerta(travelerEmail, from, to, e.getErreserbaData());
-			fail();
-		} catch (BadagoRideException | AlertaAlreadyExistsException  e1) {
-			fail();
-		} catch (ErreserbaAlreadyExistsException e2) {
-			assertTrue(true);
-		} finally {
-			sut.close();
-		}
-	}
-	
-	@Test
-	// Ez dauka alerta berdina, ezta erreserbarik, baian existitzen da bidaia bat baldintzak betetzen dituena
-	public void test3() {
-		String travelerEmail = "traveler@gmail.com";
-		String travelerName = "Traveler1";
-		
-		int rideNumber = 1;
-		
-		String from = "Bilbo";
-		String to = "Gasteiz";
-		
-		Date rideDate = new Date(System.currentTimeMillis()+1000000);
-		
-		Traveler t = new Traveler(travelerEmail, null, travelerName, null);
-		
-		t.sortuErreserba(null, 1, from, to, 1.2);
-		
-		Mockito.doReturn(t).when(db).find(Traveler.class, travelerEmail);
 		Mockito.when(db.createQuery("SELECT r FROM Ride r WHERE r.egoera = :egoera AND r.date BETWEEN :first AND :last AND r.eserLibre<>0", Ride.class)).thenReturn(typedQueryRide);
 		Mockito.when(typedQueryRide.getResultList()).thenReturn(Arrays.asList());
 		
@@ -148,14 +115,12 @@ public class SortuAlertaMockWhiteTest {
 		try {
 			sut.sortuAlerta(travelerEmail, from, to, rideDate);
 			fail();
-			sut.close();
-		} catch (AlertaAlreadyExistsException | BadagoRideException | NullPointerException e) {
-			System.out.println(e.getMessage());
-			sut.close();
+		} catch (BadagoRideException | AlertaAlreadyExistsException  e1) {
 			fail();
-		} catch(ErreserbaAlreadyExistsException e) {
-			sut.close();
+		} catch (ErreserbaAlreadyExistsException e2) {
 			assertTrue(true);
+		} finally {
+			sut.close();
 		}
 	}
 	

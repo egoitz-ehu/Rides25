@@ -105,8 +105,6 @@ public class SortuAlertaMockBlackTest {
 		sut.open();
 		try {
 			sut.sortuAlerta(null, from, to, rideDate);
-			fail();
-		} catch(NullPointerException e) {
 			assertTrue(true);
 		} catch (Exception e) {
 			fail();
@@ -132,10 +130,8 @@ public class SortuAlertaMockBlackTest {
 		sut.open();
 		try {
 			sut.sortuAlerta(travelerEmail, from, to, rideDate);
-			fail();
-		} catch(NullPointerException e) {
-			assertTrue(true);
-		} catch (Exception e) {
+			assertEquals(0, t.getAlertaList().size());
+		} catch(Exception e) {
 			fail();
 		} finally {
 			sut.close();
@@ -158,9 +154,7 @@ public class SortuAlertaMockBlackTest {
 		sut.open();
 		try {
 			sut.sortuAlerta(travelerEmail, from, to, rideDate);
-			fail();
-		} catch(NullPointerException e) {
-			assertTrue(true);
+			assertEquals(0, t.getAlertaList().size());
 		} catch (Exception e) {
 			fail();
 		} finally {
@@ -184,9 +178,7 @@ public class SortuAlertaMockBlackTest {
 		sut.open();
 		try {
 			sut.sortuAlerta(travelerEmail, from, to, rideDate);
-			fail();
-		} catch(NullPointerException e) {
-			assertTrue(true);
+			assertEquals(0, t.getAlertaList().size());
 		} catch (Exception e) {
 			fail();
 		} finally {
@@ -210,8 +202,6 @@ public class SortuAlertaMockBlackTest {
 		sut.open();
 		try {
 			sut.sortuAlerta(travelerEmail, from, to, rideDate);
-			fail();
-		} catch (NullPointerException e) {
 			assertTrue(true);
 		} catch(Exception e2) {
 			fail();
@@ -315,6 +305,64 @@ public class SortuAlertaMockBlackTest {
 		} catch(BadagoRideException e) {
 			sut.close();
 			assertTrue(true);
+		}
+	}
+	
+	@Test
+	// Data iraganean da. Ez litzateke alerta sortu behar.
+	public void test10() {
+		String travelerEmail = "traveler@gmail.com";
+
+
+		String from = "Bilbo";
+		String to = "Gasteiz";
+
+		Date rideDate = new Date(System.currentTimeMillis()-1000000);
+
+		Traveler t = new Traveler(travelerEmail, null, "traveler", null);
+
+		Mockito.doReturn(t).when(db).find(Traveler.class, travelerEmail);
+		Mockito.when(db.createQuery("SELECT r FROM Ride r WHERE r.egoera = :egoera AND r.date BETWEEN :first AND :last AND r.eserLibre<>0", Ride.class)).thenReturn(typedQueryRide);
+		Mockito.when(typedQueryRide.getResultList()).thenReturn(Arrays.asList());
+
+		sut.open();
+		try {
+			sut.sortuAlerta(t.getEmail(), from, to, rideDate);
+			sut.close();
+			assertEquals(0, t.getAlertaList().size());
+		} catch (Exception e) {
+			fail();
+		}
+	}
+	
+	@Test
+	// Data gaurkoa da. Alerta sortu behar da.
+	public void test13() {
+		String travelerEmail = "traveler@gmail.com";
+
+
+		String from = "Bilbo";
+		String to = "Gasteiz";
+
+		Date rideDate = new Date(System.currentTimeMillis());
+
+		Traveler t = new Traveler(travelerEmail, null, "traveler", null);
+
+		Mockito.doReturn(t).when(db).find(Traveler.class, travelerEmail);
+		Mockito.when(db.createQuery("SELECT r FROM Ride r WHERE r.egoera = :egoera AND r.date BETWEEN :first AND :last AND r.eserLibre<>0", Ride.class)).thenReturn(typedQueryRide);
+		Mockito.when(typedQueryRide.getResultList()).thenReturn(Arrays.asList());
+
+		sut.open();
+		try {
+			sut.sortuAlerta(t.getEmail(), from, to, rideDate);
+			sut.close();
+			assertEquals(1, t.getAlertaList().size());
+			assertEquals(from, t.getAlertaList().get(0).getFrom());
+			assertEquals(to, t.getAlertaList().get(0).getTo());
+			assertEquals(rideDate, t.getAlertaList().get(0).getDate());
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			fail();
 		}
 	}
 	

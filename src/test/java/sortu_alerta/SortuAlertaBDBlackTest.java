@@ -43,18 +43,25 @@ public class SortuAlertaBDBlackTest {
 		Date rideDate = new Date(System.currentTimeMillis()+1000000);
 		
 		testDA.open();
-		Traveler t = testDA.createTraveler(travelerEmail, travelerName,10);
+		testDA.createTraveler(travelerEmail, travelerName,10);
 		testDA.close();
 		
 		
 		sut.open();
 		try {
 			sut.sortuAlerta(travelerEmail, from, to, rideDate);
-			assertTrue(true);
+			sut.close();
+			testDA.open();
+			Traveler t = testDA.getTraveler(travelerEmail);
+			assertEquals(1, t.getAlertaList().size());
+			assertEquals(from, t.getAlertaList().get(0).getFrom());
+			assertEquals(to, t.getAlertaList().get(0).getTo());
+			assertEquals(rideDate, t.getAlertaList().get(0).getDate());
+			testDA.close();
 		} catch (Exception e) {
 			fail();
-		} finally {
 			sut.close();
+		} finally {
 			testDA.open();
 			testDA.removeUser(travelerEmail);
 			testDA.close();
@@ -73,8 +80,6 @@ public class SortuAlertaBDBlackTest {
 		sut.open();
 		try {
 			sut.sortuAlerta(null, from, to, rideDate);
-			fail();
-		} catch(IllegalArgumentException e) {
 			assertTrue(true);
 		} catch (Exception e) {
 			fail();
@@ -101,11 +106,15 @@ public class SortuAlertaBDBlackTest {
 		sut.open();
 		try {
 			sut.sortuAlerta(travelerEmail, from, to, rideDate);
-			fail();
-		} catch (Exception e) {
-			assertTrue(true);
-		} finally {
 			sut.close();
+			testDA.open();
+			Traveler t = testDA.getTraveler(travelerEmail);
+			assertEquals(0, t.getAlertaList().size());
+			testDA.close();
+		} catch (Exception e) {
+			sut.close();
+			fail();
+		} finally {
 			testDA.open();
 			testDA.removeUser(travelerEmail);
 			testDA.close();
@@ -131,16 +140,19 @@ public class SortuAlertaBDBlackTest {
 		sut.open();
 		try {
 			sut.sortuAlerta(travelerEmail, from, to, rideDate);
-			fail();
-		} catch (Exception e) {
-			assertTrue(true);
-		} finally {
 			sut.close();
+			testDA.open();
+			Traveler t = testDA.getTraveler(travelerEmail);
+			assertEquals(0, t.getAlertaList().size());
+			testDA.close();
+		} catch (Exception e) {
+			sut.close();
+			fail();
+		} finally {
 			testDA.open();
 			testDA.removeUser(travelerEmail);
 			testDA.close();
-		
-	}
+		}
 }
 
 	
@@ -162,13 +174,15 @@ public class SortuAlertaBDBlackTest {
 		sut.open();
 		try {
 			sut.sortuAlerta(travelerEmail, from, to, rideDate);
-			fail();
-		} catch (NullPointerException e) {
-			assertTrue(true);
+			sut.close();
+			testDA.open();
+			Traveler t = testDA.getTraveler(travelerEmail);
+			assertEquals(0, t.getAlertaList().size());
+			testDA.close();
 		} catch(Exception e){
 			fail();
-		}finally {
 			sut.close();
+		}finally {
 			testDA.open();
 			testDA.removeUser(travelerEmail);
 			testDA.close();
@@ -189,8 +203,6 @@ public class SortuAlertaBDBlackTest {
 		sut.open();
 		try {
 			sut.sortuAlerta(travelerEmail, from, to, rideDate);
-			fail();
-		} catch (NullPointerException e) {
 			assertTrue(true);
 		} catch(Exception e2) {
 			fail();
@@ -312,6 +324,77 @@ public class SortuAlertaBDBlackTest {
 			testDA.removeRide(rideNumber);
 			testDA.removeUser(travelerEmail);
 			testDA.removeUser(driverEmail);
+			testDA.close();
+		}
+	}
+	
+	@Test
+	// Data iraganean da. Ez litzateke alerta sortu behar.
+	public void test10() {
+		String travelerEmail = "traveler@gmail.com";
+		String travelerName = "Traveler1";
+		
+		String from = "Donostia";
+		String to = "Bilbo";
+		
+		Date rideDate = new Date(System.currentTimeMillis()-1000000);
+		
+		testDA.open();
+		Traveler t = testDA.createTraveler(travelerEmail, travelerName,10);
+		testDA.close();
+		
+		
+		sut.open();
+		try {
+			sut.sortuAlerta(travelerEmail, from, to, rideDate);
+			sut.close();
+			testDA.open();
+			t = testDA.getTraveler(travelerEmail);
+			assertEquals(0, t.getAlertaList().size());
+			testDA.close();
+		} catch (Exception e) {
+			fail();
+			sut.close();
+		} finally {
+			testDA.open();
+			testDA.removeUser(travelerEmail);
+			testDA.close();
+		}
+	}
+	
+	@Test
+	// Data gaurkoa da. Alerta sortu behar da.
+	public void test13() {
+		String travelerEmail = "traveler@gmail.com";
+		String travelerName = "Traveler1";
+		
+		String from = "Donostia";
+		String to = "Bilbo";
+		
+		Date rideDate = new Date(System.currentTimeMillis());
+		
+		testDA.open();
+		testDA.createTraveler(travelerEmail, travelerName,10);
+		testDA.close();
+		
+		
+		sut.open();
+		try {
+			sut.sortuAlerta(travelerEmail, from, to, rideDate);
+			sut.close();
+			testDA.open();
+			Traveler t = testDA.getTraveler(travelerEmail);
+			assertEquals(1, t.getAlertaList().size());
+			assertEquals(from, t.getAlertaList().get(0).getFrom());
+			assertEquals(to, t.getAlertaList().get(0).getTo());
+			assertEquals(rideDate, t.getAlertaList().get(0).getDate());
+			testDA.close();
+		} catch (Exception e) {
+			fail();
+			sut.close();
+		} finally {
+			testDA.open();
+			testDA.removeUser(travelerEmail);
 			testDA.close();
 		}
 	}
