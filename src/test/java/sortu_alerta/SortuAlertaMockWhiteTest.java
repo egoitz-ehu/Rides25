@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 
 import org.junit.After;
 import org.junit.Before;
@@ -18,12 +19,10 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import data_access.DataAccess;
+import domain.Erreserba;
 import domain.Ride;
 import domain.Traveler;
 import exceptions.AlertaAlreadyExistsException;
-import exceptions.DatuakNullException;
-import exceptions.DiruaEzDaukaException;
-import exceptions.EserlekurikLibreEzException;
 import exceptions.ErreserbaAlreadyExistsException;
 import exceptions.BadagoRideException;
 
@@ -39,6 +38,9 @@ public class SortuAlertaMockWhiteTest {
 	protected EntityManager db;
 	@Mock
 	protected EntityTransaction  et;
+	
+	@Mock
+	protected TypedQuery<Ride> typedQueryRide;
 	
 	@Before
     public  void init() {
@@ -93,6 +95,38 @@ public class SortuAlertaMockWhiteTest {
 	// Ondorioz ErreserbaAlreadyExistsException altxatuko du
 	public void test2() {
 		String travelerEmail = "traveler@gmail.com";
+		Traveler t = new Traveler(travelerEmail, "123", "Pepe", "Lopez");
+		
+		String from = "Bilbo";
+		String to = "Donosti";
+		
+		Date rideDate = new Date();
+		Ride r = new Ride(Arrays.asList("Donostia","Bilbo"),Arrays.asList(1.0),rideDate,3,null,null);
+
+		Erreserba e = t.sortuErreserba(r, 1, from, to, 10);
+		System.out.println(e);
+		
+		Mockito.doReturn(t).when(db).find(Traveler.class, travelerEmail);
+		Mockito.doReturn(r).when(db).find(Traveler.class, r.getRideNumber());
+
+		
+		sut.open();
+		try {
+			sut.sortuAlerta(travelerEmail, from, to, e.getErreserbaData());
+			fail();
+		} catch (BadagoRideException | AlertaAlreadyExistsException  e1) {
+			fail();
+		} catch (ErreserbaAlreadyExistsException e2) {
+			assertTrue(true);
+		} finally {
+			sut.close();
+		}
+	}
+	
+	@Test
+	// Ez dauka alerta berdina, ezta erreserbarik, baian existitzen da bidaia bat baldintzak betetzen dituena
+	public void test3() {
+		String travelerEmail = "traveler@gmail.com";
 		String travelerName = "Traveler1";
 		
 		int rideNumber = 1;
@@ -105,58 +139,31 @@ public class SortuAlertaMockWhiteTest {
 		Traveler t = new Traveler(travelerEmail, null, travelerName, null);
 		Ride r = new Ride(Arrays.asList(from,to), Arrays.asList(1.2), rideDate, 2, null, null);
 		
-		t.sortuErreserba(r, 1, from, to, 1.2);
-		
 		Mockito.doReturn(t).when(db).find(Traveler.class, travelerEmail);
 		Mockito.doReturn(r).when(db).find(Ride.class, rideNumber);
-		
-		sut.open();
-		try {
-			sut.sortuErreserba(t, rideNumber, 1, from, to);
-			fail();
-		} catch (EserlekurikLibreEzException | DiruaEzDaukaException | DatuakNullException e) {
-			fail();
-		} catch (ErreserbaAlreadyExistsException e) {
-			assertTrue(true);
-			assertEquals(0,t.getCash(),0.01);
-		} 
-	}
-	/*
-	@Test
-	// Traveler datu basean dago eta ez dauka dirurik. Ondorioz DiruaEzDaukaException jaurtiko du
-	public void test3() {
-		
-	}
-	*/
-	@Test
-	// Traveler ez dago datu basean, beraz NullPointerException altxatzen da.
-	// Ondorioz, dena ondo joango da eta ez du salbuespenik altxako.
-	public void test4() {
-		String travelerEmail = "traveler@gmail.com";
-				
-		String from = "Bilbo";
-		String to = "Gasteiz";
-		
-		Date rideDate = new Date(System.currentTimeMillis()+1000000);
+		Mockito.when(db.createQuery("SELECT r FROM Ride r WHERE r.egoera = :egoera AND r.date BETWEEN :first AND :last AND r.eserLibre<>0", Ride.class)).thenReturn(typedQueryRide);
+		Mockito.when(typedQueryRide.getResultList()).thenReturn(Arrays.asList(r));
 		
 		sut.open();
 		try {
 			sut.sortuAlerta(travelerEmail, from, to, rideDate);
+			fail();
 			sut.close();
-			assertTrue(true);
-		} catch (NullPointerException e) {
-			sut.close();
-			assertTrue(true);
-		} catch(BadagoRideException | ErreserbaAlreadyExistsException | AlertaAlreadyExistsException e) {
+		}  catch (AlertaAlreadyExistsException | ErreserbaAlreadyExistsException | NullPointerException e) {
+			System.out.println(e.getMessage());
 			sut.close();
 			fail();
+		} catch(BadagoRideException e) {
+			sut.close();
+			assertTrue(true);
 		}
 	}
+
 	
 	@Test
 	// Traveler datu basean dago, ez du alerta ez erreserbarik datu berdinekin eta ez dago bidairik datu berdinekin.
 	// Ondorioz, dena ondo joango da eta ez du salbuespenik altxako.
-	public void test5() {
+	public void test4() {
 		String travelerEmail = "traveler@gmail.com";
 		
 		
@@ -168,15 +175,19 @@ public class SortuAlertaMockWhiteTest {
 		Traveler t = new Traveler(travelerEmail, null, "traveler", null);
 
 		Mockito.doReturn(t).when(db).find(Traveler.class, travelerEmail);
-		
+		Mockito.when(db.createQuery("SELECT r FROM Ride r WHERE r.egoera = :egoera AND r.date BETWEEN :first AND :last AND r.eserLibre<>0", Ride.class)).thenReturn(typedQueryRide);
+		Mockito.when(typedQueryRide.getResultList()).thenReturn(Arrays.asList());
 		
 		sut.open();
 		try {
 			sut.sortuAlerta(t.getEmail(), from, to, rideDate);
 			sut.close();
-			assertTrue(true);
+			assertEquals(1, t.getAlertaList().size());
+			assertEquals(from, t.getAlertaList().get(0).getFrom());
+			assertEquals(to, t.getAlertaList().get(0).getTo());
+			assertEquals(rideDate, t.getAlertaList().get(0).getDate());
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 			fail();
 		}
 	}
