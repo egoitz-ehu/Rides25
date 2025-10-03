@@ -134,6 +134,42 @@ public class SortuAlertaMockWhiteTest {
 		String from = "Bilbo";
 		String to = "Gasteiz";
 		
+		Date rideDate = new Date(System.currentTimeMillis()+1000000);
+		
+		Traveler t = new Traveler(travelerEmail, null, travelerName, null);
+		
+		t.sortuErreserba(null, 1, from, to, 1.2);
+		
+		Mockito.doReturn(t).when(db).find(Traveler.class, travelerEmail);
+		Mockito.when(db.createQuery("SELECT r FROM Ride r WHERE r.egoera = :egoera AND r.date BETWEEN :first AND :last AND r.eserLibre<>0", Ride.class)).thenReturn(typedQueryRide);
+		Mockito.when(typedQueryRide.getResultList()).thenReturn(Arrays.asList());
+		
+		sut.open();
+		try {
+			sut.sortuAlerta(travelerEmail, from, to, rideDate);
+			fail();
+			sut.close();
+		} catch (AlertaAlreadyExistsException | BadagoRideException | NullPointerException e) {
+			System.out.println(e.getMessage());
+			sut.close();
+			fail();
+		} catch(ErreserbaAlreadyExistsException e) {
+			sut.close();
+			assertTrue(true);
+		}
+	}
+	
+	@Test
+	// Ez dauka alerta berdina, ezta erreserbarik, baian existitzen da bidaia bat baldintzak betetzen dituena
+	public void test3() {
+		String travelerEmail = "traveler@gmail.com";
+		String travelerName = "Traveler1";
+		
+		int rideNumber = 1;
+		
+		String from = "Bilbo";
+		String to = "Gasteiz";
+		
 		Date rideDate = new Date();
 		
 		Traveler t = new Traveler(travelerEmail, null, travelerName, null);

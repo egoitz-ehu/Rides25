@@ -18,7 +18,7 @@ import exceptions.DagoenekoOnartuaException;
 import exceptions.DatuakNullException;
 import testOperations.TestDataAccess;
 
-public class ErreserbaOnartuBlack {
+public class ErreserbaOnartuBDBlackTest {
 static DataAccess sut;
 	
 	@BeforeClass

@@ -17,7 +17,7 @@ import exceptions.ErreserbaAlreadyExistsException;
 import exceptions.EserlekurikLibreEzException;
 import testOperations.TestDataAccess;
 
-public class SortuErreserbaWhite {
+public class SortuErreserbaBDWhiteTest {
 	static DataAccess sut;
 
     @BeforeClass
