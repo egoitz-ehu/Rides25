@@ -150,10 +150,8 @@ public class DataAccess  {
 			db.getTransaction().begin();
 			db.persist(user);
 			db.getTransaction().commit();
-			System.out.println("Erabiltzaile berri bat sortu da");
 			return true;
 		} else {
-			System.out.println("Dagoeneko badago erabiltzaile bat email berdinarekin");
 			return false;
 		}
 	}
@@ -604,6 +602,26 @@ public class DataAccess  {
 	}
 	
 	public List<TravelerErreserbaContainer> lortuBalorazioErreserbak(User u){
+		if(u == null) return new LinkedList<TravelerErreserbaContainer>();
+		List<Erreserba> erreserbak = lotuErabiltzaileErreserbak(u);
+		TypedQuery<Erreserba> q2 = db.createQuery(
+				   "SELECT b.erreserba FROM Balorazioa b WHERE b.nork = :u", Erreserba.class);
+		q2.setParameter("u", u);
+		List<Erreserba> baloratuak = q2.getResultList();
+		List<Erreserba> gabe = new ArrayList<>();
+		for (Erreserba e : erreserbak) {
+		    if (!baloratuak.contains(e)) {
+		        gabe.add(e);
+		    }
+		}
+		List<TravelerErreserbaContainer> containerList = new LinkedList<TravelerErreserbaContainer>();
+		for(Erreserba e:gabe) {
+			containerList.add(new TravelerErreserbaContainer(e,e.getBidaiaria()));
+		}
+		return containerList;
+	}
+
+	private List<Erreserba> lotuErabiltzaileErreserbak(User u) {
 		List<Erreserba> erreserbak;
 		if(u instanceof Traveler) {
 			TypedQuery<Erreserba> q1 = db.createQuery(
@@ -620,21 +638,7 @@ public class DataAccess  {
 			q1.setParameter("k", ErreserbaEgoera.EZEZTATUA);
 			erreserbak = q1.getResultList();
 		}
-		TypedQuery<Erreserba> q2 = db.createQuery(
-				   "SELECT b.erreserba FROM Balorazioa b WHERE b.nork = :u", Erreserba.class);
-		q2.setParameter("u", u);
-		List<Erreserba> baloratuak = q2.getResultList();
-		List<Erreserba> gabe = new ArrayList<>();
-		for (Erreserba e : erreserbak) {
-		    if (!baloratuak.contains(e)) {
-		        gabe.add(e);
-		    }
-		}
-		List<TravelerErreserbaContainer> containerList = new LinkedList<TravelerErreserbaContainer>();
-		for(Erreserba e:gabe) {
-			containerList.add(new TravelerErreserbaContainer(e,e.getBidaiaria()));
-		}
-		return containerList;
+		return erreserbak;
 	}
 	
 	public void sortuBalorazioa(String eMail, int eNum, int puntuzioa, String mezua) {
