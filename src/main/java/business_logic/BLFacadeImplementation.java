@@ -15,6 +15,7 @@ import domain.RideErreserbaContainer;
 import domain.Traveler;
 import domain.TravelerErreserbaContainer;
 import domain.User;
+import domain.UserData;
 import domain.Alerta;
 import domain.Balorazioa;
 import domain.Car;
@@ -149,9 +150,9 @@ public class BLFacadeImplementation  implements BLFacade {
 	}
 
     @WebMethod
-	public boolean register(String email, String name, String surname, String password, String type) {
+	public boolean register(UserData u, String type) {
 		dbManager.open();
-		boolean b = dbManager.register(email, name, surname, password, type);
+		boolean b = dbManager.register(u, type);
 		dbManager.close();
 		return b;
 	}

@@ -138,14 +138,14 @@ public class DataAccess  {
 		return !l.isEmpty();
 	}
 	
-	public boolean register(String email, String name, String surname, String password, String type) {
-		User u=db.find(User.class, email);
+	public boolean register(UserData us, String type) {
+		User u=db.find(User.class, us.email);
 		if (u==null) {
 			User user;
 			if(type.equals("driver")) {
-				user = new Driver(email,password,name,surname);
+				user = new Driver(us.email,us.password,us.name,us.surname);
 			} else {
-				user = new Traveler(email,password,name,surname);
+				user = new Traveler(us.email,us.password,us.name,us.surname);
 			}
 			db.getTransaction().begin();
 			db.persist(user);

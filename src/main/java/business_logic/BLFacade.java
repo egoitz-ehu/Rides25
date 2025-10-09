@@ -8,6 +8,7 @@ import domain.RideErreserbaContainer;
 import domain.Traveler;
 import domain.TravelerErreserbaContainer;
 import domain.User;
+import domain.UserData;
 import domain.Alerta;
 import domain.Balorazioa;
 import domain.Car;
@@ -93,7 +94,7 @@ public interface BLFacade  {
 	 */	
 	@WebMethod public void initializeBD();
 	
-	@WebMethod public boolean register(String email, String name, String surname, String password, String type);
+	@WebMethod public boolean register(UserData u, String type);
 	
 	@WebMethod public User login(String email, String password);
 

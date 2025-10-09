@@ -10,6 +10,7 @@ import business_logic.BLFacade;
 import domain.Driver;
 import domain.Traveler;
 import domain.User;
+import domain.UserData;
 
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
@@ -237,9 +238,8 @@ public class RegisterGUI extends JFrame {
         			JOptionPane.showMessageDialog(contentPane, ResourceBundle.getBundle("Etiquetas").getString("RegisterGUI.ErrorDataBlank"), "Error", JOptionPane.ERROR_MESSAGE);
         		}
         		else {
-            		boolean b =bussinessLogic.register(mail, name, surname, pass, type);
+            		boolean b =bussinessLogic.register(new UserData(mail, name, surname, pass), type);
             		if(!b) {
-            			//errorLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("RegisterGUI.ErrorUserAlreadyExists"));
             			JOptionPane.showMessageDialog(contentPane, ResourceBundle.getBundle("Etiquetas").getString("RegisterGUI.ErrorUserAlreadyExists"), "Error", JOptionPane.ERROR_MESSAGE);
             		} else {
             			JOptionPane.showMessageDialog(contentPane, ResourceBundle.getBundle("Etiquetas").getString("RegisterGUI.Registered"), ResourceBundle.getBundle("Etiquetas").getString("RegisterGUI.RegisterTitle"), JOptionPane.INFORMATION_MESSAGE);
