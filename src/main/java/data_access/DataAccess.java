@@ -351,26 +351,30 @@ public class DataAccess  {
 		r.setEgoera(RideEgoera.KANTZELATUTA);
 		Driver  d = db.find(Driver.class, dMail);
 		for(Erreserba err:erreserbaList) {
-			Erreserba e = db.find(Erreserba.class, err.getEskaeraNum());
-			ErreserbaEgoera egoera = e.getEgoera();
-			e.setEgoera(ErreserbaEgoera.KANTZELATUA);
-			e.setKantzelatuData(new Date());
-			Traveler t = e.getBidaiaria();
-			double prezioa = e.getPrezioa();
-			if(egoera.equals(ErreserbaEgoera.ONARTUA)) {
-				d.removeFrozenMoney(prezioa);
-				t.diruaSartu(prezioa);
-				d.addMugimendua(prezioa, MugimenduMota.BIDAIA_KANTZELATU_GIDARI);
-				t.addMugimendua(prezioa, MugimenduMota.BIDAIA_KANTZELATU_BIDAIARI);
-			} else if(egoera.equals(ErreserbaEgoera.ZAIN)) {
-				t.removeFrozenMoney(prezioa);
-				t.diruaSartu(prezioa);
-				t.addMugimendua(prezioa, MugimenduMota.BIDAIA_KANTZELATU_BIDAIARI);
-			}
+			kantzelatuErreserba(d, err);
 		}
 		db.merge(r);
 		db.persist(d);
 		db.getTransaction().commit();
+	}
+
+	private void kantzelatuErreserba(Driver d, Erreserba err) {
+		Erreserba e = db.find(Erreserba.class, err.getEskaeraNum());
+		ErreserbaEgoera egoera = e.getEgoera();
+		e.setEgoera(ErreserbaEgoera.KANTZELATUA);
+		e.setKantzelatuData(new Date());
+		Traveler t = e.getBidaiaria();
+		double prezioa = e.getPrezioa();
+		if(egoera.equals(ErreserbaEgoera.ONARTUA)) {
+			d.removeFrozenMoney(prezioa);
+			t.diruaSartu(prezioa);
+			d.addMugimendua(prezioa, MugimenduMota.BIDAIA_KANTZELATU_GIDARI);
+			t.addMugimendua(prezioa, MugimenduMota.BIDAIA_KANTZELATU_BIDAIARI);
+		} else if(egoera.equals(ErreserbaEgoera.ZAIN)) {
+			t.removeFrozenMoney(prezioa);
+			t.diruaSartu(prezioa);
+			t.addMugimendua(prezioa, MugimenduMota.BIDAIA_KANTZELATU_BIDAIARI);
+		}
 	}
 	
 	public List<RideErreserbaContainer> getRideErreserbaContainers(Traveler t) {
