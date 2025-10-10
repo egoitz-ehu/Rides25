@@ -200,27 +200,26 @@ public class DataAccess  {
 				db.getTransaction().commit();
 				throw new DatuakNullException("Datuak null dira");
 			}
-			double kostua = r.prezioaKalkulatu(from, to);
-			if(!tr.existBook(r)) {
-				if(tr.diruaDauka(kostua)) {
-					if(r.eserlekuakLibre(kop)) {
-						Erreserba erreserbaBerria = tr.sortuErreserba(r, kop, from, to, kostua);
-						r.gehituErreserba(erreserbaBerria);
-						tr.addMugimendua(kostua,MugimenduMota.ERRESERBA_SORTU);
-						db.persist(r);
-						db.getTransaction().commit();
-						return true;	
-					} else {
-						throw new EserlekurikLibreEzException("Ez dago nahiko eserlekurik libre");
-					}
-				} else {
-					throw new DiruaEzDaukaException("Ez dauka dirurik");
-				}
-			} else {
-				throw new ErreserbaAlreadyExistsException("Dagoeneko erreserba bat du erabiltzaile honek bidaia honetan");
-			}
+			return erreserbaSortuEtaGehitu(kop, from, to, r, tr);
 		}
 		return false;
+	}
+
+	private boolean erreserbaSortuEtaGehitu(int kop, String from, String to, Ride r, Traveler tr)
+			throws EserlekurikLibreEzException, DiruaEzDaukaException, ErreserbaAlreadyExistsException {
+		double kostua = r.prezioaKalkulatu(from, to);
+		if(!tr.existBook(r)) {
+			if(tr.diruaDauka(kostua)) {
+				if(r.eserlekuakLibre(kop)) {
+					Erreserba erreserbaBerria = tr.sortuErreserba(r, kop, from, to, kostua);
+					r.gehituErreserba(erreserbaBerria);
+					tr.addMugimendua(kostua,MugimenduMota.ERRESERBA_SORTU);
+					db.persist(r);
+					db.getTransaction().commit();
+					return true;	
+				} else throw new EserlekurikLibreEzException("Ez dago nahiko eserlekurik libre");
+			} else throw new DiruaEzDaukaException("Ez dauka dirurik");
+		} else throw new ErreserbaAlreadyExistsException("Dagoeneko erreserba bat du erabiltzaile honek bidaia honetan");
 	}
 	
 	public List<Integer> getAllRidesNumber(String  ema) {
