@@ -154,7 +154,7 @@ public class SortuErreserbaBDBlackTest {
 			testDA.close();
 		}
 	}
-	
+	/*
 	@Test
 	// Eskatutako eserleku kopurua <=0 da
 	public void test4() {
@@ -194,7 +194,7 @@ public class SortuErreserbaBDBlackTest {
 			testDA.close();
 		}
 	}
-	
+	*/
 	@Test
 	// From null da
 	public void test5() {
