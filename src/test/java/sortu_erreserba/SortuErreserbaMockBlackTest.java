@@ -138,7 +138,7 @@ public class SortuErreserbaMockBlackTest {
 			sut.close();
 		}
 	}
-	/*
+	
 	@Test
 	// Eskatutako eserleku kopurua <= 0 da
 	public void test4() {
@@ -165,7 +165,7 @@ public class SortuErreserbaMockBlackTest {
 			sut.close();
 		}
 	}
-	*/
+	
 	@Test
 	// From null da
 	public void test5() {

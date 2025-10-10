@@ -30,7 +30,7 @@ public class SortuErreserbaBDWhiteTest {
     }
 	
 	static TestDataAccess testDA=new TestDataAccess();
-	/*
+	
 	@Test
 	// Eserleku kopurua ez da 1 edo gehiago
 	public void test1() {
@@ -71,7 +71,7 @@ public class SortuErreserbaBDWhiteTest {
 			testDA.close();
 		}
 	}
-	*/
+	
 	@Test
 	// Traveler datu basean dago, baina dagoeneko badu erreserba berdin bat.
 	// Ondorioz ErreserbaAlreadyExistsException jaurtiko du

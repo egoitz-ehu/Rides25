@@ -54,7 +54,7 @@ public class SortuErreserbaMockWhiteTest {
     public  void tearDown() {
 		persistenceMock.close();
     }
-	/*
+	
 	@Test
 	// Eserleku kopurua ez da 1 edo gehiago
 	public void test1() {
@@ -83,7 +83,7 @@ public class SortuErreserbaMockWhiteTest {
 			fail();
 		}
 	}
-	*/
+	
 	@Test
 	// Traveler datu basean dago, baina dagoeneko badu erreserba berdin bat. Ondorioz ErreserbaAlreadyExistsException jaurtiko du
 	public void test2() {
