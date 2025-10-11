@@ -270,7 +270,42 @@ public class DataAccess  {
 	public void erreserbaUkatu(int erreserbaNum, int rNumber) throws DatuakNullException, ErreserbaEgoeraEzDaZainException {
 	    db.getTransaction().begin();
 	    Erreserba e = db.find(Erreserba.class, erreserbaNum);
-	    if(e == null) {
+	    erreserbarekinArazoak(e);
+	    
+	    Traveler t = db.find(Traveler.class, e.getBidaiariaEmail());
+	    Ride r = db.find(Ride.class, rNumber);
+
+	    travelerEdoRideArazoak(t, r);
+	    
+	    double kop = e.getPrezioa();
+	    int eserKop = e.getPlazaKop();
+
+	    erreserbaUkatu(e, t, r, kop, eserKop);
+
+	    db.getTransaction().commit();
+	}
+
+	private void erreserbaUkatu(Erreserba e, Traveler t, Ride r, double kop, int eserKop) {
+		e.setEgoera(ErreserbaEgoera.UKATUA);
+	    t.removeFrozenMoney(kop);
+	    t.diruaSartu(kop);
+	    r.itzuliEserlekuak(eserKop);
+	    t.addMugimendua(kop, MugimenduMota.ERRESERBA_UKATU);
+	}
+
+	private void travelerEdoRideArazoak(Traveler t, Ride r) throws DatuakNullException {
+		if(t == null) {
+	        db.getTransaction().commit();
+	        throw new DatuakNullException("Bidaiaria null da");
+	    }
+	    if(r == null) {
+	        db.getTransaction().commit();
+	        throw new DatuakNullException("Ride null da");
+	    }
+	}
+
+	private void erreserbarekinArazoak(Erreserba e) throws DatuakNullException, ErreserbaEgoeraEzDaZainException {
+		if(e == null) {
 	        db.getTransaction().commit();
 	        throw new DatuakNullException("Erreserba null da");
 	    }
@@ -278,34 +313,16 @@ public class DataAccess  {
 	        db.getTransaction().commit();
 	        throw new ErreserbaEgoeraEzDaZainException();
 	    }
-	    Traveler t = db.find(Traveler.class, e.getBidaiariaEmail());
-	    if(t == null) {
-	        db.getTransaction().commit();
-	        throw new DatuakNullException("Bidaiaria null da");
-	    }
-	    Ride r = db.find(Ride.class, rNumber);
-	    if(r == null) {
-	        db.getTransaction().commit();
-	        throw new DatuakNullException("Ride null da");
-	    }
-	    double kop = e.getPrezioa();
-	    int eserKop = e.getPlazaKop();
-
-	    e.setEgoera(ErreserbaEgoera.UKATUA);
-	    t.removeFrozenMoney(kop);
-	    t.diruaSartu(kop);
-	    r.itzuliEserlekuak(eserKop);
-	    t.addMugimendua(kop, MugimenduMota.ERRESERBA_UKATU);
-
-	    db.getTransaction().commit();
 	}
 	
-	public boolean sortuKotxea(String matrikula, int eserKop, String kolorea, String mota, Driver d) {
-		Car kotxea = db.find(Car.class, matrikula);
+	public boolean sortuKotxea(Car kotxeBerria) {
+		Car kotxea = db.find(Car.class, kotxeBerria.getMatrikula());
 		if(kotxea!=null) return false;
 		db.getTransaction().begin();
-		//Driver di = db.find(Driver.class, d.getEmail());
-		Car c=d.addCar(matrikula,eserKop,kolorea,mota);
+
+		Driver d = kotxeBerria.getJabea();
+		Car c = d.addCar(kotxeBerria.getMatrikula(), kotxeBerria.getEserKop(), 
+				kotxeBerria.getKolorea(), kotxeBerria.getModeloa());
 		db.persist(c);
 		db.merge(d);
 		db.getTransaction().commit();
@@ -469,14 +486,18 @@ public class DataAccess  {
 			for(Geldialdia g:gList) {
 				geldialdiak.add(g.getHiria());
 			}
-			if(geldialdiak.contains(from)) {
-				int i = geldialdiak.indexOf(from);
-				for(int j=i+1;j<geldialdiak.size();j++) {
-					cities.add(geldialdiak.get(j));
-				}
-			}
+			addArrivalCities(from, cities, geldialdiak);
 		}
 		return cities;
+	}
+
+	private void addArrivalCities(String from, List<String> cities, List<String> geldialdiak) {
+		if(geldialdiak.contains(from)) {
+			int i = geldialdiak.indexOf(from);
+			for(int j=i+1;j<geldialdiak.size();j++) {
+				cities.add(geldialdiak.get(j));
+			}
+		}
 	}
 
 	public Ride createRide(List<String> hiriakLista, List<Double> prezioList, Date date, Car c, String driverEmail) throws  RideAlreadyExistException, RideMustBeLaterThanTodayException {
