@@ -268,29 +268,26 @@ public class DataAccess  {
 	}
 	
 	public void erreserbaUkatu(int erreserbaNum, int rNumber) throws DatuakNullException, ErreserbaEgoeraEzDaZainException {
-	    db.getTransaction().begin();
 	    Erreserba e = db.find(Erreserba.class, erreserbaNum);
 	    erreserbarekinArazoak(e);
-	    
 	    Traveler t = db.find(Traveler.class, e.getBidaiariaEmail());
 	    Ride r = db.find(Ride.class, rNumber);
 
 	    travelerEdoRideArazoak(t, r);
-	    
 	    double kop = e.getPrezioa();
 	    int eserKop = e.getPlazaKop();
-
-	    erreserbaUkatu(e, t, r, kop, eserKop);
-
-	    db.getTransaction().commit();
+	    erreserbaUkatuDB(e, t, r, kop, eserKop);
 	}
 
-	private void erreserbaUkatu(Erreserba e, Traveler t, Ride r, double kop, int eserKop) {
+	private void erreserbaUkatuDB(Erreserba e, Traveler t, Ride r, double kop, int eserKop) {
+		db.getTransaction().begin();
 		e.setEgoera(ErreserbaEgoera.UKATUA);
 	    t.removeFrozenMoney(kop);
 	    t.diruaSartu(kop);
 	    r.itzuliEserlekuak(eserKop);
 	    t.addMugimendua(kop, MugimenduMota.ERRESERBA_UKATU);
+		
+	    db.getTransaction().commit();
 	}
 
 	private void travelerEdoRideArazoak(Traveler t, Ride r) throws DatuakNullException {
