@@ -18,6 +18,7 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import data_access.DataAccess;
+import domain.ErreserbaData;
 import domain.Ride;
 import domain.Traveler;
 import exceptions.DatuakNullException;
@@ -76,7 +77,7 @@ public class SortuErreserbaMockWhiteTest {
 		
 		sut.open();
 		try {
-			boolean res = sut.sortuErreserba(t, rideNumber, 0, from, to);
+			boolean res = sut.sortuErreserba(t, new ErreserbaData(rideNumber, from, to, 0));
 			assertFalse(res);
 			assertEquals(0,t.getCash(),0.01);
 		} catch (EserlekurikLibreEzException | ErreserbaAlreadyExistsException | DiruaEzDaukaException | DatuakNullException e) {
@@ -107,7 +108,7 @@ public class SortuErreserbaMockWhiteTest {
 		
 		sut.open();
 		try {
-			sut.sortuErreserba(t, rideNumber, 1, from, to);
+			sut.sortuErreserba(t, new ErreserbaData(rideNumber, from, to, 1));
 			fail();
 		} catch (EserlekurikLibreEzException | DiruaEzDaukaException | DatuakNullException e) {
 			fail();
@@ -138,7 +139,7 @@ public class SortuErreserbaMockWhiteTest {
 		
 		sut.open();
 		try {
-			sut.sortuErreserba(t, rideNumber, 1, from, to);
+			sut.sortuErreserba(t,  new ErreserbaData(rideNumber, from, to, 1));
 			fail();
 		} catch (EserlekurikLibreEzException | ErreserbaAlreadyExistsException | DatuakNullException e) {
 			fail();
@@ -174,7 +175,7 @@ public class SortuErreserbaMockWhiteTest {
 		
 		sut.open();
 		try {
-			sut.sortuErreserba(t, rideNumber, 1, from, to);
+			sut.sortuErreserba(t,  new ErreserbaData(rideNumber, from, to, 1));
 			fail();
 		} catch (DiruaEzDaukaException | ErreserbaAlreadyExistsException | DatuakNullException e) {
 			fail();
@@ -206,7 +207,7 @@ public class SortuErreserbaMockWhiteTest {
 		
 		sut.open();
 		try {
-			sut.sortuErreserba(t, rideNumber, 1, from, to);
+			sut.sortuErreserba(t,  new ErreserbaData(rideNumber, from, to, 1));
 			fail();
 		} catch (DiruaEzDaukaException | EserlekurikLibreEzException | ErreserbaAlreadyExistsException e) {
 			fail();
@@ -240,7 +241,7 @@ public class SortuErreserbaMockWhiteTest {
 		
 		sut.open();
 		try {
-			boolean res = sut.sortuErreserba(t, rideNumber, 1, from, to);
+			boolean res = sut.sortuErreserba(t,  new ErreserbaData(rideNumber, from, to, 1));
 			assertTrue(res);
 			double prezioa = r.prezioaKalkulatu(from, to);
 			assertEquals(dirua-prezioa,t.getCash(),0.01);

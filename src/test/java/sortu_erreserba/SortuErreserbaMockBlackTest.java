@@ -19,6 +19,7 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import data_access.DataAccess;
+import domain.ErreserbaData;
 import domain.Ride;
 import domain.Traveler;
 import exceptions.DatuakNullException;
@@ -77,7 +78,7 @@ public class SortuErreserbaMockBlackTest {
 		
 		sut.open();
 		try {
-			boolean res = sut.sortuErreserba(t, rideNumber, erosiEserlekuak, "Donostia", "Bilbo");
+			boolean res = sut.sortuErreserba(t, new ErreserbaData(rideNumber,"Donostia","Bilbo",erosiEserlekuak));
 			assertTrue(res);
 			double prezioa = r.prezioaKalkulatu("Donostia","Bilbo")*erosiEserlekuak;
 			assertEquals(dirua-prezioa, t.getCash(), 0.01);
@@ -99,7 +100,7 @@ public class SortuErreserbaMockBlackTest {
 		
 		sut.open();
 		try {
-			sut.sortuErreserba(null, rideNumber, 2, "Donostia", "Bilbo");
+			sut.sortuErreserba(null, new ErreserbaData(rideNumber,"Donostia","Bilbo",2));
 			fail();
 		} catch(DatuakNullException e) {
 			assertTrue(true);
@@ -127,7 +128,7 @@ public class SortuErreserbaMockBlackTest {
 		
 		sut.open();
 		try {
-			sut.sortuErreserba(t, rideNumber, 2, "Donostia", "Bilbo");
+			sut.sortuErreserba(t, new ErreserbaData(rideNumber,"Donostia","Bilbo",2));
 			fail();
 		} catch(DatuakNullException e) {
 			assertTrue(true);
@@ -156,7 +157,7 @@ public class SortuErreserbaMockBlackTest {
 		
 		sut.open();
 		try {
-			boolean res = sut.sortuErreserba(t, rideNumber, 0, "Donostia", "Bilbo");
+			boolean res = sut.sortuErreserba(t, new ErreserbaData(rideNumber,"Donostia","Bilbo",0));
 			assertFalse(res);
 			assertEquals(dirua, t.getCash(), 0.01);
 		} catch (Exception e) {
@@ -183,7 +184,7 @@ public class SortuErreserbaMockBlackTest {
 		
 		sut.open();
 		try {
-			boolean res = sut.sortuErreserba(t, rideNumber, 2, null, "Bilbo");
+			boolean res = sut.sortuErreserba(t, new ErreserbaData(rideNumber,null,"Bilbo",2));
 			assertFalse(res);
 			assertEquals(dirua, t.getCash(), 0.01);
 		} catch (Exception e) {
@@ -210,7 +211,7 @@ public class SortuErreserbaMockBlackTest {
 		
 		sut.open();
 		try {
-			boolean res = sut.sortuErreserba(t, rideNumber, 2, "Donostia", null);
+			boolean res = sut.sortuErreserba(t, new ErreserbaData(rideNumber,"Donostia",null,2));
 			assertFalse(res);
 			assertEquals(dirua, t.getCash(), 0.01);
 		} catch (Exception e) {
@@ -235,7 +236,7 @@ public class SortuErreserbaMockBlackTest {
 		
 		sut.open();
 		try {
-			sut.sortuErreserba(t, rideNumber, 2, "Donostia", "Bilbo");
+			sut.sortuErreserba(t, new ErreserbaData(rideNumber,"Donostia","Bilbo",2));
 			fail();
 		} catch(DatuakNullException e) {
 			assertTrue(true);
@@ -264,7 +265,7 @@ public class SortuErreserbaMockBlackTest {
 		
 		sut.open();
 		try {
-			sut.sortuErreserba(t, rideNumber, 2, "Donostia", "Bilbo");
+			sut.sortuErreserba(t, new ErreserbaData(rideNumber,"Donostia","Bilbo",2));
 			fail();
 		} catch(DatuakNullException e) {
 			assertTrue(true);
@@ -293,7 +294,7 @@ public class SortuErreserbaMockBlackTest {
 		
 		sut.open();
 		try {
-			sut.sortuErreserba(t, rideNumber, 2, "Donostia", "Bilbo");
+			sut.sortuErreserba(t, new ErreserbaData(rideNumber,"Donostia","Bilbo",2));
 			fail();
 		} catch(EserlekurikLibreEzException e) {
 			assertTrue(true);
@@ -322,7 +323,7 @@ public class SortuErreserbaMockBlackTest {
 		
 		sut.open();
 		try {
-			boolean res = sut.sortuErreserba(t, rideNumber, 2, "Zarautz", "Bilbo");
+			boolean res = sut.sortuErreserba(t, new ErreserbaData(rideNumber,"Zarautz","Bilbo",2));
 			assertFalse(res);
 			assertEquals(dirua, t.getCash(), 0.01);
 		} catch (Exception e) {
@@ -349,7 +350,7 @@ public class SortuErreserbaMockBlackTest {
 		
 		sut.open();
 		try {
-			boolean res = sut.sortuErreserba(t, rideNumber, 2, "Bilbo", "Zarautz");
+			boolean res = sut.sortuErreserba(t, new ErreserbaData(rideNumber,"Bilbo","Zarautz",2));
 			assertFalse(res);
 			assertEquals(dirua, t.getCash(), 0.01);
 		} catch (Exception e) {
@@ -376,7 +377,7 @@ public class SortuErreserbaMockBlackTest {
 		
 		sut.open();
 		try {
-			boolean res = sut.sortuErreserba(t, rideNumber, 2, "Bilbo", "Donostia");
+			boolean res = sut.sortuErreserba(t, new ErreserbaData(rideNumber,"Bilbo","Donostia",2));
 			assertFalse(res);
 			assertEquals(dirua, t.getCash(), 0.01);
 		} catch (Exception e) {
@@ -401,7 +402,7 @@ public class SortuErreserbaMockBlackTest {
 		
 		sut.open();
 		try {
-			sut.sortuErreserba(t, rideNumber, 2, "Donostia", "Bilbo");
+			sut.sortuErreserba(t, new ErreserbaData(rideNumber,"Donostia","Bilbo",2));
 			fail();
 		} catch(DiruaEzDaukaException e) {
 			assertTrue(true);
@@ -432,7 +433,7 @@ public class SortuErreserbaMockBlackTest {
 		
 		sut.open();
 		try {
-			sut.sortuErreserba(t, rideNumber, 2, "Donostia", "Bilbo");
+			sut.sortuErreserba(t, new ErreserbaData(rideNumber,"Donostia","Bilbo",2));
 			fail();
 		} catch(ErreserbaAlreadyExistsException e) {
 			assertTrue(true);
@@ -463,7 +464,7 @@ public class SortuErreserbaMockBlackTest {
 		
 		sut.open();
 		try {
-			boolean res = sut.sortuErreserba(t, rideNumber, erosiEserlekuak, "Donostia", "Bilbo");
+			boolean res = sut.sortuErreserba(t, new ErreserbaData(rideNumber,"Donostia","Bilbo",erosiEserlekuak));
 			assertTrue(res);
 			double prezioa = r.prezioaKalkulatu("Donostia","Bilbo")*erosiEserlekuak;
 			assertEquals(dirua-prezioa, t.getCash(), 0.01);
@@ -495,7 +496,7 @@ public class SortuErreserbaMockBlackTest {
 		
 		sut.open();
 		try {
-			boolean res = sut.sortuErreserba(t, rideNumber, erosiEserlekuak, "Donostia", "Bilbo");
+			boolean res = sut.sortuErreserba(t, new ErreserbaData(rideNumber,"Donostia","Bilbo",erosiEserlekuak));
 			assertTrue(res);
 			double prezioa = r.prezioaKalkulatu("Donostia","Bilbo")*erosiEserlekuak;
 			assertEquals(dirua-prezioa, t.getCash(), 0.01);
@@ -527,7 +528,7 @@ public class SortuErreserbaMockBlackTest {
 		
 		sut.open();
 		try {
-			boolean res = sut.sortuErreserba(t, rideNumber, erosiEserlekuak, "Donostia", "Bilbo");
+			boolean res = sut.sortuErreserba(t, new ErreserbaData(rideNumber,"Donostia","Bilbo",erosiEserlekuak));
 			assertTrue(res);
 			double prezioa = r.prezioaKalkulatu("Donostia","Bilbo")*erosiEserlekuak;
 			assertEquals(dirua-prezioa, t.getCash(), 0.01);

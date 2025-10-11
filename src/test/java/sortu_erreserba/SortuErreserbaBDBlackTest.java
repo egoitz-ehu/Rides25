@@ -10,6 +10,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import data_access.DataAccess;
+import domain.ErreserbaData;
 import domain.Ride;
 import domain.Traveler;
 import exceptions.DatuakNullException;
@@ -57,7 +58,7 @@ public class SortuErreserbaBDBlackTest {
 		
 		sut.open();
 		try {
-			boolean res = sut.sortuErreserba(t, rideNumber, eserlekuKop, "Donostia", "Bilbo");
+			boolean res = sut.sortuErreserba(t, new ErreserbaData(rideNumber,"Donostia","Bilbo",eserlekuKop));
 			assertTrue(res);
 			double prezioa = r.prezioaKalkulatu(from, to)*eserlekuKop;
 			testDA.open();
@@ -98,7 +99,7 @@ public class SortuErreserbaBDBlackTest {
 		
 		sut.open();
 		try {
-			sut.sortuErreserba(t, rideNumber, 2, "Donostia", "Bilbo");
+			sut.sortuErreserba(t, new ErreserbaData(rideNumber,"Donostia","Bilbo",2));
 			fail();
 		} catch(DatuakNullException e) {
 			assertTrue(true);
@@ -137,7 +138,7 @@ public class SortuErreserbaBDBlackTest {
 		
 		sut.open();
 		try {
-			sut.sortuErreserba(t, rideNumber, 2, "Donostia", "Bilbo");
+			sut.sortuErreserba(t, new ErreserbaData(rideNumber,"Donostia","Bilbo",2));
 		} catch(DatuakNullException e) {
 			assertTrue(true);
 			testDA.open();
@@ -178,7 +179,7 @@ public class SortuErreserbaBDBlackTest {
 		
 		sut.open();
 		try {
-			boolean res = sut.sortuErreserba(t, rideNumber, 0, "Donostia", "Bilbo");
+			boolean res = sut.sortuErreserba(t,  new ErreserbaData(rideNumber,"Donostia","Bilbo",0));
 			assertFalse(res);
 			testDA.open();
 			assertEquals(dirua, testDA.getTravelerCash(travelerEmail), 0.01);
@@ -218,7 +219,7 @@ public class SortuErreserbaBDBlackTest {
 		
 		sut.open();
 		try {
-			boolean res = sut.sortuErreserba(t, rideNumber, 2, null, "Bilbo");
+			boolean res = sut.sortuErreserba(t, new ErreserbaData(rideNumber,null,"Bilbo",2));
 			assertFalse(res);
 			testDA.open();
 			assertEquals(dirua, testDA.getTravelerCash(travelerEmail), 0.01);
@@ -258,7 +259,7 @@ public class SortuErreserbaBDBlackTest {
 		
 		sut.open();
 		try {
-			boolean res = sut.sortuErreserba(t, rideNumber, 2, "Donstia", null);
+			boolean res = sut.sortuErreserba(t, new ErreserbaData(rideNumber,"Donostia",null,2));
 			assertFalse(res);
 			testDA.open();
 			assertEquals(dirua, testDA.getTravelerCash(travelerEmail), 0.01);
@@ -298,7 +299,7 @@ public class SortuErreserbaBDBlackTest {
 		
 		sut.open();
 		try {
-			sut.sortuErreserba(t, rideNumber, 2, "Donostia", "Bilbo");
+			sut.sortuErreserba(t, new ErreserbaData(rideNumber,"Donostia","Bilbo",2));
 			fail();
 		} catch(DatuakNullException e) {
 			assertTrue(true);
@@ -341,7 +342,7 @@ public class SortuErreserbaBDBlackTest {
 		
 		sut.open();
 		try {
-			sut.sortuErreserba(t, rideNumber, 2, "Donostia", "Bilbo");
+			sut.sortuErreserba(t,  new ErreserbaData(rideNumber,"Donostia","Bilbo",2));
 			fail();
 		} catch(DatuakNullException e) {
 			assertTrue(true);
@@ -380,7 +381,7 @@ public class SortuErreserbaBDBlackTest {
 		
 		sut.open();
 		try {
-			sut.sortuErreserba(t, rideNumber, 2, "Donostia", "Bilbo");
+			sut.sortuErreserba(t,  new ErreserbaData(rideNumber,"Donostia","Bilbo",2));
 			fail();
 		} catch(EserlekurikLibreEzException e) {
 			assertTrue(true);
@@ -422,7 +423,7 @@ public class SortuErreserbaBDBlackTest {
 		
 		sut.open();
 		try {
-			boolean res = sut.sortuErreserba(t, rideNumber, 2, "Zarautz", "Bilbo");
+			boolean res = sut.sortuErreserba(t, new ErreserbaData(rideNumber,"Zarautz","Bilbo",2));
 			assertFalse(res);
 			testDA.open();
 			assertEquals(dirua, testDA.getTravelerCash(travelerEmail), 0.01);
@@ -462,7 +463,7 @@ public class SortuErreserbaBDBlackTest {
 		
 		sut.open();
 		try {
-			boolean res = sut.sortuErreserba(t, rideNumber, 2, "Donostia", "Zarautz");
+			boolean res = sut.sortuErreserba(t,  new ErreserbaData(rideNumber,"Bilbo","Zarautz",2));
 			assertFalse(res);
 			testDA.open();
 			assertEquals(dirua, testDA.getTravelerCash(travelerEmail), 0.01);
@@ -502,7 +503,7 @@ public class SortuErreserbaBDBlackTest {
 		
 		sut.open();
 		try {
-			boolean res = sut.sortuErreserba(t, rideNumber, 2, "Bilbo", "Donostia");
+			boolean res = sut.sortuErreserba(t,  new ErreserbaData(rideNumber,"Bilbo","Donostia",2));
 			assertFalse(res);
 			testDA.open();
 			assertEquals(dirua, testDA.getTravelerCash(travelerEmail), 0.01);
@@ -542,7 +543,7 @@ public class SortuErreserbaBDBlackTest {
 		
 		sut.open();
 		try {
-			sut.sortuErreserba(t, rideNumber, 2, "Donostia", "Bilbo");
+			sut.sortuErreserba(t, new ErreserbaData(rideNumber,"Donostia","Bilbo",2));
 			fail();
 		} catch(DiruaEzDaukaException e) {
 			assertTrue(true);
@@ -585,7 +586,7 @@ public class SortuErreserbaBDBlackTest {
 		
 		sut.open();
 		try {
-			sut.sortuErreserba(t, rideNumber, 2, "Donostia", "Bilbo");
+			sut.sortuErreserba(t, new ErreserbaData(rideNumber,"Donostia","Bilbo",2));
 			fail();
 		} catch(ErreserbaAlreadyExistsException e) {
 			assertTrue(true);
@@ -631,7 +632,7 @@ public class SortuErreserbaBDBlackTest {
 		
 		sut.open();
 		try {
-			boolean res = sut.sortuErreserba(t, rideNumber, eserlekuKop, "Donostia", "Bilbo");
+			boolean res = sut.sortuErreserba(t, new ErreserbaData(rideNumber,"Donostia","Bilbo",eserlekuKop));
 			assertTrue(res);
 			double prezioa = r.prezioaKalkulatu(from, to)*eserlekuKop;
 			testDA.open();
@@ -676,7 +677,7 @@ public class SortuErreserbaBDBlackTest {
 		
 		sut.open();
 		try {
-			boolean res = sut.sortuErreserba(t, rideNumber, eserlekuKop, "Donostia", "Bilbo");
+			boolean res = sut.sortuErreserba(t, new ErreserbaData(rideNumber,"Donostia","Bilbo",eserlekuKop));
 			assertTrue(res);
 			double prezioa = r.prezioaKalkulatu(from, to)*eserlekuKop;
 			testDA.open();
@@ -721,7 +722,7 @@ public class SortuErreserbaBDBlackTest {
 		
 		sut.open();
 		try {
-			boolean res = sut.sortuErreserba(t, rideNumber, eserlekuKop, "Donostia", "Bilbo");
+			boolean res = sut.sortuErreserba(t, new ErreserbaData(rideNumber,"Donostia","Bilbo",eserlekuKop));
 			assertTrue(res);
 			double prezioa = r.prezioaKalkulatu(from, to)*eserlekuKop;
 			testDA.open();

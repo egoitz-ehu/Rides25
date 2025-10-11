@@ -9,6 +9,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import data_access.DataAccess;
+import domain.ErreserbaData;
 import domain.Ride;
 import domain.Traveler;
 import exceptions.DatuakNullException;
@@ -54,7 +55,7 @@ public class SortuErreserbaBDWhiteTest {
 		
 		sut.open();
 		try {
-			boolean res = sut.sortuErreserba(t, rideNumber, 0, from, to);
+			boolean res = sut.sortuErreserba(t, new ErreserbaData(rideNumber, from, to, 0));
 			sut.close();
 			assertFalse(res);
 			testDA.open();
@@ -97,7 +98,7 @@ public class SortuErreserbaBDWhiteTest {
 		
 		sut.open();
 		try {
-			sut.sortuErreserba(t, rideNumber, 1, from, to);
+			sut.sortuErreserba(t, new ErreserbaData(rideNumber, from, to, 1));
 			sut.close();
 			fail();
 		} catch (EserlekurikLibreEzException | DiruaEzDaukaException | DatuakNullException e) {
@@ -142,7 +143,7 @@ public class SortuErreserbaBDWhiteTest {
 		
 		sut.open();
 		try {
-			sut.sortuErreserba(t, rideNumber, 1, from, to);
+			sut.sortuErreserba(t, new ErreserbaData(rideNumber, from, to, 1));
 			sut.close();
 			fail();
 		} catch (EserlekurikLibreEzException | ErreserbaAlreadyExistsException | DatuakNullException e) {
@@ -188,7 +189,7 @@ public class SortuErreserbaBDWhiteTest {
 		
 		sut.open();
 		try {
-			sut.sortuErreserba(t, rideNumber, 1, from, to);
+			sut.sortuErreserba(t, new ErreserbaData(rideNumber, from, to, 1));
 			sut.close();
 			fail();
 		} catch (DiruaEzDaukaException | ErreserbaAlreadyExistsException | DatuakNullException e) {
@@ -232,7 +233,7 @@ public class SortuErreserbaBDWhiteTest {
 		
 		sut.open();
 		try {
-			sut.sortuErreserba(t, rideNumber, 1, from, to);
+			sut.sortuErreserba(t, new ErreserbaData(rideNumber, from, to, 1));
 			sut.close();
 		} catch (DiruaEzDaukaException | EserlekurikLibreEzException | ErreserbaAlreadyExistsException e) {
 			sut.close();
@@ -271,7 +272,7 @@ public class SortuErreserbaBDWhiteTest {
 		
 		sut.open();
 		try {
-			boolean res = sut.sortuErreserba(t, rideNumber, 1, from, to);
+			boolean res = sut.sortuErreserba(t, new ErreserbaData(rideNumber, from, to, 1));
 			sut.close();
 			assertTrue(res);
 			testDA.open();

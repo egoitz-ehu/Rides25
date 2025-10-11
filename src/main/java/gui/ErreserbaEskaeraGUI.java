@@ -5,6 +5,7 @@ import configuration.UtilDate;
 import com.toedter.calendar.JCalendar;
 
 import business_logic.BLFacade;
+import domain.ErreserbaData;
 import domain.Ride;
 import domain.RideEgoera;
 import domain.Traveler;
@@ -294,7 +295,10 @@ public class ErreserbaEskaeraGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					int kop = Integer.parseInt(eserKop.getText());
-					boolean b = WelcomeGUI.getBusinessLogic().sortuErreserba(t, selectedRide.getRideNumber(), kop, (String)jComboBoxOrigin.getSelectedItem(),(String)jComboBoxDestination.getSelectedItem());
+					ErreserbaData eData = new ErreserbaData(selectedRide.getRideNumber(),
+						(String) jComboBoxOrigin.getSelectedItem(),
+						(String)jComboBoxDestination.getSelectedItem(), kop);
+					boolean b = WelcomeGUI.getBusinessLogic().sortuErreserba(t, eData);
 					tableModelRides.setDataVector(null, columnNamesRides);
 					//tableModelRides.setColumnCount(5);
 					if(b) {

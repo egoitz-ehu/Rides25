@@ -15,6 +15,7 @@ import domain.Car;
 import domain.Driver;
 import domain.Erreklamazioa;
 import domain.Erreserba;
+import domain.ErreserbaData;
 import domain.Mezua;
 import domain.Mugimendua;
 import exceptions.RideMustBeLaterThanTodayException;
@@ -102,7 +103,7 @@ public interface BLFacade  {
 	
 	@WebMethod public boolean diruaSartu(String t, double kop);
 	
-	@WebMethod public boolean sortuErreserba(Traveler t, int rNumber, int kop, String from, String to) throws EserlekurikLibreEzException, ErreserbaAlreadyExistsException, DiruaEzDaukaException, DatuakNullException;
+	@WebMethod public boolean sortuErreserba(Traveler t, ErreserbaData eData) throws EserlekurikLibreEzException, ErreserbaAlreadyExistsException, DiruaEzDaukaException, DatuakNullException;
 	
 	@WebMethod public List<Integer> getAllRidesNumber(String email);
 	

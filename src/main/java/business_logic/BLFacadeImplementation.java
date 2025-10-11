@@ -22,6 +22,7 @@ import domain.Car;
 import domain.Driver;
 import domain.Erreklamazioa;
 import domain.Erreserba;
+import domain.ErreserbaData;
 import domain.Mezua;
 import domain.Mugimendua;
 import exceptions.RideMustBeLaterThanTodayException;
@@ -183,9 +184,10 @@ public class BLFacadeImplementation  implements BLFacade {
 	}
 
 	@WebMethod
-	public boolean sortuErreserba(Traveler t, int rNumber, int kop, String from, String to) throws EserlekurikLibreEzException, ErreserbaAlreadyExistsException, DiruaEzDaukaException, DatuakNullException {
+	public boolean sortuErreserba(Traveler t, ErreserbaData eData) throws
+	EserlekurikLibreEzException, ErreserbaAlreadyExistsException, DiruaEzDaukaException, DatuakNullException {
 		dbManager.open();
-		boolean b = dbManager.sortuErreserba(t, rNumber, kop, from, to);
+		boolean b = dbManager.sortuErreserba(t, eData);
 		dbManager.close();
 		return b;
 	}

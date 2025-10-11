@@ -190,17 +190,18 @@ public class DataAccess  {
 		return b;
 	}
 	
-	public boolean sortuErreserba(Traveler t, int rNumber, int kop, String from, String to) throws EserlekurikLibreEzException, ErreserbaAlreadyExistsException,
+	public boolean sortuErreserba(Traveler t, ErreserbaData erreData)
+			throws EserlekurikLibreEzException, ErreserbaAlreadyExistsException,
 	DiruaEzDaukaException, DatuakNullException {
-		if(kop>0) {
+		if(erreData.kop>0) {
 			db.getTransaction().begin();
-			Ride r = db.find(Ride.class, rNumber);
+			Ride r = db.find(Ride.class, erreData.rNumber);
 			Traveler tr = db.find(Traveler.class, t.getEmail());
 			if(r==null || tr==null) {
 				db.getTransaction().commit();
 				throw new DatuakNullException("Datuak null dira");
 			}
-			return erreserbaSortuEtaGehitu(kop, from, to, r, tr);
+			return erreserbaSortuEtaGehitu(erreData.kop, erreData.from, erreData.to, r, tr);
 		}
 		return false;
 	}
@@ -286,7 +287,6 @@ public class DataAccess  {
 	    t.diruaSartu(kop);
 	    r.itzuliEserlekuak(eserKop);
 	    t.addMugimendua(kop, MugimenduMota.ERRESERBA_UKATU);
-		
 	    db.getTransaction().commit();
 	}
 
