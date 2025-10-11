@@ -229,9 +229,9 @@ public class BLFacadeImplementation  implements BLFacade {
 	}
 
 	@WebMethod
-	public boolean sortuKotxea(String matrikula, int eserKop, String kolorea, String mota, Driver d) {
+	public boolean sortuKotxea(Car kotxeBerria) {
 		dbManager.open();
-		boolean b = dbManager.sortuKotxea(matrikula,eserKop,kolorea, mota,d);
+		boolean b = dbManager.sortuKotxea(kotxeBerria);
 		dbManager.close();
 		return b;
 	}

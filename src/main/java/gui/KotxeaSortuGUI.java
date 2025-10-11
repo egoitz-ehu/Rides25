@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import domain.Car;
 import domain.Driver;
 
 import java.awt.GridBagLayout;
@@ -146,7 +147,8 @@ public class KotxeaSortuGUI extends JFrame {
 						String kolorea = fieldKolorea.getText();
 						String mota = fieldMota.getText();
 						if(!matrikula.equals("") && !kolorea.equals("") && !mota.equals("")) {
-							boolean b = WelcomeGUI.getBusinessLogic().sortuKotxea(matrikula,eserKop,kolorea,mota,d);
+							Car kotxeBerria = new Car(matrikula, eserKop, kolorea, mota, d);
+							boolean b = WelcomeGUI.getBusinessLogic().sortuKotxea(kotxeBerria);	
 							if(b) {
 								lblNewLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("CreateCar.Create"));
 							} else {
