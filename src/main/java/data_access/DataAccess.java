@@ -665,26 +665,33 @@ public class DataAccess  {
 		return query.getResultList();
 	}
 	
-	public void sortuAlerta(String email, String from, String to, Date d) throws BadagoRideException, ErreserbaAlreadyExistsException, AlertaAlreadyExistsException {
-		db.getTransaction().begin();
-		Traveler t = db.find(Traveler.class, email);
-		if(!t.baduAlertaBerdina(from, to, d)) {
-			if(!t.baduErreserba(from, to, d)) {
-				if(getThisMonthDatesWithRides(from,to,d).isEmpty()) {
-					t.sortuAlerta(from, to, d);
-				} else {
-					db.getTransaction().commit();
-					throw new BadagoRideException();
-				}
-			} else {
-				db.getTransaction().commit();
-				throw new ErreserbaAlreadyExistsException();
-			}
-		} else {
-			db.getTransaction().commit();
+	public void sortuAlerta(String email, String from, String to, Date d) throws BadagoRideException,
+	ErreserbaAlreadyExistsException, AlertaAlreadyExistsException {
+		if(sortuAlertaSarreraEgokiak(email, from, to)) {
+			Traveler t = db.find(Traveler.class, email);
+			sortuAlertaSortuBehar(t,from,to,d);
+			db.getTransaction().begin();
+			t.sortuAlerta(from, to, d);
+			db.getTransaction().commit();	
+		}
+	}
+	
+	private boolean sortuAlertaSarreraEgokiak(String email, String from, String to) {
+		return (email!=null && from!=null && to!=null);
+	}
+	
+	private boolean sortuAlertaSortuBehar(Traveler t, String from, String to, Date d) throws BadagoRideException,
+	ErreserbaAlreadyExistsException, AlertaAlreadyExistsException {
+		if(t.baduAlertaBerdina(from, to, d)) {
 			throw new AlertaAlreadyExistsException();
 		}
-		db.getTransaction().commit();
+		if(t.baduErreserba(from, to, d)) {
+			throw new ErreserbaAlreadyExistsException();
+		}
+		if(!getThisMonthDatesWithRides(from,to,d).isEmpty()) {
+			throw new BadagoRideException();
+		}
+		return true;
 	}
 	
 	public List<Alerta> lortuAlertak(String email){
