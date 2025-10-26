@@ -1,0 +1,88 @@
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-10-26 16:04:07 #1 store] 
+Database '/home/egoitz/git/Rides25/src/main/resources/rides.temp' has been recovered (tr. 3478-3676)
+
+[2025-10-26 16:04:07 #2 store] 
+Database '/home/egoitz/git/Rides25/src/main/resources/rides.temp' is opened by 881@fedora
+
+[2025-10-26 16:04:07 #3 type] 
+Type domain.User is not enhanced.
+
+[2025-10-26 16:04:07 #4 type] 
+Type domain.Driver is not enhanced.
+
+[2025-10-26 16:04:07 #5 type] 
+Type domain.Erreklamazioa is not enhanced.
+
+[2025-10-26 16:04:07 #6 type] 
+Type domain.Balorazioa is not enhanced.
+
+[2025-10-26 16:04:07 #7 type] 
+Type domain.Mugimendua is not enhanced.
+
+[2025-10-26 16:04:07 #8 type] 
+Type domain.Car is not enhanced.
+
+[2025-10-26 16:04:07 #9 type] 
+Type domain.Ride is not enhanced.
+
+[2025-10-26 16:04:07 #10 type] 
+Type domain.Mezua is not enhanced.
+
+[2025-10-26 16:04:07 #11 type] 
+Type domain.Erreserba is not enhanced.
+
+[2025-10-26 16:04:07 #12 type] 
+Type domain.Geldialdia is not enhanced.
+
+[2025-10-26 16:04:07 #13 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-10-26 16:04:07 #14 type] 
+Type domain.Alerta is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-10-26 16:12:28 #1 store] 
+Database '/home/egoitz/git/Rides25/src/main/resources/rides.temp' has been recovered (tr. 3677-3875)
+
+[2025-10-26 16:12:28 #2 store] 
+Database '/home/egoitz/git/Rides25/src/main/resources/rides.temp' is opened by 2079@fedora
+
+[2025-10-26 16:12:28 #3 type] 
+Type domain.User is not enhanced.
+
+[2025-10-26 16:12:28 #4 type] 
+Type domain.Driver is not enhanced.
+
+[2025-10-26 16:12:28 #5 type] 
+Type domain.Erreklamazioa is not enhanced.
+
+[2025-10-26 16:12:28 #6 type] 
+Type domain.Balorazioa is not enhanced.
+
+[2025-10-26 16:12:28 #7 type] 
+Type domain.Mugimendua is not enhanced.
+
+[2025-10-26 16:12:28 #8 type] 
+Type domain.Car is not enhanced.
+
+[2025-10-26 16:12:28 #9 type] 
+Type domain.Ride is not enhanced.
+
+[2025-10-26 16:12:28 #10 type] 
+Type domain.Mezua is not enhanced.
+
+[2025-10-26 16:12:28 #11 type] 
+Type domain.Erreserba is not enhanced.
+
+[2025-10-26 16:12:28 #12 type] 
+Type domain.Geldialdia is not enhanced.
+
+[2025-10-26 16:12:28 #13 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-10-26 16:12:28 #14 type] 
+Type domain.Alerta is not enhanced.
+
