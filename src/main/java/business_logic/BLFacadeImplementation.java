@@ -23,6 +23,8 @@ import domain.Driver;
 import domain.Erreklamazioa;
 import domain.Erreserba;
 import domain.ErreserbaData;
+import domain.ExtendedIterator;
+import domain.ExtendedIteratorImplementation;
 import domain.Mezua;
 import domain.Mugimendua;
 import exceptions.RideMustBeLaterThanTodayException;
@@ -441,6 +443,11 @@ public class BLFacadeImplementation  implements BLFacade {
 		dbManager.open();
 		dbManager.ukatuErreklamazioa(id);
 		dbManager.close();
+	}
+
+	@Override
+	public ExtendedIterator<String> getDepartingCitiesIterator() {
+		return new ExtendedIteratorImplementation<String>(this.getStopCitiesNames());
 	}
 }
 

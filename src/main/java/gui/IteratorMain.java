@@ -1,42 +1,26 @@
 package gui;
 
-import java.awt.Color;
-import java.net.URL;
 import java.util.Locale;
 
 import javax.swing.UIManager;
-import javax.swing.UIManager.LookAndFeelInfo;
-import javax.xml.namespace.QName;
-import javax.xml.ws.Service;
 
 import business_logic.BLFacade;
-import business_logic.BLFacadeImplementation;
 import business_logic.BLFactoryLocal;
 import business_logic.BLFactoryServer;
 import business_logic.IBLFactory;
 import configuration.ConfigXML;
-import data_access.DataAccess;
-import domain.Driver;
+import domain.ExtendedIterator;
 
-public class ApplicationLauncher { 
-	
-	
-	
+public class IteratorMain {
+
 	public static void main(String[] args) {
-
-		ConfigXML c=ConfigXML.getInstance();
+ConfigXML c=ConfigXML.getInstance();
 		
 		Locale.setDefault(new Locale(c.getLocale()));
-
-		
-		WelcomeGUI a=new WelcomeGUI();
-		
-
 
 		try {
 			
 			BLFacade appFacadeInterface;
-			UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
 			IBLFactory factory;
 			if (c.isBusinessLogicLocal()) {
 				factory = new BLFactoryLocal();
@@ -48,9 +32,24 @@ public class ApplicationLauncher {
 			} 
 			
 			appFacadeInterface = factory.createBL();
-			WelcomeGUI.setBusinessLogic(appFacadeInterface);
 			
-			a.setVisible(true);
+			ExtendedIterator<String> i = appFacadeInterface.getDepartingCitiesIterator();
+			String city;
+			System.out.println("______________________");
+			System.out.println("FROM LAST TO FIRST");
+			i.goLast();
+			while(i.hasPrevious()) {
+				city = i.previous();
+				System.out.println(city);
+			}
+			System.out.println();
+			System.out.println("______________________");
+			System.out.println("FROM FIRST TO LAST");
+			i.goFirst();
+			while(i.hasNext()) {
+				city = i.next();
+				System.out.println(city);
+			}
 		
 			
 		}catch (Exception e) {	

@@ -16,6 +16,7 @@ import domain.Driver;
 import domain.Erreklamazioa;
 import domain.Erreserba;
 import domain.ErreserbaData;
+import domain.ExtendedIterator;
 import domain.Mezua;
 import domain.Mugimendua;
 import exceptions.RideMustBeLaterThanTodayException;
@@ -170,4 +171,6 @@ public interface BLFacade  {
 	@WebMethod public void onartuErreklamazioa(int id);
 	
 	@WebMethod public void ukatuErreklamazioa(int id);
+	
+	@WebMethod public ExtendedIterator<String> getDepartingCitiesIterator();
 }

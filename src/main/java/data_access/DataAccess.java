@@ -117,6 +117,18 @@ public class DataAccess  {
 			
 			r.gehituErreserba(e);
 			
+			List<String> hiriak2 = new ArrayList<String>();
+			hiriak2.add("Irun");
+			hiriak2.add("Barcelona");
+			hiriak2.add("Madrid");
+			hiriak2.add("Malaga");
+			List<Double> prezioak2 = new ArrayList<Double>();
+			prezioak2.add(10.0);
+			prezioak2.add(10.0);
+			prezioak2.add(10.0);
+			prezioak2.add(0.0);
+			Ride r2 = driver2.addRide(hiriak2, prezioak2, UtilDate.trim(data), driver2.getCars().get(0).getEserKop(), driver2.getCars().get(0));
+			
 			db.persist(driver1);
 			db.persist(driver2);
 			db.persist(traveler1);
