@@ -5,8 +5,7 @@ import java.util.Locale;
 import javax.swing.UIManager;
 
 import business_logic.BLFacade;
-import business_logic.BLFactoryLocal;
-import business_logic.BLFactoryServer;
+import business_logic.BLFactoryImplementation;
 import business_logic.IBLFactory;
 import configuration.ConfigXML;
 import domain.ExtendedIterator;
@@ -21,17 +20,9 @@ ConfigXML c=ConfigXML.getInstance();
 		try {
 			
 			BLFacade appFacadeInterface;
-			IBLFactory factory;
-			if (c.isBusinessLogicLocal()) {
-				factory = new BLFactoryLocal();
-			}
+			IBLFactory factory = new BLFactoryImplementation();
 			
-			else { //If remote
-				factory = new BLFactoryServer();
-				 
-			} 
-			
-			appFacadeInterface = factory.createBL();
+			appFacadeInterface = factory.createBL(true);
 			
 			ExtendedIterator<String> i = appFacadeInterface.getDepartingCitiesIterator();
 			String city;

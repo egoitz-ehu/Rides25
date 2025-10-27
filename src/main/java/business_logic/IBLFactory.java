@@ -1,5 +1,5 @@
 package business_logic;
 
 public interface IBLFactory {
-	public BLFacade createBL() throws Exception;
+	public BLFacade createBL(boolean isLocal) throws Exception;
 }

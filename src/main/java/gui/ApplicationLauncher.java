@@ -11,8 +11,7 @@ import javax.xml.ws.Service;
 
 import business_logic.BLFacade;
 import business_logic.BLFacadeImplementation;
-import business_logic.BLFactoryLocal;
-import business_logic.BLFactoryServer;
+import business_logic.BLFactoryImplementation;
 import business_logic.IBLFactory;
 import configuration.ConfigXML;
 import data_access.DataAccess;
@@ -37,17 +36,9 @@ public class ApplicationLauncher {
 			
 			BLFacade appFacadeInterface;
 			UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
-			IBLFactory factory;
-			if (c.isBusinessLogicLocal()) {
-				factory = new BLFactoryLocal();
-			}
+			IBLFactory factory = new BLFactoryImplementation();
 			
-			else { //If remote
-				factory = new BLFactoryServer();
-				 
-			} 
-			
-			appFacadeInterface = factory.createBL();
+			appFacadeInterface = factory.createBL(c.isBusinessLogicLocal());
 			WelcomeGUI.setBusinessLogic(appFacadeInterface);
 			
 			a.setVisible(true);
