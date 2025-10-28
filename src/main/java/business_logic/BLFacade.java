@@ -173,4 +173,6 @@ public interface BLFacade  {
 	@WebMethod public void ukatuErreklamazioa(int id);
 	
 	@WebMethod public ExtendedIterator<String> getDepartingCitiesIterator();
+	
+	@WebMethod public Driver getDriver(String email);
 }

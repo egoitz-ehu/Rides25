@@ -445,9 +445,17 @@ public class BLFacadeImplementation  implements BLFacade {
 		dbManager.close();
 	}
 
-	@Override
+	@WebMethod
 	public ExtendedIterator<String> getDepartingCitiesIterator() {
 		return new ExtendedIteratorImplementation<String>(this.getStopCitiesNames());
+	}
+
+	@WebMethod
+	public Driver getDriver(String email) {
+		dbManager.open();
+		Driver d = dbManager.getDriver(email);
+		dbManager.close();
+		return d;
 	}
 }
 

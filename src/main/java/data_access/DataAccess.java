@@ -830,4 +830,8 @@ public class DataAccess  {
 		uNori.addMugimendua(kop, MugimenduMota.ERREKLAMAZIOA_IRABAZI);
 		db.getTransaction().commit();
 	}
+	
+	public Driver getDriver(String email) {
+		return db.find(Driver.class, email);
+	}
 }
