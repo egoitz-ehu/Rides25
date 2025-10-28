@@ -1,0 +1,487 @@
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-10-28 10:47:50 #1 store] 
+Database 'C:\Users\ehu\git\Rides25\src\main\resources\rides.temp' is opened by 11768@U032853
+
+[2025-10-28 10:47:50 #2 type.registry] 
+New type domain.Ride
+
+[2025-10-28 10:47:50 #3 type] 
+Type domain.Ride is not enhanced.
+
+[2025-10-28 10:47:50 #4 type.registry] 
+New type domain.Geldialdia
+
+[2025-10-28 10:47:50 #5 type.registry] 
+New type domain.RideEgoera
+
+[2025-10-28 10:47:50 #6 type.registry] 
+New type domain.Erreserba
+
+[2025-10-28 10:47:50 #7 type.registry] 
+New type domain.User
+
+[2025-10-28 10:47:50 #8 type.registry] 
+New type domain.Driver
+
+[2025-10-28 10:47:50 #9 type.registry] 
+New type domain.Car
+
+[2025-10-28 10:47:50 #10 type] 
+Type domain.Geldialdia is not enhanced.
+
+[2025-10-28 10:47:50 #11 type] 
+Type domain.Erreserba is not enhanced.
+
+[2025-10-28 10:47:50 #12 type.registry] 
+New type domain.Balorazioa
+
+[2025-10-28 10:47:50 #13 type.registry] 
+New type domain.Traveler
+
+[2025-10-28 10:47:50 #14 type.registry] 
+New type domain.ErreserbaEgoera
+
+[2025-10-28 10:47:50 #15 type] 
+Type domain.User is not enhanced.
+
+[2025-10-28 10:47:50 #16 type.registry] 
+New type domain.Erreklamazioa
+
+[2025-10-28 10:47:50 #17 type.registry] 
+New type domain.Mugimendua
+
+[2025-10-28 10:47:50 #18 type] 
+Type domain.Driver is not enhanced.
+
+[2025-10-28 10:47:50 #19 type] 
+Type domain.Car is not enhanced.
+
+[2025-10-28 10:47:50 #20 type] 
+Type domain.Balorazioa is not enhanced.
+
+[2025-10-28 10:47:50 #21 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-10-28 10:47:50 #22 type.registry] 
+New type domain.Alerta
+
+[2025-10-28 10:47:50 #23 type] 
+Type domain.Erreklamazioa is not enhanced.
+
+[2025-10-28 10:47:50 #24 type.registry] 
+New type domain.Mezua
+
+[2025-10-28 10:47:50 #25 type.registry] 
+New type domain.ErreklamazioaEgoera
+
+[2025-10-28 10:47:50 #26 type] 
+Type domain.Mugimendua is not enhanced.
+
+[2025-10-28 10:47:50 #27 type.registry] 
+New type domain.MugimenduMota
+
+[2025-10-28 10:47:50 #28 type] 
+Type domain.Alerta is not enhanced.
+
+[2025-10-28 10:47:50 #29 type.registry] 
+New type domain.AlertaEgoera
+
+[2025-10-28 10:47:50 #30 type] 
+Type domain.Mezua is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-10-28 11:03:16 #1 store] 
+Database 'C:\Users\ehu\git\Rides25\src\main\resources\rides.temp' is opened by 5620@U032853
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-10-28 11:04:12 #1 store] 
+Database 'C:\Users\ehu\git\Rides25\src\main\resources\rides.temp' is opened by 3096@U032853
+
+[2025-10-28 11:04:20 #2 type.registry] 
+New type domain.User
+
+[2025-10-28 11:04:20 #3 type] 
+Type domain.User is not enhanced.
+
+[2025-10-28 11:04:20 #4 type.registry] 
+New type domain.Erreklamazioa
+
+[2025-10-28 11:04:20 #5 type.registry] 
+New type domain.Balorazioa
+
+[2025-10-28 11:04:20 #6 type.registry] 
+New type domain.Mugimendua
+
+[2025-10-28 11:04:20 #7 type] 
+Type domain.Erreklamazioa is not enhanced.
+
+[2025-10-28 11:04:20 #8 type.registry] 
+New type domain.Mezua
+
+[2025-10-28 11:04:20 #9 type.registry] 
+New type domain.ErreklamazioaEgoera
+
+[2025-10-28 11:04:20 #10 type] 
+Type domain.Balorazioa is not enhanced.
+
+[2025-10-28 11:04:20 #11 type.registry] 
+New type domain.Erreserba
+
+[2025-10-28 11:04:20 #12 type] 
+Type domain.Mugimendua is not enhanced.
+
+[2025-10-28 11:04:20 #13 type.registry] 
+New type domain.MugimenduMota
+
+[2025-10-28 11:04:20 #14 type] 
+Type domain.Mezua is not enhanced.
+
+[2025-10-28 11:04:20 #15 type] 
+Type domain.Erreserba is not enhanced.
+
+[2025-10-28 11:04:20 #16 type.registry] 
+New type domain.Ride
+
+[2025-10-28 11:04:20 #17 type.registry] 
+New type domain.Traveler
+
+[2025-10-28 11:04:20 #18 type.registry] 
+New type domain.ErreserbaEgoera
+
+[2025-10-28 11:04:20 #19 type] 
+Type domain.Ride is not enhanced.
+
+[2025-10-28 11:04:20 #20 type.registry] 
+New type domain.Geldialdia
+
+[2025-10-28 11:04:20 #21 type.registry] 
+New type domain.RideEgoera
+
+[2025-10-28 11:04:20 #22 type.registry] 
+New type domain.Driver
+
+[2025-10-28 11:04:20 #23 type.registry] 
+New type domain.Car
+
+[2025-10-28 11:04:20 #24 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-10-28 11:04:20 #25 type.registry] 
+New type domain.Alerta
+
+[2025-10-28 11:04:20 #26 type] 
+Type domain.Geldialdia is not enhanced.
+
+[2025-10-28 11:04:20 #27 type] 
+Type domain.Driver is not enhanced.
+
+[2025-10-28 11:04:20 #28 type] 
+Type domain.Car is not enhanced.
+
+[2025-10-28 11:04:20 #29 type] 
+Type domain.Alerta is not enhanced.
+
+[2025-10-28 11:04:20 #30 type.registry] 
+New type domain.AlertaEgoera
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-10-28 11:05:07 #1 store] 
+Database 'C:\Users\ehu\git\Rides25\src\main\resources\rides.temp' is opened by 12052@U032853
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-10-28 11:08:56 #1 store] 
+Database 'C:\Users\ehu\git\Rides25\src\main\resources\rides.temp' is opened by 16412@U032853
+
+[2025-10-28 11:09:02 #2 type.registry] 
+New type domain.User
+
+[2025-10-28 11:09:02 #3 type] 
+Type domain.User is not enhanced.
+
+[2025-10-28 11:09:02 #4 type.registry] 
+New type domain.Erreklamazioa
+
+[2025-10-28 11:09:02 #5 type.registry] 
+New type domain.Balorazioa
+
+[2025-10-28 11:09:02 #6 type.registry] 
+New type domain.Mugimendua
+
+[2025-10-28 11:09:02 #7 type] 
+Type domain.Erreklamazioa is not enhanced.
+
+[2025-10-28 11:09:02 #8 type.registry] 
+New type domain.Mezua
+
+[2025-10-28 11:09:02 #9 type.registry] 
+New type domain.ErreklamazioaEgoera
+
+[2025-10-28 11:09:02 #10 type] 
+Type domain.Mugimendua is not enhanced.
+
+[2025-10-28 11:09:02 #11 type.registry] 
+New type domain.MugimenduMota
+
+[2025-10-28 11:09:02 #12 type] 
+Type domain.Mezua is not enhanced.
+
+[2025-10-28 11:09:02 #13 type.registry] 
+New type domain.Driver
+
+[2025-10-28 11:09:02 #14 type] 
+Type domain.Driver is not enhanced.
+
+[2025-10-28 11:09:02 #15 type.registry] 
+New type domain.Car
+
+[2025-10-28 11:09:02 #16 type.registry] 
+New type domain.Ride
+
+[2025-10-28 11:09:02 #17 type] 
+Type domain.Car is not enhanced.
+
+[2025-10-28 11:09:02 #18 type] 
+Type domain.Ride is not enhanced.
+
+[2025-10-28 11:09:02 #19 type.registry] 
+New type domain.Geldialdia
+
+[2025-10-28 11:09:02 #20 type.registry] 
+New type domain.RideEgoera
+
+[2025-10-28 11:09:02 #21 type.registry] 
+New type domain.Erreserba
+
+[2025-10-28 11:09:02 #22 type] 
+Type domain.Geldialdia is not enhanced.
+
+[2025-10-28 11:09:02 #23 type] 
+Type domain.Erreserba is not enhanced.
+
+[2025-10-28 11:09:02 #24 type.registry] 
+New type domain.Traveler
+
+[2025-10-28 11:09:02 #25 type.registry] 
+New type domain.ErreserbaEgoera
+
+[2025-10-28 11:09:02 #26 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-10-28 11:09:02 #27 type.registry] 
+New type domain.Alerta
+
+[2025-10-28 11:09:02 #28 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-10-28 11:09:02 #29 type.registry] 
+New type java.util.Vector<domain.Mugimendua>
+
+[2025-10-28 11:09:02 #30 type.registry] 
+New type java.util.Vector<domain.Balorazioa>
+
+[2025-10-28 11:09:02 #31 type.registry] 
+New type java.util.Vector<domain.Erreklamazioa>
+
+[2025-10-28 11:09:02 #32 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2025-10-28 11:09:02 #33 type.registry] 
+New type java.util.Vector<domain.Car>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-10-28 11:09:12 #1 store] 
+Database 'C:\Users\ehu\git\Rides25\src\main\resources\rides.temp' has been recovered (tr. 3-11)
+
+[2025-10-28 11:09:12 #2 store] 
+Database 'C:\Users\ehu\git\Rides25\src\main\resources\rides.temp' is opened by 3520@U032853
+
+[2025-10-28 11:09:13 #3 type] 
+Type domain.User is not enhanced.
+
+[2025-10-28 11:09:13 #4 type] 
+Type domain.Erreklamazioa is not enhanced.
+
+[2025-10-28 11:09:13 #5 type] 
+Type domain.Mugimendua is not enhanced.
+
+[2025-10-28 11:09:13 #6 type] 
+Type domain.Mezua is not enhanced.
+
+[2025-10-28 11:09:13 #7 type] 
+Type domain.Driver is not enhanced.
+
+[2025-10-28 11:09:13 #8 type] 
+Type domain.Car is not enhanced.
+
+[2025-10-28 11:09:13 #9 type] 
+Type domain.Ride is not enhanced.
+
+[2025-10-28 11:09:13 #10 type] 
+Type domain.Geldialdia is not enhanced.
+
+[2025-10-28 11:09:13 #11 type] 
+Type domain.Erreserba is not enhanced.
+
+[2025-10-28 11:09:13 #12 type] 
+Type domain.Traveler is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-10-28 11:09:31 #1 store] 
+Database 'C:\Users\ehu\git\Rides25\src\main\resources\rides.temp' is opened by 1524@U032853
+
+[2025-10-28 11:09:31 #2 type.registry] 
+New type domain.User
+
+[2025-10-28 11:09:31 #3 type.registry] 
+New type domain.Driver
+
+[2025-10-28 11:09:31 #4 type] 
+Type domain.User is not enhanced.
+
+[2025-10-28 11:09:31 #5 type.registry] 
+New type domain.Erreklamazioa
+
+[2025-10-28 11:09:31 #6 type.registry] 
+New type domain.Balorazioa
+
+[2025-10-28 11:09:31 #7 type.registry] 
+New type domain.Mugimendua
+
+[2025-10-28 11:09:31 #8 type] 
+Type domain.Driver is not enhanced.
+
+[2025-10-28 11:09:31 #9 type.registry] 
+New type domain.Car
+
+[2025-10-28 11:09:31 #10 type.registry] 
+New type domain.Ride
+
+[2025-10-28 11:09:31 #11 type] 
+Type domain.Erreklamazioa is not enhanced.
+
+[2025-10-28 11:09:31 #12 type.registry] 
+New type domain.Mezua
+
+[2025-10-28 11:09:31 #13 type.registry] 
+New type domain.ErreklamazioaEgoera
+
+[2025-10-28 11:09:31 #14 type] 
+Type domain.Mugimendua is not enhanced.
+
+[2025-10-28 11:09:31 #15 type.registry] 
+New type domain.MugimenduMota
+
+[2025-10-28 11:09:31 #16 type] 
+Type domain.Car is not enhanced.
+
+[2025-10-28 11:09:31 #17 type] 
+Type domain.Ride is not enhanced.
+
+[2025-10-28 11:09:31 #18 type.registry] 
+New type domain.Geldialdia
+
+[2025-10-28 11:09:31 #19 type.registry] 
+New type domain.RideEgoera
+
+[2025-10-28 11:09:31 #20 type.registry] 
+New type domain.Erreserba
+
+[2025-10-28 11:09:31 #21 type] 
+Type domain.Mezua is not enhanced.
+
+[2025-10-28 11:09:31 #22 type] 
+Type domain.Geldialdia is not enhanced.
+
+[2025-10-28 11:09:31 #23 type] 
+Type domain.Erreserba is not enhanced.
+
+[2025-10-28 11:09:31 #24 type.registry] 
+New type domain.Traveler
+
+[2025-10-28 11:09:31 #25 type.registry] 
+New type domain.ErreserbaEgoera
+
+[2025-10-28 11:09:31 #26 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-10-28 11:09:32 #27 type.registry] 
+New type domain.Alerta
+
+[2025-10-28 11:09:32 #28 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-10-28 11:09:32 #29 type.registry] 
+New type java.util.LinkedList<java.lang.Object>
+
+[2025-10-28 11:09:32 #30 type.registry] 
+New type java.util.Vector<domain.Mugimendua>
+
+[2025-10-28 11:09:32 #31 type.registry] 
+New type java.util.Vector<domain.Balorazioa>
+
+[2025-10-28 11:09:32 #32 type.registry] 
+New type java.util.Vector<domain.Erreklamazioa>
+
+[2025-10-28 11:09:32 #33 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2025-10-28 11:09:32 #34 type.registry] 
+New type java.util.Vector<domain.Car>
+
+[2025-10-28 11:09:32 #35 type.registry] 
+New type java.util.Vector<domain.Erreserba>
+
+[2025-10-28 11:09:32 #36 type.registry] 
+New type java.util.Vector<domain.Alerta>
+
+[2025-10-28 11:09:32 #37 type.registry] 
+New type java.util.LinkedList<domain.Ride>
+
+[2025-10-28 11:09:32 #38 type.registry] 
+New type java.util.LinkedList<domain.Geldialdia>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-10-28 11:09:39 #1 store] 
+Database 'C:\Users\ehu\git\Rides25\src\main\resources\rides.temp' has been recovered (tr. 1-15)
+
+[2025-10-28 11:09:39 #2 store] 
+Database 'C:\Users\ehu\git\Rides25\src\main\resources\rides.temp' is opened by 5896@U032853
+
+[2025-10-28 11:09:39 #3 type] 
+Type domain.User is not enhanced.
+
+[2025-10-28 11:09:39 #4 type] 
+Type domain.Driver is not enhanced.
+
+[2025-10-28 11:09:39 #5 type] 
+Type domain.Erreklamazioa is not enhanced.
+
+[2025-10-28 11:09:39 #6 type] 
+Type domain.Mugimendua is not enhanced.
+
+[2025-10-28 11:09:39 #7 type] 
+Type domain.Car is not enhanced.
+
+[2025-10-28 11:09:39 #8 type] 
+Type domain.Ride is not enhanced.
+
+[2025-10-28 11:09:39 #9 type] 
+Type domain.Mezua is not enhanced.
+
+[2025-10-28 11:09:39 #10 type] 
+Type domain.Geldialdia is not enhanced.
+
+[2025-10-28 11:09:39 #11 type] 
+Type domain.Erreserba is not enhanced.
+
+[2025-10-28 11:09:39 #12 type] 
+Type domain.Traveler is not enhanced.
+

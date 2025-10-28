@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@Entity
+//@Entity
 public class Balorazioa implements Serializable {
     @XmlID
     @Id
