@@ -33,3 +33,38 @@ Type domain.Erreserba is not enhanced.
 [2025-10-29 17:12:57 #11 type] 
 Type domain.Traveler is not enhanced.
 
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-10-29 19:01:55 #1 store] 
+Database '/home/egoitz/git/Rides25/src/main/resources/rides.temp' is opened by 541@fedora
+
+[2025-10-29 19:01:55 #2 type] 
+Type domain.User is not enhanced.
+
+[2025-10-29 19:01:55 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-10-29 19:01:55 #4 type] 
+Type domain.Erreklamazioa is not enhanced.
+
+[2025-10-29 19:01:55 #5 type] 
+Type domain.Mugimendua is not enhanced.
+
+[2025-10-29 19:01:55 #6 type] 
+Type domain.Car is not enhanced.
+
+[2025-10-29 19:01:55 #7 type] 
+Type domain.Ride is not enhanced.
+
+[2025-10-29 19:01:55 #8 type] 
+Type domain.Mezua is not enhanced.
+
+[2025-10-29 19:01:55 #9 type] 
+Type domain.Geldialdia is not enhanced.
+
+[2025-10-29 19:01:55 #10 type] 
+Type domain.Erreserba is not enhanced.
+
+[2025-10-29 19:01:55 #11 type] 
+Type domain.Traveler is not enhanced.
+
