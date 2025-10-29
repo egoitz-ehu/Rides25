@@ -27,7 +27,8 @@ public class DriverAdapter extends AbstractTableModel {
 		else if(columnIndex==1) return this.rideList.get(rowIndex).getGeldialdiak().get(1).getHiria();
 		else if(columnIndex==2) return this.rideList.get(rowIndex).getDate();
 		else if(columnIndex==3) return this.rideList.get(rowIndex).getnPlaces();
-		else  return this.rideList.get(rowIndex).prezioaKalkulatu(this.rideList.get(rowIndex).getGeldialdiak().get(0).getHiria(), this.rideList.get(rowIndex).getGeldialdiak().get(1).getHiria());
+		else  return this.rideList.get(rowIndex).prezioaKalkulatu(this.rideList.get(rowIndex).getGeldialdiak().get(0).getHiria(), 
+				this.rideList.get(rowIndex).getGeldialdiak().get(1).getHiria());
 	}
 
 }
