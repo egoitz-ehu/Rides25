@@ -20,6 +20,15 @@ public class DriverAdapter extends AbstractTableModel {
 	public int getColumnCount() {
 		return 5;
 	}
+	
+	@Override
+	public String getColumnName(int columnIndex) {
+		if(columnIndex==0) return "From";
+		else if(columnIndex==1) return "To";
+		else if(columnIndex==2) return "Date";
+		else if(columnIndex==3) return "Places";
+		else return "Price";
+	}
 
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
